@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import hljs from "highlight.js/lib/common";
 import "highlight.js/styles/github-dark.css";
 
