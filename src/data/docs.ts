@@ -292,9 +292,9 @@ function placeholderPages(name: string, storeUrl?: string): DocPage[] {
 <table>
 <thead><tr><th>Type</th><th>Change</th></tr></thead>
 <tbody>
-<tr><td>Fixed</td><td>Memory leak when reusing pooled objects across scenes.</td></tr>
-<tr><td>Fixed</td><td>IL2CPP build error on iOS 17 SDK.</td></tr>
-<tr><td>Changed</td><td>Internal allocator switched to a slab pool — ~12% faster on average.</td></tr>
+<tr><td><span class="changelog-type-fixed">Fixed</span></td><td>Memory leak when reusing pooled objects across scenes.</td></tr>
+<tr><td><span class="changelog-type-fixed">Fixed</span></td><td>IL2CPP build error on iOS 17 SDK.</td></tr>
+<tr><td><span class="changelog-type-changed">Changed</span></td><td>Internal allocator switched to a slab pool — ~12% faster on average.</td></tr>
 </tbody>
 </table>
 
@@ -302,10 +302,10 @@ function placeholderPages(name: string, storeUrl?: string): DocPage[] {
 <table>
 <thead><tr><th>Type</th><th>Change</th></tr></thead>
 <tbody>
-<tr><td>Added</td><td>New inspector for the core ${name} settings asset.</td></tr>
-<tr><td>Added</td><td>Sample scene demonstrating the recommended setup.</td></tr>
-<tr><td>Changed</td><td>Minimum supported Unity version raised to 2020.3 LTS.</td></tr>
-<tr><td>Removed</td><td>Long-deprecated <code>BootstrapV1</code> entry point.</td></tr>
+<tr><td><span class="changelog-type-added">Added</span></td><td>New inspector for the core ${name} settings asset.</td></tr>
+<tr><td><span class="changelog-type-added">Added</span></td><td>Sample scene demonstrating the recommended setup.</td></tr>
+<tr><td><span class="changelog-type-changed">Changed</span></td><td>Minimum supported Unity version raised to 2020.3 LTS.</td></tr>
+<tr><td><span class="changelog-type-removed">Removed</span></td><td>Long-deprecated <code>BootstrapV1</code> entry point.</td></tr>
 </tbody>
 </table>
 
@@ -313,8 +313,8 @@ function placeholderPages(name: string, storeUrl?: string): DocPage[] {
 <table>
 <thead><tr><th>Type</th><th>Change</th></tr></thead>
 <tbody>
-<tr><td>Added</td><td>WebGL platform support with a reduced feature surface.</td></tr>
-<tr><td>Fixed</td><td>Editor freeze when opening the ${name} settings window on macOS.</td></tr>
+<tr><td><span class="changelog-type-added">Added</span></td><td>WebGL platform support with a reduced feature surface.</td></tr>
+<tr><td><span class="changelog-type-fixed">Fixed</span></td><td>Editor freeze when opening the ${name} settings window on macOS.</td></tr>
 </tbody>
 </table>
 
@@ -322,8 +322,8 @@ function placeholderPages(name: string, storeUrl?: string): DocPage[] {
 <table>
 <thead><tr><th>Type</th><th>Change</th></tr></thead>
 <tbody>
-<tr><td>Added</td><td>Public extension API for custom backends.</td></tr>
-<tr><td>Changed</td><td>Reorganised assemblies — see migration notes below.</td></tr>
+<tr><td><span class="changelog-type-added">Added</span></td><td>Public extension API for custom backends.</td></tr>
+<tr><td><span class="changelog-type-changed">Changed</span></td><td>Reorganised assemblies — see migration notes below.</td></tr>
 </tbody>
 </table>
 

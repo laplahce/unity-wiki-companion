@@ -1,8 +1,21 @@
-import { QueryClient } from "@tanstack/react-query";
-import { createRouter, Link, useRouter } from "@tanstack/react-router";
-import { routeTree } from "./routeTree.gen";
+import { createFileRoute, Link, useRouter } from "@tanstack/react-router";
 
-function DefaultNotFound() {
+export const Route = createFileRoute("/$")({
+  head: () => ({
+    meta: [
+      { title: "404 — Page not found | UnityWiki" },
+      { name: "description", content: "The page you requested could not be found on UnityWiki." },
+      { property: "og:title", content: "404 — Page not found | UnityWiki" },
+      { property: "og:description", content: "The page you requested could not be found on UnityWiki." },
+      { name: "robots", content: "noindex" },
+    ],
+  }),
+  component: NotFoundPage,
+});
+
+function NotFoundPage() {
+  const router = useRouter();
+
   return (
     <div className="mx-auto max-w-2xl px-6 py-20 text-center">
       <div
@@ -39,46 +52,3 @@ function DefaultNotFound() {
     </div>
   );
 }
-
-function DefaultError({ error, reset }: { error: Error; reset: () => void }) {
-  const router = useRouter();
-  console.error(error);
-
-  return (
-    <div className="mx-auto max-w-2xl px-6 py-16">
-      <h1 className="font-serif text-2xl">Something went wrong</h1>
-      <p className="mt-2 text-sm text-muted-foreground">
-        The page failed to load. You can try again or return home.
-      </p>
-      <div className="mt-6 flex gap-3 text-sm">
-        <button
-          onClick={() => {
-            router.invalidate();
-            reset();
-          }}
-          className="nav-link"
-        >
-          Try again
-        </button>
-        <a href="/" className="nav-link">
-          Main page
-        </a>
-      </div>
-    </div>
-  );
-}
-
-export const getRouter = () => {
-  const queryClient = new QueryClient();
-
-  const router = createRouter({
-    routeTree,
-    context: { queryClient },
-    scrollRestoration: true,
-    defaultPreloadStaleTime: 0,
-    defaultNotFoundComponent: DefaultNotFound,
-    defaultErrorComponent: DefaultError,
-  });
-
-  return router;
-};
