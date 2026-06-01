@@ -280,11 +280,11 @@ function placeholderPages(name: string, storeUrl?: string): DocPage[] {
 <table>
 <thead><tr><th>Type</th><th>Change</th></tr></thead>
 <tbody>
-<tr><td>Added</td><td>Unity 6 compatibility and new project template.</td></tr>
-<tr><td>Added</td><td>Async/await helpers for long-running ${name} operations.</td></tr>
-<tr><td>Changed</td><td>Default logging level lowered from <code>Info</code> to <code>Warning</code>.</td></tr>
-<tr><td>Fixed</td><td>Crash when reloading domain with strict mode enabled.</td></tr>
-<tr><td>Deprecated</td><td><code>LegacyRunner</code> — use <code>Runner</code> instead.</td></tr>
+<tr><td><span class="changelog-type-added">Added</span></td><td>Unity 6 compatibility and new project template.</td></tr>
+<tr><td><span class="changelog-type-added">Added</span></td><td>Async/await helpers for long-running ${name} operations.</td></tr>
+<tr><td><span class="changelog-type-changed">Changed</span></td><td>Default logging level lowered from <code>Info</code> to <code>Warning</code>.</td></tr>
+<tr><td><span class="changelog-type-fixed">Fixed</span></td><td>Crash when reloading domain with strict mode enabled.</td></tr>
+<tr><td><span class="changelog-type-deprecated">Deprecated</span></td><td><code>LegacyRunner</code> — use <code>Runner</code> instead.</td></tr>
 </tbody>
 </table>
 
@@ -292,9 +292,9 @@ function placeholderPages(name: string, storeUrl?: string): DocPage[] {
 <table>
 <thead><tr><th>Type</th><th>Change</th></tr></thead>
 <tbody>
-<tr><td>Fixed</td><td>Memory leak when reusing pooled objects across scenes.</td></tr>
-<tr><td>Fixed</td><td>IL2CPP build error on iOS 17 SDK.</td></tr>
-<tr><td>Changed</td><td>Internal allocator switched to a slab pool — ~12% faster on average.</td></tr>
+<tr><td><span class="changelog-type-fixed">Fixed</span></td><td>Memory leak when reusing pooled objects across scenes.</td></tr>
+<tr><td><span class="changelog-type-fixed">Fixed</span></td><td>IL2CPP build error on iOS 17 SDK.</td></tr>
+<tr><td><span class="changelog-type-changed">Changed</span></td><td>Internal allocator switched to a slab pool — ~12% faster on average.</td></tr>
 </tbody>
 </table>
 
@@ -302,10 +302,10 @@ function placeholderPages(name: string, storeUrl?: string): DocPage[] {
 <table>
 <thead><tr><th>Type</th><th>Change</th></tr></thead>
 <tbody>
-<tr><td>Added</td><td>New inspector for the core ${name} settings asset.</td></tr>
-<tr><td>Added</td><td>Sample scene demonstrating the recommended setup.</td></tr>
-<tr><td>Changed</td><td>Minimum supported Unity version raised to 2020.3 LTS.</td></tr>
-<tr><td>Removed</td><td>Long-deprecated <code>BootstrapV1</code> entry point.</td></tr>
+<tr><td><span class="changelog-type-added">Added</span></td><td>New inspector for the core ${name} settings asset.</td></tr>
+<tr><td><span class="changelog-type-added">Added</span></td><td>Sample scene demonstrating the recommended setup.</td></tr>
+<tr><td><span class="changelog-type-changed">Changed</span></td><td>Minimum supported Unity version raised to 2020.3 LTS.</td></tr>
+<tr><td><span class="changelog-type-removed">Removed</span></td><td>Long-deprecated <code>BootstrapV1</code> entry point.</td></tr>
 </tbody>
 </table>
 
@@ -313,8 +313,8 @@ function placeholderPages(name: string, storeUrl?: string): DocPage[] {
 <table>
 <thead><tr><th>Type</th><th>Change</th></tr></thead>
 <tbody>
-<tr><td>Added</td><td>WebGL platform support with a reduced feature surface.</td></tr>
-<tr><td>Fixed</td><td>Editor freeze when opening the ${name} settings window on macOS.</td></tr>
+<tr><td><span class="changelog-type-added">Added</span></td><td>WebGL platform support with a reduced feature surface.</td></tr>
+<tr><td><span class="changelog-type-fixed">Fixed</span></td><td>Editor freeze when opening the ${name} settings window on macOS.</td></tr>
 </tbody>
 </table>
 
@@ -322,8 +322,8 @@ function placeholderPages(name: string, storeUrl?: string): DocPage[] {
 <table>
 <thead><tr><th>Type</th><th>Change</th></tr></thead>
 <tbody>
-<tr><td>Added</td><td>Public extension API for custom backends.</td></tr>
-<tr><td>Changed</td><td>Reorganised assemblies — see migration notes below.</td></tr>
+<tr><td><span class="changelog-type-added">Added</span></td><td>Public extension API for custom backends.</td></tr>
+<tr><td><span class="changelog-type-changed">Changed</span></td><td>Reorganised assemblies — see migration notes below.</td></tr>
 </tbody>
 </table>
 
@@ -331,9 +331,9 @@ function placeholderPages(name: string, storeUrl?: string): DocPage[] {
 <table>
 <thead><tr><th>Type</th><th>Change</th></tr></thead>
 <tbody>
-<tr><td>Breaking</td><td>Namespace renamed from <code>${name.replace(/\s+/g, "")}.Old</code> to <code>${name.replace(/\s+/g, "")}</code>.</td></tr>
-<tr><td>Added</td><td>Full rewrite on top of Unity's job system.</td></tr>
-<tr><td>Removed</td><td>All members marked <code>[Obsolete]</code> in the 1.x line.</td></tr>
+<tr><td><span class="changelog-type-breaking">Breaking</span></td><td>Namespace renamed from <code>${name.replace(/\s+/g, "")}.Old</code> to <code>${name.replace(/\s+/g, "")}</code>.</td></tr>
+<tr><td><span class="changelog-type-added">Added</span></td><td>Full rewrite on top of Unity's job system.</td></tr>
+<tr><td><span class="changelog-type-removed">Removed</span></td><td>All members marked <code>[Obsolete]</code> in the 1.x line.</td></tr>
 </tbody>
 </table>
 
