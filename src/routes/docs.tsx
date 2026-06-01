@@ -47,7 +47,7 @@ function Index() {
         </p>
         <div className="mt-7 flex flex-wrap gap-3">
           <Link
-            to="/packages/$package"
+            to="/docs/$package"
             params={{ package: PACKAGES[0].slug }}
             className="rounded-xl px-5 py-3 text-sm font-semibold text-white card-grad card-shadow"
           >
@@ -83,7 +83,7 @@ function Index() {
           {PACKAGES.map((p) => (
             <Link
               key={p.slug}
-              to="/packages/$package"
+              to="/docs/$package"
               params={{ package: p.slug }}
               className="group overflow-hidden rounded-2xl border border-border bg-card card-shadow"
             >
@@ -162,7 +162,7 @@ function Index() {
                 >
                   <td className="whitespace-nowrap px-5 py-4">
                     <Link
-                      to="/packages/$package"
+                      to="/docs/$package"
                       params={{ package: p.slug }}
                       className="font-semibold text-brand hover:underline"
                     >
