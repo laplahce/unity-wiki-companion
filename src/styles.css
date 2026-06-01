@@ -234,13 +234,28 @@
     letter-spacing: 0.04em;
     width: 1%;
   }
-  .wiki-article td:first-child:is(:has(*), *) { }
   .wiki-article tbody tr td:first-child {
     color: var(--color-muted-foreground);
   }
-  /* Match by content via attribute-less selector trick: use color via specific class would be cleaner,
-     so we tint via a subtle left accent on every row instead. */
-  .wiki-article tbody tr { position: relative; }
+
+  /* Changelog type color accents */
+  .changelog-type-added     { color: oklch(0.5 0.16 145) !important; }
+  .changelog-type-changed    { color: oklch(0.5 0.16 250) !important; }
+  .changelog-type-fixed      { color: oklch(0.5 0.14 195) !important; }
+  .changelog-type-deprecated { color: oklch(0.6 0.12 75) !important; }
+  .changelog-type-breaking  { color: oklch(0.55 0.18 25) !important; }
+  .changelog-type-removed    { color: oklch(0.55 0.02 260) !important; }
+
+  /* Subtle left border accent on changelog rows by type */
+  .wiki-article tbody tr:has(.changelog-type-added)     { border-left: 3px solid oklch(0.5 0.16 145); }
+  .wiki-article tbody tr:has(.changelog-type-changed)    { border-left: 3px solid oklch(0.5 0.16 250); }
+  .wiki-article tbody tr:has(.changelog-type-fixed)      { border-left: 3px solid oklch(0.5 0.14 195); }
+  .wiki-article tbody tr:has(.changelog-type-deprecated) { border-left: 3px solid oklch(0.6 0.12 75); }
+  .wiki-article tbody tr:has(.changelog-type-breaking)  { border-left: 3px solid oklch(0.55 0.18 25); }
+  .wiki-article tbody tr:has(.changelog-type-removed)   { border-left: 3px solid oklch(0.55 0.02 260); }
+
+  /* Alternate row background for changelog tables */
+  .wiki-article tbody tr:nth-child(even) { background: oklch(0.98 0.003 260); }
 
   .badge-latest {
     display: inline-block;
