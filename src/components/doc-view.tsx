@@ -1,9 +1,8 @@
 import { Link } from "@tanstack/react-router";
-import { Star, Sparkles, ExternalLink } from "lucide-react";
+import { Star, Sparkles, ExternalLink, Play, ArrowRight } from "lucide-react";
 import type { DocPackage, DocPage } from "@/data/docs";
 import { extractToc, type TocItem } from "@/lib/toc";
 import { OnThisPage } from "@/components/on-this-page";
-import { WebGLDemo } from "@/components/webgl-demo";
 import { StepGuide } from "@/components/step-guide";
 import { HtmlContent } from "@/components/html-content";
 import { PageFooterMeta } from "@/components/page-feedback";
@@ -146,7 +145,7 @@ export function PackagePageView({
         <StepGuide steps={page.guide} />
       )}
 
-      {page.kind === "demo" && <WebGLDemo pkg={pkg} />}
+      {page.kind === "demo" && <DemoRedirectCard pkg={pkg} />}
 
       {isOverview && pkg.references.length > 0 && (
         <section id="references">
