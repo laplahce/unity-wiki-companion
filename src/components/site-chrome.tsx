@@ -1,6 +1,6 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useState } from "react";
-import { Menu, X, ChevronDown, Package, Mail, Download } from "lucide-react";
+import { Menu, X, ChevronDown, Package, Mail, Download, BookOpen } from "lucide-react";
 import { PACKAGES } from "@/data/docs";
 import { SiteSearch } from "@/components/site-search";
 import {
@@ -48,7 +48,7 @@ function PackagesSwitcher({
         {PACKAGES.map((p) => (
           <li key={p.slug}>
             <Link
-              to="/docs/$package"
+              to="/packages/$package"
               params={{ package: p.slug }}
               onClick={onNavigate}
               className={`side-link${activeSlug === p.slug ? " active" : ""}`}
@@ -134,12 +134,12 @@ function PackageNavMenu() {
         <ChevronDown className="h-3.5 w-3.5 opacity-70" />
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-56">
-        <DropdownMenuLabel>Documentation packages</DropdownMenuLabel>
+        <DropdownMenuLabel>My packages</DropdownMenuLabel>
         <DropdownMenuSeparator />
         {PACKAGES.map((p) => (
           <DropdownMenuItem key={p.slug} asChild>
             <Link
-              to="/docs/$package"
+              to="/packages/$package"
               params={{ package: p.slug }}
               className={activeSlug === p.slug ? "font-semibold" : ""}
             >
@@ -168,12 +168,12 @@ export function SiteHeader({ onMenuClick }: { onMenuClick: () => void }) {
         </button>
         <Link to="/" className="flex items-center gap-3">
           <div className="flex aspect-square h-9 w-9 shrink-0 items-center justify-center rounded-lg card-grad">
-            <span className="text-lg font-extrabold text-white">U</span>
+            <span className="text-lg font-extrabold text-white">L</span>
           </div>
           <div className="leading-tight">
-            <div className="text-base font-bold tracking-tight">UnityWiki</div>
+            <div className="text-base font-bold tracking-tight">laplahce</div>
             <div className="hidden text-[11px] text-muted-foreground sm:block">
-              Asset Store documentation
+              Unity Asset Store developer
             </div>
           </div>
         </Link>
@@ -184,6 +184,7 @@ export function SiteHeader({ onMenuClick }: { onMenuClick: () => void }) {
           <SiteSearch />
           <Link to="/" className="nav-link">Home</Link>
           <PackageNavMenu />
+          <Link to="/docs" className="nav-link">Docs</Link>
           <Link to="/contact" className="nav-link">Contact</Link>
 
           <a
@@ -201,6 +202,10 @@ export function SiteHeader({ onMenuClick }: { onMenuClick: () => void }) {
 }
 
 export function SiteSidebar() {
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  // Only show the doc sidebar on docs routes — the marketing/showcase pages
+  // are full-width.
+  if (!pathname.startsWith("/docs")) return null;
   return (
     <aside className="hidden w-64 shrink-0 border-r border-border bg-surface px-4 py-10 text-sm lg:block">
       <div className="sticky top-24">
@@ -228,9 +233,9 @@ export function MobileSidebar({
         <div className="flex items-center justify-between border-b border-border px-4 py-3">
           <div className="flex items-center gap-2">
             <div className="flex aspect-square h-8 w-8 shrink-0 items-center justify-center rounded-lg card-grad">
-              <span className="text-base font-extrabold text-white">U</span>
+              <span className="text-base font-extrabold text-white">L</span>
             </div>
-            <span className="font-bold">UnityWiki</span>
+            <span className="font-bold">laplahce</span>
           </div>
           <button
             type="button"
@@ -299,35 +304,35 @@ export function SiteFooter() {
           <div className="lg:col-span-2">
             <Link to="/" className="flex items-center gap-3">
               <div className="flex h-9 w-9 items-center justify-center rounded-lg card-grad">
-                <span className="text-lg font-extrabold text-white">U</span>
+                <span className="text-lg font-extrabold text-white">L</span>
               </div>
               <div className="leading-tight">
-                <div className="text-base font-bold tracking-tight">UnityWiki</div>
-                <div className="text-[11px] text-muted-foreground">Asset Store documentation</div>
+                <div className="text-base font-bold tracking-tight">laplahce</div>
+                <div className="text-[11px] text-muted-foreground">Unity Asset Store developer</div>
               </div>
             </Link>
             <p className="mt-4 max-w-sm text-sm text-muted-foreground leading-relaxed">
-              A curated documentation hub for the packages real studios ship with.
-              Clean writing, neutral voice, citations included.
+              Independent Unity tools, made with care. Each package ships with
+              a playable demo and proper documentation — no guesswork.
             </p>
             <div className="mt-5 flex items-center gap-3">
               <a
-                href="mailto:support@unitywiki.dev"
+                href="mailto:hello@laplahce.dev"
                 className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-3 py-2 text-sm font-medium text-foreground transition hover:bg-surface-alt"
               >
                 <Mail className="h-4 w-4 text-muted-foreground" />
-                support@unitywiki.dev
+                hello@laplahce.dev
               </a>
             </div>
           </div>
 
-          {/* Documentation column */}
-          <FooterColumn title="Documentation">
-            <FooterLink to="/">Home</FooterLink>
+          {/* Packages column */}
+          <FooterColumn title="Packages">
+            <FooterLink to="/docs">All docs</FooterLink>
             {PACKAGES.slice(0, 4).map((p) => (
               <li key={p.slug}>
                 <Link
-                  to="/docs/$package"
+                  to="/packages/$package"
                   params={{ package: p.slug }}
                   className="text-sm text-muted-foreground transition hover:text-foreground"
                 >
@@ -359,11 +364,11 @@ export function SiteFooter() {
       <div className="border-t border-border">
         <div className="mx-auto flex max-w-[1400px] flex-col items-center justify-between gap-3 px-4 py-6 sm:flex-row sm:px-6">
           <p className="text-xs text-muted-foreground">
-            © {new Date().getFullYear()} UnityWiki — Educational reference. Trademarks belong to their
-            respective owners. Not affiliated with Unity Technologies.
+            © {new Date().getFullYear()} laplahce — Independent Unity tools.
+            Not affiliated with Unity Technologies.
           </p>
           <p className="text-xs text-muted-foreground">
-            Content available under CC BY-SA.
+            Made with care, shipped with docs.
           </p>
         </div>
       </div>
