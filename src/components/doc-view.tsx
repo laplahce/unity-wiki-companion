@@ -98,6 +98,32 @@ function EmphasisBanner({ pkg, page }: { pkg: DocPackage; page: DocPage }) {
   );
 }
 
+// On the docs "try-demo" page we no longer embed the WebGL build inline —
+// the playable demo lives at its own dedicated route. This card links there.
+function DemoRedirectCard({ pkg }: { pkg: DocPackage }) {
+  return (
+    <Link
+      to="/packages/$package/demo"
+      params={{ package: pkg.slug }}
+      className="not-prose group mt-4 flex items-center gap-4 rounded-2xl border border-border bg-card p-5 transition hover:border-brand card-shadow"
+    >
+      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-white card-grad">
+        <Play className="h-5 w-5" />
+      </div>
+      <div className="flex-1">
+        <div className="font-semibold text-foreground">
+          Open the {pkg.name} live demo
+        </div>
+        <p className="text-sm text-muted-foreground">
+          The interactive WebGL build now lives on its own page — load it
+          there, share the URL, and skip the doc chrome.
+        </p>
+      </div>
+      <ArrowRight className="h-5 w-5 text-muted-foreground transition group-hover:text-brand" />
+    </Link>
+  );
+}
+
 export function PackagePageView({
   pkg,
   page,
