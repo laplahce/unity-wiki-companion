@@ -117,7 +117,7 @@ function PackageShowcase() {
           <div className="eyebrow">Specs</div>
           <h2 className="display mt-2 text-2xl">Package details</h2>
           <div className="mt-6 grid gap-x-8 gap-y-3 sm:grid-cols-2">
-            {pkg.infoboxFields.map((f) => (
+            {pkg.infoboxFields.map((f: { label: string; value: string }) => (
               <div key={f.label} className="flex justify-between border-b border-border py-2 text-sm">
                 <span className="font-semibold uppercase tracking-wide text-[11px] text-muted-foreground">
                   {f.label}
