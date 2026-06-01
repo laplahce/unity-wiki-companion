@@ -331,7 +331,7 @@ function placeholderPages(name: string, storeUrl?: string): DocPage[] {
 <table>
 <thead><tr><th>Type</th><th>Change</th></tr></thead>
 <tbody>
-<tr><td><span class="changelog-type-breaking">Breaking</span></td><td>Namespace renamed from <code>${name.replace(/\s+/g, "").Old}</code> to <code>${name.replace(/\s+/g, "")}</code>.</td></tr>
+<tr><td><span class="changelog-type-breaking">Breaking</span></td><td>Namespace renamed from <code>${name.replace(/\s+/g, "")}.Old</code> to <code>${name.replace(/\s+/g, "")}</code>.</td></tr>
 <tr><td><span class="changelog-type-added">Added</span></td><td>Full rewrite on top of Unity's job system.</td></tr>
 <tr><td><span class="changelog-type-removed">Removed</span></td><td>All members marked <code>[Obsolete]</code> in the 1.x line.</td></tr>
 </tbody>
