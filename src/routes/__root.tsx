@@ -87,24 +87,22 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "UnityWiki — Asset Store package reference" },
+      { title: "laplahce — Unity Asset Store developer" },
       {
         name: "description",
         content:
-          "A community-style technical reference for popular Unity Asset Store packages, written in the style of a free encyclopedia.",
+          "Independent Unity Asset Store developer. Tools, playable demos and proper documentation for every package.",
       },
-      { property: "og:title", content: "UnityWiki — Asset Store package reference" },
+      { property: "og:title", content: "laplahce — Unity Asset Store developer" },
       {
         property: "og:description",
         content:
-          "A community-style technical reference for popular Unity Asset Store packages.",
+          "Independent Unity Asset Store developer. Tools, playable demos and proper documentation.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { name: "twitter:title", content: "UnityWiki — Asset Store package reference" },
-      { name: "description", content: "A documentation website for Unity Asset Store packages, similar to Wikipedia." },
-      { property: "og:description", content: "A documentation website for Unity Asset Store packages, similar to Wikipedia." },
-      { name: "twitter:description", content: "A documentation website for Unity Asset Store packages, similar to Wikipedia." },
+      { name: "twitter:title", content: "laplahce — Unity Asset Store developer" },
+      { name: "twitter:description", content: "Independent Unity Asset Store developer. Tools, playable demos and proper documentation." },
       { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/8a11eb6a-9682-4229-83d4-06b71ed104db/id-preview-b4e8fe18--b7241294-9d5a-46e8-aa24-d45fcb08f01f.lovable.app-1780322228801.png" },
       { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/8a11eb6a-9682-4229-83d4-06b71ed104db/id-preview-b4e8fe18--b7241294-9d5a-46e8-aa24-d45fcb08f01f.lovable.app-1780322228801.png" },
     ],
