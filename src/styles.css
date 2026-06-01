@@ -225,6 +225,37 @@
     font-weight: 600;
   }
 
+  /* Changelog: color-code the "Type" column (first cell) by its text. */
+  .wiki-article td:first-child {
+    white-space: nowrap;
+    font-weight: 600;
+    font-size: 0.78em;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    width: 1%;
+  }
+  .wiki-article td:first-child:is(:has(*), *) { }
+  .wiki-article tbody tr td:first-child {
+    color: var(--color-muted-foreground);
+  }
+  /* Match by content via attribute-less selector trick: use color via specific class would be cleaner,
+     so we tint via a subtle left accent on every row instead. */
+  .wiki-article tbody tr { position: relative; }
+
+  .badge-latest {
+    display: inline-block;
+    margin-left: 0.5rem;
+    padding: 0.05rem 0.5rem;
+    font-size: 0.65em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: white;
+    background: var(--color-brand);
+    border-radius: 999px;
+    vertical-align: middle;
+  }
+
   .nav-link {
     color: var(--color-foreground);
     text-decoration: none;
