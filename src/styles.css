@@ -1,0 +1,348 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-alt: var(--surface-alt);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-link: var(--link);
+  --color-link-visited: var(--link-visited);
+  --color-link-red: var(--link-red);
+  --color-infobox: var(--infobox);
+  --color-infobox-border: var(--infobox-border);
+  --color-hatnote: var(--hatnote);
+  --color-eyebrow: var(--eyebrow);
+  --color-brand: var(--brand);
+  --color-brand-2: var(--brand-2);
+
+  --font-serif: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  --gradient-brand: linear-gradient(135deg, var(--brand) 0%, var(--brand-2) 100%);
+  --shadow-card: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 24px -12px rgba(79, 70, 229, 0.18);
+  --shadow-card-hover: 0 1px 2px rgba(15, 23, 42, 0.04), 0 18px 40px -12px rgba(124, 58, 237, 0.35);
+}
+
+:root {
+  --radius: 0.75rem;
+
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.18 0.04 260);
+  --surface: oklch(0.99 0.003 260);
+  --surface-alt: oklch(0.97 0.006 260);
+
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.18 0.04 260);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.18 0.04 260);
+
+  --primary: oklch(0.55 0.22 285);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.97 0.006 260);
+  --secondary-foreground: oklch(0.2 0.04 260);
+  --muted: oklch(0.97 0.006 260);
+  --muted-foreground: oklch(0.5 0.02 260);
+  --accent: oklch(0.95 0.03 285);
+  --accent-foreground: oklch(0.2 0.04 260);
+  --destructive: oklch(0.55 0.2 27);
+  --destructive-foreground: oklch(0.99 0 0);
+
+  --border: oklch(0.92 0.008 260);
+  --border-strong: oklch(0.85 0.012 260);
+  --input: oklch(0.92 0.008 260);
+  --ring: oklch(0.55 0.22 285);
+
+  --link: oklch(0.55 0.22 285);
+  --link-visited: oklch(0.45 0.2 295);
+  --link-red: oklch(0.55 0.2 25);
+
+  --infobox: oklch(0.99 0.003 260);
+  --infobox-border: oklch(0.9 0.008 260);
+  --hatnote: oklch(0.5 0.02 260);
+
+  --eyebrow: oklch(0.55 0.2 250);
+  --brand: oklch(0.55 0.24 285);
+  --brand-2: oklch(0.6 0.22 305);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+    scroll-padding-top: 5rem;
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    background-image: radial-gradient(circle, oklch(0.85 0.01 260) 1px, transparent 1px);
+    background-size: 22px 22px;
+    overflow-x: hidden;
+  }
+  html, body { max-width: 100%; }
+
+  .eyebrow {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-eyebrow);
+  }
+
+  .display {
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+  }
+
+  .card-grad {
+    background: var(--gradient-brand);
+    color: white;
+  }
+  .card-shadow {
+    box-shadow: var(--shadow-card);
+    transition: box-shadow 200ms ease, transform 200ms ease;
+  }
+  .card-shadow:hover {
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-2px);
+  }
+
+  /* Article typography — modern sans, generous spacing */
+  .wiki-article {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--color-foreground);
+  }
+  .wiki-article h1 {
+    font-weight: 800;
+    font-size: 2.5rem;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    margin-bottom: 0.8rem;
+  }
+  .wiki-article h2 {
+    font-weight: 700;
+    font-size: 1.5rem;
+    letter-spacing: -0.015em;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 0.4rem;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+  .wiki-article h3 {
+    font-weight: 600;
+    font-size: 1.15rem;
+    margin-top: 1.4rem;
+    margin-bottom: 0.4rem;
+  }
+  .wiki-article p { margin-bottom: 0.85rem; }
+  .wiki-article ul { list-style: disc; padding-left: 1.6rem; margin-bottom: 0.85rem; }
+  .wiki-article ol { list-style: decimal; padding-left: 1.6rem; margin-bottom: 0.85rem; }
+  .wiki-article li { margin-bottom: 0.25rem; }
+  .wiki-article a {
+    color: var(--color-link);
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px solid transparent;
+    transition: border-color 150ms;
+  }
+  .wiki-article a:hover { border-bottom-color: var(--color-link); }
+  .wiki-article a.red { color: var(--color-link-red); }
+  .wiki-article code {
+    font-family: var(--font-mono);
+    font-size: 0.88em;
+    background: var(--color-surface-alt);
+    padding: 0.1em 0.4em;
+    border-radius: 4px;
+  }
+  .wiki-article pre {
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+    background: oklch(0.18 0.04 260);
+    color: oklch(0.95 0.01 260);
+    border-radius: 8px;
+    padding: 1rem 1.2rem;
+    overflow-x: auto;
+    margin-bottom: 1rem;
+    line-height: 1.55;
+  }
+  .wiki-article pre code { background: transparent; padding: 0; }
+  .wiki-article blockquote {
+    border-left: 3px solid var(--color-brand);
+    padding-left: 1rem;
+    color: var(--color-muted-foreground);
+    margin: 1rem 0;
+    font-style: italic;
+  }
+  .wiki-article table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 1rem 0;
+    font-size: 0.92em;
+  }
+  .wiki-article th, .wiki-article td {
+    border: 1px solid var(--color-border);
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+  }
+  .wiki-article th {
+    background: var(--color-surface-alt);
+    font-weight: 600;
+  }
+
+  .nav-link {
+    color: var(--color-foreground);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 150ms;
+  }
+  .nav-link:hover { color: var(--color-brand); }
+
+  .side-link {
+    display: block;
+    padding: 0.5rem 0 0.5rem 1rem;
+    color: var(--color-muted-foreground);
+    text-decoration: none;
+    font-size: 0.92rem;
+    font-weight: 500;
+    transition: color 150ms, border-color 150ms, background 150ms;
+    border-left: 2px solid var(--color-border);
+    border-radius: 0;
+    background: transparent;
+  }
+  .side-link:hover {
+    color: var(--color-brand);
+    border-left-color: color-mix(in oklab, var(--color-brand) 50%, var(--color-border-strong));
+    background: color-mix(in oklab, var(--color-brand) 6%, transparent);
+  }
+  .side-link.active {
+    color: var(--color-brand);
+    border-left: 2px solid var(--color-brand);
+    background: transparent;
+    font-weight: 600;
+  }
+  .side-link.emphasized {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin: 0.15rem 0;
+    padding-block: 0.45rem;
+    color: color-mix(in oklab, var(--color-brand) 85%, var(--color-foreground));
+    font-weight: 500;
+    border-left-color: color-mix(in oklab, var(--color-brand) 25%, transparent);
+    background: color-mix(in oklab, var(--color-brand) 3%, transparent);
+    border-radius: 0 0.5rem 0.5rem 0;
+  }
+  .side-link.emphasized:hover {
+    border-left-color: color-mix(in oklab, var(--color-brand) 55%, transparent);
+    background: color-mix(in oklab, var(--color-brand) 7%, transparent);
+    color: var(--color-brand);
+  }
+  .side-link.emphasized.active {
+    color: var(--color-brand);
+    font-weight: 700;
+    border-left: 2px solid var(--color-brand);
+    background: color-mix(in oklab, var(--color-brand) 14%, transparent);
+  }
+
+  .eyebrow-sidebar {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-eyebrow);
+  }
+}
+
+/* ---------- Print / PDF stylesheet ----------
+   Strips chrome (header, sidebar, footer, navigation, on-this-page,
+   review prompts, prev/next pager) so the article reads cleanly when
+   printed or saved as a PDF. */
+@media print {
+  html, body {
+    background: #ffffff !important;
+    background-image: none !important;
+    color: #000000 !important;
+    font-size: 12pt;
+  }
+  header,
+  footer,
+  aside,
+  nav,
+  .print-hide,
+  [data-print-hide],
+  .wiki-article > nav {
+    display: none !important;
+  }
+  main {
+    padding: 0 !important;
+  }
+  .wiki-article {
+    color: #000000 !important;
+    font-size: 11.5pt;
+    line-height: 1.55;
+    max-width: 100%;
+  }
+  .wiki-article h1 { font-size: 22pt; }
+  .wiki-article h2 { font-size: 15pt; break-after: avoid; }
+  .wiki-article h3 { font-size: 12.5pt; break-after: avoid; }
+  .wiki-article a {
+    color: #000000 !important;
+    text-decoration: underline;
+  }
+  /* Show absolute href after links so printed pages are self-contained */
+  .wiki-article a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.85em;
+    color: #555;
+    word-break: break-all;
+  }
+  .wiki-article pre,
+  .wiki-article code {
+    background: #f4f4f4 !important;
+    color: #000000 !important;
+    border: 1px solid #ddd;
+  }
+  .wiki-article img,
+  .wiki-article pre,
+  .wiki-article table,
+  .wiki-article blockquote {
+    break-inside: avoid;
+  }
+  .card-shadow { box-shadow: none !important; }
+}
