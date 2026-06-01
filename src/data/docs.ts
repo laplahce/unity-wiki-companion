@@ -280,11 +280,11 @@ function placeholderPages(name: string, storeUrl?: string): DocPage[] {
 <table>
 <thead><tr><th>Type</th><th>Change</th></tr></thead>
 <tbody>
-<tr><td>Added</td><td>Unity 6 compatibility and new project template.</td></tr>
-<tr><td>Added</td><td>Async/await helpers for long-running ${name} operations.</td></tr>
-<tr><td>Changed</td><td>Default logging level lowered from <code>Info</code> to <code>Warning</code>.</td></tr>
-<tr><td>Fixed</td><td>Crash when reloading domain with strict mode enabled.</td></tr>
-<tr><td>Deprecated</td><td><code>LegacyRunner</code> — use <code>Runner</code> instead.</td></tr>
+<tr><td><span class="changelog-type-added">Added</span></td><td>Unity 6 compatibility and new project template.</td></tr>
+<tr><td><span class="changelog-type-added">Added</span></td><td>Async/await helpers for long-running ${name} operations.</td></tr>
+<tr><td><span class="changelog-type-changed">Changed</span></td><td>Default logging level lowered from <code>Info</code> to <code>Warning</code>.</td></tr>
+<tr><td><span class="changelog-type-fixed">Fixed</span></td><td>Crash when reloading domain with strict mode enabled.</td></tr>
+<tr><td><span class="changelog-type-deprecated">Deprecated</span></td><td><code>LegacyRunner</code> — use <code>Runner</code> instead.</td></tr>
 </tbody>
 </table>
 
