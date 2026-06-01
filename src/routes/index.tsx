@@ -1,105 +1,100 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PACKAGES } from "@/data/docs";
-import { OnThisPage } from "@/components/on-this-page";
-import type { TocItem } from "@/lib/toc";
-
-const HOME_TOC: TocItem[] = [
-  { id: "welcome", title: "Welcome", level: 2 },
-  { id: "featured", title: "Browse documentation", level: 2 },
-  { id: "how-it-works", title: "How these docs work", level: 2 },
-  { id: "contents", title: "All packages", level: 2 },
-  { id: "about", title: "What this site is", level: 2 },
-];
+import { ArrowRight, Github, Mail, Package as PackageIcon, Sparkles } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "UnityWiki — Asset Store documentation" },
+      { title: "laplahce — Unity Asset Store developer" },
       {
         name: "description",
         content:
-          "Modern, encyclopedia-style documentation for popular Unity Asset Store packages: DOTween, Odin Inspector, Cinemachine, A* Pathfinding Project.",
+          "Independent Unity Asset Store developer. Tools for animation, AI, inspectors and more — each shipped with a playable demo and proper docs.",
       },
-      { property: "og:title", content: "UnityWiki — Asset Store documentation" },
+      { property: "og:title", content: "laplahce — Unity Asset Store developer" },
       {
         property: "og:description",
-        content: "Modern, encyclopedia-style documentation for popular Unity Asset Store packages.",
+        content:
+          "Independent Unity Asset Store developer. Each package ships with a playable demo and proper docs.",
       },
     ],
   }),
-  component: Index,
+  component: Home,
 });
 
-function Index() {
+function Home() {
   return (
-    <div className="flex gap-10">
-      <div className="min-w-0 flex-1 space-y-16">
+    <div className="mx-auto max-w-5xl space-y-20 pb-10">
       {/* Hero */}
-      <section id="welcome" className="pt-6">
-        <div className="eyebrow">Documentation</div>
-        <h1 className="display mt-3 text-4xl sm:text-5xl lg:text-6xl">
-          Docs for the Unity Asset Store, in one place.
+      <section className="pt-10 sm:pt-16">
+        <div className="eyebrow inline-flex items-center gap-2">
+          <Sparkles className="h-3.5 w-3.5" /> Independent Unity dev
+        </div>
+        <h1 className="display mt-4 text-4xl sm:text-5xl lg:text-6xl">
+          Hi, I&apos;m <span className="text-brand">laplahce</span>.
+          <br />I build small, sharp tools for Unity.
         </h1>
-        <p className="mt-5 max-w-2xl text-base text-muted-foreground sm:text-lg">
-          A curated documentation hub for the packages real studios ship with.
-          Each package has its own multi-page reference — clean writing,
-          neutral voice, citations included.
+        <p className="mt-6 max-w-2xl text-base text-muted-foreground sm:text-lg">
+          I&apos;ve been shipping packages on the Unity Asset Store for a while
+          now — animation engines, editor extensions, AI helpers. Every package
+          you&apos;ll find here is mine, every line of code, every demo, every
+          page of documentation.
         </p>
         <div className="mt-7 flex flex-wrap gap-3">
           <Link
-            to="/docs/$package"
+            to="/packages/$package"
             params={{ package: PACKAGES[0].slug }}
-            className="rounded-xl px-5 py-3 text-sm font-semibold text-white card-grad card-shadow"
+            className="inline-flex items-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold text-white card-grad card-shadow"
           >
-            Open {PACKAGES[0].name} docs →
+            See my packages <ArrowRight className="h-4 w-4" />
           </Link>
-          <a
-            href="#contents"
+          <Link
+            to="/docs"
             className="rounded-xl border border-border-strong px-5 py-3 text-sm font-semibold hover:bg-surface-alt"
           >
-            Browse all packages
-          </a>
-        </div>
-
-        <div className="mt-10 flex flex-wrap gap-6 text-sm text-muted-foreground">
-          <div><span className="font-bold text-foreground">{PACKAGES.length}</span> packages documented</div>
-          <div><span className="font-bold text-foreground">{PACKAGES.reduce((n, p) => n + p.pages.length, 0)}</span> doc pages</div>
-          <div>Updated continuously</div>
+            Browse the docs
+          </Link>
         </div>
       </section>
 
-      {/* Featured grid */}
-      <section id="featured">
+      {/* Packages grid */}
+      <section>
         <div className="mb-6 flex items-end justify-between">
           <div>
-            <div className="eyebrow">Packages</div>
-            <h2 className="display mt-2 text-2xl sm:text-3xl">Browse documentation</h2>
+            <div className="eyebrow">Catalog</div>
+            <h2 className="display mt-2 text-2xl sm:text-3xl">
+              Packages I&apos;ve shipped
+            </h2>
           </div>
-          <a href="#contents" className="text-sm font-semibold text-brand hover:underline">
-            View all
-          </a>
+          <Link to="/docs" className="text-sm font-semibold text-brand hover:underline">
+            All docs →
+          </Link>
         </div>
-        <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="grid gap-5 sm:grid-cols-2">
           {PACKAGES.map((p) => (
             <Link
               key={p.slug}
-              to="/docs/$package"
+              to="/packages/$package"
               params={{ package: p.slug }}
-              className="group overflow-hidden rounded-2xl border border-border bg-card card-shadow"
+              className="group overflow-hidden rounded-2xl border border-border bg-card card-shadow transition hover:border-brand"
             >
-              <div className="card-grad flex h-40 items-center justify-center">
+              <div className="card-grad flex h-36 items-center justify-center">
                 <span className="text-2xl font-extrabold tracking-tight text-white drop-shadow">
                   {p.label}
                 </span>
               </div>
-              <div className="p-4">
-                <div className="mb-1 h-0.5 w-6 bg-brand/60" />
-                <div className="text-base font-bold text-foreground">{p.name}</div>
-                <div className="mt-1 text-sm text-muted-foreground line-clamp-2">
-                  {p.tagline}
+              <div className="p-5">
+                <div className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
+                  {p.category}
                 </div>
-                <div className="mt-2 text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
-                  {p.pages.length} pages · {p.category}
+                <div className="mt-1 text-base font-bold text-foreground">
+                  {p.name}
+                </div>
+                <p className="mt-1 text-sm text-muted-foreground line-clamp-2">
+                  {p.tagline}
+                </p>
+                <div className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-brand">
+                  Open package <ArrowRight className="h-3.5 w-3.5" />
                 </div>
               </div>
             </Link>
@@ -107,94 +102,65 @@ function Index() {
         </div>
       </section>
 
-      {/* How it works */}
-      <section id="how-it-works" className="rounded-2xl border border-border bg-card p-6 sm:p-8">
-        <div className="eyebrow">Start here</div>
-        <h2 className="display mt-2 text-2xl">How these docs work</h2>
-        <div className="mt-4 grid gap-6 sm:grid-cols-3">
-          <div>
-            <div className="font-semibold">One package at a time</div>
-            <p className="mt-1 text-sm text-muted-foreground">
-              Pick a package and the left sidebar shows only its pages. Use the
-              <b> Packages</b> menu in the top bar to switch to another package.
-            </p>
-          </div>
-          <div>
-            <div className="font-semibold">Conventions</div>
-            <p className="mt-1 text-sm text-muted-foreground">
-              Code samples are C# targeting Unity 2020.3 LTS or later unless
-              noted. Each overview carries an infobox with version, developer,
-              license, and engine compatibility.
-            </p>
-          </div>
-          <div>
-            <div className="font-semibold">Neutral &amp; cited</div>
-            <p className="mt-1 text-sm text-muted-foreground">
-              Every package is summarised in an encyclopedia voice with
-              citations linking back to the upstream vendor documentation.
-            </p>
-          </div>
-        </div>
-      </section>
-
-
-      {/* Index */}
-      <section id="contents">
-        <div className="mb-6">
-          <div className="eyebrow">Index</div>
-          <h2 className="display mt-2 text-2xl sm:text-3xl">All packages</h2>
-        </div>
-        <div className="overflow-x-auto rounded-2xl border border-border bg-card">
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="border-b border-border bg-surface-alt text-left">
-                <th className="px-5 py-3 font-semibold">Package</th>
-                <th className="px-5 py-3 font-semibold">Category</th>
-                <th className="px-5 py-3 font-semibold">Pages</th>
-                <th className="px-5 py-3 font-semibold">Summary</th>
-              </tr>
-            </thead>
-            <tbody>
-              {PACKAGES.map((p) => (
-                <tr
-                  key={p.slug}
-                  className="border-b border-border last:border-0 align-top transition-colors hover:bg-surface-alt"
-                >
-                  <td className="whitespace-nowrap px-5 py-4">
-                    <Link
-                      to="/docs/$package"
-                      params={{ package: p.slug }}
-                      className="font-semibold text-brand hover:underline"
-                    >
-                      {p.name}
-                    </Link>
-                  </td>
-                  <td className="px-5 py-4 text-muted-foreground">{p.category}</td>
-                  <td className="px-5 py-4 text-muted-foreground">{p.pages.length}</td>
-                  <td className="px-5 py-4 text-muted-foreground">{p.tagline}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </section>
-
       {/* About */}
-      <section id="about" className="rounded-2xl border border-border bg-card p-6 sm:p-8">
-        <div className="eyebrow">About</div>
-        <h2 className="display mt-2 text-2xl">What this site is</h2>
-        <p className="mt-3 max-w-3xl text-[15px] leading-relaxed text-muted-foreground">
-          UnityWiki is a small documentation hub for selected commercial and
-          first-party Unity Asset Store packages. Each package has its own
-          multi-page reference summarising design, public API, licensing, and
-          history in a neutral voice, with citations linking back to upstream
-          documentation. It is intended as a quick orientation for engineers and
-          technical artists evaluating a new dependency — not a substitute for
-          the vendor's own manuals.
-        </p>
+      <section className="rounded-2xl border border-border bg-card p-6 sm:p-10">
+        <div className="grid gap-8 sm:grid-cols-[1fr_2fr]">
+          <div>
+            <div className="eyebrow">About</div>
+            <h2 className="display mt-2 text-2xl">A bit about me</h2>
+          </div>
+          <div className="space-y-4 text-[15px] leading-relaxed text-muted-foreground">
+            <p>
+              I&apos;m a solo developer working on Unity tools full-time. I
+              prefer tools that do one thing well, ship with a demo you can
+              actually play, and read like a real reference instead of a
+              marketing page.
+            </p>
+            <p>
+              If a package of mine helped you, a review goes a long way. If
+              something is broken or unclear, please tell me — I usually
+              respond within a day.
+            </p>
+            <div className="flex flex-wrap gap-3 pt-2">
+              <Link
+                to="/contact"
+                className="inline-flex items-center gap-2 rounded-lg border border-border bg-background px-3 py-2 text-sm font-medium text-foreground transition hover:border-brand"
+              >
+                <Mail className="h-4 w-4 text-brand" /> Get in touch
+              </Link>
+              <a
+                href="https://github.com"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-lg border border-border bg-background px-3 py-2 text-sm font-medium text-foreground transition hover:border-brand"
+              >
+                <Github className="h-4 w-4" /> GitHub
+              </a>
+            </div>
+          </div>
+        </div>
       </section>
-      </div>
-      <OnThisPage items={HOME_TOC} />
+
+      {/* Stats strip */}
+      <section className="grid gap-4 sm:grid-cols-3">
+        {[
+          { label: "Packages on the store", value: PACKAGES.length },
+          { label: "Documentation pages", value: PACKAGES.reduce((n, p) => n + p.pages.length, 0) },
+          { label: "Years on the store", value: "6+" },
+        ].map((s) => (
+          <div
+            key={s.label}
+            className="rounded-2xl border border-border bg-card px-5 py-6"
+          >
+            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+              <PackageIcon className="h-3.5 w-3.5 text-brand" /> {s.label}
+            </div>
+            <div className="mt-2 text-3xl font-extrabold tracking-tight">
+              {s.value}
+            </div>
+          </div>
+        ))}
+      </section>
     </div>
   );
 }

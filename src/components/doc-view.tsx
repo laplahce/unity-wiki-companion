@@ -1,9 +1,8 @@
 import { Link } from "@tanstack/react-router";
-import { Star, Sparkles, ExternalLink } from "lucide-react";
+import { Star, Sparkles, ExternalLink, Play, ArrowRight } from "lucide-react";
 import type { DocPackage, DocPage } from "@/data/docs";
 import { extractToc, type TocItem } from "@/lib/toc";
 import { OnThisPage } from "@/components/on-this-page";
-import { WebGLDemo } from "@/components/webgl-demo";
 import { StepGuide } from "@/components/step-guide";
 import { HtmlContent } from "@/components/html-content";
 import { PageFooterMeta } from "@/components/page-feedback";
@@ -99,6 +98,32 @@ function EmphasisBanner({ pkg, page }: { pkg: DocPackage; page: DocPage }) {
   );
 }
 
+// On the docs "try-demo" page we no longer embed the WebGL build inline —
+// the playable demo lives at its own dedicated route. This card links there.
+function DemoRedirectCard({ pkg }: { pkg: DocPackage }) {
+  return (
+    <Link
+      to="/packages/$package/demo"
+      params={{ package: pkg.slug }}
+      className="not-prose group mt-4 flex items-center gap-4 rounded-2xl border border-border bg-card p-5 transition hover:border-brand card-shadow"
+    >
+      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-white card-grad">
+        <Play className="h-5 w-5" />
+      </div>
+      <div className="flex-1">
+        <div className="font-semibold text-foreground">
+          Open the {pkg.name} live demo
+        </div>
+        <p className="text-sm text-muted-foreground">
+          The interactive WebGL build now lives on its own page — load it
+          there, share the URL, and skip the doc chrome.
+        </p>
+      </div>
+      <ArrowRight className="h-5 w-5 text-muted-foreground transition group-hover:text-brand" />
+    </Link>
+  );
+}
+
 export function PackagePageView({
   pkg,
   page,
@@ -146,7 +171,7 @@ export function PackagePageView({
         <StepGuide steps={page.guide} />
       )}
 
-      {page.kind === "demo" && <WebGLDemo pkg={pkg} />}
+      {page.kind === "demo" && <DemoRedirectCard pkg={pkg} />}
 
       {isOverview && pkg.references.length > 0 && (
         <section id="references">

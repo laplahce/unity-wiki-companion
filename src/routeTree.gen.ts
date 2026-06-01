@@ -10,17 +10,26 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as DocsRouteImport } from './routes/docs'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as SplatRouteImport } from './routes/$'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as WikiSlugRouteImport } from './routes/wiki.$slug'
+import { Route as PackagesPackageRouteImport } from './routes/packages.$package'
 import { Route as DocsPackageRouteImport } from './routes/docs.$package'
+import { Route as PackagesPackageIndexRouteImport } from './routes/packages.$package.index'
 import { Route as DocsPackageIndexRouteImport } from './routes/docs.$package.index'
+import { Route as PackagesPackageDemoRouteImport } from './routes/packages.$package.demo'
 import { Route as DocsPackagePageRouteImport } from './routes/docs.$package.$page'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DocsRoute = DocsRouteImport.update({
+  id: '/docs',
+  path: '/docs',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -43,15 +52,30 @@ const WikiSlugRoute = WikiSlugRouteImport.update({
   path: '/wiki/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DocsPackageRoute = DocsPackageRouteImport.update({
-  id: '/docs/$package',
-  path: '/docs/$package',
+const PackagesPackageRoute = PackagesPackageRouteImport.update({
+  id: '/packages/$package',
+  path: '/packages/$package',
   getParentRoute: () => rootRouteImport,
+} as any)
+const DocsPackageRoute = DocsPackageRouteImport.update({
+  id: '/$package',
+  path: '/$package',
+  getParentRoute: () => DocsRoute,
+} as any)
+const PackagesPackageIndexRoute = PackagesPackageIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => PackagesPackageRoute,
 } as any)
 const DocsPackageIndexRoute = DocsPackageIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => DocsPackageRoute,
+} as any)
+const PackagesPackageDemoRoute = PackagesPackageDemoRouteImport.update({
+  id: '/demo',
+  path: '/demo',
+  getParentRoute: () => PackagesPackageRoute,
 } as any)
 const DocsPackagePageRoute = DocsPackagePageRouteImport.update({
   id: '/$page',
@@ -63,31 +87,42 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/$': typeof SplatRoute
   '/contact': typeof ContactRoute
+  '/docs': typeof DocsRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/docs/$package': typeof DocsPackageRouteWithChildren
+  '/packages/$package': typeof PackagesPackageRouteWithChildren
   '/wiki/$slug': typeof WikiSlugRoute
   '/docs/$package/$page': typeof DocsPackagePageRoute
+  '/packages/$package/demo': typeof PackagesPackageDemoRoute
   '/docs/$package/': typeof DocsPackageIndexRoute
+  '/packages/$package/': typeof PackagesPackageIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/$': typeof SplatRoute
   '/contact': typeof ContactRoute
+  '/docs': typeof DocsRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/wiki/$slug': typeof WikiSlugRoute
   '/docs/$package/$page': typeof DocsPackagePageRoute
+  '/packages/$package/demo': typeof PackagesPackageDemoRoute
   '/docs/$package': typeof DocsPackageIndexRoute
+  '/packages/$package': typeof PackagesPackageIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/$': typeof SplatRoute
   '/contact': typeof ContactRoute
+  '/docs': typeof DocsRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/docs/$package': typeof DocsPackageRouteWithChildren
+  '/packages/$package': typeof PackagesPackageRouteWithChildren
   '/wiki/$slug': typeof WikiSlugRoute
   '/docs/$package/$page': typeof DocsPackagePageRoute
+  '/packages/$package/demo': typeof PackagesPackageDemoRoute
   '/docs/$package/': typeof DocsPackageIndexRoute
+  '/packages/$package/': typeof PackagesPackageIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -95,38 +130,50 @@ export interface FileRouteTypes {
     | '/'
     | '/$'
     | '/contact'
+    | '/docs'
     | '/sitemap.xml'
     | '/docs/$package'
+    | '/packages/$package'
     | '/wiki/$slug'
     | '/docs/$package/$page'
+    | '/packages/$package/demo'
     | '/docs/$package/'
+    | '/packages/$package/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/$'
     | '/contact'
+    | '/docs'
     | '/sitemap.xml'
     | '/wiki/$slug'
     | '/docs/$package/$page'
+    | '/packages/$package/demo'
     | '/docs/$package'
+    | '/packages/$package'
   id:
     | '__root__'
     | '/'
     | '/$'
     | '/contact'
+    | '/docs'
     | '/sitemap.xml'
     | '/docs/$package'
+    | '/packages/$package'
     | '/wiki/$slug'
     | '/docs/$package/$page'
+    | '/packages/$package/demo'
     | '/docs/$package/'
+    | '/packages/$package/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   SplatRoute: typeof SplatRoute
   ContactRoute: typeof ContactRoute
+  DocsRoute: typeof DocsRouteWithChildren
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
-  DocsPackageRoute: typeof DocsPackageRouteWithChildren
+  PackagesPackageRoute: typeof PackagesPackageRouteWithChildren
   WikiSlugRoute: typeof WikiSlugRoute
 }
 
@@ -137,6 +184,13 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/docs': {
+      id: '/docs'
+      path: '/docs'
+      fullPath: '/docs'
+      preLoaderRoute: typeof DocsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -167,12 +221,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WikiSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/packages/$package': {
+      id: '/packages/$package'
+      path: '/packages/$package'
+      fullPath: '/packages/$package'
+      preLoaderRoute: typeof PackagesPackageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/docs/$package': {
       id: '/docs/$package'
-      path: '/docs/$package'
+      path: '/$package'
       fullPath: '/docs/$package'
       preLoaderRoute: typeof DocsPackageRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof DocsRoute
+    }
+    '/packages/$package/': {
+      id: '/packages/$package/'
+      path: '/'
+      fullPath: '/packages/$package/'
+      preLoaderRoute: typeof PackagesPackageIndexRouteImport
+      parentRoute: typeof PackagesPackageRoute
     }
     '/docs/$package/': {
       id: '/docs/$package/'
@@ -180,6 +248,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/docs/$package/'
       preLoaderRoute: typeof DocsPackageIndexRouteImport
       parentRoute: typeof DocsPackageRoute
+    }
+    '/packages/$package/demo': {
+      id: '/packages/$package/demo'
+      path: '/demo'
+      fullPath: '/packages/$package/demo'
+      preLoaderRoute: typeof PackagesPackageDemoRouteImport
+      parentRoute: typeof PackagesPackageRoute
     }
     '/docs/$package/$page': {
       id: '/docs/$package/$page'
@@ -205,24 +280,39 @@ const DocsPackageRouteWithChildren = DocsPackageRoute._addFileChildren(
   DocsPackageRouteChildren,
 )
 
+interface DocsRouteChildren {
+  DocsPackageRoute: typeof DocsPackageRouteWithChildren
+}
+
+const DocsRouteChildren: DocsRouteChildren = {
+  DocsPackageRoute: DocsPackageRouteWithChildren,
+}
+
+const DocsRouteWithChildren = DocsRoute._addFileChildren(DocsRouteChildren)
+
+interface PackagesPackageRouteChildren {
+  PackagesPackageDemoRoute: typeof PackagesPackageDemoRoute
+  PackagesPackageIndexRoute: typeof PackagesPackageIndexRoute
+}
+
+const PackagesPackageRouteChildren: PackagesPackageRouteChildren = {
+  PackagesPackageDemoRoute: PackagesPackageDemoRoute,
+  PackagesPackageIndexRoute: PackagesPackageIndexRoute,
+}
+
+const PackagesPackageRouteWithChildren = PackagesPackageRoute._addFileChildren(
+  PackagesPackageRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   SplatRoute: SplatRoute,
   ContactRoute: ContactRoute,
+  DocsRoute: DocsRouteWithChildren,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
-  DocsPackageRoute: DocsPackageRouteWithChildren,
+  PackagesPackageRoute: PackagesPackageRouteWithChildren,
   WikiSlugRoute: WikiSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

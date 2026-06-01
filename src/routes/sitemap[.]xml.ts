@@ -10,7 +10,10 @@ export const Route = createFileRoute("/sitemap.xml")({
       GET: async () => {
         const entries = [
           { path: "/", changefreq: "weekly", priority: "1.0" },
+          { path: "/docs", changefreq: "weekly", priority: "0.9" },
           ...PACKAGES.flatMap((p) => [
+            { path: `/packages/${p.slug}`, changefreq: "monthly" as const, priority: "0.95" },
+            { path: `/packages/${p.slug}/demo`, changefreq: "monthly" as const, priority: "0.8" },
             { path: `/docs/${p.slug}`, changefreq: "monthly" as const, priority: "0.9" },
             ...p.pages
               .filter((page) => page.slug !== "overview")
