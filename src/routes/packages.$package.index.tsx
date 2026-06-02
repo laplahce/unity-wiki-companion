@@ -11,10 +11,6 @@ export const Route = createFileRoute("/packages/$package/")({
   component: PackageShowcase,
 });
 
-// Placeholder gif URL — swap with your real banner GIFs per package later.
-const PLACEHOLDER_BANNER =
-  "https://images.unsplash.com/photo-1556438064-2d7646166914?w=2000&q=80";
-
 function PackageShowcase() {
   const { pkg } = Route.useLoaderData();
   const storeUrl = pkg.reviewUrl?.replace("#reviews", "") ?? "https://assetstore.unity.com";
@@ -22,14 +18,16 @@ function PackageShowcase() {
 
   return (
     <div className="-mx-4 sm:-mx-8">
-      {/* Hero banner with darkened gif */}
+      {/* Hero banner — placeholder gradient until a real GIF is wired up */}
       <section className="relative h-[420px] w-full overflow-hidden sm:h-[520px]">
-        <img
-          src={PLACEHOLDER_BANNER}
-          alt={`${pkg.name} banner`}
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/85" />
+        <div className="card-grad absolute inset-0" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.18),transparent_55%)]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/40 to-black/80" />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <span className="font-mono text-xs uppercase tracking-[0.3em] text-white/40">
+            Banner GIF placeholder
+          </span>
+        </div>
         <div className="relative mx-auto flex h-full max-w-5xl flex-col items-start justify-end px-6 pb-12 text-white sm:px-10">
           <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide backdrop-blur">
             {pkg.category}

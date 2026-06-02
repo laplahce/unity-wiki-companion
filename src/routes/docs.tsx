@@ -184,13 +184,11 @@ function Index() {
         <div className="eyebrow">About</div>
         <h2 className="display mt-2 text-2xl">What this site is</h2>
         <p className="mt-3 max-w-3xl text-[15px] leading-relaxed text-muted-foreground">
-          UnityWiki is a small documentation hub for selected commercial and
-          first-party Unity Asset Store packages. Each package has its own
-          multi-page reference summarising design, public API, licensing, and
-          history in a neutral voice, with citations linking back to upstream
-          documentation. It is intended as a quick orientation for engineers and
-          technical artists evaluating a new dependency — not a substitute for
-          the vendor's own manuals.
+          The documentation hub for the packages shipped on this site. Each
+          package has its own multi-page reference covering setup, public API,
+          licensing, and release history in a neutral, encyclopedia voice.
+          It is intended as a complete reference for engineers and technical
+          artists integrating these packages into their projects.
         </p>
       </section>
       </div>

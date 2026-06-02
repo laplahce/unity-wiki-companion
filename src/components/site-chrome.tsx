@@ -155,6 +155,8 @@ function PackageNavMenu() {
 
 
 export function SiteHeader({ onMenuClick }: { onMenuClick: () => void }) {
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const showSearch = pathname.startsWith("/docs");
   return (
     <header className="sticky top-0 z-30 border-b border-border bg-background/80 backdrop-blur-md">
       <div className="mx-auto flex max-w-[1400px] items-center gap-3 px-4 py-3 sm:gap-6 sm:px-6 sm:py-4">
@@ -162,7 +164,7 @@ export function SiteHeader({ onMenuClick }: { onMenuClick: () => void }) {
           type="button"
           onClick={onMenuClick}
           aria-label="Open menu"
-          className="-ml-1 inline-flex h-9 w-9 items-center justify-center rounded-lg border border-border text-foreground lg:hidden"
+          className="-ml-1 inline-flex aspect-square h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-border text-foreground lg:hidden"
         >
           <Menu className="h-5 w-5" />
         </button>
@@ -177,11 +179,13 @@ export function SiteHeader({ onMenuClick }: { onMenuClick: () => void }) {
             </div>
           </div>
         </Link>
-        <div className="ml-auto flex flex-1 justify-end md:hidden">
-          <SiteSearch />
-        </div>
+        {showSearch && (
+          <div className="ml-auto flex flex-1 justify-end md:hidden">
+            <SiteSearch />
+          </div>
+        )}
         <nav className="ml-auto hidden items-center gap-6 text-sm md:flex">
-          <SiteSearch />
+          {showSearch && <SiteSearch />}
           <Link to="/" className="nav-link">Home</Link>
           <PackageNavMenu />
           <Link to="/docs" className="nav-link">Docs</Link>

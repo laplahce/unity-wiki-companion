@@ -3,10 +3,10 @@ import { createFileRoute, Link, useRouter } from "@tanstack/react-router";
 export const Route = createFileRoute("/$")({
   head: () => ({
     meta: [
-      { title: "404 — Page not found | UnityWiki" },
-      { name: "description", content: "The page you requested could not be found on UnityWiki." },
-      { property: "og:title", content: "404 — Page not found | UnityWiki" },
-      { property: "og:description", content: "The page you requested could not be found on UnityWiki." },
+      { title: "404 — Page not found | laplahce" },
+      { name: "description", content: "The page you requested could not be found on laplahce." },
+      { property: "og:title", content: "404 — Page not found | laplahce" },
+      { property: "og:description", content: "The page you requested could not be found on laplahce." },
       { name: "robots", content: "noindex" },
     ],
   }),

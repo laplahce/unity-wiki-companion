@@ -5,17 +5,17 @@ import { Mail, MessageCircle, HelpCircle, BookOpen } from "lucide-react";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact & Support — UnityWiki" },
+      { title: "Contact — laplahce" },
       {
         name: "description",
         content:
-          "Get in touch with UnityWiki for support, feedback, or questions about Asset Store documentation.",
+          "Get in touch with me for support, feedback, or questions about my Unity Asset Store packages.",
       },
-      { property: "og:title", content: "Contact & Support — UnityWiki" },
+      { property: "og:title", content: "Contact — laplahce" },
       {
         property: "og:description",
         content:
-          "Get in touch with UnityWiki for support, feedback, or questions about Asset Store documentation.",
+          "Get in touch with me for support, feedback, or questions about my Unity Asset Store packages.",
       },
     ],
   }),
@@ -26,11 +26,12 @@ function ContactPage() {
   return (
     <div className="mx-auto max-w-3xl">
       <div className="pt-6">
-        <div className="eyebrow">Support</div>
-        <h1 className="display mt-3 text-3xl sm:text-4xl">Contact &amp; Support</h1>
+        <div className="eyebrow">Say hi</div>
+        <h1 className="display mt-3 text-3xl sm:text-4xl">Get in touch</h1>
         <p className="mt-4 max-w-xl text-muted-foreground">
-          Have a question, found an issue, or want to suggest a package for documentation?
-          Here are the best ways to reach us.
+          Got a question about one of my packages, found a bug, or just want
+          to say hi? Here&apos;s the easiest way to reach me — I usually reply
+          within a day.
         </p>
       </div>
 
@@ -39,15 +40,15 @@ function ContactPage() {
           <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-accent">
             <Mail className="h-5 w-5 text-accent-foreground" />
           </div>
-          <h3 className="text-base font-bold">Email us</h3>
+          <h3 className="text-base font-bold">Email me</h3>
           <p className="mt-1 text-sm text-muted-foreground">
-            For general inquiries, feedback, and partnership requests.
+            Best for general questions, feedback, and partnership ideas.
           </p>
           <a
-            href="mailto:support@unitywiki.dev"
+            href="mailto:hello@laplahce.dev"
             className="mt-3 inline-block text-sm font-semibold text-brand hover:underline"
           >
-            support@unitywiki.dev
+            hello@laplahce.dev
           </a>
         </div>
 
@@ -55,12 +56,13 @@ function ContactPage() {
           <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-accent">
             <HelpCircle className="h-5 w-5 text-accent-foreground" />
           </div>
-          <h3 className="text-base font-bold">Documentation issues</h3>
+          <h3 className="text-base font-bold">Bug or doc issue</h3>
           <p className="mt-1 text-sm text-muted-foreground">
-            Found a typo, broken link, or outdated API reference? Let us know.
+            Found a bug in a package or something off in my docs? Let me know
+            and I&apos;ll fix it.
           </p>
           <a
-            href="mailto:support@unitywiki.dev?subject=Documentation%20Issue"
+            href="mailto:hello@laplahce.dev?subject=Bug%20report"
             className="mt-3 inline-block text-sm font-semibold text-brand hover:underline"
           >
             Report an issue
@@ -71,15 +73,16 @@ function ContactPage() {
           <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-accent">
             <BookOpen className="h-5 w-5 text-accent-foreground" />
           </div>
-          <h3 className="text-base font-bold">Request a package</h3>
+          <h3 className="text-base font-bold">Feature request</h3>
           <p className="mt-1 text-sm text-muted-foreground">
-            Want us to document a specific Asset Store package? Send a request.
+            Wish one of my packages did something it doesn&apos;t? Tell me —
+            I read every email.
           </p>
           <a
-            href="mailto:support@unitywiki.dev?subject=Package%20Request"
+            href="mailto:hello@laplahce.dev?subject=Feature%20request"
             className="mt-3 inline-block text-sm font-semibold text-brand hover:underline"
           >
-            Request documentation
+            Send a request
           </a>
         </div>
 
@@ -89,7 +92,8 @@ function ContactPage() {
           </div>
           <h3 className="text-base font-bold">Response time</h3>
           <p className="mt-1 text-sm text-muted-foreground">
-            We typically reply within 1–2 business days. For urgent issues, email is fastest.
+            I usually reply within a day. For anything urgent, email is the
+            fastest way to reach me.
           </p>
         </div>
       </div>
@@ -99,46 +103,45 @@ function ContactPage() {
         <div className="mt-6 space-y-5">
           <details className="group">
             <summary className="flex cursor-pointer items-center justify-between text-sm font-semibold text-foreground">
-              Is UnityWiki affiliated with Unity Technologies?
+              Are you affiliated with Unity Technologies?
               <span className="ml-2 text-muted-foreground transition group-open:rotate-180">▼</span>
             </summary>
             <p className="mt-2 text-sm text-muted-foreground">
-              No. UnityWiki is an independent educational reference and is not affiliated with
-              Unity Technologies or any Asset Store publisher.
+              Nope. I&apos;m an independent developer. I sell my own packages
+              on the Asset Store, but I&apos;m not affiliated with Unity
+              Technologies in any way.
             </p>
           </details>
           <div className="h-px bg-border" />
           <details className="group">
             <summary className="flex cursor-pointer items-center justify-between text-sm font-semibold text-foreground">
-              Can I contribute documentation?
+              Can I use your packages in a commercial game?
               <span className="ml-2 text-muted-foreground transition group-open:rotate-180">▼</span>
             </summary>
             <p className="mt-2 text-sm text-muted-foreground">
-              At this time contributions are managed internally. If you are interested in
-              collaborating, reach out via email and we will review your request.
+              Yes — the Asset Store license covers commercial use. Check the
+              license tab on each package page if you want the exact terms.
             </p>
           </details>
           <div className="h-px bg-border" />
           <details className="group">
             <summary className="flex cursor-pointer items-center justify-between text-sm font-semibold text-foreground">
-              Where can I find the original vendor docs?
+              Do you offer custom work or consulting?
               <span className="ml-2 text-muted-foreground transition group-open:rotate-180">▼</span>
             </summary>
             <p className="mt-2 text-sm text-muted-foreground">
-              Each package page includes a references section with links back to the official
-              documentation from the vendor. We always encourage checking the source for the
-              latest updates.
+              Occasionally, depending on the project and my schedule. Send me
+              an email with the details and I&apos;ll let you know.
             </p>
           </details>
           <div className="h-px bg-border" />
           <details className="group">
             <summary className="flex cursor-pointer items-center justify-between text-sm font-semibold text-foreground">
-              Do you host the actual Asset Store packages?
+              How do I buy a package?
               <span className="ml-2 text-muted-foreground transition group-open:rotate-180">▼</span>
             </summary>
             <p className="mt-2 text-sm text-muted-foreground">
-              No — UnityWiki only provides documentation. To purchase or download a package,
-              visit the{" "}
+              All my packages are listed on the{" "}
               <a
                 href="https://assetstore.unity.com"
                 target="_blank"
@@ -146,20 +149,21 @@ function ContactPage() {
                 className="text-brand hover:underline"
               >
                 Unity Asset Store
-              </a>{" "}
-              directly.
+              </a>
+              . Each package page on this site also links straight to its
+              Asset Store listing.
             </p>
           </details>
         </div>
       </div>
 
       <div className="mt-12">
-        <h2 className="display text-xl">Browse documentation</h2>
+        <h2 className="display text-xl">Browse my packages</h2>
         <div className="mt-4 grid gap-3 sm:grid-cols-2">
           {PACKAGES.map((p) => (
             <Link
               key={p.slug}
-              to="/docs/$package"
+              to="/packages/$package"
               params={{ package: p.slug }}
               className="flex items-center gap-3 rounded-xl border border-border bg-card p-4 transition hover:bg-surface-alt"
             >
