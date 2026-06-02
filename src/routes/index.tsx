@@ -65,13 +65,16 @@ function Home() {
             <h2 className="display mt-2 text-2xl sm:text-3xl">
               Packages I&apos;ve shipped
             </h2>
+            <p className="mt-2 text-sm text-muted-foreground">
+              A handful of my favorites — see the full catalog for everything.
+            </p>
           </div>
-          <Link to="/docs" className="text-sm font-semibold text-brand hover:underline">
-            All docs →
+          <Link to="/packages" className="text-sm font-semibold text-brand hover:underline">
+            View all →
           </Link>
         </div>
         <div className="grid gap-5 sm:grid-cols-2">
-          {PACKAGES.map((p) => (
+          {PACKAGES.slice(0, 4).map((p) => (
             <Link
               key={p.slug}
               to="/packages/$package"
@@ -100,6 +103,16 @@ function Home() {
             </Link>
           ))}
         </div>
+        {PACKAGES.length > 4 && (
+          <div className="mt-6 flex justify-center">
+            <Link
+              to="/packages"
+              className="inline-flex items-center gap-2 rounded-xl border border-border-strong px-5 py-3 text-sm font-semibold hover:bg-surface-alt"
+            >
+              See all {PACKAGES.length} packages <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+        )}
       </section>
 
       {/* About */}
