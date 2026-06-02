@@ -14,6 +14,7 @@ import { Route as DocsRouteImport } from './routes/docs'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as SplatRouteImport } from './routes/$'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as PackagesIndexRouteImport } from './routes/packages.index'
 import { Route as WikiSlugRouteImport } from './routes/wiki.$slug'
 import { Route as PackagesPackageRouteImport } from './routes/packages.$package'
 import { Route as DocsPackageRouteImport } from './routes/docs.$package'
@@ -45,6 +46,11 @@ const SplatRoute = SplatRouteImport.update({
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PackagesIndexRoute = PackagesIndexRouteImport.update({
+  id: '/packages/',
+  path: '/packages/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const WikiSlugRoute = WikiSlugRouteImport.update({
@@ -92,6 +98,7 @@ export interface FileRoutesByFullPath {
   '/docs/$package': typeof DocsPackageRouteWithChildren
   '/packages/$package': typeof PackagesPackageRouteWithChildren
   '/wiki/$slug': typeof WikiSlugRoute
+  '/packages/': typeof PackagesIndexRoute
   '/docs/$package/$page': typeof DocsPackagePageRoute
   '/packages/$package/demo': typeof PackagesPackageDemoRoute
   '/docs/$package/': typeof DocsPackageIndexRoute
@@ -104,6 +111,7 @@ export interface FileRoutesByTo {
   '/docs': typeof DocsRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/wiki/$slug': typeof WikiSlugRoute
+  '/packages': typeof PackagesIndexRoute
   '/docs/$package/$page': typeof DocsPackagePageRoute
   '/packages/$package/demo': typeof PackagesPackageDemoRoute
   '/docs/$package': typeof DocsPackageIndexRoute
@@ -119,6 +127,7 @@ export interface FileRoutesById {
   '/docs/$package': typeof DocsPackageRouteWithChildren
   '/packages/$package': typeof PackagesPackageRouteWithChildren
   '/wiki/$slug': typeof WikiSlugRoute
+  '/packages/': typeof PackagesIndexRoute
   '/docs/$package/$page': typeof DocsPackagePageRoute
   '/packages/$package/demo': typeof PackagesPackageDemoRoute
   '/docs/$package/': typeof DocsPackageIndexRoute
@@ -135,6 +144,7 @@ export interface FileRouteTypes {
     | '/docs/$package'
     | '/packages/$package'
     | '/wiki/$slug'
+    | '/packages/'
     | '/docs/$package/$page'
     | '/packages/$package/demo'
     | '/docs/$package/'
@@ -147,6 +157,7 @@ export interface FileRouteTypes {
     | '/docs'
     | '/sitemap.xml'
     | '/wiki/$slug'
+    | '/packages'
     | '/docs/$package/$page'
     | '/packages/$package/demo'
     | '/docs/$package'
@@ -161,6 +172,7 @@ export interface FileRouteTypes {
     | '/docs/$package'
     | '/packages/$package'
     | '/wiki/$slug'
+    | '/packages/'
     | '/docs/$package/$page'
     | '/packages/$package/demo'
     | '/docs/$package/'
@@ -175,6 +187,7 @@ export interface RootRouteChildren {
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   PackagesPackageRoute: typeof PackagesPackageRouteWithChildren
   WikiSlugRoute: typeof WikiSlugRoute
+  PackagesIndexRoute: typeof PackagesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -212,6 +225,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/packages/': {
+      id: '/packages/'
+      path: '/packages'
+      fullPath: '/packages/'
+      preLoaderRoute: typeof PackagesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/wiki/$slug': {
@@ -312,7 +332,18 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   PackagesPackageRoute: PackagesPackageRouteWithChildren,
   WikiSlugRoute: WikiSlugRoute,
+  PackagesIndexRoute: PackagesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
