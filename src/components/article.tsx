@@ -80,7 +80,7 @@ export function ArticleToc({ article }: { article: WikiArticle }) {
 export function ArticleBody({ article }: { article: WikiArticle }) {
   return (
     <article className="wiki-article">
-      <div className="eyebrow mb-2">UnityWiki</div>
+      <div className="eyebrow mb-2">laplahce</div>
       <h1>{article.title}</h1>
       <p className="mt-1 mb-6 text-lg text-muted-foreground">{article.tagline}</p>
 

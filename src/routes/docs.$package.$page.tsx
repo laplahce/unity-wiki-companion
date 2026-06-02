@@ -11,11 +11,11 @@ export const Route = createFileRoute("/docs/$package/$page")({
     return { pkg, page };
   },
   head: ({ loaderData }) => {
-    if (!loaderData) return { meta: [{ title: "Page not found — UnityWiki" }] };
+    if (!loaderData) return { meta: [{ title: "Page not found — laplahce" }] };
     const { pkg, page } = loaderData;
     return {
       meta: [
-        { title: `${page.title} — ${pkg.name} — UnityWiki` },
+        { title: `${page.title} — ${pkg.name} — laplahce` },
         { name: "description", content: `${page.title} in the ${pkg.name} documentation.` },
       ],
     };
