@@ -11,7 +11,7 @@ const HOME_TOC: TocItem[] = [
   { id: "about", title: "What this site is", level: 2 },
 ];
 
-export const Route = createFileRoute("/docs")({
+export const Route = createFileRoute("/docs/")({
   head: () => ({
     meta: [
       { title: "Docs — laplahce" },
