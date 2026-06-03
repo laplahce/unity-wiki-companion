@@ -37,18 +37,23 @@ function PackagesSwitcher({
 
   onNavigate,
   activeSlug,
+  variant = "packages",
 }: {
   onNavigate?: () => void;
   activeSlug?: string | null;
+  variant?: "packages" | "docs";
 }) {
+  const isDocs = variant === "docs";
   return (
     <div>
-      <div className="eyebrow-sidebar mb-4 pl-4">Packages</div>
+      <div className="eyebrow-sidebar mb-4 pl-4">
+        {isDocs ? "All package docs" : "Packages"}
+      </div>
       <ul className="space-y-0">
         {PACKAGES.map((p) => (
           <li key={p.slug}>
             <Link
-              to="/packages/$package"
+              to={isDocs ? "/docs/$package" : "/packages/$package"}
               params={{ package: p.slug }}
               onClick={onNavigate}
               className={`side-link${activeSlug === p.slug ? " active" : ""}`}
@@ -107,16 +112,16 @@ function SidebarNav({
           </ul>
         </div>
         {includeGlobal && (
-          <PackagesSwitcher onNavigate={onNavigate} activeSlug={pkg.slug} />
+          <PackagesSwitcher onNavigate={onNavigate} activeSlug={pkg.slug} variant="docs" />
         )}
       </nav>
     );
   }
 
-  // Home
+  // Docs home / other docs routes
   return (
     <nav>
-      <PackagesSwitcher onNavigate={onNavigate} />
+      <PackagesSwitcher onNavigate={onNavigate} variant="docs" />
     </nav>
   );
 }
