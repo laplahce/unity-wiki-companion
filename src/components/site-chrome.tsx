@@ -112,16 +112,16 @@ function SidebarNav({
           </ul>
         </div>
         {includeGlobal && (
-          <PackagesSwitcher onNavigate={onNavigate} activeSlug={pkg.slug} />
+          <PackagesSwitcher onNavigate={onNavigate} activeSlug={pkg.slug} variant="docs" />
         )}
       </nav>
     );
   }
 
-  // Home
+  // Docs home / other docs routes
   return (
     <nav>
-      <PackagesSwitcher onNavigate={onNavigate} />
+      <PackagesSwitcher onNavigate={onNavigate} variant="docs" />
     </nav>
   );
 }
