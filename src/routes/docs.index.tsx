@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { PACKAGES } from "@/data/docs";
 import { OnThisPage } from "@/components/on-this-page";
 import type { TocItem } from "@/lib/toc";
+import { StatusBadge } from "@/components/status-badge";
 
 const HOME_TOC: TocItem[] = [
   { id: "welcome", title: "Welcome", level: 2 },
@@ -98,8 +99,11 @@ function Index() {
                 <div className="mt-1 text-sm text-muted-foreground line-clamp-2">
                   {p.tagline}
                 </div>
-                <div className="mt-2 text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
-                  {p.pages.length} pages · {p.category}
+                <div className="mt-2 flex items-center gap-2">
+                  <div className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
+                    {p.pages.length} pages · {p.category}
+                  </div>
+                  {p.status && <StatusBadge status={p.status} size="xs" />}
                 </div>
               </div>
             </Link>
@@ -151,6 +155,7 @@ function Index() {
                 <th className="px-5 py-3 font-semibold">Package</th>
                 <th className="px-5 py-3 font-semibold">Category</th>
                 <th className="px-5 py-3 font-semibold">Pages</th>
+                <th className="px-5 py-3 font-semibold">Status</th>
                 <th className="px-5 py-3 font-semibold">Summary</th>
               </tr>
             </thead>
@@ -171,6 +176,16 @@ function Index() {
                   </td>
                   <td className="px-5 py-4 text-muted-foreground">{p.category}</td>
                   <td className="px-5 py-4 text-muted-foreground">{p.pages.length}</td>
+                  <td className="px-5 py-4">
+                    {p.status ? (
+                      <StatusBadge status={p.status} size="xs" />
+                    ) : (
+                      <span className="inline-flex items-center gap-1 text-[11px] font-semibold uppercase tracking-wide text-emerald-700 dark:text-emerald-400">
+                        <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                        Published
+                      </span>
+                    )}
+                  </td>
                   <td className="px-5 py-4 text-muted-foreground">{p.tagline}</td>
                 </tr>
               ))}
