@@ -443,11 +443,13 @@ export const PACKAGES: DocPackage[] = ARTICLES.map((a: WikiArticle) => ({
       guide:
         GUIDES[`${a.slug}/${p.slug}`] ??
         (p.slug === "installation" ? installGuide(a.title) : undefined),
+      status: PAGE_STATUS[`${a.slug}/${p.slug}`],
     }));
   })(),
   references: a.references,
   demoUrl: DEMO_URLS[a.slug],
   reviewUrl: REVIEW_URLS[a.slug],
+  status: PACKAGE_STATUS[a.slug],
 }));
 
 
