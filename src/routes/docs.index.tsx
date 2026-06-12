@@ -99,7 +99,7 @@ function Index() {
                 <div className="mt-1 text-sm text-muted-foreground line-clamp-2">
                   {p.tagline}
                 </div>
-                <div className="mt-2 flex items-center gap-2">
+                <div className="mt-2 flex flex-wrap items-center gap-2">
                   <div className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
                     {p.pages.length} pages · {p.category}
                   </div>
