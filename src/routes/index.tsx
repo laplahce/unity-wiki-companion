@@ -82,12 +82,12 @@ function Home() {
               params={{ package: p.slug }}
               className="group overflow-hidden rounded-2xl border border-border bg-card card-shadow transition hover:border-brand"
             >
-              <div className="card-grad flex h-36 items-center justify-center">
+              <div className="card-grad relative flex h-36 items-center justify-center">
                 <span className="text-2xl font-extrabold tracking-tight text-white drop-shadow">
                   {p.label}
                 </span>
                 {p.status && (
-                  <span className="absolute m-3 self-start">
+                  <span className="absolute left-3 top-3">
                     <StatusBadge
                       status={p.status}
                       size="xs"
