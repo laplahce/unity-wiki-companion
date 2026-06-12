@@ -46,7 +46,7 @@ export function StatusBadge({
   return (
     <span
       title={STATUS_DESCRIPTION[status]}
-      className={`inline-flex items-center gap-1 rounded-md border font-semibold uppercase tracking-wide whitespace-nowrap ${sizeCls} ${STATUS_STYLE[status]} ${className}`}
+      className={`inline-flex shrink-0 items-center gap-1 rounded-md border font-semibold uppercase tracking-wide whitespace-nowrap ${sizeCls} ${STATUS_STYLE[status]} ${className}`}
     >
       <Icon className={iconCls} />
       {STATUS_LABEL[status]}

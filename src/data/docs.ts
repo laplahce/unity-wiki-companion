@@ -75,6 +75,7 @@ export const REVIEW_URLS: Record<string, string> = {
 // published — anything missing here is considered live on the Asset Store.
 export const PACKAGE_STATUS: Record<string, PublishStatus> = {
   cinemachine: "in-development",
+  dotween: "awaiting-review",
 };
 
 // Per-page publish status overrides, keyed by "<packageSlug>/<pageSlug>".
