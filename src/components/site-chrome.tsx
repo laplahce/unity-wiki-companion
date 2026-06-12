@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Menu, X, ChevronDown, Package, Mail, Download } from "lucide-react";
 import { PACKAGES } from "@/data/docs";
 import { SiteSearch } from "@/components/site-search";
+import { StatusDot } from "@/components/status-badge";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -58,7 +59,10 @@ function PackagesSwitcher({
               onClick={onNavigate}
               className={`side-link${activeSlug === p.slug ? " active" : ""}`}
             >
-              {p.name}
+              <span className="inline-flex items-center gap-1.5">
+                {p.name}
+                {p.status && <StatusDot status={p.status} />}
+              </span>
             </Link>
           </li>
         ))}
@@ -104,7 +108,10 @@ function SidebarNav({
                     {page.emphasized && (
                       <Download className="inline-block h-3.5 w-3.5 shrink-0" />
                     )}
-                    {page.title}
+                    <span className="inline-flex items-center gap-1.5">
+                      {page.title}
+                      {page.status && <StatusDot status={page.status} />}
+                    </span>
                   </Link>
                 </li>
               );
