@@ -2,6 +2,9 @@
 // plus a shared set of general pages that appear in every sidebar.
 
 import { ARTICLES, type WikiArticle } from "./articles";
+import type { PublishStatus } from "@/components/status-badge";
+
+export type { PublishStatus } from "@/components/status-badge";
 
 export type DocPage = {
   slug: string;
@@ -16,6 +19,10 @@ export type DocPage = {
   // When true, the page is visually emphasized (highlighted callout + sidebar
   // treatment) because it is especially important — e.g. the installation page.
   emphasized?: boolean;
+  // When set, the page is NOT yet published — it is either still being
+  // written ("in-development") or has been submitted and is awaiting Asset
+  // Store review ("awaiting-review"). Published pages leave this undefined.
+  status?: PublishStatus;
 };
 
 // A single step in a step-by-step visual guide.
@@ -46,6 +53,9 @@ export type DocPackage = {
   // Direct link to the package's review section on the Unity Asset Store.
   // When set, a non-intrusive review prompt is shown on every doc page.
   reviewUrl?: string;
+  // When set, the package is NOT yet published on the Asset Store. Same
+  // semantics as DocPage.status above. Published packages omit this field.
+  status?: PublishStatus;
 };
 
 // Per-package WebGL demo build URLs. Fill these in as demos become available,
@@ -59,6 +69,18 @@ export const REVIEW_URLS: Record<string, string> = {
   dotween: "https://assetstore.unity.com/packages/tools/visual-scripting/dotween-pro-32416#reviews",
   "odin-inspector": "https://assetstore.unity.com/packages/tools/utilities/odin-inspector-and-serializer-89041#reviews",
   "a-pathfinding-project": "https://assetstore.unity.com/packages/tools/behavior-ai/a-pathfinding-project-pro-87744#reviews",
+};
+
+// Per-package publish status overrides. Only list packages that are NOT yet
+// published — anything missing here is considered live on the Asset Store.
+export const PACKAGE_STATUS: Record<string, PublishStatus> = {
+  cinemachine: "in-development",
+};
+
+// Per-page publish status overrides, keyed by "<packageSlug>/<pageSlug>".
+// Only list pages that are NOT yet published.
+export const PAGE_STATUS: Record<string, PublishStatus> = {
+  "dotween/faq": "awaiting-review",
 };
 
 // Per-page step-by-step visual guides, keyed by "<packageSlug>/<pageSlug>".
