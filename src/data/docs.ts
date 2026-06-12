@@ -365,6 +365,31 @@ function placeholderPages(name: string, storeUrl?: string): DocPage[] {
 <h2>Deprecation policy</h2>
 <p>APIs are marked <code>[Obsolete]</code> for at least one minor release before they are removed, giving you time to migrate.</p>`,
     },
+    {
+      slug: "faq",
+      title: "FAQ",
+      html: `${note}
+<h2>Frequently asked questions</h2>
+<p>Short answers to the questions I get most often about ${name}. If yours isn't here, the <a href="/contact">contact page</a> is the fastest way to reach me.</p>
+
+<h3>Which Unity versions are supported?</h3>
+<p>The supported range is listed in the overview infobox at the top of this package's docs. In general, I target the current Unity LTS plus the two previous LTS releases.</p>
+
+<h3>Does ${name} work in WebGL / mobile / consoles?</h3>
+<p>WebGL, iOS and Android are tested in CI. Console targets compile but I cannot test them on every patch — ping me before shipping if you depend on console support.</p>
+
+<h3>Can I use ${name} in a commercial project?</h3>
+<p>Yes. The license is the standard Unity Asset Store EULA — one seat per developer, unlimited shipped projects.</p>
+
+<h3>How do I report a bug?</h3>
+<p>Open the <a href="/contact">contact page</a> with your Unity version, the ${name} version, the platform you're targeting, and a minimal reproduction project. That gets a fix out the door fastest.</p>
+
+<h3>Will ${name} keep getting updates?</h3>
+<p>Yes — every package on this site is actively maintained. The changelog page shows the release cadence at a glance.</p>
+
+<h3>How do I request a feature?</h3>
+<p>Send it through the contact form. I read everything and roadmap the ones that fit ${name}'s scope.</p>`,
+    },
   ];
 }
 
