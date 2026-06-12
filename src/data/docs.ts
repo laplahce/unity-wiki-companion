@@ -2,6 +2,9 @@
 // plus a shared set of general pages that appear in every sidebar.
 
 import { ARTICLES, type WikiArticle } from "./articles";
+import type { PublishStatus } from "@/components/status-badge";
+
+export type { PublishStatus } from "@/components/status-badge";
 
 export type DocPage = {
   slug: string;
@@ -16,6 +19,10 @@ export type DocPage = {
   // When true, the page is visually emphasized (highlighted callout + sidebar
   // treatment) because it is especially important — e.g. the installation page.
   emphasized?: boolean;
+  // When set, the page is NOT yet published — it is either still being
+  // written ("in-development") or has been submitted and is awaiting Asset
+  // Store review ("awaiting-review"). Published pages leave this undefined.
+  status?: PublishStatus;
 };
 
 // A single step in a step-by-step visual guide.
@@ -46,6 +53,9 @@ export type DocPackage = {
   // Direct link to the package's review section on the Unity Asset Store.
   // When set, a non-intrusive review prompt is shown on every doc page.
   reviewUrl?: string;
+  // When set, the package is NOT yet published on the Asset Store. Same
+  // semantics as DocPage.status above. Published packages omit this field.
+  status?: PublishStatus;
 };
 
 // Per-package WebGL demo build URLs. Fill these in as demos become available,
@@ -59,6 +69,18 @@ export const REVIEW_URLS: Record<string, string> = {
   dotween: "https://assetstore.unity.com/packages/tools/visual-scripting/dotween-pro-32416#reviews",
   "odin-inspector": "https://assetstore.unity.com/packages/tools/utilities/odin-inspector-and-serializer-89041#reviews",
   "a-pathfinding-project": "https://assetstore.unity.com/packages/tools/behavior-ai/a-pathfinding-project-pro-87744#reviews",
+};
+
+// Per-package publish status overrides. Only list packages that are NOT yet
+// published — anything missing here is considered live on the Asset Store.
+export const PACKAGE_STATUS: Record<string, PublishStatus> = {
+  cinemachine: "in-development",
+};
+
+// Per-page publish status overrides, keyed by "<packageSlug>/<pageSlug>".
+// Only list pages that are NOT yet published.
+export const PAGE_STATUS: Record<string, PublishStatus> = {
+  "dotween/faq": "awaiting-review",
 };
 
 // Per-page step-by-step visual guides, keyed by "<packageSlug>/<pageSlug>".
@@ -343,6 +365,31 @@ function placeholderPages(name: string, storeUrl?: string): DocPage[] {
 <h2>Deprecation policy</h2>
 <p>APIs are marked <code>[Obsolete]</code> for at least one minor release before they are removed, giving you time to migrate.</p>`,
     },
+    {
+      slug: "faq",
+      title: "FAQ",
+      html: `${note}
+<h2>Frequently asked questions</h2>
+<p>Short answers to the questions I get most often about ${name}. If yours isn't here, the <a href="/contact">contact page</a> is the fastest way to reach me.</p>
+
+<h3>Which Unity versions are supported?</h3>
+<p>The supported range is listed in the overview infobox at the top of this package's docs. In general, I target the current Unity LTS plus the two previous LTS releases.</p>
+
+<h3>Does ${name} work in WebGL / mobile / consoles?</h3>
+<p>WebGL, iOS and Android are tested in CI. Console targets compile but I cannot test them on every patch — ping me before shipping if you depend on console support.</p>
+
+<h3>Can I use ${name} in a commercial project?</h3>
+<p>Yes. The license is the standard Unity Asset Store EULA — one seat per developer, unlimited shipped projects.</p>
+
+<h3>How do I report a bug?</h3>
+<p>Open the <a href="/contact">contact page</a> with your Unity version, the ${name} version, the platform you're targeting, and a minimal reproduction project. That gets a fix out the door fastest.</p>
+
+<h3>Will ${name} keep getting updates?</h3>
+<p>Yes — every package on this site is actively maintained. The changelog page shows the release cadence at a glance.</p>
+
+<h3>How do I request a feature?</h3>
+<p>Send it through the contact form. I read everything and roadmap the ones that fit ${name}'s scope.</p>`,
+    },
   ];
 }
 
@@ -396,11 +443,13 @@ export const PACKAGES: DocPackage[] = ARTICLES.map((a: WikiArticle) => ({
       guide:
         GUIDES[`${a.slug}/${p.slug}`] ??
         (p.slug === "installation" ? installGuide(a.title) : undefined),
+      status: PAGE_STATUS[`${a.slug}/${p.slug}`],
     }));
   })(),
   references: a.references,
   demoUrl: DEMO_URLS[a.slug],
   reviewUrl: REVIEW_URLS[a.slug],
+  status: PACKAGE_STATUS[a.slug],
 }));
 
 

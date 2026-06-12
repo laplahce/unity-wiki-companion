@@ -6,6 +6,7 @@ import { OnThisPage } from "@/components/on-this-page";
 import { StepGuide } from "@/components/step-guide";
 import { HtmlContent } from "@/components/html-content";
 import { PageFooterMeta } from "@/components/page-feedback";
+import { StatusBadge } from "@/components/status-badge";
 
 function DocLayout({
   children,
@@ -156,6 +157,20 @@ export function PackagePageView({
         / {page.title}
       </div>
       <h1>{page.title}</h1>
+      {(pkg.status || page.status) && (
+        <div className="not-prose mb-4 flex flex-wrap items-center gap-2">
+          {pkg.status && (
+            <StatusBadge status={pkg.status} size="md" />
+          )}
+          {page.status && page.status !== pkg.status && (
+            <StatusBadge status={page.status} size="md" />
+          )}
+          <span className="text-xs text-muted-foreground">
+            This {page.status && !pkg.status ? "page is" : "package is"} not
+            published yet.
+          </span>
+        </div>
+      )}
       <ReviewPrompt pkg={pkg} />
       {page.emphasized && <EmphasisBanner pkg={pkg} page={page} />}
       {isOverview && (

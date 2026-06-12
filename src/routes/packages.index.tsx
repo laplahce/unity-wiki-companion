@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Package as PackageIcon } from "lucide-react";
 import { PACKAGES } from "@/data/docs";
+import { StatusBadge } from "@/components/status-badge";
 
 export const Route = createFileRoute("/packages/")({
   head: () => ({
@@ -80,6 +81,7 @@ function PackagesIndex() {
                         <div className="truncate text-base font-bold text-foreground">
                           {p.name}
                         </div>
+                        {p.status && <StatusBadge status={p.status} size="xs" />}
                         <div className="hidden text-[11px] font-semibold uppercase tracking-wide text-muted-foreground sm:block">
                           · {p.pages.length} docs pages
                         </div>

@@ -1,6 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { BookOpen, ExternalLink, Play, ArrowRight, Star, Check } from "lucide-react";
 import { getPackage, PACKAGES } from "@/data/docs";
+import { StatusBadge } from "@/components/status-badge";
 
 export const Route = createFileRoute("/packages/$package/")({
   loader: ({ params }) => {
@@ -32,6 +33,11 @@ function PackageShowcase() {
           <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide backdrop-blur">
             {pkg.category}
           </div>
+          {pkg.status && (
+            <div className="mt-3">
+              <StatusBadge status={pkg.status} size="md" className="!border-white/30 !bg-white/10 !text-white" />
+            </div>
+          )}
           <h1 className="mt-4 font-serif text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
             {pkg.name}
           </h1>

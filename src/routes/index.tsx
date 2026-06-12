@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PACKAGES } from "@/data/docs";
 import { ArrowRight, Github, Mail, Package as PackageIcon, Sparkles } from "lucide-react";
+import { StatusBadge } from "@/components/status-badge";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -81,10 +82,19 @@ function Home() {
               params={{ package: p.slug }}
               className="group overflow-hidden rounded-2xl border border-border bg-card card-shadow transition hover:border-brand"
             >
-              <div className="card-grad flex h-36 items-center justify-center">
+              <div className="card-grad relative flex h-36 items-center justify-center">
                 <span className="text-2xl font-extrabold tracking-tight text-white drop-shadow">
                   {p.label}
                 </span>
+                {p.status && (
+                  <span className="absolute left-3 top-3">
+                    <StatusBadge
+                      status={p.status}
+                      size="xs"
+                      className="!border-white/30 !bg-black/40 !text-white backdrop-blur"
+                    />
+                  </span>
+                )}
               </div>
               <div className="p-5">
                 <div className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
