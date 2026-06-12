@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PACKAGES } from "@/data/docs";
 import { ArrowRight, Github, Mail, Package as PackageIcon, Sparkles } from "lucide-react";
+import { StatusBadge } from "@/components/status-badge";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -85,6 +86,15 @@ function Home() {
                 <span className="text-2xl font-extrabold tracking-tight text-white drop-shadow">
                   {p.label}
                 </span>
+                {p.status && (
+                  <span className="absolute m-3 self-start">
+                    <StatusBadge
+                      status={p.status}
+                      size="xs"
+                      className="!border-white/30 !bg-black/40 !text-white backdrop-blur"
+                    />
+                  </span>
+                )}
               </div>
               <div className="p-5">
                 <div className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
