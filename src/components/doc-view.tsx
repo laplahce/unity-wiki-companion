@@ -7,6 +7,7 @@ import { StepGuide } from "@/components/step-guide";
 import { HtmlContent } from "@/components/html-content";
 import { PageFooterMeta } from "@/components/page-feedback";
 import { StatusBadge } from "@/components/status-badge";
+import { FaqAccordion } from "@/components/faq-accordion";
 
 function DocLayout({
   children,
@@ -180,7 +181,11 @@ export function PackagePageView({
       {isOverview && <PackageInfobox pkg={pkg} />}
       {isOverview && <PurchaseBanner pkg={pkg} />}
 
-      <HtmlContent html={html} />
+      {page.slug === "faq" ? (
+        <FaqAccordion html={html} />
+      ) : (
+        <HtmlContent html={html} />
+      )}
 
       {page.guide && page.guide.length > 0 && (
         <StepGuide steps={page.guide} />

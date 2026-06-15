@@ -7,6 +7,13 @@ export const STATUS_LABEL: Record<PublishStatus, string> = {
   "awaiting-review": "Awaiting Asset Store Review",
 };
 
+// Compact slugs used in tight spots like list rows and small cards where the
+// full label would wrap or get clipped.
+export const STATUS_SHORT_LABEL: Record<PublishStatus, string> = {
+  "in-development": "IN DEV",
+  "awaiting-review": "IN QUEUE",
+};
+
 export const STATUS_DESCRIPTION: Record<PublishStatus, string> = {
   "in-development":
     "Still actively being built. The page or package isn't published yet.",
@@ -43,13 +50,16 @@ export function StatusBadge({
         ? "px-1.5 py-0.5 text-[10px]"
         : "px-2 py-0.5 text-[11px]";
   const iconCls = size === "md" ? "h-3.5 w-3.5" : "h-3 w-3";
+  // In the tightest size we fall back to the short slug so the badge never
+  // gets clipped inside cards or table rows.
+  const label = size === "xs" ? STATUS_SHORT_LABEL[status] : STATUS_LABEL[status];
   return (
     <span
       title={STATUS_DESCRIPTION[status]}
       className={`inline-flex shrink-0 items-center gap-1 rounded-md border font-semibold uppercase tracking-wide whitespace-nowrap ${sizeCls} ${STATUS_STYLE[status]} ${className}`}
     >
       <Icon className={iconCls} />
-      {STATUS_LABEL[status]}
+      {label}
     </span>
   );
 }
