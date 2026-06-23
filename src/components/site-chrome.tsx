@@ -1,6 +1,6 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useState } from "react";
-import { Menu, X, ChevronDown, Package, Mail, Download } from "lucide-react";
+import { Menu, X, ChevronDown, Package, Mail, Download, Wrench } from "lucide-react";
 import { PACKAGES } from "@/data/docs";
 import { SiteSearch } from "@/components/site-search";
 import { StatusDot } from "@/components/status-badge";
@@ -198,16 +198,18 @@ export function SiteHeader({ onMenuClick }: { onMenuClick: () => void }) {
         )}
         <nav className="ml-auto hidden items-center gap-6 text-sm md:flex">
           {showSearch && <SiteSearch />}
-          <Link to="/" className="nav-link">Home</Link>
-          <PackageNavMenu />
-          <Link to="/docs" className="nav-link">Docs</Link>
-          <Link to="/contact" className="nav-link">Contact</Link>
+          <Link to="/" className="nav-link rounded-md px-3 py-2 hover:bg-surface-alt">Home</Link>
+          <span className="nav-link rounded-md px-3 py-2 hover:bg-surface-alt">
+            <PackageNavMenu />
+          </span>
+          <Link to="/docs" className="nav-link rounded-md px-3 py-2 hover:bg-surface-alt">Docs</Link>
+          <Link to="/contact" className="nav-link rounded-md px-3 py-2 hover:bg-surface-alt">Contact</Link>
 
           <a
             href="https://assetstore.unity.com"
             target="_blank"
             rel="noreferrer"
-            className="whitespace-nowrap rounded-lg px-4 py-2 text-sm font-semibold text-white card-grad card-shadow"
+            className="whitespace-nowrap rounded-lg px-4 py-2 text-sm font-semibold text-white card-grad transition hover:opacity-90 hover:shadow-md"
           >
             Asset Store
           </a>
