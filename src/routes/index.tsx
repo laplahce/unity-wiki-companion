@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PACKAGES } from "@/data/docs";
-import { ArrowRight, Github, Mail, Package as PackageIcon, Sparkles } from "lucide-react";
+import { ArrowRight, Github, Mail, Package as PackageIcon, Wrench } from "lucide-react";
 import { StatusBadge } from "@/components/status-badge";
 
 export const Route = createFileRoute("/")({
@@ -29,7 +29,7 @@ function Home() {
       {/* Hero */}
       <section className="pt-10 sm:pt-16">
         <div className="eyebrow inline-flex items-center gap-2">
-          <Sparkles className="h-3.5 w-3.5" /> Independent Unity dev
+          <Wrench className="h-3.5 w-3.5" /> Independent Unity dev
         </div>
         <h1 className="display mt-4 text-4xl sm:text-5xl lg:text-6xl">
           Hi, I&apos;m <span className="text-brand">laplahce</span>.
