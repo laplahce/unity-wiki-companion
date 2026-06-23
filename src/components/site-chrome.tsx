@@ -1,6 +1,6 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useState } from "react";
-import { Menu, X, ChevronDown, Package, Mail, Download, Wrench } from "lucide-react";
+import { Menu, X, ChevronDown, Package, Mail, Download } from "lucide-react";
 import { PACKAGES } from "@/data/docs";
 import { SiteSearch } from "@/components/site-search";
 import { StatusDot } from "@/components/status-badge";
