@@ -200,7 +200,7 @@ export function SiteHeader({ onMenuClick }: { onMenuClick: () => void }) {
           {showSearch && <SiteSearch />}
           <Link to="/" className="nav-link rounded-md px-3 py-2">Home</Link>
           <PackageNavMenu />
-          <Link to="/docs" className="nav-link rounded-md px-3 py-2 hover:bg-surface-alt">Docs</Link>
+          <Link to="/docs" className="nav-link rounded-md px-3 py-2">Docs</Link>
           <Link to="/contact" className="nav-link rounded-md px-3 py-2 hover:bg-surface-alt">Contact</Link>
 
           <a
