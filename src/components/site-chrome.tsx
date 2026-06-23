@@ -141,7 +141,7 @@ function PackageNavMenu() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="nav-link inline-flex items-center gap-1 outline-none">
+      <DropdownMenuTrigger className="nav-link inline-flex items-center gap-1 rounded-md px-3 py-2 outline-none hover:bg-surface-alt">
         <Package className="h-4 w-4" /> {label}
         <ChevronDown className="h-3.5 w-3.5 opacity-70" />
       </DropdownMenuTrigger>
@@ -198,16 +198,16 @@ export function SiteHeader({ onMenuClick }: { onMenuClick: () => void }) {
         )}
         <nav className="ml-auto hidden items-center gap-6 text-sm md:flex">
           {showSearch && <SiteSearch />}
-          <Link to="/" className="nav-link">Home</Link>
+          <Link to="/" className="nav-link rounded-md px-3 py-2 hover:bg-surface-alt">Home</Link>
           <PackageNavMenu />
-          <Link to="/docs" className="nav-link">Docs</Link>
-          <Link to="/contact" className="nav-link">Contact</Link>
+          <Link to="/docs" className="nav-link rounded-md px-3 py-2 hover:bg-surface-alt">Docs</Link>
+          <Link to="/contact" className="nav-link rounded-md px-3 py-2 hover:bg-surface-alt">Contact</Link>
 
           <a
             href="https://assetstore.unity.com"
             target="_blank"
             rel="noreferrer"
-            className="whitespace-nowrap rounded-lg px-4 py-2 text-sm font-semibold text-white card-grad card-shadow"
+            className="whitespace-nowrap rounded-lg px-4 py-2 text-sm font-semibold text-white card-grad transition hover:opacity-90 hover:shadow-md"
           >
             Asset Store
           </a>
