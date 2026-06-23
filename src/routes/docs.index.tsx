@@ -3,6 +3,7 @@ import { PACKAGES } from "@/data/docs";
 import { OnThisPage } from "@/components/on-this-page";
 import type { TocItem } from "@/lib/toc";
 import { StatusBadge } from "@/components/status-badge";
+import { ArrowRight } from "lucide-react";
 
 const HOME_TOC: TocItem[] = [
   { id: "welcome", title: "Welcome", level: 2 },
@@ -81,7 +82,7 @@ function Index() {
           </a>
         </div>
         <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
-          {PACKAGES.map((p) => (
+          {PACKAGES.slice(0, 3).map((p) => (
             <Link
               key={p.slug}
               to="/docs/$package"
@@ -108,6 +109,21 @@ function Index() {
               </div>
             </Link>
           ))}
+          <a
+            href="#contents"
+            className="group flex flex-col items-center justify-center gap-3 rounded-2xl border-2 border-dashed border-border bg-card p-6 text-center transition hover:border-brand hover:bg-surface-alt"
+          >
+            <div className="text-3xl font-extrabold tracking-tight text-brand">
+              +{Math.max(0, PACKAGES.length - 3)}
+            </div>
+            <div className="font-semibold text-foreground">View all packages</div>
+            <div className="text-sm text-muted-foreground">
+              Browse the full documentation catalog
+            </div>
+            <div className="inline-flex items-center gap-1 text-sm font-semibold text-brand">
+              See all <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5" />
+            </div>
+          </a>
         </div>
       </section>
 
