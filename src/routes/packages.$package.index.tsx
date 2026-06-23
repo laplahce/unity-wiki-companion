@@ -20,7 +20,7 @@ function PackageShowcase() {
   return (
     <div>
       {/* Hero banner — placeholder gradient until a real GIF is wired up */}
-      <section className="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] h-[520px] w-screen overflow-hidden sm:h-[640px]">
+      <section className="relative -mt-6 left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] h-[520px] w-screen overflow-hidden sm:h-[640px]">
         <div className="card-grad absolute inset-0" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.18),transparent_55%)]" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/40 to-black/80" />
