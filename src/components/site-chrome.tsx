@@ -198,7 +198,7 @@ export function SiteHeader({ onMenuClick }: { onMenuClick: () => void }) {
         )}
         <nav className="ml-auto hidden items-center gap-6 text-sm md:flex">
           {showSearch && <SiteSearch />}
-          <Link to="/" className="nav-link rounded-md px-3 py-2 hover:bg-surface-alt">Home</Link>
+          <Link to="/" className="nav-link rounded-md px-3 py-2">Home</Link>
           <PackageNavMenu />
           <Link to="/docs" className="nav-link rounded-md px-3 py-2 hover:bg-surface-alt">Docs</Link>
           <Link to="/contact" className="nav-link rounded-md px-3 py-2 hover:bg-surface-alt">Contact</Link>
