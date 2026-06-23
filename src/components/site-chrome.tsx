@@ -141,7 +141,7 @@ function PackageNavMenu() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="nav-link inline-flex items-center gap-1 rounded-md px-3 py-2 outline-none hover:bg-surface-alt">
+      <DropdownMenuTrigger className="nav-link inline-flex items-center gap-1 rounded-md px-3 py-2 outline-none">
         <Package className="h-4 w-4" /> {label}
         <ChevronDown className="h-3.5 w-3.5 opacity-70" />
       </DropdownMenuTrigger>
