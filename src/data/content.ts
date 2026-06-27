@@ -200,7 +200,7 @@ function buildPackages(): DocPackage[] {
       tail.unshift(inst);
     }
 
-    const allPages = [...pages, ...tail].map((p) => ({
+    const allPages: DocPage[] = [...pages, ...tail].map((p) => ({
       ...p,
       guide:
         p.guide ?? (p.slug === "installation" ? installGuide(front.name) : undefined),
