@@ -5,7 +5,6 @@
 // `_package.md` to add a package, drop a `NN-slug.md` to add a page, edit any
 // `.md` to change copy. The design layer below is untouched.
 
-import matter from "gray-matter";
 import { marked } from "marked";
 import type { DocPackage, DocPage, GuideStep, PublishStatus } from "./docs-types";
 
@@ -39,6 +38,82 @@ type PageFront = {
   kind?: "demo";
   guide?: GuideStep[];
 };
+
+// Minimal frontmatter parser — supports the YAML-ish subset we actually use:
+//   scalars, quoted strings, booleans, numbers, flow lists/maps, block lists
+//   of scalars or flow maps. Avoids gray-matter so we don't pull Node's Buffer
+//   into the browser bundle.
+function parseScalar(v: string): unknown {
+  const s = v.trim();
+  if (s === "") return "";
+  if (s === "true") return true;
+  if (s === "false") return false;
+  if (s === "null") return null;
+  if (/^-?\d+(\.\d+)?$/.test(s)) return Number(s);
+  if ((s.startsWith('"') && s.endsWith('"')) || (s.startsWith("'") && s.endsWith("'"))) {
+    return s.slice(1, -1).replace(/\\"/g, '"').replace(/\\'/g, "'");
+  }
+  return s;
+}
+
+function parseFlow(input: string): unknown {
+  // Naive JSON-ish flow parser: convert YAML flow to JSON then JSON.parse.
+  // Handles {a: b, c: "d"} and [1, 2, "x"] forms used in frontmatter.
+  const s = input.trim();
+  if (!s) return s;
+  const json = s
+    // quote bare keys: { foo: ... -> { "foo": ...
+    .replace(/([{,]\s*)([A-Za-z_][\w-]*)\s*:/g, '$1"$2":')
+    // single-quoted -> double-quoted strings
+    .replace(/'([^']*)'/g, '"$1"');
+  try {
+    return JSON.parse(json);
+  } catch {
+    return s;
+  }
+}
+
+function parseFrontmatter(src: string): { data: Record<string, unknown>; content: string } {
+  const m = src.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/);
+  if (!m) return { data: {}, content: src };
+  const body = m[2];
+  const lines = m[1].split(/\r?\n/);
+  const data: Record<string, unknown> = {};
+  let i = 0;
+  while (i < lines.length) {
+    const line = lines[i];
+    if (!line.trim() || line.trim().startsWith("#")) {
+      i++;
+      continue;
+    }
+    const kv = line.match(/^([A-Za-z_][\w-]*)\s*:\s*(.*)$/);
+    if (!kv) {
+      i++;
+      continue;
+    }
+    const key = kv[1];
+    const rest = kv[2];
+    if (rest.trim() === "") {
+      // block list of "  - <flow or scalar>"
+      const items: unknown[] = [];
+      i++;
+      while (i < lines.length && /^\s+-\s/.test(lines[i])) {
+        const item = lines[i].replace(/^\s+-\s/, "");
+        items.push(item.startsWith("{") || item.startsWith("[") ? parseFlow(item) : parseScalar(item));
+        i++;
+      }
+      data[key] = items;
+      continue;
+    }
+    if (rest.startsWith("{") || rest.startsWith("[")) {
+      data[key] = parseFlow(rest);
+    } else {
+      data[key] = parseScalar(rest);
+    }
+    i++;
+  }
+  return { data, content: body };
+}
 
 function render(md: string): string {
   return marked.parse(md.trim(), { async: false }) as string;
@@ -154,7 +229,7 @@ function buildPackages(): DocPackage[] {
     const meta = files.find((f) => f.file === "_package.md");
     if (!meta) continue;
 
-    const parsed = matter(meta.raw);
+    const parsed = parseFrontmatter(meta.raw);
     const front = parsed.data as PackageFront;
     const overviewHtml = render(parsed.content);
 
@@ -169,7 +244,7 @@ function buildPackages(): DocPackage[] {
       .sort((a, b) => orderFromFilename(a.file) - orderFromFilename(b.file));
 
     const userPages: DocPage[] = userFiles.map((f) => {
-      const p = matter(f.raw);
+      const p = parseFrontmatter(f.raw);
       const fm = p.data as PageFront;
       return {
         slug: fm.slug ?? slugFromFilename(f.file),
