@@ -9,10 +9,12 @@ import { HtmlContent } from "@/components/html-content";
 // Splits FAQ HTML (a flat <h3>question</h3><p>answer</p>... sequence, possibly
 // preceded by an intro h2/paragraphs) into an intro block + collapsible Q&A.
 export function FaqAccordion({ html }: { html: string }) {
-  const parts = html.split(/(?=<h3[\s>])/i);
+  // Accept h2 or h3 as the question heading — markdown authors reach for `##`
+  // more naturally, but existing content may still use h3.
+  const parts = html.split(/(?=<h[23][\s>])/i);
   const intro = parts[0] ?? "";
   const items = parts.slice(1).flatMap((part, i) => {
-    const m = part.match(/<h3[^>]*>([\s\S]*?)<\/h3>([\s\S]*)/i);
+    const m = part.match(/<h[23][^>]*>([\s\S]*?)<\/h[23]>([\s\S]*)/i);
     if (!m) return [];
     return [{ question: m[1].trim(), answer: m[2].trim(), id: `faq-${i}` }];
   });

@@ -146,6 +146,24 @@ const STANDARD_ORDER = [
   "faq",
 ] as const;
 
+// Canonical navigation order. Every package's sidebar follows this shape so
+// the same "type" of page (installation, changelog, faq…) always lives in the
+// same slot across packages. User-authored pages fall into the GUIDES slot,
+// keeping their declared numeric order.
+const CANONICAL_ORDER = [
+  "overview",
+  "installation",
+  "getting-started",
+  "__user__",
+  "configuration",
+  "examples",
+  "api-reference",
+  "troubleshooting",
+  "changelog",
+  "faq",
+  "try-demo",
+] as const;
+
 function standardPage(slug: string, name: string, reviewUrl?: string): DocPage {
   const note = `<p class="text-muted-foreground"><i>This page is a placeholder. Detailed ${name} documentation is coming soon.</i></p>`;
   const buy = reviewUrl
@@ -233,10 +251,8 @@ function buildPackages(): DocPackage[] {
     const front = parsed.data as PackageFront;
     const overviewHtml = render(parsed.content);
 
-    const pages: DocPage[] = [
-      { slug: "overview", title: "Overview", html: overviewHtml },
-      demoPage(front.name),
-    ];
+    const overview: DocPage = { slug: "overview", title: "Overview", html: overviewHtml };
+    const demo = demoPage(front.name);
 
     // User-authored pages (anything other than _package.md).
     const userFiles = files
@@ -257,25 +273,38 @@ function buildPackages(): DocPackage[] {
       };
     });
 
-    const existing = new Set(pages.map((p) => p.slug));
-    userPages.forEach((p) => existing.add(p.slug));
+    // Index user pages by slug so a user file can override any standard slot
+    // (e.g. authoring a real installation.md replaces the placeholder).
+    const userBySlug = new Map(userPages.map((p) => [p.slug, p]));
+    const standardSlugs = new Set<string>(STANDARD_ORDER);
 
-    // Append standard pages the user hasn't overridden, in canonical order.
-    const standardExtras = STANDARD_ORDER.filter((s) => !existing.has(s)).map(
-      (s) => standardPage(s, front.name, front.reviewUrl),
-    );
-
-    // Merge: user-authored pages keep their declared order; remaining standard
-    // pages fall in after them. Then ensure "installation" sits right after
-    // the demo page (it's the emphasized entry point).
-    const tail = [...userPages, ...standardExtras];
-    const installIdx = tail.findIndex((p) => p.slug === "installation");
-    if (installIdx > 0) {
-      const [inst] = tail.splice(installIdx, 1);
-      tail.unshift(inst);
+    const orderedPages: DocPage[] = [];
+    for (const slot of CANONICAL_ORDER) {
+      if (slot === "overview") {
+        orderedPages.push(overview);
+      } else if (slot === "try-demo") {
+        orderedPages.push(userBySlug.get("try-demo") ?? demo);
+        userBySlug.delete("try-demo");
+      } else if (slot === "__user__") {
+        // Any user-authored page whose slug isn't a canonical standard slot.
+        for (const p of userPages) {
+          if (!standardSlugs.has(p.slug) && p.slug !== "try-demo") {
+            orderedPages.push(p);
+            userBySlug.delete(p.slug);
+          }
+        }
+      } else {
+        const override = userBySlug.get(slot);
+        if (override) {
+          orderedPages.push(override);
+          userBySlug.delete(slot);
+        } else {
+          orderedPages.push(standardPage(slot, front.name, front.reviewUrl));
+        }
+      }
     }
 
-    const allPages: DocPage[] = [...pages, ...tail].map((p) => ({
+    const allPages: DocPage[] = orderedPages.map((p) => ({
       ...p,
       guide:
         p.guide ?? (p.slug === "installation" ? installGuide(front.name) : undefined),

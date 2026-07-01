@@ -271,6 +271,43 @@
     vertical-align: middle;
   }
 
+  /* Inline "GIF coming soon" placeholder authored directly in markdown as
+     `<figure class="gif-placeholder" data-caption="…"></figure>`. Renders a
+     16:9 dashed card with the caption underneath so writers can slot a real
+     recording in later without touching the layout. */
+  .wiki-article figure.gif-placeholder {
+    margin: 1.25rem 0;
+    border: 1.5px dashed var(--color-border);
+    border-radius: 0.9rem;
+    background:
+      linear-gradient(135deg,
+        color-mix(in oklab, var(--color-brand) 6%, transparent),
+        color-mix(in oklab, var(--color-muted) 40%, transparent));
+    padding: 0;
+    overflow: hidden;
+  }
+  .wiki-article figure.gif-placeholder::before {
+    content: "GIF placeholder";
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 16 / 9;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: color-mix(in oklab, var(--color-muted-foreground) 90%, transparent);
+  }
+  .wiki-article figure.gif-placeholder::after {
+    content: attr(data-caption);
+    display: block;
+    padding: 0.55rem 0.9rem 0.7rem;
+    border-top: 1px solid var(--color-border);
+    background: var(--color-card);
+    font-size: 0.8rem;
+    color: var(--color-muted-foreground);
+  }
+
   .nav-link {
     color: var(--color-foreground);
     text-decoration: none;
