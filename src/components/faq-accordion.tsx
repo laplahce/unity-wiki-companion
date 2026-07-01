@@ -1,9 +1,10 @@
+import { useState } from "react";
+import { ChevronDown } from "lucide-react";
 import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+  Collapsible,
+  CollapsibleTrigger,
+  CollapsibleContent,
+} from "@/components/ui/collapsible";
 import { HtmlContent } from "@/components/html-content";
 
 // Splits FAQ HTML (a flat <h3>question</h3><p>answer</p>... sequence, possibly
@@ -22,29 +23,39 @@ export function FaqAccordion({ html }: { html: string }) {
   return (
     <>
       {intro && <HtmlContent html={intro} />}
-      {items.length > 0 && (
-        <div className="not-prose my-6 rounded-2xl border border-border bg-card card-shadow">
-          <Accordion type="multiple" className="divide-y divide-border">
-            {items.map((item) => (
-              <AccordionItem
-                key={item.id}
-                value={item.id}
-                className="border-b-0 px-4"
-              >
-                <AccordionTrigger className="text-base font-semibold hover:no-underline">
-                  <span dangerouslySetInnerHTML={{ __html: item.question }} />
-                </AccordionTrigger>
-                <AccordionContent className="text-sm text-muted-foreground">
-                  <div
-                    className="wiki-article"
-                    dangerouslySetInnerHTML={{ __html: item.answer }}
-                  />
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </div>
-      )}
+      <div className="not-prose my-6 flex flex-col gap-3">
+        {items.map((item) => (
+          <FaqItem key={item.id} item={item} />
+        ))}
+      </div>
     </>
+  );
+}
+
+function FaqItem({
+  item,
+}: {
+  item: { question: string; answer: string; id: string };
+}) {
+  const [open, setOpen] = useState(false);
+  return (
+    <Collapsible open={open} onOpenChange={setOpen}>
+      <div className="rounded-2xl border border-border bg-card card-shadow overflow-hidden">
+        <CollapsibleTrigger className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left text-base font-semibold cursor-pointer transition-colors hover:bg-muted/40">
+          <span dangerouslySetInnerHTML={{ __html: item.question }} />
+          <ChevronDown
+            className={`h-5 w-5 shrink-0 text-muted-foreground transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+          />
+        </CollapsibleTrigger>
+        <CollapsibleContent className="overflow-hidden data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down">
+          <div className="border-t border-border px-5 py-4 text-sm text-muted-foreground">
+            <div
+              className="wiki-article"
+              dangerouslySetInnerHTML={{ __html: item.answer }}
+            />
+          </div>
+        </CollapsibleContent>
+      </div>
+    </Collapsible>
   );
 }
