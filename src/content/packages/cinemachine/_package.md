@@ -5,6 +5,7 @@ category: Cameras
 color: "#2a9df4"
 label: Cinemachine
 status: in-development
+trailerUrl: https://www.youtube.com/watch?v=REPLACE_WITH_TRAILER
 infobox:
   - { label: Developer, value: "Unity Technologies (orig. Adam Myhill)" }
   - { label: Initial release, value: "2016" }
