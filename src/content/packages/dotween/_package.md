@@ -6,6 +6,7 @@ color: "#f4a300"
 label: DOTween
 status: awaiting-review
 reviewUrl: https://assetstore.unity.com/packages/tools/visual-scripting/dotween-pro-32416#reviews
+trailerUrl: https://www.youtube.com/watch?v=REPLACE_WITH_TRAILER
 infobox:
   - { label: Developer, value: "Demigiant (Daniele Giardini)" }
   - { label: Initial release, value: "2014" }

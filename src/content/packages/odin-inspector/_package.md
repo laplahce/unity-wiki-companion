@@ -5,6 +5,7 @@ category: Editor extensions
 color: "#7b5cff"
 label: Odin
 reviewUrl: https://assetstore.unity.com/packages/tools/utilities/odin-inspector-and-serializer-89041#reviews
+trailerUrl: https://www.youtube.com/watch?v=REPLACE_WITH_TRAILER
 infobox:
   - { label: Developer, value: "Sirenix" }
   - { label: Initial release, value: "2017" }

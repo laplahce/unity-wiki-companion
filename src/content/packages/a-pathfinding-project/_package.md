@@ -5,6 +5,7 @@ category: AI
 color: "#3aa856"
 label: "A* PP"
 reviewUrl: https://assetstore.unity.com/packages/tools/behavior-ai/a-pathfinding-project-pro-87744#reviews
+trailerUrl: https://www.youtube.com/watch?v=REPLACE_WITH_TRAILER
 infobox:
   - { label: Developer, value: "Aron Granberg" }
   - { label: Initial release, value: "2010" }

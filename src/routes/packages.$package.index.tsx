@@ -1,5 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { BookOpen, ExternalLink, Play, ArrowRight, Star, Check } from "lucide-react";
+import { BookOpen, ExternalLink, Play, ArrowRight, Star, Check, Film } from "lucide-react";
 import { getPackage, PACKAGES } from "@/data/docs";
 import { StatusBadge } from "@/components/status-badge";
 
@@ -69,6 +69,18 @@ function PackageShowcase() {
             </Link>
           </div>
         </div>
+
+        {/* Trailer shortcut */}
+        {pkg.trailerUrl && (
+          <a
+            href={pkg.trailerUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="absolute bottom-6 right-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/20"
+          >
+            <Film className="h-4 w-4" /> Watch the trailer
+          </a>
+        )}
       </section>
 
       {/* Main content */}
