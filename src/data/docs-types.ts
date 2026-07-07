@@ -30,5 +30,6 @@ export type DocPackage = {
   references: { id: string; text: string; url?: string }[];
   demoUrl?: string;
   reviewUrl?: string;
+  trailerUrl?: string;
   status?: PublishStatus;
 };

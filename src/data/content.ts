@@ -26,6 +26,7 @@ type PackageFront = {
   status?: PublishStatus;
   reviewUrl?: string;
   demoUrl?: string;
+  trailerUrl?: string;
   infobox?: { label: string; value: string }[];
   references?: { id: string; text: string; url?: string }[];
 };
@@ -327,6 +328,7 @@ function buildPackages(): DocPackage[] {
       references: front.references ?? [],
       demoUrl: front.demoUrl,
       reviewUrl: front.reviewUrl,
+      trailerUrl: front.trailerUrl,
       status: front.status,
     });
   }
