@@ -36,6 +36,7 @@ export function StepGuide({ steps }: { steps: GuideStep[] }) {
   const [index, setIndex] = useState(0);
   const [showCoachmark, setShowCoachmark] = useState(false);
   const nextRef = useRef<HTMLButtonElement>(null);
+  const rootRef = useRef<HTMLDivElement>(null);
   const [spotlight, setSpotlight] = useState<DOMRect | null>(null);
 
   const last = steps.length - 1;
@@ -53,14 +54,22 @@ export function StepGuide({ steps }: { steps: GuideStep[] }) {
     const update = () => {
       if (nextRef.current) setSpotlight(nextRef.current.getBoundingClientRect());
     };
-    // Bring the guide into view first, then measure on the next frame.
-    nextRef.current?.scrollIntoView({ block: "center", behavior: "smooth" });
-    const t = window.setTimeout(update, 350);
+    // Bring the whole guide card into view first, then keep re-measuring while
+    // the smooth scroll animates so the spotlight lands on the button.
+    (rootRef.current ?? nextRef.current)?.scrollIntoView({
+      block: "center",
+      behavior: "smooth",
+    });
     update();
+    const started = Date.now();
+    const poll = window.setInterval(() => {
+      update();
+      if (Date.now() - started > 1200) window.clearInterval(poll);
+    }, 50);
     window.addEventListener("resize", update);
     window.addEventListener("scroll", update, true);
     return () => {
-      window.clearTimeout(t);
+      window.clearInterval(poll);
       window.removeEventListener("resize", update);
       window.removeEventListener("scroll", update, true);
     };
@@ -77,7 +86,7 @@ export function StepGuide({ steps }: { steps: GuideStep[] }) {
   if (steps.length === 0) return null;
 
   return (
-    <div className="not-prose my-8">
+    <div ref={rootRef} className="not-prose my-8 scroll-mt-24">
       <div className="overflow-hidden rounded-2xl border border-border bg-card card-shadow">
         {/* Header */}
         <div className="flex items-center justify-between gap-3 border-b border-border bg-muted/40 px-4 py-3">
