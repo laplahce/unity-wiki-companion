@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Menu, X, ChevronDown, Package, Mail, Download } from "lucide-react";
 import { PACKAGES } from "@/data/docs";
 import { SiteSearch } from "@/components/site-search";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { StatusDot } from "@/components/status-badge";
 import {
   DropdownMenu,
@@ -196,6 +197,9 @@ export function SiteHeader({ onMenuClick }: { onMenuClick: () => void }) {
             <SiteSearch />
           </div>
         )}
+        <div className="ml-auto md:hidden">
+          <ThemeToggle />
+        </div>
         <nav className="ml-auto hidden items-center gap-6 text-sm md:flex">
           {showSearch && <SiteSearch />}
           <Link to="/" className="nav-link rounded-md px-3 py-2">Home</Link>
@@ -203,6 +207,7 @@ export function SiteHeader({ onMenuClick }: { onMenuClick: () => void }) {
           <Link to="/docs" className="nav-link rounded-md px-3 py-2">Docs</Link>
           <Link to="/contact" className="nav-link rounded-md px-3 py-2">Contact</Link>
 
+          <ThemeToggle />
           <a
             href="https://assetstore.unity.com"
             target="_blank"
