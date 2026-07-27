@@ -44,7 +44,10 @@ export function StepGuide({ steps }: { steps: GuideStep[] }) {
 
   // Show the intro coachmark on first ever visit.
   useEffect(() => {
-    if (!hasSeenCoachmark()) setShowCoachmark(true);
+    if (hasSeenCoachmark()) return;
+    // Wait a frame so layout (images, fonts) has settled before measuring.
+    const t = window.setTimeout(() => setShowCoachmark(true), 120);
+    return () => window.clearTimeout(t);
   }, []);
 
   // Track the Next button's position so the spotlight follows it (and reacts to
@@ -56,10 +59,13 @@ export function StepGuide({ steps }: { steps: GuideStep[] }) {
     };
     // Bring the whole guide card into view first, then keep re-measuring while
     // the smooth scroll animates so the spotlight lands on the button.
-    (rootRef.current ?? nextRef.current)?.scrollIntoView({
-      block: "center",
-      behavior: "smooth",
-    });
+    const el = rootRef.current ?? nextRef.current;
+    if (el) {
+      const rect = el.getBoundingClientRect();
+      const target =
+        window.scrollY + rect.top - Math.max(24, (window.innerHeight - rect.height) / 2);
+      window.scrollTo({ top: Math.max(0, target), behavior: "smooth" });
+    }
     update();
     const started = Date.now();
     const poll = window.setInterval(() => {
