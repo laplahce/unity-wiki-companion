@@ -263,11 +263,14 @@ function buildPackages(): DocPackage[] {
     const userPages: DocPage[] = userFiles.map((f) => {
       const p = parseFrontmatter(f.raw);
       const fm = p.data as PageFront;
+      const pageSlug = fm.slug ?? slugFromFilename(f.file);
       return {
-        slug: fm.slug ?? slugFromFilename(f.file),
+        slug: pageSlug,
         title: fm.title,
         html: render(p.content),
-        emphasized: fm.emphasized,
+        // Only the installation page is ever the "recommended first read",
+        // so there can never be two emphasized pages in a package.
+        emphasized: pageSlug === "installation" ? true : undefined,
         status: fm.status,
         kind: fm.kind,
         guide: fm.guide,

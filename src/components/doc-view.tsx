@@ -153,7 +153,7 @@ export function PackagePageView({
     <article className="wiki-article">
       <div className="eyebrow mb-2">
         <Link to="/docs/$package" params={{ package: pkg.slug }} className="hover:underline">
-          {pkg.name}
+          <span className="text-grad">{pkg.name}</span>
         </Link>{" "}
         / {page.title}
       </div>

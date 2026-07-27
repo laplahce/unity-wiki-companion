@@ -93,6 +93,49 @@
   --brand-2: oklch(0.6 0.22 305);
 }
 
+.dark {
+  --background: oklch(0.17 0.02 265);
+  --foreground: oklch(0.95 0.01 260);
+  --surface: oklch(0.2 0.022 265);
+  --surface-alt: oklch(0.24 0.025 265);
+
+  --card: oklch(0.21 0.022 265);
+  --card-foreground: oklch(0.95 0.01 260);
+  --popover: oklch(0.21 0.022 265);
+  --popover-foreground: oklch(0.95 0.01 260);
+
+  --primary: oklch(0.7 0.17 290);
+  --primary-foreground: oklch(0.16 0.02 265);
+  --secondary: oklch(0.26 0.025 265);
+  --secondary-foreground: oklch(0.95 0.01 260);
+  --muted: oklch(0.26 0.025 265);
+  --muted-foreground: oklch(0.72 0.02 265);
+  --accent: oklch(0.3 0.05 285);
+  --accent-foreground: oklch(0.96 0.01 260);
+  --destructive: oklch(0.6 0.19 27);
+  --destructive-foreground: oklch(0.98 0 0);
+
+  --border: oklch(0.3 0.02 265);
+  --border-strong: oklch(0.38 0.025 265);
+  --input: oklch(0.3 0.02 265);
+  --ring: oklch(0.7 0.17 290);
+
+  --link: oklch(0.78 0.14 290);
+  --link-visited: oklch(0.72 0.13 300);
+  --link-red: oklch(0.68 0.18 25);
+
+  --infobox: oklch(0.21 0.022 265);
+  --infobox-border: oklch(0.31 0.02 265);
+  --hatnote: oklch(0.72 0.02 265);
+
+  --eyebrow: oklch(0.75 0.14 265);
+  --brand: oklch(0.68 0.19 290);
+  --brand-2: oklch(0.72 0.17 305);
+
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.5), 0 8px 24px -12px rgba(0, 0, 0, 0.7);
+  --shadow-card-hover: 0 1px 2px rgba(0, 0, 0, 0.55), 0 18px 40px -12px rgba(124, 58, 237, 0.45);
+}
+
 @layer base {
   * {
     border-color: var(--color-border);
@@ -111,6 +154,9 @@
     background-image: radial-gradient(circle, oklch(0.85 0.01 260) 1px, transparent 1px);
     background-size: 22px 22px;
     overflow-x: hidden;
+  }
+  .dark body {
+    background-image: radial-gradient(circle, oklch(0.28 0.02 265) 1px, transparent 1px);
   }
   html, body { max-width: 100%; }
 
@@ -131,6 +177,17 @@
   .card-grad {
     background: var(--gradient-brand);
     color: white;
+  }
+  .text-grad {
+    background-image: linear-gradient(
+      90deg,
+      var(--brand) 0%,
+      oklch(0.58 0.19 250) 100%
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
   }
   .card-shadow {
     box-shadow: var(--shadow-card);
