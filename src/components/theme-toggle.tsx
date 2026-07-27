@@ -11,13 +11,11 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
   const [dark, setDark] = useState(false);
 
   useEffect(() => {
+    // Default to light mode; only go dark if the user explicitly chose it.
     const stored = window.localStorage.getItem(STORAGE_KEY);
-    const prefers =
-      stored === "dark" ||
-      (stored === null &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches);
-    setDark(prefers);
-    applyTheme(prefers);
+    const isDark = stored === "dark";
+    setDark(isDark);
+    applyTheme(isDark);
   }, []);
 
   const toggle = () => {
