@@ -312,7 +312,15 @@
   .wiki-article tbody tr:has(.changelog-type-removed)   { border-left: 3px solid oklch(0.55 0.02 260); }
 
   /* Alternate row background for changelog tables */
-  .wiki-article tbody tr:nth-child(even) { background: oklch(0.98 0.003 260); }
+  .wiki-article tbody tr:nth-child(even) { background: var(--color-surface-alt); }
+
+  /* Brighter changelog type colors on dark backgrounds */
+  .dark .changelog-type-added      { color: oklch(0.75 0.16 145) !important; }
+  .dark .changelog-type-changed    { color: oklch(0.75 0.14 250) !important; }
+  .dark .changelog-type-fixed      { color: oklch(0.78 0.12 195) !important; }
+  .dark .changelog-type-deprecated { color: oklch(0.8 0.13 75) !important; }
+  .dark .changelog-type-breaking   { color: oklch(0.72 0.17 25) !important; }
+  .dark .changelog-type-removed    { color: oklch(0.72 0.02 260) !important; }
 
   .badge-latest {
     display: inline-block;
