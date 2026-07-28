@@ -1,6 +1,7 @@
 ---
 title: FAQ
 status: awaiting-review
+kind: faq
 ---
 
 ## Which Unity versions are supported?
