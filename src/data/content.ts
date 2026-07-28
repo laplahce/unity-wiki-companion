@@ -6,7 +6,15 @@
 // `.md` to change copy. The design layer below is untouched.
 
 import { marked } from "marked";
-import type { DocPackage, DocPage, DocPageKind, GuideStep, PublishStatus } from "./docs-types";
+import type {
+  Compatibility,
+  DocPackage,
+  DocPage,
+  DocPageKind,
+  GuideStep,
+  PageHighlight,
+  PublishStatus,
+} from "./docs-types";
 
 marked.setOptions({ gfm: true, breaks: false });
 
@@ -35,9 +43,11 @@ type PageFront = {
   title: string;
   slug?: string;
   emphasized?: boolean;
+  highlight?: PageHighlight;
   status?: PublishStatus;
   kind?: DocPageKind;
   guide?: GuideStep[];
+  compatibility?: Compatibility;
 };
 
 // Minimal frontmatter parser — supports the YAML-ish subset we actually use:
@@ -74,46 +84,65 @@ function parseFlow(input: string): unknown {
   }
 }
 
-function parseFrontmatter(src: string): { data: Record<string, unknown>; content: string } {
-  const m = src.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/);
-  if (!m) return { data: {}, content: src };
-  const body = m[2];
-  const lines = m[1].split(/\r?\n/);
+const indentOf = (line: string) => line.match(/^\s*/)![0].length;
+
+// Parses an indented block of `key: value` pairs. Values can be scalars, flow
+// lists/maps, block lists of scalars/flow maps, or a nested indented map.
+function parseBlock(
+  lines: string[],
+  start: number,
+  indent: number,
+): { data: Record<string, unknown>; next: number } {
   const data: Record<string, unknown> = {};
-  let i = 0;
+  let i = start;
   while (i < lines.length) {
     const line = lines[i];
     if (!line.trim() || line.trim().startsWith("#")) {
       i++;
       continue;
     }
-    const kv = line.match(/^([A-Za-z_][\w-]*)\s*:\s*(.*)$/);
+    if (indentOf(line) < indent) break;
+    const kv = line.trim().match(/^([A-Za-z_][\w-]*)\s*:\s*(.*)$/);
     if (!kv) {
       i++;
       continue;
     }
     const key = kv[1];
-    const rest = kv[2];
-    if (rest.trim() === "") {
-      // block list of "  - <flow or scalar>"
-      const items: unknown[] = [];
+    const rest = kv[2].trim();
+    if (rest === "") {
       i++;
-      while (i < lines.length && /^\s+-\s/.test(lines[i])) {
-        const item = lines[i].replace(/^\s+-\s/, "");
-        items.push(item.startsWith("{") || item.startsWith("[") ? parseFlow(item) : parseScalar(item));
-        i++;
+      // Look ahead: block list, nested map, or empty value.
+      const nextLine = lines.slice(i).find((l) => l.trim() && !l.trim().startsWith("#"));
+      if (nextLine && /^\s*-\s/.test(nextLine) && indentOf(nextLine) > indent) {
+        const items: unknown[] = [];
+        while (i < lines.length && /^\s*-\s/.test(lines[i]) && indentOf(lines[i]) > indent) {
+          const item = lines[i].trim().replace(/^-\s*/, "");
+          items.push(
+            item.startsWith("{") || item.startsWith("[") ? parseFlow(item) : parseScalar(item),
+          );
+          i++;
+        }
+        data[key] = items;
+      } else if (nextLine && indentOf(nextLine) > indent) {
+        const nested = parseBlock(lines, i, indentOf(nextLine));
+        data[key] = nested.data;
+        i = nested.next;
+      } else {
+        data[key] = "";
       }
-      data[key] = items;
       continue;
     }
-    if (rest.startsWith("{") || rest.startsWith("[")) {
-      data[key] = parseFlow(rest);
-    } else {
-      data[key] = parseScalar(rest);
-    }
+    data[key] =
+      rest.startsWith("{") || rest.startsWith("[") ? parseFlow(rest) : parseScalar(rest);
     i++;
   }
-  return { data, content: body };
+  return { data, next: i };
+}
+
+function parseFrontmatter(src: string): { data: Record<string, unknown>; content: string } {
+  const m = src.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/);
+  if (!m) return { data: {}, content: src };
+  return { data: parseBlock(m[1].split(/\r?\n/), 0, 0).data, content: m[2] };
 }
 
 function render(md: string): string {
@@ -174,18 +203,26 @@ function buildPackages(): DocPackage[] {
       .filter((f) => f.file !== "_package.md")
       .sort((a, b) => orderFromFilename(a.file) - orderFromFilename(b.file));
 
+    let compatibility: Compatibility | undefined;
+
     const pages: DocPage[] = pageFiles.map((f) => {
       const p = parseFrontmatter(f.raw);
       const fm = p.data as PageFront;
       const kind = fm.kind;
       const pageSlug = fm.slug ?? (kind === "overview" ? "overview" : slugFromFilename(f.file));
+      if (kind === "overview" && fm.compatibility) compatibility = fm.compatibility;
+      // `highlight:` in the frontmatter marks a special page; the installation
+      // page defaults to "start here" without needing the field.
+      const highlight: PageHighlight | undefined =
+        fm.highlight ?? (kind === "installation" ? "start-here" : undefined);
       return {
         slug: pageSlug,
         title: fm.title ?? pageSlug,
         html: render(p.content),
         kind,
+        highlight,
         // Only the installation page is ever the "recommended first read".
-        emphasized: kind === "installation" ? true : undefined,
+        emphasized: highlight === "start-here" ? true : undefined,
         status: fm.status,
         guide: fm.guide,
       };
@@ -193,6 +230,18 @@ function buildPackages(): DocPackage[] {
 
     // The overview page always leads the sidebar.
     const overviewIdx = pages.findIndex((p) => p.kind === "overview" || p.slug === "overview");
+
+    // Only one page can ever be the "start here" read — the installation page
+    // wins, otherwise the first one that declared it.
+    const startHere =
+      pages.find((p) => p.kind === "installation" && p.highlight === "start-here") ??
+      pages.find((p) => p.highlight === "start-here");
+    for (const p of pages) {
+      if (p.highlight === "start-here" && p !== startHere) {
+        p.highlight = undefined;
+        p.emphasized = undefined;
+      }
+    }
     if (overviewIdx > 0) pages.unshift(pages.splice(overviewIdx, 1)[0]);
     if (overviewIdx === -1) {
       pages.unshift({
@@ -222,6 +271,7 @@ function buildPackages(): DocPackage[] {
       reviewUrl: front.reviewUrl,
       trailerUrl: front.trailerUrl,
       status: front.status,
+      compatibility,
     });
   }
 

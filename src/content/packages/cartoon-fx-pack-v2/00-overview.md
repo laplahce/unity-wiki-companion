@@ -1,6 +1,22 @@
 ---
 title: Overview
 kind: overview
+compatibility:
+  unity: "2021.3, 2022, 2023, Unity 6 and later"
+  pipelines:
+    - Built-In
+    - URP
+    - HDRP
+  platforms:
+    - Windows
+    - macOS
+    - Linux
+    - Android
+    - iOS
+    - WebGL
+  notes:
+    - "HDRP support on 2021.3 is untested."
+    - "The FX creator window requires a desktop editor."
 ---
 
 **Cartoon FX Pack v2** is a stylized visual effects package for Unity. It ships with over **100 hand-tuned cartoon, comic and toon-shaded effects** — explosions, impacts, slashes, smoke puffs, sparkles, comic-book text pops and more — all built to drop straight into a scene and read clearly at any camera distance.
