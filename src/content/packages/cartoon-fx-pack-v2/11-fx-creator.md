@@ -1,46 +1,35 @@
 ---
-title: FX creator
-emphasized: true
-status: in-development
+title: Creating an effect
 guide:
-  - { title: "Open the FX creator", caption: "Go to Window → laplahce → Cartoon FX Creator to open the editor window." }
-  - { title: "Pick a base shape", caption: "Choose a burst, ring, trail or sprite pop as the foundation of the effect." }
-  - { title: "Layer and tune", caption: "Add layers, then adjust colour, timing, scale and easing with the live preview running." }
-  - { title: "Save the preset", caption: "Save the result as a prefab and a reusable preset asset in your project." }
+  - { title: "Find Cartoon FX component", caption: "In the inspector of your effect, locate the Cartoon FX component." }
+  - { title: "Edit the effect", caption: "Click \"Edit Effect\"." }
+  - { title: "Navigate the components", caption: "Navigate the components of the effect using the different tabs." }
+  - { title: "Change something", caption: "Try to change something." }
+  - { title: "Missing Materials error", caption: "If you get an error; click \"Add Missing Materials\" & select a location to store the materials in." }
+  - { title: "Adding more components", caption: "Navigate to another tab (e.g. \"Background\")." }
+  - { title: "Add a billboard", caption: "Scroll down to \"Billboards\" & add one if there isn't one already." }
+  - { title: "Add more missing materials", caption: "If you added a new billboard, you will need to add the new missing materials same as before (use the same location as the first for simplicity)." }
 ---
 
-The **Cartoon FX Creator** is an editor window for building new effects out of the
-same modular layers the shipped effects use. It replaces hand-wiring particle
-systems with a single inspector, a live preview and a preset library.
+*Learn how to create effects using the custom editor.*
 
-## Opening the window
+## Create your first effect
 
-The creator lives under **Window → laplahce → Cartoon FX Creator**.
+1. Create a new GameObject.
+2. Add **Components → CTFX2 → Cartoon FX**.
+4. Click **Edit Effect**.
+5. In the **Text** tab, change the text to whatever you want.
+6. Scroll down to **Billboards* & add one.
+7. If you get *Missing Materials* error;
+   a. Click **Add Missing Materials**.
+   b. Select a location to store the materials.
+8. Change the scale & color *(OBS! Change alpha to 1)*.
+9. Restart the effect to see what changed.
+10. Navigate through the other components making up the effect using the tabs at the top and add more stuff to make the effect as you like it.
 
-<figure class="gif-placeholder" data-caption="Window → laplahce → Cartoon FX Creator — opens the editor window used to build and edit effects."></figure>
+### A tip:
 
-## Layers
-
-An effect is a stack of layers. Each layer is one visual element with its own
-timing curve:
-
-- **Burst** — radial particle spray with configurable count and spread.
-- **Ring** — expanding shockwave sprite.
-- **Trail** — ribbon that follows a motion path.
-- **Sprite pop** — a single scaling sprite, used for comic text and flashes.
-- **Light** — optional flash light, skipped automatically on mobile presets.
-
-Layers can be reordered, muted and soloed while the preview loops.
-
-## Live preview
-
-The preview viewport scrubs the whole effect timeline and can be slowed down to
-quarter speed to check the shape of individual frames.
-
-<figure class="gif-placeholder" data-caption="Scrubbing the effect timeline in the preview viewport at quarter speed."></figure>
-
-## Saving and reuse
-
-Saving writes two assets: a prefab you can spawn like any built-in effect, and a
-preset asset that keeps the editable layer stack so the effect can be reopened
-and modified later.
+1. Open the *Particle System Controller*.
+2. Pause the effect.
+3. Drag the *Playback time* slider to see different stages of the effect.
+4. When editing an effect, this helps a lot to see what you are changing in realtime.
