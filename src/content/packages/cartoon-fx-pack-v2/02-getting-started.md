@@ -21,7 +21,7 @@ title: Getting started
 5. If you get *Missing Materials* error;
    a. Click **Add Missing Materials**.
    b. Select a location to store the materials.
-6. For more information, check out [Editing an effect](../editing-an-effect).
+6. For more information, check out [Editing an effect](/editing-an-effect).
 
 #### A tip:
 
@@ -39,4 +39,4 @@ title: Getting started
 5. Scroll down to **Billboards** & add one.
 6. Change the scale & color *(OBS! Change alpha to 1)*.
 7. Restart the effect to see what changed.
-8. For more information, check out [Create an effect](../creating-an-effect).
+8. For more information, check out [Create an effect](/creating-an-effect).
