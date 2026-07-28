@@ -1,5 +1,5 @@
 ---
-title: Effect library
+title: Editing an effect
 status: in-development
 ---
 
