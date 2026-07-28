@@ -41,8 +41,8 @@ function PackageInfobox({ pkg }: { pkg: DocPackage }) {
       </div>
       <table className="w-full">
         <tbody>
-          {pkg.infoboxFields.map((f) => (
-            <tr key={f.label} className="border-b border-border last:border-0">
+          {pkg.infoboxFields.map((f, i) => (
+            <tr key={`${f.label}-${i}`} className="border-b border-border last:border-0">
               <td className="w-[40%] px-4 py-2 align-top text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
                 {f.label}
               </td>
