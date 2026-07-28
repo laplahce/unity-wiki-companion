@@ -186,8 +186,31 @@ function Coachmark({
   onDismiss: () => void;
 }) {
   // Position the tooltip above or below the highlighted button depending on
-  // available room.
-  const tooltipBelow = spotlight ? spotlight.top < 160 : true;
+  // available room, and clamp it inside the viewport so it can never render
+  // off-screen on small or unusual resolutions.
+  const vw = typeof window === "undefined" ? 1024 : window.innerWidth;
+  const vh = typeof window === "undefined" ? 768 : window.innerHeight;
+  const TOOLTIP_W = Math.min(256, vw - 24);
+  const TOOLTIP_H = 200; // approximate; used only to choose a side
+  const margin = 12;
+
+  const roomBelow = spotlight ? vh - spotlight.bottom : 0;
+  const roomAbove = spotlight ? spotlight.top : 0;
+  const tooltipBelow = spotlight
+    ? roomBelow >= TOOLTIP_H + margin || roomBelow >= roomAbove
+    : true;
+
+  const centerX = spotlight ? spotlight.left + spotlight.width / 2 : vw / 2;
+  const clampedX = Math.min(
+    Math.max(centerX, TOOLTIP_W / 2 + margin),
+    vw - TOOLTIP_W / 2 - margin,
+  );
+  const rawY = spotlight
+    ? tooltipBelow
+      ? spotlight.bottom + 14
+      : spotlight.top - 14
+    : vh / 2;
+  const clampedY = Math.min(Math.max(rawY, margin), vh - margin);
 
   return (
     <div
@@ -215,10 +238,11 @@ function Coachmark({
       {/* Tooltip — anchored to the button's center, offset clear of it */}
       {spotlight && (
         <div
-          className="absolute w-64 rounded-xl border border-border bg-card p-4 text-center card-shadow animate-scale-in"
+          className="absolute max-h-[80vh] overflow-auto rounded-xl border border-border bg-card p-4 text-center card-shadow animate-scale-in"
           style={{
-            left: spotlight.left + spotlight.width / 2,
-            top: tooltipBelow ? spotlight.bottom + 14 : spotlight.top - 14,
+            width: TOOLTIP_W,
+            left: clampedX,
+            top: clampedY,
             transform: tooltipBelow
               ? "translate(-50%, 0)"
               : "translate(-50%, -100%)",
