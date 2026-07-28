@@ -181,7 +181,7 @@ export function PackagePageView({
       {isOverview && <PackageInfobox pkg={pkg} />}
       {isOverview && <PurchaseBanner pkg={pkg} />}
 
-      {page.slug === "faq" ? (
+      {page.kind === "faq" || page.slug === "faq" ? (
         <FaqAccordion html={html} />
       ) : (
         <HtmlContent html={html} />
