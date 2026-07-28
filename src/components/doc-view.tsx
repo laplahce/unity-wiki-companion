@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Star, Sparkles, ExternalLink, Play, ArrowRight } from "lucide-react";
+import { Star, ExternalLink, Play, ArrowRight } from "lucide-react";
 import type { DocPackage, DocPage } from "@/data/docs";
 import { extractToc, type TocItem } from "@/lib/toc";
 import { OnThisPage } from "@/components/on-this-page";
@@ -8,6 +8,7 @@ import { HtmlContent } from "@/components/html-content";
 import { PageFooterMeta } from "@/components/page-feedback";
 import { StatusBadge } from "@/components/status-badge";
 import { FaqAccordion } from "@/components/faq-accordion";
+import { HighlightBanner } from "@/components/page-highlight";
 
 function DocLayout({
   children,
@@ -51,7 +52,54 @@ function PackageInfobox({ pkg }: { pkg: DocPackage }) {
           ))}
         </tbody>
       </table>
+      <CompatibilityPanel pkg={pkg} />
     </aside>
+  );
+}
+
+// Support matrix declared in the overview page's `compatibility:` frontmatter.
+function CompatibilityPanel({ pkg }: { pkg: DocPackage }) {
+  const c = pkg.compatibility;
+  if (!c) return null;
+  const rows: { label: string; items: string[] }[] = [
+    { label: "Unity versions", items: c.unity ? [c.unity] : [] },
+    { label: "Render pipelines", items: c.pipelines ?? [] },
+    { label: "Platforms", items: c.platforms ?? [] },
+  ].filter((r) => r.items.length > 0);
+  if (rows.length === 0 && !c.notes?.length) return null;
+  return (
+    <div className="border-t border-border bg-muted/30 px-4 py-3">
+      <div className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
+        Supported
+      </div>
+      <div className="mt-2 space-y-2.5">
+        {rows.map((r) => (
+          <div key={r.label}>
+            <div className="text-[11px] text-muted-foreground">{r.label}</div>
+            <div className="mt-1 flex flex-wrap gap-1">
+              {r.items.map((item) => (
+                <span
+                  key={item}
+                  className="rounded-md border border-border bg-card px-1.5 py-0.5 text-[11px] font-medium"
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+      {c.notes && c.notes.length > 0 && (
+        <ul className="mt-3 space-y-1 border-t border-border pt-2 text-[11px] text-muted-foreground">
+          {c.notes.map((n) => (
+            <li key={n} className="flex gap-1.5">
+              <span className="text-amber-600 dark:text-amber-400">!</span>
+              <span>{n}</span>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
   );
 }
 
@@ -86,17 +134,6 @@ function PurchaseBanner({ pkg }: { pkg: DocPackage }) {
       <span>Don&apos;t own {pkg.name}?</span>
       <span className="text-brand group-hover:underline">Get it on the Unity Asset Store →</span>
     </a>
-  );
-}
-
-// Prominent callout shown on emphasized pages (e.g. Installation) to signal
-// that this is one of the most important pages in the package docs.
-function EmphasisBanner({ pkg, page }: { pkg: DocPackage; page: DocPage }) {
-  return (
-    <div className="not-prose my-4 inline-flex items-center gap-2 rounded-md border border-border bg-muted/40 px-2.5 py-1 text-xs font-medium text-muted-foreground mx-[8px]">
-      <Sparkles className="h-3.5 w-3.5 text-brand" />
-      <span>Start here — recommended first read</span>
-    </div>
   );
 }
 
@@ -173,7 +210,7 @@ export function PackagePageView({
         </div>
       )}
       <ReviewPrompt pkg={pkg} />
-      {page.emphasized && <EmphasisBanner pkg={pkg} page={page} />}
+      {page.highlight && <HighlightBanner highlight={page.highlight} />}
       {isOverview && (
         <p className="mt-1 mb-6 text-lg text-muted-foreground">{pkg.tagline}</p>
       )}
