@@ -5,6 +5,7 @@ import { PACKAGES } from "@/data/docs";
 import { SiteSearch } from "@/components/site-search";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { StatusDot } from "@/components/status-badge";
+import { HighlightDot } from "@/components/page-highlight";
 import {
   DropdownMenu,
   DropdownMenuContent,
