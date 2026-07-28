@@ -230,6 +230,18 @@ function buildPackages(): DocPackage[] {
 
     // The overview page always leads the sidebar.
     const overviewIdx = pages.findIndex((p) => p.kind === "overview" || p.slug === "overview");
+
+    // Only one page can ever be the "start here" read — the installation page
+    // wins, otherwise the first one that declared it.
+    const startHere =
+      pages.find((p) => p.kind === "installation" && p.highlight === "start-here") ??
+      pages.find((p) => p.highlight === "start-here");
+    for (const p of pages) {
+      if (p.highlight === "start-here" && p !== startHere) {
+        p.highlight = undefined;
+        p.emphasized = undefined;
+      }
+    }
     if (overviewIdx > 0) pages.unshift(pages.splice(overviewIdx, 1)[0]);
     if (overviewIdx === -1) {
       pages.unshift({
