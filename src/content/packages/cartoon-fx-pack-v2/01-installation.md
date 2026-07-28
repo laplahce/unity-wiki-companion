@@ -8,18 +8,23 @@ guide:
   - { title: "Verify the installation", caption: "Check the Console for a clean compile." }
 ---
 
-*This page is a placeholder — replace this file's contents with the real documentation.*
-
-## Requirements
-
-Make sure your project meets the minimum Unity version listed in the overview infobox before installing Cartoon FX Pack v2.
-
 ## Install via Package Manager
 
 1. Open **Window → Package Manager**.
-2. Import the Cartoon FX Pack v2 package.
-3. Wait for Unity to recompile and check the Console.
+2. Find the *Cartoon FX Pack v2* package.
+3. Import it.
 
-## Updating
+## Upgrade to your Render Pipeline
 
-Remove the existing Cartoon FX Pack v2 folder before re-importing a new version to avoid stale files.
+1. Open **Tools → CTFX2 → Welcome Screen**.
+2. In the **Setup** tab, click the **Upgrade** button for your Render Pipeline & import it.
+
+## Changing Texture Quality
+
+1. Open **Tools → CTFX2 → Welcome Screen**.
+2. In the **Setup** tab, click the **Import** button for the *Texture Quality* you'd like & import it.
+
+## Importing Photoshop *(.psd)* files
+
+1. Open **Tools → CTFX2 → Welcome Screen**.
+2. In the **Setup** tab, click the **Import** button for the *PSD Source files* & import it.
