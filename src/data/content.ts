@@ -203,18 +203,26 @@ function buildPackages(): DocPackage[] {
       .filter((f) => f.file !== "_package.md")
       .sort((a, b) => orderFromFilename(a.file) - orderFromFilename(b.file));
 
+    let compatibility: Compatibility | undefined;
+
     const pages: DocPage[] = pageFiles.map((f) => {
       const p = parseFrontmatter(f.raw);
       const fm = p.data as PageFront;
       const kind = fm.kind;
       const pageSlug = fm.slug ?? (kind === "overview" ? "overview" : slugFromFilename(f.file));
+      if (kind === "overview" && fm.compatibility) compatibility = fm.compatibility;
+      // `highlight:` in the frontmatter marks a special page; the installation
+      // page defaults to "start here" without needing the field.
+      const highlight: PageHighlight | undefined =
+        fm.highlight ?? (kind === "installation" ? "start-here" : undefined);
       return {
         slug: pageSlug,
         title: fm.title ?? pageSlug,
         html: render(p.content),
         kind,
+        highlight,
         // Only the installation page is ever the "recommended first read".
-        emphasized: kind === "installation" ? true : undefined,
+        emphasized: highlight === "start-here" ? true : undefined,
         status: fm.status,
         guide: fm.guide,
       };
@@ -251,6 +259,7 @@ function buildPackages(): DocPackage[] {
       reviewUrl: front.reviewUrl,
       trailerUrl: front.trailerUrl,
       status: front.status,
+      compatibility,
     });
   }
 
