@@ -2,7 +2,7 @@
 title: Getting started
 ---
 
-*This page is a placeholder — replace this file's contents with the real documentation.*
+*This guide will help you get up and running with the pack.*
 
 ## Your first steps
 
@@ -21,6 +21,7 @@ title: Getting started
 5. If you get *Missing Materials* error;
    a. Click **Add Missing Materials**.
    b. Select a location to store the materials.
+6. For more information, check out [Editing an effect](TODO).
 
 #### A tip:
 
@@ -35,4 +36,7 @@ title: Getting started
 2. Add **Components → CTFX2 → Cartoon FX**.
 3. Click **Edit FX**.
 4. In the **Text** tab, change the text to whatever you want.
-5. Check [this out!](laplahce.com)
+5. Scroll down to **Billboards** & add one.
+6. Change the scale & color *(OBS! Change alpha to 1)*.
+7. Restart the effect to see what changed.
+8. For more information, check out [Create an effect](TODO).
