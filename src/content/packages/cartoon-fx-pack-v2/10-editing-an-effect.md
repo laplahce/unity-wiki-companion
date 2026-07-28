@@ -1,5 +1,12 @@
 ---
 title: Editing an effect
+guide:
+  - { title: "Open the Package Manager", caption: "Open Window → Package Manager & find Cartoon FX Pack v2." }
+  - { title: "Import CTFX2", caption: "Select the Cartoon FX Pack v2 package and click Import." }
+  - { title: "Open the Welcome Screen", caption: "Open Tools → CTFX2 → Welcome Screen." }
+  - { title: "Open the Setup tab", caption: "Navigate to the Setup tab." }
+  - { title: "Upgrade to your Render Pipeline", caption: "Click the Upgrade button for your Render Pipeline." }
+  - { title: "Import the Render Pipeline", caption: "Import it." }
 ---
 
 *Learn how to edit and customize effects using the custom editor.*
