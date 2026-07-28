@@ -1,6 +1,7 @@
 ---
 title: FAQ
 status: in-development
+kind: faq
 ---
 
 ## Which render pipelines are supported?

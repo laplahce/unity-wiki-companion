@@ -2,6 +2,8 @@ import type { PublishStatus } from "@/components/status-badge";
 
 export type { PublishStatus };
 
+export type DocPageKind = "overview" | "installation" | "faq" | "demo";
+
 export type GuideStep = {
   title: string;
   caption: string;
@@ -12,7 +14,7 @@ export type DocPage = {
   slug: string;
   title: string;
   html: string;
-  kind?: "demo";
+  kind?: DocPageKind;
   guide?: GuideStep[];
   emphasized?: boolean;
   status?: PublishStatus;

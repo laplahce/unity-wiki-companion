@@ -6,7 +6,7 @@
 // `.md` to change copy. The design layer below is untouched.
 
 import { marked } from "marked";
-import type { DocPackage, DocPage, GuideStep, PublishStatus } from "./docs-types";
+import type { DocPackage, DocPage, DocPageKind, GuideStep, PublishStatus } from "./docs-types";
 
 marked.setOptions({ gfm: true, breaks: false });
 
@@ -36,7 +36,7 @@ type PageFront = {
   slug?: string;
   emphasized?: boolean;
   status?: PublishStatus;
-  kind?: "demo";
+  kind?: DocPageKind;
   guide?: GuideStep[];
 };
 
@@ -131,98 +131,18 @@ function orderFromFilename(file: string): number {
   return m ? parseInt(m[1], 10) : 999;
 }
 
-// ---------------- Standard placeholder pages ----------------
-// These are appended to every package automatically so the docs feel complete
-// even before any per-page markdown is authored. Authoring a real
-// `<slug>.md` for any of these overrides the placeholder entirely.
-
-const STANDARD_ORDER = [
-  "installation",
-  "getting-started",
-  "configuration",
-  "examples",
-  "api-reference",
-  "troubleshooting",
-  "changelog",
-  "faq",
-] as const;
-
-// Canonical navigation order. Every package's sidebar follows this shape so
-// the same "type" of page (installation, changelog, faq…) always lives in the
-// same slot across packages. User-authored pages fall into the GUIDES slot,
-// keeping their declared numeric order.
-const CANONICAL_ORDER = [
-  "overview",
-  "installation",
-  "getting-started",
-  "__user__",
-  "configuration",
-  "examples",
-  "api-reference",
-  "troubleshooting",
-  "changelog",
-  "faq",
-  "try-demo",
-] as const;
-
-function standardPage(slug: string, name: string, reviewUrl?: string): DocPage {
-  const note = `<p class="text-muted-foreground"><i>This page is a placeholder. Detailed ${name} documentation is coming soon.</i></p>`;
-  const buy = reviewUrl
-    ? `<p class="not-prose my-4 text-sm text-muted-foreground">Don't own ${name}? <a href="${reviewUrl}" target="_blank" rel="noopener noreferrer" class="font-medium text-primary underline underline-offset-4 hover:text-primary/80">Get it on the Unity Asset Store &rarr;</a></p>`
-    : "";
-
-  const body: Record<string, string> = {
-    installation: `${note}${buy}
-<h2>Requirements</h2><p>Make sure your project meets the minimum Unity version listed in the overview infobox before installing ${name}.</p>
-<h2>Install via Package Manager</h2><ol><li>Open <b>Window → Package Manager</b>.</li><li>Import the ${name} package.</li><li>Wait for Unity to recompile and check the Console.</li></ol>
-<h2>Updating</h2><p>Remove the existing ${name} folder before re-importing a new version to avoid stale files.</p>`,
-    "getting-started": `${note}<h2>Your first steps</h2><p>A minimal ${name} walkthrough will live here.</p>`,
-    configuration: `${note}<h2>Settings</h2><p>${name} settings live under <b>Project Settings → ${name}</b>.</p>`,
-    examples: `${note}<h2>Sample projects</h2><p>Hands-on ${name} examples will be added here.</p>`,
-    "api-reference": `${note}<h2>Public API</h2><p>A breakdown of ${name}'s public types and methods will live here.</p>`,
-    troubleshooting: `${note}<h2>Common issues</h2><p>Solutions to frequently reported ${name} problems.</p>`,
-    changelog: `${note}<h2>Release history</h2><p>${name} release notes will be listed here as versions ship.</p>`,
-    faq: `${note}<h2>Frequently asked questions</h2><p>Short answers about ${name}. If yours isn't here, the <a href="/contact">contact page</a> is the fastest way to reach me.</p>`,
-  };
-
-  const titles: Record<string, string> = {
-    installation: "Installation",
-    "getting-started": "Getting started",
-    configuration: "Configuration",
-    examples: "Examples",
-    "api-reference": "API reference",
-    troubleshooting: "Troubleshooting",
-    changelog: "Changelog",
-    faq: "FAQ",
-  };
-
-  return {
-    slug,
-    title: titles[slug],
-    html: body[slug],
-    emphasized: slug === "installation" ? true : undefined,
-  };
-}
-
-function installGuide(name: string): GuideStep[] {
-  return [
-    { title: "Open the Package Manager", caption: `In Unity, go to Window → Package Manager to manage ${name}.` },
-    { title: `Import ${name}`, caption: `Select the ${name} package and click Import.` },
-    { title: "Confirm the import", caption: "Review the file list and confirm." },
-    { title: "Verify the installation", caption: "Check the Console for a clean compile." },
-  ];
-}
-
-function demoPage(name: string): DocPage {
-  return {
-    slug: "try-demo",
-    title: "Try the demo",
-    kind: "demo",
-    html: `<p>Play an interactive WebGL demo of <b>${name}</b> right in your browser — no install required.</p>`,
-  };
-}
-
 // ---------------- Build the package list ----------------
+//
+// Every documentation page is its own markdown file inside the package folder.
+// The `NN-` filename prefix decides sidebar order; the `kind:` frontmatter
+// field marks the special pages:
+//
+//   kind: overview      -> the package landing / home doc page
+//   kind: installation  -> the "start here" page (gets the first-read banner)
+//   kind: faq           -> rendered as fold-out question cards
+//   kind: demo          -> links out to the dedicated demo page
+//
+// `_package.md` holds package metadata only.
 
 type RawEntry = { pkg: string; file: string; raw: string };
 
@@ -248,71 +168,40 @@ function buildPackages(): DocPackage[] {
     const meta = files.find((f) => f.file === "_package.md");
     if (!meta) continue;
 
-    const parsed = parseFrontmatter(meta.raw);
-    const front = parsed.data as PackageFront;
-    const overviewHtml = render(parsed.content);
+    const front = parseFrontmatter(meta.raw).data as PackageFront;
 
-    const overview: DocPage = { slug: "overview", title: "Overview", html: overviewHtml };
-    const demo = demoPage(front.name);
-
-    // User-authored pages (anything other than _package.md).
-    const userFiles = files
+    const pageFiles = files
       .filter((f) => f.file !== "_package.md")
       .sort((a, b) => orderFromFilename(a.file) - orderFromFilename(b.file));
 
-    const userPages: DocPage[] = userFiles.map((f) => {
+    const pages: DocPage[] = pageFiles.map((f) => {
       const p = parseFrontmatter(f.raw);
       const fm = p.data as PageFront;
-      const pageSlug = fm.slug ?? slugFromFilename(f.file);
+      const kind = fm.kind;
+      const pageSlug = fm.slug ?? (kind === "overview" ? "overview" : slugFromFilename(f.file));
       return {
         slug: pageSlug,
-        title: fm.title,
+        title: fm.title ?? pageSlug,
         html: render(p.content),
-        // Only the installation page is ever the "recommended first read",
-        // so there can never be two emphasized pages in a package.
-        emphasized: pageSlug === "installation" ? true : undefined,
+        kind,
+        // Only the installation page is ever the "recommended first read".
+        emphasized: kind === "installation" ? true : undefined,
         status: fm.status,
-        kind: fm.kind,
         guide: fm.guide,
       };
     });
 
-    // Index user pages by slug so a user file can override any standard slot
-    // (e.g. authoring a real installation.md replaces the placeholder).
-    const userBySlug = new Map(userPages.map((p) => [p.slug, p]));
-    const standardSlugs = new Set<string>(STANDARD_ORDER);
-
-    const orderedPages: DocPage[] = [];
-    for (const slot of CANONICAL_ORDER) {
-      if (slot === "overview") {
-        orderedPages.push(overview);
-      } else if (slot === "try-demo") {
-        orderedPages.push(userBySlug.get("try-demo") ?? demo);
-        userBySlug.delete("try-demo");
-      } else if (slot === "__user__") {
-        // Any user-authored page whose slug isn't a canonical standard slot.
-        for (const p of userPages) {
-          if (!standardSlugs.has(p.slug) && p.slug !== "try-demo") {
-            orderedPages.push(p);
-            userBySlug.delete(p.slug);
-          }
-        }
-      } else {
-        const override = userBySlug.get(slot);
-        if (override) {
-          orderedPages.push(override);
-          userBySlug.delete(slot);
-        } else {
-          orderedPages.push(standardPage(slot, front.name, front.reviewUrl));
-        }
-      }
+    // The overview page always leads the sidebar.
+    const overviewIdx = pages.findIndex((p) => p.kind === "overview" || p.slug === "overview");
+    if (overviewIdx > 0) pages.unshift(pages.splice(overviewIdx, 1)[0]);
+    if (overviewIdx === -1) {
+      pages.unshift({
+        slug: "overview",
+        title: "Overview",
+        kind: "overview",
+        html: `<p>${front.tagline ?? ""}</p>`,
+      });
     }
-
-    const allPages: DocPage[] = orderedPages.map((p) => ({
-      ...p,
-      guide:
-        p.guide ?? (p.slug === "installation" ? installGuide(front.name) : undefined),
-    }));
 
     const infoboxFields = [
       { label: "Category", value: front.category },
@@ -327,7 +216,7 @@ function buildPackages(): DocPackage[] {
       color: front.color ?? "#7b5cff",
       label: front.label ?? front.name,
       infoboxFields,
-      pages: allPages,
+      pages,
       references: front.references ?? [],
       demoUrl: front.demoUrl,
       reviewUrl: front.reviewUrl,
