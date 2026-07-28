@@ -1,6 +1,7 @@
 import type { PublishStatus } from "@/components/status-badge";
+import type { PageHighlight } from "@/components/page-highlight";
 
-export type { PublishStatus };
+export type { PublishStatus, PageHighlight };
 
 export type DocPageKind = "overview" | "installation" | "faq" | "demo";
 
@@ -17,7 +18,17 @@ export type DocPage = {
   kind?: DocPageKind;
   guide?: GuideStep[];
   emphasized?: boolean;
+  highlight?: PageHighlight;
   status?: PublishStatus;
+};
+
+// Declared in the overview page's frontmatter under `compatibility:`.
+export type Compatibility = {
+  unity?: string;
+  pipelines?: string[];
+  platforms?: string[];
+  // Free-form exceptions, e.g. "Android + Built-In on 2022 is unsupported".
+  notes?: string[];
 };
 
 export type DocPackage = {
@@ -34,4 +45,5 @@ export type DocPackage = {
   reviewUrl?: string;
   trailerUrl?: string;
   status?: PublishStatus;
+  compatibility?: Compatibility;
 };
