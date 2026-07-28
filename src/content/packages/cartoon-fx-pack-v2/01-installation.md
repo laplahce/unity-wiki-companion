@@ -2,7 +2,7 @@
 title: Installation
 kind: installation
 guide:
-  - { title: "Open the Welcome Screen", caption: "Open Tools → CTFX2 → Welcome Screen." }
+  - { title: "Open the Welcome Screen", caption: "Open Tools → CTFX2 → Welcome Screen.", gif: "./GIFS/installation 001.gif" }
   - { title: "Open the Setup tab", caption: "Navigate to the Setup tab." }
   - { title: "Upgrade to your Render Pipeline", caption: "Click the Upgrade button for your Render Pipeline." }
   - { title: "Import the Render Pipeline", caption: "Import it." }
