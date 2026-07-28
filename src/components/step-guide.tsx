@@ -59,7 +59,10 @@ export function StepGuide({ steps }: { steps: GuideStep[] }) {
     };
     // Bring the whole guide card into view first, then keep re-measuring while
     // the smooth scroll animates so the spotlight lands on the button.
-    const el = rootRef.current ?? nextRef.current;
+    // Scroll the Next button (the spotlight target) into view — the guide card
+    // itself can be taller than the viewport, so centering the card is not
+    // enough to guarantee the highlighted control is on screen.
+    const el = nextRef.current ?? rootRef.current;
     if (el) {
       const rect = el.getBoundingClientRect();
       const target =
