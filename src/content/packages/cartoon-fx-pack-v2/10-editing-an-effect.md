@@ -2,13 +2,25 @@
 title: Editing an effect
 ---
 
-*The library is organised into categories, each with a matching demo scene. Every
-effect is a self-contained prefab: drop it in a scene, or spawn it from code and
-let it despawn itself when finished.*
+*Learn how to edit and customize effects using the custom editor.*
 
-## Palette swapping
+## Editing your first effect
 
-Every effect exposes a palette asset. Assigning a different palette recolours the
-whole effect — including the comic text outline — without duplicating materials.
+1. In the inspector, find the **Cartoon FX** component.
+2. Click **Edit FX**.
+3. Navigate through the components making up the effect using the tabs at the top (e.g. *Text*).
+4. Try to change something (e.g. the text displayed).
+5. If you get *Missing Materials* error;
+   a. Click **Add Missing Materials**.
+   b. Select a location to store the materials.
+6. You can always add more components to the effect. For this, navigate to another tab (e.g. *Background*).
+7. Scroll down to **Billboards*.
+   a. If there already is a billboard, you can change the settings directly.
+   b. If there aren't any billboards already, add one & add the *Missing Materials* again.
 
-<figure class="gif-placeholder" data-caption="Swapping the palette on an explosion prefab recolours every layer at once."></figure>
+### A tip:
+
+1. Open the *Particle System Controller*.
+2. Pause the effect.
+3. Drag the *Playback time* slider to see different stages of the effect.
+4. When editing an effect, this helps a lot to see what you are changing in realtime.
