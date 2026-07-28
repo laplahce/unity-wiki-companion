@@ -6,7 +6,15 @@
 // `.md` to change copy. The design layer below is untouched.
 
 import { marked } from "marked";
-import type { DocPackage, DocPage, DocPageKind, GuideStep, PublishStatus } from "./docs-types";
+import type {
+  Compatibility,
+  DocPackage,
+  DocPage,
+  DocPageKind,
+  GuideStep,
+  PageHighlight,
+  PublishStatus,
+} from "./docs-types";
 
 marked.setOptions({ gfm: true, breaks: false });
 
@@ -35,9 +43,11 @@ type PageFront = {
   title: string;
   slug?: string;
   emphasized?: boolean;
+  highlight?: PageHighlight;
   status?: PublishStatus;
   kind?: DocPageKind;
   guide?: GuideStep[];
+  compatibility?: Compatibility;
 };
 
 // Minimal frontmatter parser — supports the YAML-ish subset we actually use:
