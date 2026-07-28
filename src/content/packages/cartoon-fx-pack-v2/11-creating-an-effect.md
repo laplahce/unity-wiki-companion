@@ -1,14 +1,15 @@
 ---
 title: Creating an effect
 guide:
-  - { title: "Find Cartoon FX component", caption: "In the inspector of your effect, locate the Cartoon FX component." }
+  - { title: "Create a new GameObject", caption: "Create a new GameObject in your scene." }
+  - { title: "Add Cartoon FX component", caption: "Add Components → CTFX2 → Cartoon FX." }
   - { title: "Edit the effect", caption: "Click \"Edit Effect\"." }
-  - { title: "Navigate the components", caption: "Navigate the components of the effect using the different tabs." }
-  - { title: "Change something", caption: "Try to change something." }
+  - { title: "Change the text", caption: "In the \"Text\" tab, change the text to whatever you want." }
+  - { title: "Add a billboard", caption: "Scroll down to Billboards and add one." }
   - { title: "Missing Materials error", caption: "If you get an error; click \"Add Missing Materials\" & select a location to store the materials in." }
-  - { title: "Adding more components", caption: "Navigate to another tab (e.g. \"Background\")." }
-  - { title: "Add a billboard", caption: "Scroll down to \"Billboards\" & add one if there isn't one already." }
-  - { title: "Add more missing materials", caption: "If you added a new billboard, you will need to add the new missing materials same as before (use the same location as the first for simplicity)." }
+  - { title: "Change some settings", caption: "Change the scale & color (OBS! Change alpha to 1)." }
+  - { title: "See the effect in action", caption: "Restart the effect to see what changed." }
+  - { title: "Navigate the components", caption: "Navigate the components of the effect using the different tabs." }
 ---
 
 *Learn how to create effects using the custom editor.*
@@ -19,7 +20,7 @@ guide:
 2. Add **Components → CTFX2 → Cartoon FX**.
 4. Click **Edit Effect**.
 5. In the **Text** tab, change the text to whatever you want.
-6. Scroll down to **Billboards* & add one.
+6. Scroll down to **Billboards** & add one.
 7. If you get *Missing Materials* error;
    a. Click **Add Missing Materials**.
    b. Select a location to store the materials.
