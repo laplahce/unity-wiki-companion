@@ -6,4 +6,7 @@ title: Getting started
 
 ## Your first steps
 
+### Adding your first effect
+
+1. Open ****
 A minimal Cartoon FX Pack v2 walkthrough will live here.
