@@ -15,7 +15,7 @@ title: Getting started
 ### Editing your first effect
 
 1. In the inspector, find the **Cartoon FX** component.
-2. Click **Edit FX**.
+2. Click **Edit Effect**.
 3. Navigate through the components making up the effect using the tabs at the top (e.g. *Text*).
 4. Try to change something (e.g. the text displayed).
 5. If you get *Missing Materials* error;
@@ -34,7 +34,7 @@ title: Getting started
 
 1. Create a new GameObject.
 2. Add **Components → CTFX2 → Cartoon FX**.
-3. Click **Edit FX**.
+3. Click **Edit Effect**.
 4. In the **Text** tab, change the text to whatever you want.
 5. Scroll down to **Billboards** & add one.
 6. Change the scale & color *(OBS! Change alpha to 1)*.
