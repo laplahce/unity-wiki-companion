@@ -106,9 +106,11 @@ function SidebarNav({
                       page.emphasized ? " emphasized" : ""
                     }`}
                   >
-                    {page.emphasized && (
+                    {page.highlight === "start-here" ? (
                       <Download className="inline-block h-3.5 w-3.5 shrink-0" />
-                    )}
+                    ) : page.highlight ? (
+                      <HighlightDot highlight={page.highlight} />
+                    ) : null}
                     <span className="inline-flex items-center gap-1.5">
                       {page.title}
                       {page.status && <StatusDot status={page.status} />}
