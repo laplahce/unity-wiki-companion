@@ -24,13 +24,6 @@ compatibility:
 
 The pack also includes a **custom FX creator/editor**: an in-editor tool for assembling, tweaking and previewing new effects out of the same modular parts the built-in effects are made of, without hand-wiring particle systems.
 
-<figure>
-  <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
-    <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" alt="Watch the video" width="560">
-  </a>
-  <figcaption>Click the image to watch the video on YouTube.</figcaption>
-</figure>
-
 ## What's inside
 
 - **Explosions & blasts** — small pops through screen-filling cartoon booms.
