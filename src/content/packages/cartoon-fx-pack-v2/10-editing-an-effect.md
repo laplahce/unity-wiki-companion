@@ -1,4 +1,5 @@
 ---
+updated: 2026-07-28
 title: Editing an effect
 guide:
   - { title: "Find Cartoon FX component", caption: "In the inspector of your effect, locate the Cartoon FX component." }
