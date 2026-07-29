@@ -1,7 +1,7 @@
 ---
+updated: 2026-07-29
 title: Compatibility
 kind: compatibility
-updated: 2026-07-29
 ---
 
 *Quick-reference for which versions, render pipelines & platforms the pack is compatible with.*
