@@ -3,7 +3,7 @@ updated: 2026-07-28
 title: Editing an effect
 guide:
   - { title: "Find Cartoon FX component", caption: "In the inspector of your effect, locate the Cartoon FX component.", gif: "/content/packages/cartoon-fx-pack-v2/GIFS/editing-an-effect-001.gif" }
-  - { title: "Edit the effect", caption: "Click \"Edit Effect\".", gif: "/content/packages/cartoon-fx-pack-v2/GIFS/editing-an-effect-002.gif" }
+  - { title: "Edit the effect", caption: "Click \"Edit Cartoon FX\".", gif: "/content/packages/cartoon-fx-pack-v2/GIFS/editing-an-effect-002.gif" }
   - { title: "Navigate the components", caption: "Navigate the components of the effect using the different tabs.", gif: "/content/packages/cartoon-fx-pack-v2/GIFS/editing-an-effect-003.gif" }
   - { title: "Change something", caption: "Try to change something.", gif: "/content/packages/cartoon-fx-pack-v2/GIFS/editing-an-effect-004.gif" }
   - { title: "Missing Materials error", caption: "If you get an error; click \"Add Missing Materials\" & select a location to store the materials in.", gif: "/content/packages/cartoon-fx-pack-v2/GIFS/editing-an-effect-005.gif" }
@@ -16,7 +16,7 @@ guide:
 ## Editing your first effect
 
 1. In the inspector, find the **Cartoon FX** component.
-2. Click **Edit Effect**.
+2. Click **Edit Cartoon FX**.
 3. Navigate through the components making up the effect using the tabs at the top (e.g. *Text*).
 4. Try to change something (e.g. the text displayed).
 5. If you get *Missing Materials* error;
