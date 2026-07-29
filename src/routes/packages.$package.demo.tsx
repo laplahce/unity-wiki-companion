@@ -41,8 +41,9 @@ function DemoPage() {
           Try {pkg.name} in your browser
         </h1>
         <p className="mt-3 max-w-2xl text-muted-foreground">
-          The full feature set, running in WebGL — no install, no download. Use
-          this to evaluate the package before buying, or to reproduce a bug.
+          Keep in mind, the creator shown in the demo is simply a recreation. The full creator is more flexible & 
+          has more features, but is impossible to show in a WebGL demo due to it being a editor tool. Use
+          this to get a feel for the creator or see all the effects in the showcase before buying.
         </p>
       </div>
 
@@ -53,8 +54,8 @@ function DemoPage() {
           <h2 className="font-serif text-xl font-bold">How it works</h2>
           <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
             <li>• Use the on-screen controls or your keyboard.</li>
-            <li>• The demo runs locally in your browser — nothing is uploaded.</li>
-            <li>• Performance reflects WebGL, native is significantly faster.</li>
+            <li>• The demo runs locally in your browser.</li>
+            <li>• Performance reflects WebGL, not the package.</li>
             <li>• Refresh the page to reset state.</li>
           </ul>
         </div>
@@ -62,8 +63,7 @@ function DemoPage() {
           <h2 className="font-serif text-xl font-bold">Want more?</h2>
           <p className="mt-3 text-sm text-muted-foreground">
             The documentation covers every feature shown here, plus the parts
-            that don&apos;t fit in a demo (editor tooling, build pipeline,
-            extension points).
+            that don't fit in a demo (the true custom editor, installation & more).
           </p>
           <div className="mt-4 flex flex-wrap gap-2">
             <Link
