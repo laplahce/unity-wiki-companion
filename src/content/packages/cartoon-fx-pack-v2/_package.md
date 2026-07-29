@@ -1,9 +1,9 @@
 ---
 name: Cartoon FX Pack v2
-tagline: Over 100 stylized cartoon and comic effects, plus a built-in FX creator.
+tagline: Over 100 cartoon & comic effects with a fully custom editor to edit & create new effects.
 category: VFX
 color: "#ff5c8a"
-label: Cartoon FX v2
+label: Cartoon FX Pack v2
 status: in-development
 trailerUrl: https://www.youtube.com/watch?v=REPLACE_WITH_TRAILER
 infobox:
