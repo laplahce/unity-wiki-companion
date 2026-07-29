@@ -8,6 +8,7 @@ export type DocPageKind =
   | "installation"
   | "faq"
   | "demo"
+  | "changelog"
   | "compatibility";
 
 export type GuideStep = {

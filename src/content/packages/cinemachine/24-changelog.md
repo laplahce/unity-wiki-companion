@@ -1,5 +1,6 @@
 ---
 title: Changelog
+kind: changelog
 ---
 
 *This page is a placeholder — replace this file's contents with the real documentation.*

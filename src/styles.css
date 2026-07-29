@@ -336,6 +336,66 @@
     vertical-align: middle;
   }
 
+  /* ---- Changelog (`kind: changelog`) ---- */
+  .wiki-article .changelog { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 1.25rem; }
+  .wiki-article .release {
+    border: 1px solid var(--color-border);
+    border-radius: 0.9rem;
+    background: var(--color-surface);
+    overflow: hidden;
+  }
+  .wiki-article .release-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    padding: 0.75rem 1rem;
+    background: var(--color-surface-alt);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .wiki-article .release-version {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    font-size: 1.05rem;
+    font-weight: 700;
+  }
+  .wiki-article .release-head .badge-latest { margin-right: auto; }
+  .wiki-article .release-date {
+    font-size: 0.8rem;
+    color: var(--color-muted-foreground);
+    font-variant-numeric: tabular-nums;
+  }
+  .wiki-article .release-notes { padding: 0.75rem 1rem 0; }
+  .wiki-article .release-notes > :last-child { margin-bottom: 0; }
+  .wiki-article table.release-table {
+    width: 100%;
+    margin: 0;
+    border: 0;
+    border-collapse: collapse;
+  }
+  .wiki-article table.release-table td {
+    padding: 0.5rem 1rem;
+    border: 0;
+    border-top: 1px solid var(--color-border);
+    vertical-align: top;
+  }
+  .wiki-article table.release-table tr:first-child td { border-top: 0; }
+  .wiki-article .changelog-type {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.1rem 0.5rem;
+    border-radius: 999px;
+    border: 1px solid currentColor;
+    background: color-mix(in oklab, currentColor 12%, transparent);
+  }
+  .wiki-article .changelog-type-improved { color: oklch(0.52 0.15 300) !important; }
+  .dark .wiki-article .changelog-type-improved { color: oklch(0.78 0.13 300) !important; }
+
   /* Inline "GIF coming soon" placeholder authored directly in markdown as
      `<figure class="gif-placeholder" data-caption="…"></figure>`. Renders a
      16:9 dashed card with the caption underneath so writers can slot a real
