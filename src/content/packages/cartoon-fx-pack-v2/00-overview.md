@@ -20,24 +20,19 @@ compatibility:
     - "The FX creator window requires a desktop editor."
 ---
 
-**Cartoon FX Pack v2** is a stylized visual effects package for Unity. It ships with over **100 hand-tuned cartoon, comic and toon-shaded effects** — explosions, impacts, slashes, smoke puffs, sparkles, comic-book text pops and more — all built to drop straight into a scene and read clearly at any camera distance.
-
-The pack also includes a **custom FX creator/editor**: an in-editor tool for assembling, tweaking and previewing new effects out of the same modular parts the built-in effects are made of, without hand-wiring particle systems.
+**Cartoon FX Pack v2** is like the name suggests, a pack with 100+ cartoon effects (explosions, impacts, smoke puffs, comic-book texts & more) for Unity. It also includes a powerful custom FX editor that lets you edit and create any effect you like by simply adjusting a few sliders & choosing between over 200 custom textures. 
 
 ::youtube{id=TODO caption="Video tutorial for the pack. A great choice for those who prefer learning by video."}
 
 ## What's inside
 
-- **Explosions & blasts** — small pops through screen-filling cartoon booms.
-- **Impacts & hits** — melee slashes, blunt impacts, ground cracks, shockwave rings.
-- **Comic text** — "POW", "BAM", "CRIT!" style pop-ups with configurable text and palette.
-- **Ambience & pickups** — sparkles, trails, auras, level-up bursts, coin shines.
-- **Elemental sets** — fire, ice, electric, poison and arcane variants of the core shapes.
+- **100+** drag-and-drop FXs for your projects.
+- **50+** Explosions, Smoke Puffs, Debris.
+- **25+** Impacts, Slashes, Hit FXs.
+- **30+** Comic text (e.g. "POW", "BAM", "HONK").
+- **200+** textures to make any effect you can think of (fonts, backgrounds, halftones & more).
+- **Custom Editor** that is powerful, easy-to-use & lets you view changes in realtime.
 
-## The FX creator
+### The Custom Editor
 
-Every effect in the pack is authored with the same editor that ships in the package. You pick a base shape, layer in bursts, trails and sprites, and tune colour, timing and scale from a single inspector with a live preview. Presets can be saved, duplicated and shared as normal Unity assets.
-
-## Status
-
-This package is still **in development** and has not been submitted to the Unity Asset Store yet. The pages here track the feature set as it lands.
+All the effects in the pack was created using the custom editor that ships with the pack. The pack is fully fledged out if you simply want to use the ready-made effects, but for those who want to edit or even create their own effects can use the custom editor. The editor separates the effect into components that you can change independently to build up a nice looking effect. For more information, [please refer to the Getting started guide](./getting-started).
