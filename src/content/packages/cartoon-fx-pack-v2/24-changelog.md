@@ -1,4 +1,5 @@
 ---
+updated: 2026-07-29
 title: Changelog
 kind: changelog
 ---
@@ -7,5 +8,5 @@ kind: changelog
 
 ## 2.0.0 — 2026-07-29 (latest)
 
-- Initial release.
+- added: Initial release.
 - fixed: "Edit Explosion" button to "Edit Effect".
