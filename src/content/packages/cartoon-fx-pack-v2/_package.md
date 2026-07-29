@@ -14,6 +14,4 @@ infobox:
   - { label: Engine, value: "Unity 2021.3 and later" }
   - { label: Type, value: "VFX pack + editor tool" }
   - { label: License, value: "Proprietary (single asset)" }
-references:
-  - { id: "1", text: "Cartoon FX Pack v2 — development notes." }
 ---
