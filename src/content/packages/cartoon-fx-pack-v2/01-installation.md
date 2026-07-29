@@ -1,4 +1,5 @@
 ---
+update: 2026-07-28
 title: Installation
 kind: installation
 guide:
