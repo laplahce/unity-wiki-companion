@@ -19,7 +19,7 @@ compatibility:
 
 **Cartoon FX Pack v2** is, like the name suggests, a pack with 100+ cartoon effects (explosions, impacts, smoke puffs, comic-book texts & more) for Unity. It also includes a powerful custom FX editor that lets you edit and create any effect you like by simply adjusting a few sliders & choosing between over 200 custom textures. 
 
-::youtube{id=TODO caption="Video tutorial for the pack. A great choice for those who prefer learning by video."}
+::youtube{id=fJNnC6ASYgI caption="Video tutorial for the pack. A great choice for those who prefer learning by video."}
 
 ## What's inside
 
