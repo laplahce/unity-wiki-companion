@@ -1,4 +1,5 @@
 ---
+updated: 2026-07-28
 title: Creating an effect
 guide:
   - { title: "Create a new GameObject", caption: "Create a new GameObject in your scene." }
