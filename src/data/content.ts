@@ -48,6 +48,7 @@ type PageFront = {
   kind?: DocPageKind;
   guide?: GuideStep[];
   compatibility?: Compatibility;
+  updated?: string;
 };
 
 // Minimal frontmatter parser — supports the YAML-ish subset we actually use:
@@ -225,6 +226,7 @@ function buildPackages(): DocPackage[] {
         emphasized: highlight === "start-here" ? true : undefined,
         status: fm.status,
         guide: fm.guide,
+        updated: fm.updated ? String(fm.updated) : undefined,
       };
     });
 
