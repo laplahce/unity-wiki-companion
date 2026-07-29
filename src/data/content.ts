@@ -146,8 +146,59 @@ function parseFrontmatter(src: string): { data: Record<string, unknown>; content
   return { data: parseBlock(m[1].split(/\r?\n/), 0, 0).data, content: m[2] };
 }
 
+// Inline YouTube embeds. Write anywhere in a markdown file, on its own line:
+//
+//   ::youtube{id=dQw4w9WgXcQ caption="Feature trailer"}
+//   ::youtube{url=https://youtu.be/dQw4w9WgXcQ}
+//   ::youtube{caption="Coming soon"}   -> renders a "video doesn't exist" card
+//
+function youtubeId(raw: string): string | undefined {
+  const s = raw.trim().replace(/^["']|["']$/g, "");
+  if (!s) return undefined;
+  if (/^[\w-]{6,}$/.test(s)) return s;
+  const m =
+    s.match(/(?:youtu\.be\/|v=|embed\/|shorts\/)([\w-]{6,})/) ?? null;
+  return m ? m[1] : undefined;
+}
+
+function parseAttrs(body: string): Record<string, string> {
+  const attrs: Record<string, string> = {};
+  const re = /([A-Za-z_][\w-]*)\s*=\s*("[^"]*"|'[^']*'|[^\s}]+)/g;
+  let m: RegExpExecArray | null;
+  while ((m = re.exec(body))) {
+    attrs[m[1]] = m[2].replace(/^["']|["']$/g, "");
+  }
+  return attrs;
+}
+
+const esc = (s: string) =>
+  s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+
+function renderYoutube(body: string): string {
+  const attrs = parseAttrs(body);
+  const id = youtubeId(attrs.id ?? attrs.url ?? attrs.src ?? "");
+  const caption = attrs.caption ?? attrs.title ?? "";
+  if (!id) {
+    return `<figure class="video-placeholder" data-caption="${esc(
+      caption || "This video doesn’t exist yet.",
+    )}"></figure>`;
+  }
+  return `<figure class="video-embed">
+  <div class="video-frame"><iframe src="https://www.youtube-nocookie.com/embed/${esc(
+    id,
+  )}" title="${esc(caption || "YouTube video")}" loading="lazy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+  ${caption ? `<figcaption>${esc(caption)}</figcaption>` : ""}
+</figure>`;
+}
+
+function expandDirectives(md: string): string {
+  return md.replace(/^[ \t]*::youtube\{([^}]*)\}[ \t]*$/gim, (_m, body: string) =>
+    renderYoutube(body),
+  );
+}
+
 function render(md: string): string {
-  return marked.parse(md.trim(), { async: false }) as string;
+  return marked.parse(expandDirectives(md.trim()), { async: false }) as string;
 }
 
 function slugFromFilename(file: string): string {
