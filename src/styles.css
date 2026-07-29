@@ -361,6 +361,7 @@
     font-size: 1.05rem;
     font-weight: 700;
   }
+  .wiki-article .release-head .badge-latest { margin-right: auto; }
   .wiki-article .release-date {
     font-size: 0.8rem;
     color: var(--color-muted-foreground);
