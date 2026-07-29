@@ -6,6 +6,7 @@ color: "#ff5c8a"
 label: Cartoon FX Pack v2
 status: in-development
 trailerUrl: https://www.youtube.com/watch?v=REPLACE_WITH_TRAILER
+demoUrl: https://play.unity.com/en/games/2cc69f89-2921-48b3-ba6f-ebf6020603f9/builds
 infobox:
   - { label: Developer, value: "laplahce" }
   - { label: Status, value: "In development" }
