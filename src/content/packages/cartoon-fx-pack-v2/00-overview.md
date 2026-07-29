@@ -4,24 +4,21 @@ updated: 2026-07-29
 title: Overview
 kind: overview
 compatibility:
-  unity: "2021.3, 2022, 2023, Unity 6 and later"
+  unity: "Unity 2022, 2023, 6 and later"
   pipelines:
     - Built-In
     - URP
     - HDRP
-  platforms:
+  platforms (tested on):
     - Windows
-    - macOS
-    - Linux
     - Android
-    - iOS
     - WebGL
   notes:
-    - "HDRP support on 2021.3 is untested."
-    - "The FX creator window requires a desktop editor."
+    - "Android 2022, 2023 Built-In Render Pipeline doesn't work."
+    - "HDRP only works with Forward Lit Shader Mode."
 ---
 
-**Cartoon FX Pack v2** is like the name suggests, a pack with 100+ cartoon effects (explosions, impacts, smoke puffs, comic-book texts & more) for Unity. It also includes a powerful custom FX editor that lets you edit and create any effect you like by simply adjusting a few sliders & choosing between over 200 custom textures. 
+**Cartoon FX Pack v2** is, like the name suggests, a pack with 100+ cartoon effects (explosions, impacts, smoke puffs, comic-book texts & more) for Unity. It also includes a powerful custom FX editor that lets you edit and create any effect you like by simply adjusting a few sliders & choosing between over 200 custom textures. 
 
 ::youtube{id=TODO caption="Video tutorial for the pack. A great choice for those who prefer learning by video."}
 
