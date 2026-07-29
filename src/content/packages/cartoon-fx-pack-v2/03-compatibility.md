@@ -4,8 +4,7 @@ kind: compatibility
 updated: 2026-07-29
 ---
 
-A quick reference for where Cartoon FX Pack v2 runs. The same summary is shown
-in the card on the overview page — this page spells it out in full.
+*Quick-reference for which versions, render pipelines & platforms the pack is compatible with.*
 
 ## Notes
 
