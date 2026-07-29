@@ -24,7 +24,7 @@ compatibility:
 
 The pack also includes a **custom FX creator/editor**: an in-editor tool for assembling, tweaking and previewing new effects out of the same modular parts the built-in effects are made of, without hand-wiring particle systems.
 
-::youtube{id=dQw4w9WgXcQ caption="This is the caption"}
+::youtube{id=TODO caption="Video tutorial for the pack. A great choice for those who prefer learning by video."}
 
 ## What's inside
 
