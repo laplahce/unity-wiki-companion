@@ -7,9 +7,8 @@ guide:
   - { title: "Navigate the components", caption: "Navigate the components of the effect using the different tabs.", gif: "/content/packages/cartoon-fx-pack-v2/GIFS/editing-an-effect-003.gif" }
   - { title: "Change something", caption: "Try to change something.", gif: "/content/packages/cartoon-fx-pack-v2/GIFS/editing-an-effect-004.gif" }
   - { title: "Missing Materials error", caption: "If you get an error; click \"Add Missing Materials\" & select a location to store the materials in.", gif: "/content/packages/cartoon-fx-pack-v2/GIFS/editing-an-effect-005.gif" }
-  - { title: "Adding more components", caption: "Navigate to another tab (e.g. \"Background\").", gif: "/content/packages/cartoon-fx-pack-v2/GIFS/editing-an-effect-006.gif" }
-  - { title: "Add a billboard", caption: "Scroll down to \"Billboards\" & add one if there isn't one already.", gif: "/content/packages/cartoon-fx-pack-v2/GIFS/editing-an-effect-007.gif" }
-  - { title: "Add more missing materials", caption: "If you added a new billboard, you will need to add the new missing materials same as before (use the same location as the first for simplicity)." }
+  - { title: "Add a billboard", caption: "Scroll down to \"Billboards\" & add one if there isn't one already.", gif: "/content/packages/cartoon-fx-pack-v2/GIFS/editing-an-effect-006.gif" }
+  - { title: "Add more missing materials", caption: "If you added a new billboard, you will need to add the new missing materials same as before (use the same location as the first for simplicity).", gif: "/content/packages/cartoon-fx-pack-v2/GIFS/editing-an-effect-007.gif }
 ---
 
 *Learn how to edit & customize effects using the custom editor.*
