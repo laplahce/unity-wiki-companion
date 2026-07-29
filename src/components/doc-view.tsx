@@ -104,6 +104,66 @@ function CompatibilityPanel({ pkg }: { pkg: DocPackage }) {
 }
 
 function ReviewPrompt({ pkg }: { pkg: DocPackage }) {
+  return <ReviewPromptInner pkg={pkg} />;
+}
+
+// Full-width version of the support matrix, used by `kind: compatibility`
+// pages so the same overview data can be shown in more detail.
+function CompatibilityTable({ pkg }: { pkg: DocPackage }) {
+  const c = pkg.compatibility;
+  if (!c) return null;
+  const rows: { label: string; items: string[] }[] = [
+    { label: "Unity versions", items: c.unity ? [c.unity] : [] },
+    { label: "Render pipelines", items: c.pipelines ?? [] },
+    { label: "Platforms", items: c.platforms ?? [] },
+  ].filter((r) => r.items.length > 0);
+  return (
+    <section className="not-prose my-6">
+      <div className="overflow-hidden rounded-lg border border-border card-shadow">
+        <table className="w-full text-sm">
+          <tbody>
+            {rows.map((r, i) => (
+              <tr key={r.label} className={i % 2 ? "bg-muted/30" : undefined}>
+                <th className="w-44 px-4 py-3 text-left align-top font-semibold">
+                  {r.label}
+                </th>
+                <td className="px-4 py-3">
+                  <div className="flex flex-wrap gap-1.5">
+                    {r.items.map((item) => (
+                      <span
+                        key={item}
+                        className="rounded-md border border-border bg-card px-2 py-0.5 text-xs font-medium"
+                      >
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      {c.notes && c.notes.length > 0 && (
+        <div className="mt-4 rounded-lg border border-amber-500/40 bg-amber-500/5 px-4 py-3">
+          <div className="text-xs font-semibold uppercase tracking-wide text-amber-700 dark:text-amber-400">
+            Known exceptions
+          </div>
+          <ul className="mt-2 space-y-1 text-sm text-muted-foreground">
+            {c.notes.map((n) => (
+              <li key={n} className="flex gap-2">
+                <span className="text-amber-600 dark:text-amber-400">!</span>
+                <span>{n}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </section>
+  );
+}
+
+function ReviewPromptInner({ pkg }: { pkg: DocPackage }) {
   if (!pkg.reviewUrl) return null;
   return (
     <a
