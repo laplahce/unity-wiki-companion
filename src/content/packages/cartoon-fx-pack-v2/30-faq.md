@@ -12,7 +12,7 @@ Built-in, URP and HDRP. Follow the [Installation guide](./installation) to learn
 
 ## Which version of Unity are supported?
 
-2022.*, 2023.*, 6.* and later (*all subversions).
+2022.\*, 2023.\*, 6.\* and later (\*all subversions).
 
 ## Which platforms are supported?
 
