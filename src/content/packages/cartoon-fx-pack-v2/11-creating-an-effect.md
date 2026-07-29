@@ -10,7 +10,6 @@ guide:
   - { title: "Missing Materials error", caption: "If you get an error; click \"Add Missing Materials\" & select a location to store the materials in.", gif: "/content/packages/cartoon-fx-pack-v2/GIFS/creating-an-effect-006.gif" }
   - { title: "Change some settings", caption: "Change the scale & color (OBS! Change alpha to 1).", gif: "/content/packages/cartoon-fx-pack-v2/GIFS/creating-an-effect-007.gif" }
   - { title: "See the effect in action", caption: "Restart the effect to see what changed.", gif: "/content/packages/cartoon-fx-pack-v2/GIFS/creating-an-effect-008.gif" }
-  - { title: "Navigate the components", caption: "Navigate the components of the effect using the different tabs." }
 ---
 
 *Learn how to create effects using the custom editor.*
