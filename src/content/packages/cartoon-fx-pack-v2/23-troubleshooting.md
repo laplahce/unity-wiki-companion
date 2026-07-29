@@ -1,10 +1,11 @@
 ---
-status: in-development
 title: Troubleshooting
 ---
 
-*This page is a placeholder — replace this file's contents with the real documentation.*
+*Solutions to frequently reported Cartoon FX Pack v2 problems.*
 
 ## Common issues
 
-Solutions to frequently reported Cartoon FX Pack v2 problems.
+If you cannot find a solution to your problem here, then be sure to [contact support here](/contact).
+
+*There aren't any known issues with the package currently.*
