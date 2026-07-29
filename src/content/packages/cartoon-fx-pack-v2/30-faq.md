@@ -8,20 +8,19 @@ kind: faq
 
 ## Which render pipelines are supported?
 
-Built-in, URP and HDRP. Follow the [Installation guide](./installation) to learn how to use the pack with your render pipeline.
+Built-in, URP and HDRP (only Forward). Follow the [Installation guide](./installation) to learn how to use the pack with your render pipeline. [For more compatibility information, refer to the Compatibility page](./compatibility).
 
 ## Which version of Unity are supported?
 
-2022.\*, 2023.\*, 6.\* and later (\*all subversions).
+2022.\*, 2023.\*, 6.\* and later (\*all subversions). [For more compatibility information, refer to the Compatibility page](./compatibility).
 
 ## Which platforms are supported?
 
-Most platforms are supported (tested on Windows, WebGL, Android). [Contact support](/contact) if you need to verify compatibility with a specific platform.
+Most platforms are supported (tested on Windows, WebGL, Android). [Contact support](/contact) if you need to verify compatibility with a specific platform. [For more compatibility information, refer to the Compatibility page](./compatibility).
 
 ## Can I use the effects in a commercial game?
 
-Yes. The licence covers commercial projects, per the standard Unity
-Asset Store EULA.
+Yes. The licence covers commercial projects, per the standard Unity Asset Store EULA.
 
 ## Can I edit the included effects?
 
