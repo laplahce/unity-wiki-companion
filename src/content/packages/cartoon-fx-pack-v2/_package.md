@@ -11,7 +11,6 @@ infobox:
   - { label: Status, value: "In development" }
   - { label: Effects included, value: "100+" }
   - { label: Render pipelines, value: "Built-in, URP, HDRP" }
-  - { label: Engine, value: "Unity 2021.3 and later" }
+  - { label: Engine, value: "Unity 2022, 2023, 6 and later" }
   - { label: Type, value: "VFX pack + editor tool" }
-  - { label: License, value: "Proprietary (single asset)" }
 ---
