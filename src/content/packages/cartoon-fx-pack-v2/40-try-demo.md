@@ -1,4 +1,5 @@
 ---
+updated: 2026-07-29
 title: Try the demo
 kind: demo
 ---
