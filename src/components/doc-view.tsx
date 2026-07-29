@@ -230,6 +230,8 @@ export function PackagePageView({
 
       {page.kind === "demo" && <DemoRedirectCard pkg={pkg} />}
 
+      {page.kind === "compatibility" && <CompatibilityTable pkg={pkg} />}
+
       {isOverview && pkg.references.length > 0 && (
         <section id="references">
           <h2>References</h2>
@@ -249,7 +251,7 @@ export function PackagePageView({
         </section>
       )}
 
-      <PageFooterMeta pageKey={`${pkg.slug}/${page.slug}`} />
+      <PageFooterMeta pageKey={`${pkg.slug}/${page.slug}`} updated={page.updated} />
 
       <nav className="mt-12 flex items-stretch justify-between gap-3 border-t border-border pt-6 text-sm">
         {prev ? (
