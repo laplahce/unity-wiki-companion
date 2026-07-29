@@ -4,7 +4,7 @@ title: Creating an effect
 guide:
   - { title: "Create a new GameObject", caption: "Create a new GameObject in your scene.", gif: "/content/packages/cartoon-fx-pack-v2/GIFS/creating-an-effect-001.gif" }
   - { title: "Add Cartoon FX component", caption: "Add Components → CTFX2 → Cartoon FX.", gif: "/content/packages/cartoon-fx-pack-v2/GIFS/creating-an-effect-002.gif" }
-  - { title: "Edit the effect", caption: "Click \"Edit Effect\".", gif: "/content/packages/cartoon-fx-pack-v2/GIFS/creating-an-effect-003.gif" }
+  - { title: "Edit the effect", caption: "Click \"Edit Cartoon FX\".", gif: "/content/packages/cartoon-fx-pack-v2/GIFS/creating-an-effect-003.gif" }
   - { title: "Change the text", caption: "In the \"Text\" tab, change the text to whatever you want.", gif: "/content/packages/cartoon-fx-pack-v2/GIFS/creating-an-effect-004.gif" }
   - { title: "Add a billboard", caption: "Scroll down to Billboards and add one.", gif: "/content/packages/cartoon-fx-pack-v2/GIFS/creating-an-effect-005.gif" }
   - { title: "Missing Materials error", caption: "If you get an error; click \"Add Missing Materials\" & select a location to store the materials in.", gif: "/content/packages/cartoon-fx-pack-v2/GIFS/creating-an-effect-006.gif" }
@@ -18,7 +18,7 @@ guide:
 
 1. Create a new GameObject.
 2. Add **Components → CTFX2 → Cartoon FX**.
-4. Click **Edit Effect**.
+4. Click **Edit Cartoon FX**.
 5. In the **Text** tab, change the text to whatever you want.
 6. Scroll down to **Billboards** & add one.
 7. If you get *Missing Materials* error;
