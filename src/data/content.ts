@@ -201,6 +201,84 @@ function render(md: string): string {
   return marked.parse(expandDirectives(md.trim()), { async: false }) as string;
 }
 
+// ---------------- Changelog rendering (`kind: changelog`) ----------------
+//
+// Write releases as level-2 headings, then one bullet per change:
+//
+//   ## 2.4.0 — 2026-07-20 (latest)
+//   - added: New comic impact effects
+//   - fixed: Editor preview flicker
+//
+// Supported change types: added, changed, fixed, improved, deprecated,
+// removed, breaking. Anything before the first heading renders as intro copy.
+
+const CHANGE_TYPES = [
+  "added",
+  "changed",
+  "fixed",
+  "improved",
+  "deprecated",
+  "removed",
+  "breaking",
+];
+
+function inline(md: string): string {
+  return (marked.parseInline(md.trim(), { async: false }) as string) ?? "";
+}
+
+function renderRelease(heading: string, body: string): string {
+  // "2.4.0 — 2026-07-20 (latest)"
+  const latest = /\(latest\)/i.test(heading);
+  const head = heading.replace(/\(latest\)/i, "").trim();
+  const parts = head.split(/\s+[—–-]\s+/);
+  const version = parts[0]?.trim() ?? head;
+  const date = parts.slice(1).join(" — ").trim();
+
+  const rows = body
+    .split(/\r?\n/)
+    .map((l) => l.trim())
+    .filter((l) => /^[-*]\s+/.test(l))
+    .map((l) => {
+      const text = l.replace(/^[-*]\s+/, "");
+      const m = text.match(/^([A-Za-z]+)\s*:\s*(.*)$/);
+      const type = m && CHANGE_TYPES.includes(m[1].toLowerCase()) ? m[1].toLowerCase() : "changed";
+      const desc = m && CHANGE_TYPES.includes(m[1].toLowerCase()) ? m[2] : text;
+      return `<tr><td><span class="changelog-type changelog-type-${type}">${esc(
+        type,
+      )}</span></td><td>${inline(desc)}</td></tr>`;
+    })
+    .join("\n");
+
+  const notes = body
+    .split(/\r?\n/)
+    .filter((l) => l.trim() && !/^\s*[-*]\s+/.test(l))
+    .join("\n");
+
+  return `<section class="release">
+  <header class="release-head">
+    <h2 id="${esc(version.toLowerCase().replace(/[^\w.]+/g, "-"))}" class="release-version">${esc(
+      version,
+    )}${latest ? '<span class="badge-latest">Latest</span>' : ""}</h2>
+    ${date ? `<span class="release-date">${esc(date)}</span>` : ""}
+  </header>
+  ${notes ? `<div class="release-notes">${render(notes)}</div>` : ""}
+  ${rows ? `<table class="release-table"><tbody>${rows}</tbody></table>` : ""}
+</section>`;
+}
+
+function renderChangelog(md: string): string {
+  const src = md.trim();
+  const sections = src.split(/^##\s+/m);
+  const intro = sections.shift() ?? "";
+  const out = sections.map((sec) => {
+    const nl = sec.indexOf("\n");
+    const heading = nl === -1 ? sec : sec.slice(0, nl);
+    const body = nl === -1 ? "" : sec.slice(nl + 1);
+    return renderRelease(heading, body);
+  });
+  return `${intro.trim() ? render(intro) : ""}<div class="changelog">${out.join("\n")}</div>`;
+}
+
 function slugFromFilename(file: string): string {
   // e.g. "01-installation.md" -> "installation"
   const base = file.replace(/\.md$/, "");
@@ -270,7 +348,7 @@ function buildPackages(): DocPackage[] {
       return {
         slug: pageSlug,
         title: fm.title ?? pageSlug,
-        html: render(p.content),
+        html: kind === "changelog" ? renderChangelog(p.content) : render(p.content),
         kind,
         highlight,
         // Only the installation page is ever the "recommended first read".
