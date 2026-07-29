@@ -3,7 +3,12 @@ import type { PageHighlight } from "@/components/page-highlight";
 
 export type { PublishStatus, PageHighlight };
 
-export type DocPageKind = "overview" | "installation" | "faq" | "demo";
+export type DocPageKind =
+  | "overview"
+  | "installation"
+  | "faq"
+  | "demo"
+  | "compatibility";
 
 export type GuideStep = {
   title: string;
@@ -20,6 +25,8 @@ export type DocPage = {
   emphasized?: boolean;
   highlight?: PageHighlight;
   status?: PublishStatus;
+  // ISO date string from the page's `updated:` frontmatter field.
+  updated?: string;
 };
 
 // Declared in the overview page's frontmatter under `compatibility:`.
