@@ -2,13 +2,13 @@
 updated: 2026-07-28
 title: Editing an effect
 guide:
-  - { title: "Find Cartoon FX component", caption: "In the inspector of your effect, locate the Cartoon FX component." }
-  - { title: "Edit the effect", caption: "Click \"Edit Effect\"." }
-  - { title: "Navigate the components", caption: "Navigate the components of the effect using the different tabs." }
-  - { title: "Change something", caption: "Try to change something." }
-  - { title: "Missing Materials error", caption: "If you get an error; click \"Add Missing Materials\" & select a location to store the materials in." }
-  - { title: "Adding more components", caption: "Navigate to another tab (e.g. \"Background\")." }
-  - { title: "Add a billboard", caption: "Scroll down to \"Billboards\" & add one if there isn't one already." }
+  - { title: "Find Cartoon FX component", caption: "In the inspector of your effect, locate the Cartoon FX component.", gif: "/content/packages/cartoon-fx-pack-v2/GIFS/editing-an-effect-001.gif" }
+  - { title: "Edit the effect", caption: "Click \"Edit Effect\".", gif: "/content/packages/cartoon-fx-pack-v2/GIFS/editing-an-effect-002.gif" }
+  - { title: "Navigate the components", caption: "Navigate the components of the effect using the different tabs.", gif: "/content/packages/cartoon-fx-pack-v2/GIFS/editing-an-effect-003.gif" }
+  - { title: "Change something", caption: "Try to change something.", gif: "/content/packages/cartoon-fx-pack-v2/GIFS/editing-an-effect-004.gif" }
+  - { title: "Missing Materials error", caption: "If you get an error; click \"Add Missing Materials\" & select a location to store the materials in.", gif: "/content/packages/cartoon-fx-pack-v2/GIFS/editing-an-effect-005.gif" }
+  - { title: "Adding more components", caption: "Navigate to another tab (e.g. \"Background\").", gif: "/content/packages/cartoon-fx-pack-v2/GIFS/editing-an-effect-006.gif" }
+  - { title: "Add a billboard", caption: "Scroll down to \"Billboards\" & add one if there isn't one already.", gif: "/content/packages/cartoon-fx-pack-v2/GIFS/editing-an-effect-007.gif" }
   - { title: "Add more missing materials", caption: "If you added a new billboard, you will need to add the new missing materials same as before (use the same location as the first for simplicity)." }
 ---
 
