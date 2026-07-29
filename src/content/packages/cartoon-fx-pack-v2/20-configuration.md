@@ -3,8 +3,12 @@ status: in-development
 title: Configuration
 ---
 
-*This page is a placeholder — replace this file's contents with the real documentation.*
+*This guide will help you change some fundemental settings in the pack.*
 
-## Settings
+## Preferences
 
-Cartoon FX Pack v2 settings live under **Project Settings → Cartoon FX Pack v2**.
+Open **Edit → Preferences → CTFX2** to access the preferences.
+
+### Theme
+
+You can change the theming of the custom editor by simply changing the theme object in CTFX2 preferences. You can find all the themes under **Assets → Cartoon FX Pack v2 → Preferences → Themes** or create your own via **Create → CTFX2 → Settings → Theming → Theme**.
