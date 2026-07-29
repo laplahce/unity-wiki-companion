@@ -93,8 +93,18 @@ function PrintButton() {
   );
 }
 
-export function PageFooterMeta({ pageKey }: { pageKey: string }) {
-  const updated = lastUpdatedFor(pageKey);
+export function PageFooterMeta({
+  pageKey,
+  updated: updatedISO,
+}: {
+  pageKey: string;
+  updated?: string;
+}) {
+  // An explicit `updated:` date in the page's markdown frontmatter wins;
+  // otherwise fall back to the deterministic placeholder date.
+  const parsed = updatedISO ? new Date(updatedISO) : null;
+  const updated =
+    parsed && !Number.isNaN(parsed.getTime()) ? parsed : lastUpdatedFor(pageKey);
 
   return (
     <div className="not-prose mt-10 flex flex-wrap items-center justify-between gap-3 rounded-lg border border-border bg-card/50 px-4 py-3 text-sm print:hidden">
