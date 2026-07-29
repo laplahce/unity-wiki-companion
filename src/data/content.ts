@@ -258,7 +258,8 @@ function renderRelease(heading: string, body: string): string {
   <header class="release-head">
     <h2 id="${esc(version.toLowerCase().replace(/[^\w.]+/g, "-"))}" class="release-version">${esc(
       version,
-    )}${latest ? '<span class="badge-latest">Latest</span>' : ""}</h2>
+    )}</h2>
+    ${latest ? '<span class="badge-latest">Latest</span>' : ""}
     ${date ? `<span class="release-date">${esc(date)}</span>` : ""}
   </header>
   ${notes ? `<div class="release-notes">${render(notes)}</div>` : ""}
