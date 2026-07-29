@@ -27,8 +27,8 @@ function NotFoundComponent() {
         This article hasn&apos;t been written yet.
       </h1>
       <p className="mt-4 text-muted-foreground">
-        We looked everywhere — under the prefabs, behind the scriptable objects,
-        even inside the scene hierarchy. No luck. The page you&apos;re after
+        We looked everywhere, under the prefabs, behind the scriptable objects,
+        even inside the scene hierarchy. No luck. The page you're after
         either moved, was renamed, or never existed in the first place.
       </p>
       <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
