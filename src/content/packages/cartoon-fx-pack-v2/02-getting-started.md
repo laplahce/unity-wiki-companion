@@ -41,3 +41,5 @@ title: Getting started
 6. Change the scale & color *(OBS! Change alpha to 1)*.
 7. Restart the effect to see what changed.
 8. For more information, check out [Create an effect](./creating-an-effect).
+
+::youtube{id=TODO caption="Video tutorial for the pack. A great choice for those who prefer learning by video."}
