@@ -1,4 +1,5 @@
 ---
+updated: 2026-07-28
 title: Getting started
 ---
 
