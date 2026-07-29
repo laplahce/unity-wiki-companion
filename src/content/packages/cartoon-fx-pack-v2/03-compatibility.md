@@ -1,5 +1,4 @@
 ---
-status: in-development
 updated: 2026-07-29
 title: Compatibility
 kind: compatibility
@@ -9,7 +8,5 @@ kind: compatibility
 
 ## Notes
 
-- Effects are authored with the built-in Particle System, so no extra render
-  pipeline packages are required.
-- Shader variants for URP and HDRP ship in the same package and are selected
-  automatically on import.
+- Effects are created using the Particle System (Unity's built-in particle creator), so no external packages are required.
+- Shader variants for Built-In, URP and HDRP are included and can be selected when importing the package.
