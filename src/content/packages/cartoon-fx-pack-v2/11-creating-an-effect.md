@@ -1,15 +1,15 @@
 ---
-updated: 2026-07-28
+updated: 2026-07-29
 title: Creating an effect
 guide:
-  - { title: "Create a new GameObject", caption: "Create a new GameObject in your scene." }
-  - { title: "Add Cartoon FX component", caption: "Add Components → CTFX2 → Cartoon FX." }
-  - { title: "Edit the effect", caption: "Click \"Edit Effect\"." }
-  - { title: "Change the text", caption: "In the \"Text\" tab, change the text to whatever you want." }
-  - { title: "Add a billboard", caption: "Scroll down to Billboards and add one." }
-  - { title: "Missing Materials error", caption: "If you get an error; click \"Add Missing Materials\" & select a location to store the materials in." }
-  - { title: "Change some settings", caption: "Change the scale & color (OBS! Change alpha to 1)." }
-  - { title: "See the effect in action", caption: "Restart the effect to see what changed." }
+  - { title: "Create a new GameObject", caption: "Create a new GameObject in your scene.", gif: "/content/packages/cartoon-fx-pack-v2/GIFS/creating-an-effect-001.gif" }
+  - { title: "Add Cartoon FX component", caption: "Add Components → CTFX2 → Cartoon FX.", gif: "/content/packages/cartoon-fx-pack-v2/GIFS/creating-an-effect-002.gif" }
+  - { title: "Edit the effect", caption: "Click \"Edit Effect\".", gif: "/content/packages/cartoon-fx-pack-v2/GIFS/creating-an-effect-003.gif" }
+  - { title: "Change the text", caption: "In the \"Text\" tab, change the text to whatever you want.", gif: "/content/packages/cartoon-fx-pack-v2/GIFS/creating-an-effect-004.gif" }
+  - { title: "Add a billboard", caption: "Scroll down to Billboards and add one.", gif: "/content/packages/cartoon-fx-pack-v2/GIFS/creating-an-effect-005.gif" }
+  - { title: "Missing Materials error", caption: "If you get an error; click \"Add Missing Materials\" & select a location to store the materials in.", gif: "/content/packages/cartoon-fx-pack-v2/GIFS/creating-an-effect-006.gif" }
+  - { title: "Change some settings", caption: "Change the scale & color (OBS! Change alpha to 1).", gif: "/content/packages/cartoon-fx-pack-v2/GIFS/creating-an-effect-007.gif" }
+  - { title: "See the effect in action", caption: "Restart the effect to see what changed.", gif: "/content/packages/cartoon-fx-pack-v2/GIFS/creating-an-effect-008.gif" }
   - { title: "Navigate the components", caption: "Navigate the components of the effect using the different tabs." }
 ---
 
