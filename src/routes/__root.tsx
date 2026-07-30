@@ -12,6 +12,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SiteHeader, SiteSidebar, SiteFooter, MobileSidebar, useMobileSidebar } from "@/components/site-chrome";
+import { SITE } from "@/data/site";
 
 function NotFoundComponent() {
   return (
@@ -105,6 +106,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     links: [
       { rel: "stylesheet", href: appCss },
+      ...(SITE.favicon ? [{ rel: "icon", href: SITE.favicon }] : []),
       {
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap",
