@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Loader2 } from "lucide-react";
 import type { DocPackage } from "@/data/docs";
 
 /**
@@ -11,6 +12,7 @@ import type { DocPackage } from "@/data/docs";
  */
 export function WebGLDemo({ pkg }: { pkg: DocPackage }) {
   const [started, setStarted] = useState(false);
+  const [loaded, setLoaded] = useState(false);
 
   if (!pkg.demoUrl) {
     return (
@@ -28,13 +30,28 @@ export function WebGLDemo({ pkg }: { pkg: DocPackage }) {
     <div className="not-prose mt-6">
       <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-border bg-black card-shadow">
         {started ? (
-          <iframe
-            src={pkg.demoUrl}
-            title={`${pkg.name} WebGL demo`}
-            className="absolute inset-0 h-full w-full"
-            allow="autoplay; fullscreen; gamepad; xr-spatial-tracking"
-            allowFullScreen
-          />
+          <>
+            <iframe
+              src={pkg.demoUrl}
+              title={`${pkg.name} WebGL demo`}
+              onLoad={() => setLoaded(true)}
+              className="absolute inset-0 h-full w-full"
+              allow="autoplay; fullscreen; gamepad; xr-spatial-tracking"
+              allowFullScreen
+            />
+            {!loaded && (
+              <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center gap-3 bg-gradient-to-br from-black/85 to-black/70 text-white">
+                <Loader2 className="h-8 w-8 animate-spin text-white/80" />
+                <span className="text-sm font-semibold">Loading the demo…</span>
+                <span className="text-xs text-white/60">
+                  WebGL builds can take a moment on the first load.
+                </span>
+                <span className="mt-1 h-1 w-40 overflow-hidden rounded-full bg-white/20">
+                  <span className="block h-full w-1/3 animate-[loadbar_1.4s_ease-in-out_infinite] rounded-full bg-white/70" />
+                </span>
+              </div>
+            )}
+          </>
         ) : (
           <button
             type="button"
