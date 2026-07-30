@@ -59,6 +59,7 @@ export type DocPackage = {
   pages: DocPage[];
   references: { id: string; text: string; url?: string }[];
   demoUrl?: string;
+  demoExternalUrl?: string;
   reviewUrl?: string;
   assetStoreUrl?: string;
   trailerUrl?: string;
