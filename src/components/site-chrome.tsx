@@ -223,9 +223,9 @@ export function SiteHeader({ onMenuClick }: { onMenuClick: () => void }) {
           <Menu className="h-5 w-5" />
         </button>
         <Link to="/" className="flex items-center gap-3">
-          <div className="flex aspect-square h-9 w-9 shrink-0 items-center justify-center rounded-lg card-grad">
+          <div className="flex aspect-square h-9 w-9 shrink-0 items-center justify-center">
             {SITE.logoImage ? (
-              <img src={SITE.logoImage} alt={SITE.name} className="h-full w-full rounded-lg object-cover" />
+              <img src={SITE.logoImage} alt={SITE.name} className="h-full w-full object-cover" />
             ) : (
               <span className="text-lg font-extrabold text-white">{SITE.logoText}</span>
             )}
@@ -298,9 +298,9 @@ export function MobileSidebar({
       <div className="absolute inset-y-0 left-0 w-72 max-w-[85%] bg-background shadow-xl overflow-y-auto">
         <div className="flex items-center justify-between border-b border-border px-4 py-3">
           <div className="flex items-center gap-2">
-            <div className="flex aspect-square h-8 w-8 shrink-0 items-center justify-center rounded-lg card-grad">
+            <div className="flex aspect-square h-8 w-8 shrink-0 items-center justify-center">
               {SITE.logoImage ? (
-                <img src={SITE.logoImage} alt={SITE.name} className="h-full w-full rounded-lg object-cover" />
+                <img src={SITE.logoImage} alt={SITE.name} className="h-full w-full object-cover" />
               ) : (
                 <span className="text-base font-extrabold text-white">{SITE.logoText}</span>
               )}
@@ -373,9 +373,9 @@ export function SiteFooter() {
           {/* Brand column */}
           <div className="lg:col-span-2">
             <Link to="/" className="flex items-center gap-3">
-              <div className="flex h-9 w-9 items-center justify-center rounded-lg card-grad">
+              <div className="flex h-9 w-9 items-center justify-center">
                 {SITE.logoImage ? (
-                  <img src={SITE.logoImage} alt={SITE.name} className="h-full w-full rounded-lg object-cover" />
+                  <img src={SITE.logoImage} alt={SITE.name} className="h-full w-full object-cover" />
                 ) : (
                   <span className="text-lg font-extrabold text-white">{SITE.logoText}</span>
                 )}
