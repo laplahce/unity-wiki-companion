@@ -115,7 +115,7 @@ function PackageShowcase() {
             {(shots.length > 0 ? shots : [1, 2, 3, 4]).map((shot: string | number, i: number) => (
               <div
                 key={i}
-                className="relative flex aspect-video items-center justify-center overflow-hidden rounded-2xl border border-border bg-muted card-shadow"
+                className="relative flex aspect-[3/2] items-center justify-center overflow-hidden rounded-2xl border border-border bg-muted card-shadow"
               >
                 {typeof shot === "string" ? (
                   <img
