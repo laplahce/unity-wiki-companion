@@ -15,9 +15,9 @@ demoExternalUrl: https://play.unity.com/en/games/2cc69f89-2921-48b3-ba6f-ebf6020
 media:
   banner: "/content/packages/cartoon-fx-pack-v2/Media/Banner.png"
   bannerVideo: "/content/packages/cartoon-fx-pack-v2/Media/Trailer.mp4"
-  screenshots: [
-    "/content/packages/cartoon-fx-pack-v2/Media/Media 001.png"
-  ]
+  screenshots:
+    - "/content/packages/cartoon-fx-pack-v2/Media/Media 001.png"
+    - "/content/packages/cartoon-fx-pack-v2/Media/Media 001.png"
 infobox:
   - { label: Developer, value: "laplahce" }
   - { label: Status, value: "In development" }
