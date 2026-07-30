@@ -24,7 +24,7 @@ export const Route = createFileRoute("/packages/$package/demo")({
 
 function DemoPage() {
   const { pkg } = Route.useLoaderData();
-  const storeUrl = pkg.reviewUrl?.replace("#reviews", "");
+  const storeUrl = pkg.assetStoreUrl;
 
   return (
     <div className="mx-auto max-w-5xl space-y-10 py-10">
@@ -69,7 +69,7 @@ function DemoPage() {
             <Link
               to="/docs/$package"
               params={{ package: pkg.slug }}
-              className="inline-flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-semibold text-white card-grad"
+              className="btn btn-grad !rounded-lg px-3 py-2 text-sm"
             >
               <BookOpen className="h-4 w-4" /> Read the docs
             </Link>
@@ -78,7 +78,7 @@ function DemoPage() {
                 href={storeUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg border border-border bg-background px-3 py-2 text-sm font-medium hover:border-brand"
+                className="btn btn-solid !rounded-lg px-3 py-2 text-sm"
               >
                 <ExternalLink className="h-4 w-4" /> Asset Store
               </a>

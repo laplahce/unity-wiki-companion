@@ -36,18 +36,13 @@ function NotFoundPage() {
       <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
         <Link
           to="/"
-          className="inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold text-white card-grad card-shadow"
+          className="btn btn-grad !rounded-lg px-4 py-2 text-sm"
         >
           ← Back to the main page
         </Link>
-        <a
-          href="https://assetstore.unity.com"
-          target="_blank"
-          rel="noreferrer"
-          className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-4 py-2 text-sm font-medium text-foreground transition hover:border-brand"
-        >
-          Browse the Asset Store
-        </a>
+        <Link to="/packages" className="btn btn-solid !rounded-lg px-4 py-2 text-sm">
+          Browse my packages
+        </Link>
       </div>
     </div>
   );

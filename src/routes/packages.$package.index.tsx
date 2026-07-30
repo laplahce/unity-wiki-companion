@@ -2,6 +2,8 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { BookOpen, ExternalLink, Play, ArrowRight, Star, Check, Film } from "lucide-react";
 import { getPackage, PACKAGES } from "@/data/docs";
 import { StatusBadge } from "@/components/status-badge";
+import { PackageBanner, PackageHeroBackdrop } from "@/components/package-media";
+import { SITE } from "@/data/site";
 
 export const Route = createFileRoute("/packages/$package/")({
   loader: ({ params }) => {
@@ -14,21 +16,17 @@ export const Route = createFileRoute("/packages/$package/")({
 
 function PackageShowcase() {
   const { pkg } = Route.useLoaderData();
-  const storeUrl = pkg.reviewUrl?.replace("#reviews", "") ?? "https://assetstore.unity.com";
+  const storeUrl = pkg.assetStoreUrl ?? SITE.assetStoreUrl;
   const related = PACKAGES.filter((p) => p.slug !== pkg.slug).slice(0, 3);
+  const shots = pkg.media?.screenshots ?? [];
 
   return (
     <div>
-      {/* Hero banner — placeholder gradient until a real GIF is wired up */}
+      {/* Hero banner — looping trailer video, banner media, or placeholder */}
       <section className="relative -mt-6 left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] h-[520px] w-screen overflow-hidden sm:h-[640px]">
-        <div className="card-grad absolute inset-0" />
+        <PackageHeroBackdrop pkg={pkg} />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.18),transparent_55%)]" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/40 to-black/80" />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <span className="font-mono text-xs uppercase tracking-[0.3em] text-white/40">
-            Banner GIF placeholder
-          </span>
-        </div>
         <div className="relative mx-auto flex h-full max-w-5xl flex-col items-start justify-end px-6 pb-12 text-white sm:px-10">
           <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide backdrop-blur">
             {pkg.category}
@@ -48,7 +46,7 @@ function PackageShowcase() {
             <Link
               to="/docs/$package"
               params={{ package: pkg.slug }}
-              className="inline-flex items-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-semibold text-foreground transition hover:bg-white/90"
+              className="btn btn-on-dark px-5 py-3 text-sm"
             >
               <BookOpen className="h-4 w-4" /> Documentation
             </Link>
@@ -56,14 +54,14 @@ function PackageShowcase() {
               href={storeUrl}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold text-white card-grad card-shadow"
+              className="btn btn-grad px-5 py-3 text-sm"
             >
               <ExternalLink className="h-4 w-4" /> View on Asset Store
             </a>
             <Link
               to="/packages/$package/demo"
               params={{ package: pkg.slug }}
-              className="inline-flex items-center gap-2 rounded-xl border border-white/30 bg-white/10 px-5 py-3 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/20"
+              className="btn btn-glass px-5 py-3 text-sm"
             >
               <Play className="h-4 w-4" /> Try the demo
             </Link>
@@ -76,7 +74,7 @@ function PackageShowcase() {
             href={pkg.trailerUrl}
             target="_blank"
             rel="noreferrer"
-            className="absolute bottom-6 right-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/20"
+            className="btn btn-glass absolute bottom-6 right-6 !rounded-full px-4 py-2 text-sm"
           >
             <Film className="h-4 w-4" /> Watch the trailer
           </a>
@@ -114,15 +112,26 @@ function PackageShowcase() {
           <div className="eyebrow">Gallery</div>
           <h2 className="display mt-2 text-2xl sm:text-3xl">In action</h2>
           <div className="mt-6 grid gap-4 sm:grid-cols-2">
-            {[1, 2, 3, 4].map((i) => (
+            {(shots.length > 0 ? shots : [1, 2, 3, 4]).map((shot: string | number, i: number) => (
               <div
                 key={i}
                 className="relative flex aspect-video items-center justify-center overflow-hidden rounded-2xl border border-border bg-muted card-shadow"
               >
-                <div className="card-grad absolute inset-0 opacity-70" />
-                <span className="relative font-mono text-sm font-semibold text-white/90">
-                  Screenshot / GIF placeholder {i}
-                </span>
+                {typeof shot === "string" ? (
+                  <img
+                    src={shot}
+                    alt={`${pkg.name} screenshot ${i + 1}`}
+                    loading="lazy"
+                    className="absolute inset-0 h-full w-full object-cover"
+                  />
+                ) : (
+                  <>
+                    <div className="card-grad absolute inset-0 opacity-70" />
+                    <span className="relative font-mono text-sm font-semibold text-white/90">
+                      Screenshot / GIF placeholder {i + 1}
+                    </span>
+                  </>
+                )}
               </div>
             ))}
           </div>
@@ -174,8 +183,14 @@ function PackageShowcase() {
                   key={p.slug}
                   to="/packages/$package"
                   params={{ package: p.slug }}
-                  className="group rounded-2xl border border-border bg-card p-5 transition hover:border-brand"
+                  className="group overflow-hidden rounded-2xl border border-border bg-card transition hover:border-brand"
                 >
+                  <PackageBanner pkg={p} className="h-24">
+                    <span className="px-3 text-center text-base font-extrabold text-white drop-shadow">
+                      {p.label}
+                    </span>
+                  </PackageBanner>
+                  <div className="p-5">
                   <div className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
                     {p.category}
                   </div>
@@ -183,6 +198,7 @@ function PackageShowcase() {
                   <p className="mt-1 text-sm text-muted-foreground line-clamp-2">
                     {p.tagline}
                   </p>
+                  </div>
                 </Link>
               ))}
             </div>

@@ -12,6 +12,7 @@ import type {
   DocPage,
   DocPageKind,
   GuideStep,
+  PackageMedia,
   PageHighlight,
   PublishStatus,
 } from "./docs-types";
@@ -33,8 +34,10 @@ type PackageFront = {
   label?: string;
   status?: PublishStatus;
   reviewUrl?: string;
+  assetStoreUrl?: string;
   demoUrl?: string;
   trailerUrl?: string;
+  media?: Record<string, unknown>;
   infobox?: { label: string; value: string }[];
   references?: { id: string; text: string; url?: string }[];
 };
@@ -73,11 +76,21 @@ function parseFlow(input: string): unknown {
   // Handles {a: b, c: "d"} and [1, 2, "x"] forms used in frontmatter.
   const s = input.trim();
   if (!s) return s;
+  const literal = (v: string) =>
+    /^(true|false|null|-?\d+(\.\d+)?)$/.test(v) ? v : JSON.stringify(v);
   const json = s
-    // quote bare keys: { foo: ... -> { "foo": ...
-    .replace(/([{,]\s*)([A-Za-z_][\w-]*)\s*:/g, '$1"$2":')
+    // quote bare keys (spaces allowed): { render pipelines: ... }
+    .replace(/([{,]\s*)([A-Za-z_][\w -]*?)\s*:/g, '$1"$2":')
     // single-quoted -> double-quoted strings
-    .replace(/'([^']*)'/g, '"$1"');
+    .replace(/'([^']*)'/g, '"$1"')
+    // quote bare map values: "label": Developer  ->  "label": "Developer"
+    .replace(/:\s*([^,{}[\]"]+?)\s*(?=[,}])/g, (_m, v: string) => `: ${literal(v.trim())}`)
+    // quote bare list items: [a, b] -> ["a", "b"] (flow lists only)
+    .replace(/^\[[\s\S]*\]$/, (list) =>
+      list.replace(/([[,]\s*)([^,{}[\]":]+?)\s*(?=[,\]])/g, (_m, p: string, v: string) =>
+        `${p}${literal(v.trim())}`,
+      ),
+    );
   try {
     return JSON.parse(json);
   } catch {
@@ -146,13 +159,32 @@ function parseFrontmatter(src: string): { data: Record<string, unknown>; content
   return { data: parseBlock(m[1].split(/\r?\n/), 0, 0).data, content: m[2] };
 }
 
+export { parseFrontmatter, render as renderMarkdown };
+
+// `media:` in `_package.md` is a free-form map of key -> url or key -> list of
+// urls. `banner` (and optionally `bannerVideo`) drive the cards and hero,
+// `screenshots` fills the gallery; anything else is kept as extra media.
+function parseMedia(raw: Record<string, unknown> | undefined): PackageMedia | undefined {
+  if (!raw || typeof raw !== "object") return undefined;
+  const media: PackageMedia = { extra: {} };
+  for (const [key, value] of Object.entries(raw)) {
+    const list = Array.isArray(value) ? value.map(String) : [String(value)];
+    if (!list.length || !list[0]) continue;
+    if (key === "banner") media.banner = list[0];
+    else if (key === "bannerVideo" || key === "banner_video") media.bannerVideo = list[0];
+    else if (key === "screenshots" || key === "gallery") media.screenshots = list;
+    else media.extra![key] = list;
+  }
+  return media;
+}
+
 // Inline YouTube embeds. Write anywhere in a markdown file, on its own line:
 //
 //   ::youtube{id=dQw4w9WgXcQ caption="Feature trailer"}
 //   ::youtube{url=https://youtu.be/dQw4w9WgXcQ}
 //   ::youtube{caption="Coming soon"}   -> renders a "video doesn't exist" card
 //
-function youtubeId(raw: string): string | undefined {
+export function youtubeId(raw: string): string | undefined {
   const s = raw.trim().replace(/^["']|["']$/g, "");
   if (!s) return undefined;
   if (/^[\w-]{6,}$/.test(s)) return s;
@@ -401,7 +433,10 @@ function buildPackages(): DocPackage[] {
       references: front.references ?? [],
       demoUrl: front.demoUrl,
       reviewUrl: front.reviewUrl,
+      assetStoreUrl:
+        front.assetStoreUrl ?? front.reviewUrl?.replace(/#reviews\s*$/, ""),
       trailerUrl: front.trailerUrl,
+      media: parseMedia(front.media),
       status: front.status,
       compatibility,
     });

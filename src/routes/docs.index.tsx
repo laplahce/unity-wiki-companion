@@ -51,13 +51,13 @@ function Index() {
           <Link
             to="/docs/$package"
             params={{ package: PACKAGES[0].slug }}
-            className="rounded-xl px-5 py-3 text-sm font-semibold text-white card-grad card-shadow"
+            className="btn btn-grad px-5 py-3 text-sm"
           >
             Open {PACKAGES[0].name} docs →
           </Link>
           <a
             href="#contents"
-            className="rounded-xl border border-border-strong px-5 py-3 text-sm font-semibold hover:bg-surface-alt"
+            className="btn btn-solid px-5 py-3 text-sm"
           >
             Browse all packages
           </a>
