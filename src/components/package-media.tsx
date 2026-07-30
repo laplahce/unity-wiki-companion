@@ -1,8 +1,6 @@
 import type { DocPackage } from "@/data/docs";
 import { youtubeId } from "@/data/content";
-
 const isVideoFile = (url?: string) => !!url && /\.(mp4|webm|ogv)(\?|$)/i.test(url);
-
 /**
  * Card / infobox banner for a package. Uses `media.banner` from `_package.md`
  * when present, otherwise falls back to the gradient + label placeholder.
@@ -42,7 +40,6 @@ export function PackageBanner({
     </div>
   );
 }
-
 /**
  * Hero backdrop for a package page. Prefers, in order:
  *   1. `media.bannerVideo` (mp4/webm) — autoplaying muted loop
@@ -54,7 +51,6 @@ export function PackageHeroBackdrop({ pkg }: { pkg: DocPackage }) {
   const videoFile = pkg.media?.bannerVideo ?? (isVideoFile(pkg.media?.banner) ? pkg.media?.banner : undefined);
   const trailerId = pkg.trailerUrl ? youtubeId(pkg.trailerUrl) : undefined;
   const image = !isVideoFile(pkg.media?.banner) ? pkg.media?.banner : undefined;
-
   return (
     <>
       {videoFile ? (
@@ -71,8 +67,9 @@ export function PackageHeroBackdrop({ pkg }: { pkg: DocPackage }) {
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           <iframe
             title={`${pkg.name} trailer`}
-            src={`https://www.youtube.com/embed/${trailerId}?autoplay=1&mute=1&loop=1&playlist=${trailerId}&playsinline=1&rel=0`}
+            src={`https://www.youtube.com/embed/${trailerId}?autoplay=1&mute=1&controls=0&modestbranding=1&playsinline=1&rel=0`}
             allow="autoplay; encrypted-media; picture-in-picture"
+            allowFullScreen
             className="absolute left-1/2 top-1/2 h-[110vh] min-h-full w-[195vh] min-w-full -translate-x-1/2 -translate-y-1/2 border-0 pointer-events-none"
           />
         </div>
