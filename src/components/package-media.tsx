@@ -57,6 +57,7 @@ export function PackageHeroBackdrop({ pkg }: { pkg: DocPackage }) {
   const image = !isVideoFile(pkg.media?.banner) ? pkg.media?.banner : undefined;
   const playerRef = useRef<any>(null);
   const apiLoadedRef = useRef(false);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!trailerId) return;
@@ -76,17 +77,24 @@ export function PackageHeroBackdrop({ pkg }: { pkg: DocPackage }) {
             iv_load_policy: 3,
             disablekb: 1,
             showinfo: 0,
-            // Use YouTube's native looping (requires playlist to be set to the same video id)
-            loop: 1,
-            playlist: trailerId,
           },
           events: {
             onReady: (event: any) => {
               event.target.mute();
               event.target.playVideo();
             },
-            // Rely on YouTube's native loop (via playerVars.loop + playlist) to avoid
-            // briefly showing the built-in play overlay when manually restarting the video.
+            onStateChange: (event: any) => {
+              // Reveal the player only once actually playing
+              if (event.data === window.YT.PlayerState.PLAYING) {
+                if (containerRef.current) {
+                  containerRef.current.style.opacity = "1";
+                }
+              }
+              // Loop video when it ends
+              if (event.data === window.YT.PlayerState.ENDED) {
+                event.target.playVideo();
+              }
+            },
           },
         });
       }
@@ -138,7 +146,11 @@ export function PackageHeroBackdrop({ pkg }: { pkg: DocPackage }) {
           poster={image}
         />
       ) : trailerId ? (
-        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div
+          ref={containerRef}
+          className="pointer-events-none absolute inset-0 overflow-hidden transition-opacity duration-500"
+          style={{ opacity: 0 }}
+        >
           <div
             id="youtube-player"
             className="absolute left-1/2 top-1/2 h-[110vh] min-h-full w-[195vh] min-w-full -translate-x-1/2 -translate-y-1/2 pointer-events-none"
