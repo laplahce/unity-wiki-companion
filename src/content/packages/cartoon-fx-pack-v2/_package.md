@@ -13,7 +13,7 @@ demoExternalUrl: https://play.unity.com/en/games/2cc69f89-2921-48b3-ba6f-ebf6020
 # `banner` (image), `bannerVideo` (mp4/webm loop) and `screenshots` (list) are
 # the ones the design picks up automatically.
 media:
-  banner: ""
+  banner: "/content/packages/cartoon-fx-pack-v2/Media/Banner.png"
   bannerVideo: "/content/packages/cartoon-fx-pack-v2/Media/Trailer.mp4"
   screenshots: []
 infobox:
