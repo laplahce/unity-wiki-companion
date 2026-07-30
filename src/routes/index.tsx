@@ -84,14 +84,14 @@ function Home() {
               params={{ package: p.slug }}
               className="group overflow-hidden rounded-2xl border border-border bg-card card-shadow transition hover:border-brand"
             >
-              <PackageBanner pkg={p} className="h-36">
-                <span className="px-3 text-center text-2xl font-extrabold tracking-tight text-white drop-shadow">
-                  {p.label}
-                </span>
-              </PackageBanner>
               <div className="relative">
+                <PackageBanner pkg={p} className="h-36">
+                  <span className="px-3 text-center text-2xl font-extrabold tracking-tight text-white drop-shadow">
+                    {p.label}
+                  </span>
+                </PackageBanner>
                 {p.status && (
-                  <span className="absolute left-3 -top-[8.25rem]">
+                  <span className="absolute left-3 top-3">
                     <StatusBadge
                       status={p.status}
                       size="xs"

@@ -28,14 +28,22 @@ function DocLayout({
 function PackageInfobox({ pkg }: { pkg: DocPackage }) {
   return (
     <aside className="float-none mb-6 w-full overflow-hidden rounded-2xl border border-border bg-card text-sm card-shadow sm:float-right sm:ml-8 sm:w-[320px]">
-      <div
-        className="flex h-36 w-full items-center justify-center"
-        style={{ background: pkg.color }}
-      >
-        <span className="text-2xl font-extrabold tracking-tight text-white drop-shadow">
-          {pkg.label}
-        </span>
-      </div>
+      {pkg.media?.banner ? (
+        <img
+          src={pkg.media.banner}
+          alt={`${pkg.name} banner`}
+          className="h-36 w-full object-cover"
+        />
+      ) : (
+        <div
+          className="flex h-36 w-full items-center justify-center"
+          style={{ background: pkg.color }}
+        >
+          <span className="px-3 text-center text-2xl font-extrabold tracking-tight text-white drop-shadow">
+            {pkg.label}
+          </span>
+        </div>
+      )}
       <div className="px-4 py-3 border-b border-border">
         <div className="text-base font-bold leading-tight">{pkg.name}</div>
         <div className="mt-0.5 text-xs text-muted-foreground">{pkg.tagline}</div>
