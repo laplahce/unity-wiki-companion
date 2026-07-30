@@ -112,7 +112,7 @@ function PackageShowcase() {
           <div className="eyebrow">Gallery</div>
           <h2 className="display mt-2 text-2xl sm:text-3xl">In action</h2>
           <div className="mt-6 grid gap-4 sm:grid-cols-2">
-            {(shots.length > 0 ? shots : [1, 2, 3, 4]).map((shot, i) => (
+            {(shots.length > 0 ? shots : [1, 2, 3, 4]).map((shot: string | number, i: number) => (
               <div
                 key={i}
                 className="relative flex aspect-video items-center justify-center overflow-hidden rounded-2xl border border-border bg-muted card-shadow"
