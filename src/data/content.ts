@@ -182,7 +182,7 @@ function parseMedia(raw: Record<string, unknown> | undefined): PackageMedia | un
 //   ::youtube{url=https://youtu.be/dQw4w9WgXcQ}
 //   ::youtube{caption="Coming soon"}   -> renders a "video doesn't exist" card
 //
-function youtubeId(raw: string): string | undefined {
+export function youtubeId(raw: string): string | undefined {
   const s = raw.trim().replace(/^["']|["']$/g, "");
   if (!s) return undefined;
   if (/^[\w-]{6,}$/.test(s)) return s;
