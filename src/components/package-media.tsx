@@ -61,21 +61,6 @@ export function PackageHeroBackdrop({ pkg }: { pkg: DocPackage }) {
   useEffect(() => {
     if (!trailerId) return;
 
-    // Load YouTube IFrame API if not already loaded
-    if (!window.YT) {
-      const tag = document.createElement("script");
-      tag.src = "https://www.youtube.com/iframe_api";
-      const firstScriptTag = document.getElementsByTagName("script")[0];
-      firstScriptTag?.parentNode?.insertBefore(tag, firstScriptTag);
-
-      window.onYouTubeIframeAPIReady = () => {
-        apiLoadedRef.current = true;
-        initializePlayer();
-      };
-    } else if (apiLoadedRef.current) {
-      initializePlayer();
-    }
-
     function initializePlayer() {
       if (!playerRef.current) {
         playerRef.current = new window.YT.Player("youtube-player", {
@@ -88,8 +73,15 @@ export function PackageHeroBackdrop({ pkg }: { pkg: DocPackage }) {
             fs: 0,
             modestbranding: 1,
             playsinline: 1,
+            iv_load_policy: 3,
+            disablekb: 1,
+            showinfo: 0,
           },
           events: {
+            onReady: (event: any) => {
+              event.target.mute();
+              event.target.playVideo();
+            },
             onStateChange: (event: any) => {
               // Loop video when it ends
               if (event.data === window.YT.PlayerState.ENDED) {
@@ -101,8 +93,28 @@ export function PackageHeroBackdrop({ pkg }: { pkg: DocPackage }) {
       }
     }
 
+    // Load YouTube IFrame API if not already loaded
+    if (!window.YT) {
+      const tag = document.createElement("script");
+      tag.src = "https://www.youtube.com/iframe_api";
+      const firstScriptTag = document.getElementsByTagName("script")[0];
+      firstScriptTag?.parentNode?.insertBefore(tag, firstScriptTag);
+
+      window.onYouTubeIframeAPIReady = () => {
+        apiLoadedRef.current = true;
+        initializePlayer();
+      };
+    } else if (window.YT.Player) {
+      initializePlayer();
+    } else {
+      // API script already added but not ready yet — wait for the callback
+      window.onYouTubeIframeAPIReady = () => {
+        apiLoadedRef.current = true;
+        initializePlayer();
+      };
+    }
+
     return () => {
-      // Cleanup player instance
       if (playerRef.current?.destroy) {
         try {
           playerRef.current.destroy();
@@ -132,6 +144,8 @@ export function PackageHeroBackdrop({ pkg }: { pkg: DocPackage }) {
             id="youtube-player"
             className="absolute left-1/2 top-1/2 h-[110vh] min-h-full w-[195vh] min-w-full -translate-x-1/2 -translate-y-1/2 pointer-events-none"
           />
+          {/* Transparent shield — blocks YouTube's play button overlay from rendering */}
+          <div className="absolute inset-0 z-10 pointer-events-none" />
         </div>
       ) : image ? (
         <img
