@@ -32,4 +32,4 @@ compatibility:
 
 ### The Custom Editor
 
-All the effects in the pack was created using the custom editor that ships with the pack. The pack is fully fledged out if you simply want to use the ready-made effects, but for those who want to edit or even create their own effects can use the custom editor. The editor separates the effect into components that you can change independently to build up a nice looking effect. For more information, [please refer to the Getting started guide](/cartoon-fx-pack-v2/getting-started).
+All the effects in the pack was created using the custom editor that ships with the pack. The pack is fully fledged out if you simply want to use the ready-made effects, but for those who want to edit or even create their own effects can use the custom editor. The editor separates the effect into components that you can change independently to build up a nice looking effect. For more information, [please refer to the Getting started guide](./cartoon-fx-pack-v2/getting-started).
