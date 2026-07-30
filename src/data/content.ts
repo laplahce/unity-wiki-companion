@@ -85,9 +85,11 @@ function parseFlow(input: string): unknown {
     .replace(/'([^']*)'/g, '"$1"')
     // quote bare map values: "label": Developer  ->  "label": "Developer"
     .replace(/:\s*([^,{}[\]"]+?)\s*(?=[,}])/g, (_m, v: string) => `: ${literal(v.trim())}`)
-    // quote bare list items: [a, b] -> ["a", "b"]
-    .replace(/([[,]\s*)([^,{}[\]":]+?)\s*(?=[,\]])/g, (_m, p: string, v: string) =>
-      `${p}${literal(v.trim())}`,
+    // quote bare list items: [a, b] -> ["a", "b"] (flow lists only)
+    .replace(/^\[[\s\S]*\]$/, (list) =>
+      list.replace(/([[,]\s*)([^,{}[\]":]+?)\s*(?=[,\]])/g, (_m, p: string, v: string) =>
+        `${p}${literal(v.trim())}`,
+      ),
     );
   try {
     return JSON.parse(json);
