@@ -70,6 +70,8 @@ export function PackageHeroBackdrop({ pkg }: { pkg: DocPackage }) {
             autoplay: 1,
             controls: 0,
             mute: 1,
+            loop: 1,
+            playlist: trailerId, // Required by YouTube API to enable seamless loop without overlay artifacts
             rel: 0,
             fs: 0,
             modestbranding: 1,
@@ -77,6 +79,7 @@ export function PackageHeroBackdrop({ pkg }: { pkg: DocPackage }) {
             iv_load_policy: 3,
             disablekb: 1,
             showinfo: 0,
+            autohide: 1,
           },
           events: {
             onReady: (event: any) => {
@@ -90,8 +93,9 @@ export function PackageHeroBackdrop({ pkg }: { pkg: DocPackage }) {
                   containerRef.current.style.opacity = "1";
                 }
               }
-              // Loop video when it ends
+              // Seamless loop fallback: seek back to 0 immediately when ending
               if (event.data === window.YT.PlayerState.ENDED) {
+                event.target.seekTo(0, true);
                 event.target.playVideo();
               }
             },
@@ -155,7 +159,7 @@ export function PackageHeroBackdrop({ pkg }: { pkg: DocPackage }) {
             id="youtube-player"
             className="absolute left-1/2 top-1/2 h-[110vh] min-h-full w-[195vh] min-w-full -translate-x-1/2 -translate-y-1/2 pointer-events-none"
           />
-          {/* Transparent shield — blocks YouTube's play button overlay from rendering */}
+          {/* Transparent shield — blocks interaction */}
           <div className="absolute inset-0 z-10 pointer-events-none" />
         </div>
       ) : image ? (
