@@ -1,6 +1,9 @@
 import type { DocPackage } from "@/data/docs";
 import { youtubeId } from "@/data/content";
+import { useEffect, useRef } from "react";
+
 const isVideoFile = (url?: string) => !!url && /\.(mp4|webm|ogv)(\?|$)/i.test(url);
+
 /**
  * Card / infobox banner for a package. Uses `media.banner` from `_package.md`
  * when present, otherwise falls back to the gradient + label placeholder.
@@ -40,6 +43,7 @@ export function PackageBanner({
     </div>
   );
 }
+
 /**
  * Hero backdrop for a package page. Prefers, in order:
  *   1. `media.bannerVideo` (mp4/webm) — autoplaying muted loop
@@ -51,6 +55,65 @@ export function PackageHeroBackdrop({ pkg }: { pkg: DocPackage }) {
   const videoFile = pkg.media?.bannerVideo ?? (isVideoFile(pkg.media?.banner) ? pkg.media?.banner : undefined);
   const trailerId = pkg.trailerUrl ? youtubeId(pkg.trailerUrl) : undefined;
   const image = !isVideoFile(pkg.media?.banner) ? pkg.media?.banner : undefined;
+  const playerRef = useRef<any>(null);
+  const apiLoadedRef = useRef(false);
+
+  useEffect(() => {
+    if (!trailerId) return;
+
+    // Load YouTube IFrame API if not already loaded
+    if (!window.YT) {
+      const tag = document.createElement("script");
+      tag.src = "https://www.youtube.com/iframe_api";
+      const firstScriptTag = document.getElementsByTagName("script")[0];
+      firstScriptTag?.parentNode?.insertBefore(tag, firstScriptTag);
+
+      window.onYouTubeIframeAPIReady = () => {
+        apiLoadedRef.current = true;
+        initializePlayer();
+      };
+    } else if (apiLoadedRef.current) {
+      initializePlayer();
+    }
+
+    function initializePlayer() {
+      if (!playerRef.current) {
+        playerRef.current = new window.YT.Player("youtube-player", {
+          videoId: trailerId,
+          playerVars: {
+            autoplay: 1,
+            controls: 0,
+            mute: 1,
+            rel: 0,
+            fs: 0,
+            modestbranding: 1,
+            playsinline: 1,
+          },
+          events: {
+            onStateChange: (event: any) => {
+              // Loop video when it ends
+              if (event.data === window.YT.PlayerState.ENDED) {
+                event.target.playVideo();
+              }
+            },
+          },
+        });
+      }
+    }
+
+    return () => {
+      // Cleanup player instance
+      if (playerRef.current?.destroy) {
+        try {
+          playerRef.current.destroy();
+          playerRef.current = null;
+        } catch (e) {
+          // Player might already be destroyed
+        }
+      }
+    };
+  }, [trailerId]);
+
   return (
     <>
       {videoFile ? (
@@ -65,12 +128,9 @@ export function PackageHeroBackdrop({ pkg }: { pkg: DocPackage }) {
         />
       ) : trailerId ? (
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <iframe
-            title={`${pkg.name} trailer`}
-            src={`https://www.youtube.com/embed/${trailerId}?autoplay=1&mute=1&controls=0&modestbranding=1&playsinline=1&rel=0`}
-            allow="autoplay; encrypted-media; picture-in-picture"
-            allowFullScreen
-            className="absolute left-1/2 top-1/2 h-[110vh] min-h-full w-[195vh] min-w-full -translate-x-1/2 -translate-y-1/2 border-0 pointer-events-none"
+          <div
+            id="youtube-player"
+            className="absolute left-1/2 top-1/2 h-[110vh] min-h-full w-[195vh] min-w-full -translate-x-1/2 -translate-y-1/2 pointer-events-none"
           />
         </div>
       ) : image ? (
