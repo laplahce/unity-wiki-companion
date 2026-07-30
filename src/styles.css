@@ -605,6 +605,14 @@
 
   /* Translucent button on a dark hero image */
   .btn-glass {
+  }
+
+  @keyframes loadbar {
+    0% { transform: translateX(-120%); }
+    100% { transform: translateX(320%); }
+  }
+
+  .btn-glass {
     background-color: rgba(255, 255, 255, 0.12);
     color: #fff;
     border: 1px solid rgba(255, 255, 255, 0.32);
