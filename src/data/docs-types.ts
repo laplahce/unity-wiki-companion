@@ -39,6 +39,15 @@ export type Compatibility = {
   notes?: string[];
 };
 
+// Declared in `_package.md` under `media:` — key/value pairs of image or video
+// URLs used across the cards, hero and gallery.
+export type PackageMedia = {
+  banner?: string;
+  bannerVideo?: string;
+  screenshots?: string[];
+  extra?: Record<string, string[]>;
+};
+
 export type DocPackage = {
   slug: string;
   name: string;
@@ -51,7 +60,9 @@ export type DocPackage = {
   references: { id: string; text: string; url?: string }[];
   demoUrl?: string;
   reviewUrl?: string;
+  assetStoreUrl?: string;
   trailerUrl?: string;
+  media?: PackageMedia;
   status?: PublishStatus;
   compatibility?: Compatibility;
 };
