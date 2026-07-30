@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { SITE } from "@/data/site";
 import { PACKAGES } from "@/data/docs";
 import { Mail, MessageCircle, HelpCircle, BookOpen } from "lucide-react";
 
@@ -45,10 +46,10 @@ function ContactPage() {
             Best for general questions, feedback, and partnership ideas.
           </p>
           <a
-            href="mailto:hello@laplahce.dev"
+            href={`mailto:${SITE.email}`}
             className="mt-3 inline-block text-sm font-semibold text-brand hover:underline"
           >
-            hello@laplahce.dev
+            {SITE.email}
           </a>
         </div>
 
@@ -62,7 +63,7 @@ function ContactPage() {
             and I&apos;ll fix it.
           </p>
           <a
-            href="mailto:hello@laplahce.dev?subject=Bug%20report"
+            href={`mailto:${SITE.email}?subject=Bug%20report`}
             className="mt-3 inline-block text-sm font-semibold text-brand hover:underline"
           >
             Report an issue
@@ -79,7 +80,7 @@ function ContactPage() {
             I read every email.
           </p>
           <a
-            href="mailto:hello@laplahce.dev?subject=Feature%20request"
+            href={`mailto:${SITE.email}?subject=Feature%20request`}
             className="mt-3 inline-block text-sm font-semibold text-brand hover:underline"
           >
             Send a request
@@ -143,7 +144,7 @@ function ContactPage() {
             <p className="mt-2 text-sm text-muted-foreground">
               All my packages are listed on the{" "}
               <a
-                href="https://assetstore.unity.com"
+                href={SITE.assetStoreUrl}
                 target="_blank"
                 rel="noreferrer"
                 className="text-brand hover:underline"
