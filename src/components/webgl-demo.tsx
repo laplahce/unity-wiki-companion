@@ -77,7 +77,7 @@ export function WebGLDemo({ pkg }: { pkg: DocPackage }) {
       <p className="mt-3 text-xs text-muted-foreground">
         Having trouble?{" "}
         <a
-          href={pkg.demoUrl}
+          href={!pkg.demoExternalUrl ? pkg.demoUrl : pkg.demoExternalUrl}
           target="_blank"
           rel="noreferrer noopener"
           className="underline hover:text-foreground"
