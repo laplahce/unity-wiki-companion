@@ -2,6 +2,7 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { useState } from "react";
 import { Menu, X, ChevronDown, Package, Mail, Download } from "lucide-react";
 import { PACKAGES } from "@/data/docs";
+import { SITE } from "@/data/site";
 import { SiteSearch } from "@/components/site-search";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { StatusDot } from "@/components/status-badge";
@@ -12,13 +13,16 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
 
 function useCurrentDocContext() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
-  const match = pathname.match(/^\/docs\/([^/]+)(?:\/([^/]+))?/);
+  const match = pathname.match(/^\/(?:docs|packages)\/([^/]+)(?:\/([^/]+))?/);
   const segment = match?.[1];
   const pageSlug = match?.[2];
 
@@ -28,12 +32,23 @@ function useCurrentDocContext() {
 
 
   const pkg = PACKAGES.find((p) => p.slug === segment) ?? null;
+  if (!pkg) return { kind: "home" as const, pathname };
   return {
     kind: "package" as const,
     pathname,
     pkg,
     currentPageSlug: pageSlug ?? "overview",
   };
+}
+
+// Packages grouped by the `category:` field in each `_package.md`.
+function packagesByCategory() {
+  const grouped = new Map<string, typeof PACKAGES>();
+  for (const p of PACKAGES) {
+    if (!grouped.has(p.category)) grouped.set(p.category, []);
+    grouped.get(p.category)!.push(p);
+  }
+  return [...grouped.entries()].sort(([a], [b]) => a.localeCompare(b));
 }
 
 function PackagesSwitcher({
@@ -142,6 +157,7 @@ function PackageNavMenu() {
   const activeSlug = ctx.kind === "package" ? ctx.pkg?.slug : undefined;
   const label =
     ctx.kind === "package" && ctx.pkg ? ctx.pkg.name : "Packages";
+  const categories = packagesByCategory();
 
   return (
     <DropdownMenu>
@@ -152,17 +168,34 @@ function PackageNavMenu() {
       <DropdownMenuContent align="end" className="w-56">
         <DropdownMenuLabel>My packages</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        {PACKAGES.map((p) => (
-          <DropdownMenuItem key={p.slug} asChild>
-            <Link
-              to="/packages/$package"
-              params={{ package: p.slug }}
-              className={activeSlug === p.slug ? "font-semibold" : ""}
-            >
-              {p.name}
-            </Link>
-          </DropdownMenuItem>
+        {categories.map(([category, pkgs]) => (
+          <DropdownMenuSub key={category}>
+            <DropdownMenuSubTrigger>
+              <span className="flex-1">{category}</span>
+              <span className="ml-2 text-xs text-muted-foreground">{pkgs.length}</span>
+            </DropdownMenuSubTrigger>
+            <DropdownMenuSubContent className="w-60">
+              {pkgs.map((p) => (
+                <DropdownMenuItem key={p.slug} asChild>
+                  <Link
+                    to="/packages/$package"
+                    params={{ package: p.slug }}
+                    className={activeSlug === p.slug ? "font-semibold" : ""}
+                  >
+                    <span className="flex-1">{p.name}</span>
+                    {p.status && <StatusDot status={p.status} />}
+                  </Link>
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuSubContent>
+          </DropdownMenuSub>
         ))}
+        <DropdownMenuSeparator />
+        <DropdownMenuItem asChild>
+          <Link to="/packages" className="font-semibold text-brand">
+            View all packages →
+          </Link>
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
@@ -173,6 +206,11 @@ function PackageNavMenu() {
 export function SiteHeader({ onMenuClick }: { onMenuClick: () => void }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const showSearch = pathname.startsWith("/docs");
+  const ctx = useCurrentDocContext();
+  // When browsing a package (or its docs), the Asset Store button points at
+  // that package's own store page.
+  const storeUrl =
+    (ctx.kind === "package" && ctx.pkg?.assetStoreUrl) || SITE.assetStoreUrl;
   return (
     <header className="sticky top-0 z-30 border-b border-border bg-background/80 backdrop-blur-md">
       <div className="mx-auto flex max-w-[1400px] items-center gap-3 px-4 py-3 sm:gap-6 sm:px-6 sm:py-4">
@@ -186,12 +224,16 @@ export function SiteHeader({ onMenuClick }: { onMenuClick: () => void }) {
         </button>
         <Link to="/" className="flex items-center gap-3">
           <div className="flex aspect-square h-9 w-9 shrink-0 items-center justify-center rounded-lg card-grad">
-            <span className="text-lg font-extrabold text-white">L</span>
+            {SITE.logoImage ? (
+              <img src={SITE.logoImage} alt={SITE.name} className="h-full w-full rounded-lg object-cover" />
+            ) : (
+              <span className="text-lg font-extrabold text-white">{SITE.logoText}</span>
+            )}
           </div>
           <div className="leading-tight">
-            <div className="text-base font-bold tracking-tight">laplahce</div>
+            <div className="text-base font-bold tracking-tight">{SITE.name}</div>
             <div className="hidden text-[11px] text-muted-foreground sm:block">
-              Unity Asset Store developer
+              {SITE.tagline}
             </div>
           </div>
         </Link>
@@ -212,10 +254,10 @@ export function SiteHeader({ onMenuClick }: { onMenuClick: () => void }) {
 
           <ThemeToggle />
           <a
-            href="https://assetstore.unity.com"
+            href={storeUrl}
             target="_blank"
             rel="noreferrer"
-            className="whitespace-nowrap rounded-lg px-4 py-2 text-sm font-semibold text-white card-grad transition hover:opacity-90 hover:shadow-md"
+            className="btn btn-grad !rounded-lg px-4 py-2 text-sm"
           >
             Asset Store
           </a>
