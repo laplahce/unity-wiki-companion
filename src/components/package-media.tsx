@@ -1,6 +1,6 @@
 import type { DocPackage } from "@/data/docs";
 import { youtubeId } from "@/data/content";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 const isVideoFile = (url?: string) => !!url && /\.(mp4|webm|ogv)(\?|$)/i.test(url);
 
@@ -57,7 +57,6 @@ export function PackageHeroBackdrop({ pkg }: { pkg: DocPackage }) {
   const image = !isVideoFile(pkg.media?.banner) ? pkg.media?.banner : undefined;
   const playerRef = useRef<any>(null);
   const apiLoadedRef = useRef(false);
-  const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
     if (!trailerId) return;
@@ -89,14 +88,9 @@ export function PackageHeroBackdrop({ pkg }: { pkg: DocPackage }) {
             fs: 0,
             modestbranding: 1,
             playsinline: 1,
-            iv_load_policy: 3,
           },
           events: {
             onStateChange: (event: any) => {
-              // Show player once playing
-              if (event.data === window.YT.PlayerState.PLAYING) {
-                setIsPlaying(true);
-              }
               // Loop video when it ends
               if (event.data === window.YT.PlayerState.ENDED) {
                 event.target.playVideo();
@@ -136,10 +130,7 @@ export function PackageHeroBackdrop({ pkg }: { pkg: DocPackage }) {
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           <div
             id="youtube-player"
-            className="absolute left-1/2 top-1/2 h-[110vh] min-h-full w-[195vh] min-w-full -translate-x-1/2 -translate-y-1/2 pointer-events-none transition-opacity duration-500"
-            style={{
-              opacity: isPlaying ? 1 : 0,
-            }}
+            className="absolute left-1/2 top-1/2 h-[110vh] min-h-full w-[195vh] min-w-full -translate-x-1/2 -translate-y-1/2 pointer-events-none"
           />
         </div>
       ) : image ? (
