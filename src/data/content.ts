@@ -79,8 +79,8 @@ function parseFlow(input: string): unknown {
   const literal = (v: string) =>
     /^(true|false|null|-?\d+(\.\d+)?)$/.test(v) ? v : JSON.stringify(v);
   const json = s
-    // quote bare keys: { foo: ... -> { "foo": ...
-    .replace(/([{,]\s*)([A-Za-z_][\w-]*)\s*:/g, '$1"$2":')
+    // quote bare keys (spaces allowed): { render pipelines: ... }
+    .replace(/([{,]\s*)([A-Za-z_][\w -]*?)\s*:/g, '$1"$2":')
     // single-quoted -> double-quoted strings
     .replace(/'([^']*)'/g, '"$1"')
     // quote bare map values: "label": Developer  ->  "label": "Developer"
