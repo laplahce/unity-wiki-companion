@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Package as PackageIcon } from "lucide-react";
 import { PACKAGES } from "@/data/docs";
 import { StatusBadge } from "@/components/status-badge";
+import { PackageBanner } from "@/components/package-media";
 
 export const Route = createFileRoute("/packages/")({
   head: () => ({
@@ -73,9 +74,11 @@ function PackagesIndex() {
                     params={{ package: p.slug }}
                     className="group flex items-center gap-4 px-5 py-4 transition hover:bg-surface-alt"
                   >
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl card-grad text-sm font-extrabold text-white">
-                      {p.label.charAt(0)}
-                    </div>
+                    <PackageBanner pkg={p} className="h-12 w-12 shrink-0 rounded-xl">
+                      <span className="text-sm font-extrabold text-white drop-shadow">
+                        {p.label.charAt(0)}
+                      </span>
+                    </PackageBanner>
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center gap-2">
                         <div className="truncate text-base font-bold text-foreground">

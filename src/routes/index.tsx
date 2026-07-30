@@ -2,6 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { PACKAGES } from "@/data/docs";
 import { ArrowRight, Github, Mail, Package as PackageIcon, Wrench } from "lucide-react";
 import { StatusBadge } from "@/components/status-badge";
+import { PackageBanner } from "@/components/package-media";
+import { SITE } from "@/data/site";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -45,13 +47,13 @@ function Home() {
           <Link
             to="/packages/$package"
             params={{ package: PACKAGES[0].slug }}
-            className="inline-flex items-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold text-white card-grad card-shadow"
+            className="btn btn-grad px-5 py-3 text-sm"
           >
             See my packages <ArrowRight className="h-4 w-4" />
           </Link>
           <Link
             to="/docs"
-            className="rounded-xl border border-border-strong px-5 py-3 text-sm font-semibold hover:bg-surface-alt"
+            className="btn btn-solid px-5 py-3 text-sm"
           >
             Browse the docs
           </Link>
@@ -82,12 +84,14 @@ function Home() {
               params={{ package: p.slug }}
               className="group overflow-hidden rounded-2xl border border-border bg-card card-shadow transition hover:border-brand"
             >
-              <div className="card-grad relative flex h-36 items-center justify-center">
-                <span className="text-2xl font-extrabold tracking-tight text-white drop-shadow">
+              <PackageBanner pkg={p} className="h-36">
+                <span className="px-3 text-center text-2xl font-extrabold tracking-tight text-white drop-shadow">
                   {p.label}
                 </span>
+              </PackageBanner>
+              <div className="relative">
                 {p.status && (
-                  <span className="absolute left-3 top-3">
+                  <span className="absolute left-3 -top-[8.25rem]">
                     <StatusBadge
                       status={p.status}
                       size="xs"
@@ -117,7 +121,7 @@ function Home() {
           <div className="mt-6 flex justify-center">
             <Link
               to="/packages"
-              className="inline-flex items-center gap-2 rounded-xl border border-border-strong px-5 py-3 text-sm font-semibold hover:bg-surface-alt"
+              className="btn btn-solid px-5 py-3 text-sm"
             >
               See all {PACKAGES.length} packages <ArrowRight className="h-4 w-4" />
             </Link>
@@ -147,18 +151,20 @@ function Home() {
             <div className="flex flex-wrap gap-3 pt-2">
               <Link
                 to="/contact"
-                className="inline-flex items-center gap-2 rounded-lg border border-border bg-background px-3 py-2 text-sm font-medium text-foreground transition hover:border-brand"
+                className="btn btn-solid !rounded-lg px-3 py-2 text-sm"
               >
                 <Mail className="h-4 w-4 text-brand" /> Get in touch
               </Link>
-              <a
-                href="https://github.com"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-lg border border-border bg-background px-3 py-2 text-sm font-medium text-foreground transition hover:border-brand"
-              >
-                <Github className="h-4 w-4" /> GitHub
-              </a>
+              {SITE.github && (
+                <a
+                  href={SITE.github}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn btn-solid !rounded-lg px-3 py-2 text-sm"
+                >
+                  <Github className="h-4 w-4" /> GitHub
+                </a>
+              )}
             </div>
           </div>
         </div>

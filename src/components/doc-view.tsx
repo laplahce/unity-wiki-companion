@@ -182,10 +182,11 @@ function ReviewPromptInner({ pkg }: { pkg: DocPackage }) {
 }
 
 function PurchaseBanner({ pkg }: { pkg: DocPackage }) {
-  if (!pkg.reviewUrl) return null;
+  const storeUrl = pkg.assetStoreUrl;
+  if (!storeUrl) return null;
   return (
     <a
-      href={pkg.reviewUrl.replace("#reviews", "")}
+      href={storeUrl}
       target="_blank"
       rel="noreferrer noopener"
       className="not-prose group my-4 inline-flex items-center gap-2 rounded-md border border-border bg-muted/40 px-2.5 py-1 text-xs font-medium text-muted-foreground hover:border-brand/50"
