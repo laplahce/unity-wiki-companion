@@ -76,18 +76,17 @@ export function PackageHeroBackdrop({ pkg }: { pkg: DocPackage }) {
             iv_load_policy: 3,
             disablekb: 1,
             showinfo: 0,
+            // Use YouTube's native looping (requires playlist to be set to the same video id)
+            loop: 1,
+            playlist: trailerId,
           },
           events: {
             onReady: (event: any) => {
               event.target.mute();
               event.target.playVideo();
             },
-            onStateChange: (event: any) => {
-              // Loop video when it ends
-              if (event.data === window.YT.PlayerState.ENDED) {
-                event.target.playVideo();
-              }
-            },
+            // Rely on YouTube's native loop (via playerVars.loop + playlist) to avoid
+            // briefly showing the built-in play overlay when manually restarting the video.
           },
         });
       }
