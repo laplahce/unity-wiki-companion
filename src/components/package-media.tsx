@@ -71,9 +71,9 @@ export function PackageHeroBackdrop({ pkg }: { pkg: DocPackage }) {
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           <iframe
             title={`${pkg.name} trailer`}
-            src={`https://www.youtube.com/embed/${trailerId}?autoplay=1&mute=1&loop=1&playlist=${trailerId}&controls=0&modestbranding=1&playsinline=1&rel=0&showinfo=0&disablekb=1`}
+            src={`https://www.youtube.com/embed/${trailerId}?autoplay=1&mute=1&loop=1&playlist=${trailerId}&playsinline=1&rel=0`}
             allow="autoplay; encrypted-media; picture-in-picture"
-            className="absolute left-1/2 top-1/2 h-[110vh] min-h-full w-[195vh] min-w-full -translate-x-1/2 -translate-y-1/2 border-0"
+            className="absolute left-1/2 top-1/2 h-[110vh] min-h-full w-[195vh] min-w-full -translate-x-1/2 -translate-y-1/2 border-0 pointer-events-none"
           />
         </div>
       ) : image ? (
