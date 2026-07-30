@@ -514,6 +514,112 @@
     transform: translateY(1px) scale(0.985);
   }
 
+  /* ---------- Shared button styles ---------- */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    border-radius: 0.75rem;
+    white-space: nowrap;
+    transition:
+      background-color 160ms ease,
+      border-color 160ms ease,
+      box-shadow 160ms ease,
+      transform 160ms ease,
+      filter 160ms ease;
+  }
+
+  /* Gradient / primary button */
+  .btn-grad {
+    position: relative;
+    background-image: var(--gradient-brand);
+    color: #fff;
+    border: 1px solid color-mix(in oklab, var(--color-brand) 60%, black 12%);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.22),
+      0 1px 2px rgba(15, 23, 42, 0.16),
+      0 6px 16px -8px color-mix(in oklab, var(--color-brand) 70%, transparent);
+  }
+  .btn-grad:hover {
+    filter: saturate(1.08) brightness(1.06);
+    transform: translateY(-1px);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.28),
+      0 2px 4px rgba(15, 23, 42, 0.18),
+      0 14px 28px -12px color-mix(in oklab, var(--color-brand) 85%, transparent);
+  }
+  .btn-grad:active {
+    filter: brightness(0.97);
+    transform: translateY(1px) scale(0.99);
+    box-shadow:
+      inset 0 2px 4px rgba(15, 23, 42, 0.22),
+      0 1px 2px rgba(15, 23, 42, 0.12);
+  }
+  .btn-grad:focus-visible {
+    outline: 2px solid color-mix(in oklab, var(--color-brand) 70%, transparent);
+    outline-offset: 2px;
+  }
+
+  /* Neutral / secondary button (light surface) */
+  .btn-solid {
+    background-color: var(--color-card);
+    color: var(--color-foreground);
+    border: 1px solid var(--color-border-strong, var(--color-border));
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
+  }
+  .btn-solid:hover {
+    background-color: var(--color-surface-alt);
+    border-color: var(--color-brand);
+    color: var(--color-brand);
+    transform: translateY(-1px);
+    box-shadow: 0 10px 22px -14px color-mix(in oklab, var(--color-brand) 80%, transparent);
+  }
+  .btn-solid:active {
+    transform: translateY(1px) scale(0.99);
+    box-shadow: inset 0 2px 4px rgba(15, 23, 42, 0.08);
+  }
+  .btn-solid:focus-visible {
+    outline: 2px solid color-mix(in oklab, var(--color-brand) 60%, transparent);
+    outline-offset: 2px;
+  }
+
+  /* White button sitting on top of a dark hero image */
+  .btn-on-dark {
+    background-color: #fff;
+    color: #101828;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  }
+  .btn-on-dark:hover {
+    background-color: #fff;
+    color: var(--color-brand);
+    transform: translateY(-1px);
+    box-shadow: 0 14px 30px -12px rgba(0, 0, 0, 0.55);
+  }
+  .btn-on-dark:active {
+    transform: translateY(1px) scale(0.99);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.18);
+  }
+
+  /* Translucent button on a dark hero image */
+  .btn-glass {
+    background-color: rgba(255, 255, 255, 0.12);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.32);
+    backdrop-filter: blur(8px);
+  }
+  .btn-glass:hover {
+    background-color: rgba(255, 255, 255, 0.24);
+    border-color: rgba(255, 255, 255, 0.6);
+    transform: translateY(-1px);
+    box-shadow: 0 14px 30px -14px rgba(0, 0, 0, 0.6);
+  }
+  .btn-glass:active {
+    transform: translateY(1px) scale(0.99);
+  }
+
   .side-link {
     display: block;
     padding: 0.5rem 0 0.5rem 1rem;
