@@ -16,7 +16,7 @@ media:
   banner: "/content/packages/cartoon-fx-pack-v2/Media/Banner.png"
   bannerVideo: "/content/packages/cartoon-fx-pack-v2/Media/Trailer.mp4"
   screenshots:
-    - "/content/packages/cartoon-fx-pack-v2/Media/Media 001.png"
+    - "/content/packages/cartoon-fx-pack-v2/Media/Media-001.png"
     - "/content/packages/cartoon-fx-pack-v2/Media/Media 002.png"
     - "/content/packages/cartoon-fx-pack-v2/Media/Media 003.png"
     - "/content/packages/cartoon-fx-pack-v2/Media/Media 004.png"
