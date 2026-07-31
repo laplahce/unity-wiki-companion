@@ -19,6 +19,7 @@ function PackageShowcase() {
   const storeUrl = pkg.assetStoreUrl ?? SITE.assetStoreUrl;
   const related = PACKAGES.filter((p) => p.slug !== pkg.slug).slice(0, 3);
   const shots = pkg.media?.screenshots ?? [];
+  const highlights = pkg.highlight ?? [];
 
   return (
     <div>
@@ -84,18 +85,11 @@ function PackageShowcase() {
       {/* Main content */}
       <div className="mx-auto max-w-5xl space-y-16 px-6 py-16 sm:px-10">
         {/* Highlights */}
-        <section>
+        {highlights.length > 0 && <section>
           <div className="eyebrow">What you get</div>
           <h2 className="display mt-2 text-2xl sm:text-3xl">Highlights</h2>
           <div className="mt-6 grid gap-4 sm:grid-cols-3">
-            {[
-              "Drop-in setup, no scene wiring",
-              "Source included, MIT-friendly license",
-              "Long-term support across Unity LTS",
-              "Playable WebGL demo included",
-              "Editor tooling that respects undo",
-              "Battle-tested in shipped games",
-            ].map((h) => (
+            {highlights.map((h) => (
               <div
                 key={h}
                 className="flex items-start gap-3 rounded-xl border border-border bg-card p-4"
@@ -105,7 +99,7 @@ function PackageShowcase() {
               </div>
             ))}
           </div>
-        </section>
+        </section>}
 
         {/* Media gallery */}
         <section>
