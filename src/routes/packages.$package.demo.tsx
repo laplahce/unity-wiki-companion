@@ -63,7 +63,7 @@ function DemoPage() {
           <h2 className="font-serif text-xl font-bold">Want more?</h2>
           <p className="mt-3 text-sm text-muted-foreground">
             The documentation covers every feature shown here, plus the parts
-            that don't fit in a demo (the true custom editor, installation & more).
+            that don&apos;t fit in a demo (the true custom editor, installation & more).
           </p>
           <div className="mt-4 flex flex-wrap gap-2">
             <Link
