@@ -7,9 +7,8 @@ favicon: "/content/Icon.png"
 email: laplahce@gmail.com
 github: 
 assetStoreUrl: https://assetstore.unity.com/publishers/62747
-copyright: "© {year} laplahce — Independent Unity tools. Not affiliated with Unity Technologies."
-footerNote: Made with care, shipped with docs.
+copyright: "© {year} laplahce - Unity Asset Store developer. Not affiliated with Unity Technologies."
+footerNote: Made with care.
 ---
 
-Independent Unity tools, made with care. Each package ships with a playable
-demo and proper documentation — no guesswork.
+I'm an independent Unity Asset Store developer. Each package is made with care with focus on user-experience to make it as easy as possible to use.
