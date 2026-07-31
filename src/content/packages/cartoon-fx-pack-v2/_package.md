@@ -21,4 +21,12 @@ infobox:
   - { label: Render pipelines, value: "Built-in, URP, HDRP" }
   - { label: Engine, value: "Unity 2022, 2023, 6 and later" }
   - { label: Type, value: "VFX pack + editor tool" }
+highlights:
+  - 100+ drag-and-drop FXs
+  - 200+ textures
+  - Custom FX Editor
+  - Works for all Render Pipelines
+  - Works for most platforms
+  - Works for Unity 2022, 2023, 6 & later.
+  - Playable WebGL demo
 ---
