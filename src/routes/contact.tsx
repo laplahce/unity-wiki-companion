@@ -6,13 +6,13 @@ import { Mail, MessageCircle, HelpCircle, BookOpen } from "lucide-react";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact — laplahce" },
+      { title: "Contact" },
       {
         name: "description",
         content:
           "Get in touch with me for support, feedback, or questions about my Unity Asset Store packages.",
       },
-      { property: "og:title", content: "Contact — laplahce" },
+      { property: "og:title", content: "Contact" },
       {
         property: "og:description",
         content:
@@ -31,7 +31,7 @@ function ContactPage() {
         <h1 className="display mt-3 text-3xl sm:text-4xl">Get in touch</h1>
         <p className="mt-4 max-w-xl text-muted-foreground">
           Got a question about one of my packages, found a bug, or just want
-          to say hi? Here&apos;s the easiest way to reach me — I usually reply
+          to say hi? Here&apos;s the easiest way to reach me - I usually reply
           within a day.
         </p>
       </div>
@@ -76,8 +76,7 @@ function ContactPage() {
           </div>
           <h3 className="text-base font-bold">Feature request</h3>
           <p className="mt-1 text-sm text-muted-foreground">
-            Wish one of my packages did something it doesn&apos;t? Tell me —
-            I read every email.
+            Wish one of my packages did something it doesn&apos;t?
           </p>
           <a
             href={`mailto:${SITE.email}?subject=Feature%20request`}
@@ -93,7 +92,7 @@ function ContactPage() {
           </div>
           <h3 className="text-base font-bold">Response time</h3>
           <p className="mt-1 text-sm text-muted-foreground">
-            I usually reply within a day. For anything urgent, email is the
+            I usually reply within a day. Email is the
             fastest way to reach me.
           </p>
         </div>
@@ -108,7 +107,7 @@ function ContactPage() {
               <span className="ml-2 text-muted-foreground transition group-open:rotate-180">▼</span>
             </summary>
             <p className="mt-2 text-sm text-muted-foreground">
-              Nope. I&apos;m an independent developer. I sell my own packages
+              No. I&apos;m an independent developer. I sell my own packages
               on the Asset Store, but I&apos;m not affiliated with Unity
               Technologies in any way.
             </p>
@@ -120,8 +119,7 @@ function ContactPage() {
               <span className="ml-2 text-muted-foreground transition group-open:rotate-180">▼</span>
             </summary>
             <p className="mt-2 text-sm text-muted-foreground">
-              Yes — the Asset Store license covers commercial use. Check the
-              license tab on each package page if you want the exact terms.
+              Yes. The Asset Store license covers commercial use.
             </p>
           </details>
           <div className="h-px bg-border" />
