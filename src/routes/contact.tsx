@@ -31,7 +31,7 @@ function ContactPage() {
         <h1 className="display mt-3 text-3xl sm:text-4xl">Get in touch</h1>
         <p className="mt-4 max-w-xl text-muted-foreground">
           Got a question about one of my packages, found a bug, or just want
-          to say hi? Here&apos;s the easiest way to reach me - I usually reply
+          to say hi? Here&apos;s the easiest way to reach me. I usually reply
           within a day.
         </p>
       </div>
