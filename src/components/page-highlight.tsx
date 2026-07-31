@@ -9,7 +9,7 @@ import {
 
 // Special-page markers a `.md` file can declare with `highlight: <value>` in
 // its frontmatter. They drive the sidebar dot/icon and the banner at the top
-// of the page — purely presentational, no routing meaning.
+// of the page - purely presentational, no routing meaning.
 export type PageHighlight =
   | "start-here"
   | "new"
@@ -30,42 +30,42 @@ export const HIGHLIGHTS: Record<
 > = {
   "start-here": {
     label: "Start here",
-    banner: "Start here — recommended first read",
+    banner: "Start here - recommended first read",
     icon: Download,
     dot: "bg-brand",
     text: "text-brand",
   },
   new: {
     label: "New",
-    banner: "New page — recently added to these docs",
+    banner: "New page - recently added to these docs",
     icon: Sparkles,
     dot: "bg-emerald-500",
     text: "text-emerald-600 dark:text-emerald-400",
   },
   updated: {
     label: "Updated",
-    banner: "Updated — this page changed in the latest release",
+    banner: "Updated - this page changed in the latest release",
     icon: RefreshCw,
     dot: "bg-sky-500",
     text: "text-sky-600 dark:text-sky-400",
   },
   experimental: {
     label: "Experimental",
-    banner: "Experimental — the API described here can still change",
+    banner: "Experimental - the API described here can still change",
     icon: FlaskConical,
     dot: "bg-violet-500",
     text: "text-violet-600 dark:text-violet-400",
   },
   advanced: {
     label: "Advanced",
-    banner: "Advanced — assumes you already went through the basics",
+    banner: "Advanced - assumes you already went through the basics",
     icon: GraduationCap,
     dot: "bg-indigo-500",
     text: "text-indigo-600 dark:text-indigo-400",
   },
   deprecated: {
     label: "Deprecated",
-    banner: "Deprecated — kept for reference, avoid in new projects",
+    banner: "Deprecated - kept for reference, avoid in new projects",
     icon: AlertTriangle,
     dot: "bg-rose-500",
     text: "text-rose-600 dark:text-rose-400",
