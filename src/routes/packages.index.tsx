@@ -11,7 +11,7 @@ export const Route = createFileRoute("/packages/")({
       {
         name: "description",
         content:
-          "The full catalog of my Unity Asset Store packages - tools for animation, AI, editor tooling, and more.",
+          "The full catalog of my Unity Asset Store packages.",
       },
       { property: "og:title", content: "All packages" },
       {
@@ -42,8 +42,8 @@ function PackagesIndex() {
           All my packages
         </h1>
         <p className="mt-4 max-w-2xl text-base text-muted-foreground sm:text-lg">
-          Every tool I&apos;ve shipped on the Asset Store, grouped by what they
-          do. Each one comes with a playable demo and proper docs.
+          Every pack I&apos;ve published on the Asset Store, grouped by category.
+          Each one comes with a well thought out documentation.
         </p>
         <div className="mt-6 flex flex-wrap gap-6 text-sm text-muted-foreground">
           <div>
@@ -75,9 +75,9 @@ function PackagesIndex() {
                     className="group flex items-center gap-4 px-5 py-4 transition hover:bg-surface-alt"
                   >
                     <PackageBanner pkg={p} className="h-12 w-12 shrink-0 rounded-xl">
-                      <span className="text-sm font-extrabold text-white drop-shadow">
+                      {p.label && <span className="text-sm font-extrabold text-white drop-shadow">
                         {p.label.charAt(0)}
-                      </span>
+                      </span>}
                     </PackageBanner>
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center gap-2">
