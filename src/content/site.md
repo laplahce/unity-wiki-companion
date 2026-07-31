@@ -11,4 +11,4 @@ copyright: "© {year} laplahce - Unity Asset Store developer. Not affiliated wit
 footerNote: Made with care.
 ---
 
-I&apos;m an independent Unity Asset Store developer. Each package is made with care with focus on user-experience to make it as easy as possible to use.
+I'm an independent Unity Asset Store developer. Each package is made with care with focus on user-experience to make it as easy as possible to use.
