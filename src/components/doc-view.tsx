@@ -206,7 +206,7 @@ function PurchaseBanner({ pkg }: { pkg: DocPackage }) {
   );
 }
 
-// On the docs "try-demo" page we no longer embed the WebGL build inline —
+// On the docs "try-demo" page we no longer embed the WebGL build inline -
 // the playable demo lives at its own dedicated route. This card links there.
 function DemoRedirectCard({ pkg }: { pkg: DocPackage }) {
   return (
@@ -223,8 +223,7 @@ function DemoRedirectCard({ pkg }: { pkg: DocPackage }) {
           Open the {pkg.name} live demo
         </div>
         <p className="text-sm text-muted-foreground">
-          The interactive WebGL build now lives on its own page — load it
-          there, share the URL, and skip the doc chrome.
+          The interactive WebGL demo for the package.
         </p>
       </div>
       <ArrowRight className="h-5 w-5 text-muted-foreground transition group-hover:text-brand" />
