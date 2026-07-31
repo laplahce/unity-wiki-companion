@@ -8,9 +8,7 @@ import { ArrowRight } from "lucide-react";
 const HOME_TOC: TocItem[] = [
   { id: "welcome", title: "Welcome", level: 2 },
   { id: "featured", title: "Browse documentation", level: 2 },
-  { id: "how-it-works", title: "How these docs work", level: 2 },
   { id: "contents", title: "All packages", level: 2 },
-  { id: "about", title: "What this site is", level: 2 },
 ];
 
 export const Route = createFileRoute("/docs/")({
