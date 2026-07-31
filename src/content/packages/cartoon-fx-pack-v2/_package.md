@@ -6,6 +6,7 @@ color: "#ff5c8a"
 label: Cartoon FX Pack v2
 trailerUrl: https://youtu.be/6kIb5KockaI
 assetStoreUrl: https://assetstore.unity.com/packages/slug/393578
+reviewUrl: https://assetstore.unity.com/packages/slug/393578#reviews
 demoUrl: https://play.unity.com/api/v1/games/game/2cc69f89-2921-48b3-ba6f-ebf6020603f9/build/latest/frame
 demoExternalUrl: https://play.unity.com/en/games/2cc69f89-2921-48b3-ba6f-ebf6020603f9/cartoon-fx-pack-v2-demo
 media:
