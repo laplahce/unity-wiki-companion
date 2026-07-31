@@ -5,7 +5,7 @@ category: VFX
 color: "#ff5c8a"
 label: Cartoon FX Pack v2
 status: in-development
-trailerUrl: https://youtu.be/9fLm-Oq6Nyo
+trailerUrl: https://youtu.be/-GnWnDlKDBk
 assetStoreUrl: https://assetstore.unity.com/packages/slug/393578
 demoUrl: https://play.unity.com/api/v1/games/game/2cc69f89-2921-48b3-ba6f-ebf6020603f9/build/latest/frame
 demoExternalUrl: https://play.unity.com/en/games/2cc69f89-2921-48b3-ba6f-ebf6020603f9/cartoon-fx-pack-v2-demo
