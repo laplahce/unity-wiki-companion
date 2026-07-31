@@ -35,10 +35,10 @@ function Home() {
         </div>
         <h1 className="display mt-4 text-4xl sm:text-5xl lg:text-6xl">
           Hi, I'm <span className="text-brand">laplahce</span>.
-          <br />I build Asset packs for your next games.
+          <br />I build Assets for your games.
         </h1>
         <p className="mt-6 max-w-2xl text-base text-muted-foreground sm:text-lg">
-          I've been creating packages on the Unity Asset Store for a while
+          I've been creating asset packs on the Unity Asset Store for a while
           now. Here you'll find all my packages, their documentation, media & more.
         </p>
         <div className="mt-7 flex flex-wrap gap-3">
