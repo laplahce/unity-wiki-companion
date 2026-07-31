@@ -42,4 +42,4 @@ title: Getting started
 7. Restart the effect to see what changed.
 8. For more information, check out [Create an effect](./creating-an-effect).
 
-::youtube{id=fJNnC6ASYgI caption="Video tutorial for the pack. A great choice for those who prefer learning by video."}
+::youtube{id=-GnWnDlKDBk caption="Video tutorial for the pack. A great choice for those who prefer learning by video."}
