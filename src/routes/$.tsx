@@ -3,9 +3,9 @@ import { createFileRoute, Link, useRouter } from "@tanstack/react-router";
 export const Route = createFileRoute("/$")({
   head: () => ({
     meta: [
-      { title: "404 — Page not found | laplahce" },
+      { title: "404 - Page not found" },
       { name: "description", content: "The page you requested could not be found on laplahce." },
-      { property: "og:title", content: "404 — Page not found | laplahce" },
+      { property: "og:title", content: "404 - Page not found" },
       { property: "og:description", content: "The page you requested could not be found on laplahce." },
       { name: "robots", content: "noindex" },
     ],
@@ -29,7 +29,7 @@ function NotFoundPage() {
         This article hasn&apos;t been written yet.
       </h1>
       <p className="mt-4 text-muted-foreground">
-        We looked everywhere — under the prefabs, behind the scriptable objects,
+        We looked everywhere. Under the prefabs, behind the scriptable objects,
         even inside the scene hierarchy. No luck. The page you&apos;re after
         either moved, was renamed, or never existed in the first place.
       </p>
