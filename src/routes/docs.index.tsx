@@ -16,13 +16,13 @@ const HOME_TOC: TocItem[] = [
 export const Route = createFileRoute("/docs/")({
   head: () => ({
     meta: [
-      { title: "Docs — laplahce" },
+      { title: "Docs" },
       {
         name: "description",
         content:
           "Modern, encyclopedia-style documentation for popular Unity Asset Store packages: DOTween, Odin Inspector, Cinemachine, A* Pathfinding Project.",
       },
-      { property: "og:title", content: "Docs — laplahce" },
+      { property: "og:title", content: "Docs" },
       {
         property: "og:description",
         content: "Modern, encyclopedia-style documentation for popular Unity Asset Store packages.",
@@ -44,7 +44,7 @@ function Index() {
         </h1>
         <p className="mt-5 max-w-2xl text-base text-muted-foreground sm:text-lg">
           A curated documentation hub for the packages real studios ship with.
-          Each package has its own multi-page reference — clean writing,
+          Each package has its own multi-page reference - clean writing,
           neutral voice, citations included.
         </p>
         <div className="mt-7 flex flex-wrap gap-3">
