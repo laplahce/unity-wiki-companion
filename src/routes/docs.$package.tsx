@@ -9,12 +9,12 @@ export const Route = createFileRoute("/docs/$package")({
   },
   head: ({ loaderData }) => {
     const pkg = loaderData?.pkg;
-    if (!pkg) return { meta: [{ title: "Package not found — laplahce" }] };
+    if (!pkg) return { meta: [{ title: "Package not found" }] };
     return {
       meta: [
-        { title: `${pkg.name} — laplahce Docs` },
+        { title: `${pkg.name} Docs` },
         { name: "description", content: pkg.tagline },
-        { property: "og:title", content: `${pkg.name} — laplahce Docs` },
+        { property: "og:title", content: `${pkg.name} Docs` },
         { property: "og:description", content: pkg.tagline },
       ],
     };
