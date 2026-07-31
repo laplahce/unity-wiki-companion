@@ -436,6 +436,7 @@ function buildPackages(): DocPackage[] {
       demoUrl: front.demoUrl,
       demoExternalUrl: front.demoExternalUrl,
       reviewUrl: front.reviewUrl,
+      highlights: front.highlights,
       assetStoreUrl:
         front.assetStoreUrl ?? front.reviewUrl?.replace(/#reviews\s*$/, ""),
       trailerUrl: front.trailerUrl,
