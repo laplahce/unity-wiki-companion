@@ -7,13 +7,13 @@ import { PackageBanner } from "@/components/package-media";
 export const Route = createFileRoute("/packages/")({
   head: () => ({
     meta: [
-      { title: "All packages — laplahce" },
+      { title: "All packages" },
       {
         name: "description",
         content:
-          "The full catalog of my Unity Asset Store packages — tools for animation, AI, editor tooling, and more.",
+          "The full catalog of my Unity Asset Store packages - tools for animation, AI, editor tooling, and more.",
       },
-      { property: "og:title", content: "All packages — laplahce" },
+      { property: "og:title", content: "All packages" },
       {
         property: "og:description",
         content: "The full catalog of my Unity Asset Store packages.",
