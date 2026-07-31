@@ -21,7 +21,7 @@ compatibility:
 
 ::youtube{id=-GnWnDlKDBk caption="Video tutorial for the pack. A great choice for those who prefer learning by video."}
 
-## What's inside
+## What&apos;s inside
 
 - **100+** drag-and-drop FXs for your projects.
 - **50+** Explosions, Smoke Puffs, Debris.
