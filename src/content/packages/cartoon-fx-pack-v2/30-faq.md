@@ -25,3 +25,11 @@ Yes. The licence covers commercial projects, per the standard Unity Asset Store 
 ## Can I edit the included effects?
 
 Yes. Every effect has the **Cartoon FX** component attached letting you edit the effect easily using the custom editor.
+
+## Can I use the effects in my 2D game?
+
+Yes. Althought the pack was made with 3D in mind, the effects can also be used in 2D.
+
+## Can I use the effects in my 3D game?
+
+Yes.
