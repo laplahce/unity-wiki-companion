@@ -78,7 +78,7 @@ export function StatusDot({
       : "bg-sky-500";
   return (
     <span
-      title={`${STATUS_LABEL[status]} — ${STATUS_DESCRIPTION[status]}`}
+      title={`${STATUS_LABEL[status]} - ${STATUS_DESCRIPTION[status]}`}
       className={`inline-block h-1.5 w-1.5 shrink-0 rounded-full ${color} ${className}`}
     />
   );
