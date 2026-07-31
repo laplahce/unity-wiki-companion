@@ -28,7 +28,7 @@ Yes. Every effect has the **Cartoon FX** component attached letting you edit the
 
 ## Can I use the effects in my 2D game?
 
-Yes. Althought the pack was made with 3D in mind, the effects can also be used in 2D.
+Yes. Although the pack was made with 3D in mind, the effects can also be used in 2D.
 
 ## Can I use the effects in my 3D game?
 
