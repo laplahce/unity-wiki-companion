@@ -40,6 +40,7 @@ type PackageFront = {
   trailerUrl?: string;
   media?: Record<string, unknown>;
   infobox?: { label: string; value: string }[];
+  highlights?: string[];
   references?: { id: string; text: string; url?: string }[];
 };
 
