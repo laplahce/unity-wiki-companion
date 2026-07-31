@@ -5,6 +5,8 @@ title: Getting started
 
 *This guide will help you get up and running with the pack.*
 
+::youtube{id=-GnWnDlKDBk caption="Video tutorial for the pack. A great choice for those who prefer learning by video."}
+
 ## Your first steps
 
 ### Adding your first effect
@@ -41,5 +43,3 @@ title: Getting started
 6. Change the scale & color *(OBS! Change alpha to 1)*.
 7. Restart the effect to see what changed.
 8. For more information, check out [Create an effect](./creating-an-effect).
-
-::youtube{id=-GnWnDlKDBk caption="Video tutorial for the pack. A great choice for those who prefer learning by video."}
