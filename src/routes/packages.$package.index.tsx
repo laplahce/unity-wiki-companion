@@ -19,7 +19,7 @@ function PackageShowcase() {
   const storeUrl = pkg.assetStoreUrl ?? SITE.assetStoreUrl;
   const related = PACKAGES.filter((p) => p.slug !== pkg.slug).slice(0, 3);
   const shots = pkg.media?.screenshots ?? [];
-  const highlights = pkg.highlight ?? [];
+  const highlights = pkg.highlights ?? [];
 
   return (
     <div>
