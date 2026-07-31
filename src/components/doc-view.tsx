@@ -223,7 +223,8 @@ function DemoRedirectCard({ pkg }: { pkg: DocPackage }) {
           Open the {pkg.name} live demo
         </div>
         <p className="text-sm text-muted-foreground">
-          Try an interactive WebGL build now. 
+          The interactive WebGL build now lives on its own page — load it
+          there, share the URL, and skip the doc chrome.
         </p>
       </div>
       <ArrowRight className="h-5 w-5 text-muted-foreground transition group-hover:text-brand" />
@@ -359,4 +360,3 @@ export function PackagePageView({
     </DocLayout>
   );
 }
-
