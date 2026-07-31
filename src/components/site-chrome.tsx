@@ -419,16 +419,6 @@ export function SiteFooter() {
           <FooterColumn title="Resources">
             <FooterLink to="/contact">Contact &amp; Support</FooterLink>
             <FooterLink external to={SITE.assetStoreUrl}>My Asset Store page</FooterLink>
-            <FooterLink external to="https://docs.unity3d.com">Unity Manual</FooterLink>
-            <FooterLink external to="https://forum.unity.com">Unity Forums</FooterLink>
-          </FooterColumn>
-
-          {/* Legal column */}
-          <FooterColumn title="Legal">
-            <FooterLink to="/">Privacy Policy</FooterLink>
-            <FooterLink to="/">Terms of Use</FooterLink>
-            <FooterLink to="/">Cookie Policy</FooterLink>
-            <FooterLink to="/">Licenses</FooterLink>
           </FooterColumn>
         </div>
       </div>
