@@ -170,9 +170,9 @@ function Home() {
       {/* Stats strip */}
       <section className="grid gap-4 sm:grid-cols-3">
         {[
-          { label: "Packages on the store", value: PACKAGES.length },
+          { label: "Published packages", value: PACKAGES.length },
           { label: "Documentation pages", value: PACKAGES.reduce((n, p) => n + p.pages.length, 0) },
-          { label: "Years on the store", value: "6+" },
+          { label: "Years on the store", value: "3+" },
         ].map((s) => (
           <div
             key={s.label}
