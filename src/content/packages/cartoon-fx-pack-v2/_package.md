@@ -28,6 +28,5 @@ highlights:
   - Custom FX Editor
   - Works for all Render Pipelines
   - Works for most platforms
-  - Works for Unity 2022, 2023, 6 & later.
   - Playable WebGL demo
 ---
