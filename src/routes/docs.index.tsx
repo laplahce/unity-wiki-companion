@@ -20,12 +20,12 @@ export const Route = createFileRoute("/docs/")({
       {
         name: "description",
         content:
-          "Modern, encyclopedia-style documentation for popular Unity Asset Store packages: DOTween, Odin Inspector, Cinemachine, A* Pathfinding Project.",
+          "Documentation.",
       },
       { property: "og:title", content: "Docs" },
       {
         property: "og:description",
-        content: "Modern, encyclopedia-style documentation for popular Unity Asset Store packages.",
+        content: "Documentation.",
       },
     ],
   }),
@@ -40,12 +40,12 @@ function Index() {
       <section id="welcome" className="pt-6">
         <div className="eyebrow">Documentation</div>
         <h1 className="display mt-3 text-4xl sm:text-5xl lg:text-6xl">
-          Docs for the Unity Asset Store, in one place.
+          Docs for the all my Packages.
         </h1>
         <p className="mt-5 max-w-2xl text-base text-muted-foreground sm:text-lg">
-          A curated documentation hub for the packages real studios ship with.
-          Each package has its own multi-page reference - clean writing,
-          neutral voice, citations included.
+          A list of all my packages&apos; documentations.
+          Each package has its own multi-page docs with clean writing,
+          easy-to-follow & concise.
         </p>
         <div className="mt-7 flex flex-wrap gap-3">
           <Link
@@ -127,37 +127,6 @@ function Index() {
         </div>
       </section>
 
-      {/* How it works */}
-      <section id="how-it-works" className="rounded-2xl border border-border bg-card p-6 sm:p-8">
-        <div className="eyebrow">Start here</div>
-        <h2 className="display mt-2 text-2xl">How these docs work</h2>
-        <div className="mt-4 grid gap-6 sm:grid-cols-3">
-          <div>
-            <div className="font-semibold">One package at a time</div>
-            <p className="mt-1 text-sm text-muted-foreground">
-              Pick a package and the left sidebar shows only its pages. Use the
-              <b> Packages</b> menu in the top bar to switch to another package.
-            </p>
-          </div>
-          <div>
-            <div className="font-semibold">Conventions</div>
-            <p className="mt-1 text-sm text-muted-foreground">
-              Code samples are C# targeting Unity 2020.3 LTS or later unless
-              noted. Each overview carries an infobox with version, developer,
-              license, and engine compatibility.
-            </p>
-          </div>
-          <div>
-            <div className="font-semibold">Neutral &amp; cited</div>
-            <p className="mt-1 text-sm text-muted-foreground">
-              Every package is summarised in an encyclopedia voice with
-              citations linking back to the upstream vendor documentation.
-            </p>
-          </div>
-        </div>
-      </section>
-
-
       {/* Index */}
       <section id="contents">
         <div className="mb-6">
@@ -210,18 +179,6 @@ function Index() {
         </div>
       </section>
 
-      {/* About */}
-      <section id="about" className="rounded-2xl border border-border bg-card p-6 sm:p-8">
-        <div className="eyebrow">About</div>
-        <h2 className="display mt-2 text-2xl">What this site is</h2>
-        <p className="mt-3 max-w-3xl text-[15px] leading-relaxed text-muted-foreground">
-          The documentation hub for the packages shipped on this site. Each
-          package has its own multi-page reference covering setup, public API,
-          licensing, and release history in a neutral, encyclopedia voice.
-          It is intended as a complete reference for engineers and technical
-          artists integrating these packages into their projects.
-        </p>
-      </section>
       </div>
       <OnThisPage items={HOME_TOC} />
     </div>
