@@ -33,3 +33,15 @@ Yes. Although the pack was made with 3D in mind, the effects can also be used in
 ## Can I use the effects in my 3D game?
 
 Yes.
+
+## What's the difference between this pack and V1?
+
+A lot. This pack includes more textures, higher quality textures, a fully custom editor & more effects & variants.
+
+## Why a separate package and not just update V1?
+
+Due to the sheer amount of rework as well as relying on a completely different system, it was not feasible to simply update the previous version.
+
+## Which pack should I get? V1 or V2?
+
+I would recommend this pack (V2). But, if you see a specific effect you'd like from V1 and can't be bothered creating it yourself using V2's custom editor, then V1 is still a good option.
