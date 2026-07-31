@@ -159,7 +159,7 @@ function PackageShowcase() {
             <div className="flex-1">
               <div className="font-semibold">Using {pkg.name}?</div>
               <p className="text-sm text-muted-foreground">
-                A quick review on the Asset Store helps me keep shipping. Thanks!
+                A quick review on the Asset Store helps me a ton. Thanks!
               </p>
             </div>
             <ArrowRight className="h-5 w-5 text-muted-foreground transition group-hover:text-brand" />
