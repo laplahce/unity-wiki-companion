@@ -64,10 +64,10 @@ function Home() {
           <div>
             <div className="eyebrow">Catalog</div>
             <h2 className="display mt-2 text-2xl sm:text-3xl">
-              Packages I&apos;ve shipped
+              Packages I've created
             </h2>
             <p className="mt-2 text-sm text-muted-foreground">
-              A handful of my favorites — see the full catalog for everything.
+              A handful of my favorites - see the full catalog for everything.
             </p>
           </div>
           <Link to="/packages" className="text-sm font-semibold text-brand hover:underline">
@@ -136,15 +136,14 @@ function Home() {
           </div>
           <div className="space-y-4 text-[15px] leading-relaxed text-muted-foreground">
             <p>
-              I&apos;m a solo developer working on Unity tools full-time. I
-              prefer tools that do one thing well, ship with a demo you can
-              actually play, and read like a real reference instead of a
-              marketing page.
+              I&apos;m a solo developer creating Unity Asset Store packs. I
+              try to focus on ease-of-use & love to make the user experience as
+              good as possible.
             </p>
             <p>
-              If a package of mine helped you, a review goes a long way. If
-              something is broken or unclear, please tell me — I usually
-              respond within a day.
+              If a pack of mine helped you, a review goes a long way. If
+              something is broken, unclear, or even if you want to request a feature,
+              please contact me.
             </p>
             <div className="flex flex-wrap gap-3 pt-2">
               <Link
