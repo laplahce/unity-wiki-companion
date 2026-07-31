@@ -75,9 +75,9 @@ function PackagesIndex() {
                     className="group flex items-center gap-4 px-5 py-4 transition hover:bg-surface-alt"
                   >
                     <PackageBanner pkg={p} className="h-12 w-12 shrink-0 rounded-xl">
-                      {p.label && <span className="text-sm font-extrabold text-white drop-shadow">
+                      <span className="text-sm font-extrabold text-white drop-shadow">
                         {p.label.charAt(0)}
-                      </span>}
+                      </span>
                     </PackageBanner>
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center gap-2">
