@@ -11,10 +11,10 @@ export const Route = createFileRoute("/packages/$package/demo")({
   },
   head: ({ loaderData }) => {
     const pkg = loaderData?.pkg;
-    if (!pkg) return { meta: [{ title: "Demo not found" }] };
+    if (!pkg) return { meta: [{ title: "Demo not found — laplahce" }] };
     return {
       meta: [
-        { title: `${pkg.name} demo` },
+        { title: `${pkg.name} demo — laplahce` },
         { name: "description", content: `Play the interactive WebGL demo for ${pkg.name}.` },
       ],
     };
