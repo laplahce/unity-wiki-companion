@@ -34,12 +34,12 @@ function Home() {
           <Wrench className="h-3.5 w-3.5" /> Unity Asset Developer
         </div>
         <h1 className="display mt-4 text-4xl sm:text-5xl lg:text-6xl">
-          Hi, I'm <span className="text-brand">laplahce</span>.
+          Hi, I&apos;m <span className="text-brand">laplahce</span>.
           <br />I build Assets for your games.
         </h1>
         <p className="mt-6 max-w-2xl text-base text-muted-foreground sm:text-lg">
-          I've been creating asset packs on the Unity Asset Store for a while
-          now. Here you'll find all my packages, their documentation, media & more.
+          I&apos;ve been creating asset packs on the Unity Asset Store for a while
+          now. Here you&apos;ll find all my packages, their documentation, media & more.
         </p>
         <div className="mt-7 flex flex-wrap gap-3">
           <Link
@@ -64,7 +64,7 @@ function Home() {
           <div>
             <div className="eyebrow">Catalog</div>
             <h2 className="display mt-2 text-2xl sm:text-3xl">
-              Packages I've created
+              Packages I&apos;ve created
             </h2>
             <p className="mt-2 text-sm text-muted-foreground">
               A handful of my favorites - see the full catalog for everything.
