@@ -8,17 +8,17 @@ import { SITE } from "@/data/site";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "laplahce — Unity Asset Store developer" },
+      { title: "Home" },
       {
         name: "description",
         content:
-          "Independent Unity Asset Store developer. Tools for animation, AI, inspectors and more — each shipped with a playable demo and proper docs.",
+          "Independent Unity Asset Store developer.",
       },
-      { property: "og:title", content: "laplahce — Unity Asset Store developer" },
+      { property: "og:title", content: "Home" },
       {
         property: "og:description",
         content:
-          "Independent Unity Asset Store developer. Each package ships with a playable demo and proper docs.",
+          "Independent Unity Asset Store developer.",
       },
     ],
   }),
@@ -31,17 +31,15 @@ function Home() {
       {/* Hero */}
       <section className="pt-10 sm:pt-16">
         <div className="eyebrow inline-flex items-center gap-2">
-          <Wrench className="h-3.5 w-3.5" /> Independent Unity dev
+          <Wrench className="h-3.5 w-3.5" /> Unity Asset Developer
         </div>
         <h1 className="display mt-4 text-4xl sm:text-5xl lg:text-6xl">
-          Hi, I&apos;m <span className="text-brand">laplahce</span>.
-          <br />I build sharp tools for Unity.
+          Hi, I'm <span className="text-brand">laplahce</span>.
+          <br />I build Asset packs for your next games.
         </h1>
         <p className="mt-6 max-w-2xl text-base text-muted-foreground sm:text-lg">
-          I&apos;ve been shipping packages on the Unity Asset Store for a while
-          now — animation engines, editor extensions, AI helpers. Every package
-          you&apos;ll find here is mine, every line of code, every demo, every
-          page of documentation.
+          I've been creating packages on the Unity Asset Store for a while
+          now. Here you'll find all my packages, their documentation, media & more.
         </p>
         <div className="mt-7 flex flex-wrap gap-3">
           <Link
