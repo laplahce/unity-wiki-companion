@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PACKAGES } from "@/data/docs";
-import { ArrowRight, Github, Mail, Package as PackageIcon, Wrench } from "lucide-react";
+import { ArrowRight, Github, Mail, Package as PackageIcon, Wrench, Heart, ArrowUpRight } from "lucide-react";
 import { StatusBadge } from "@/components/status-badge";
 import { PackageBanner } from "@/components/package-media";
 import { SITE } from "@/data/site";
@@ -187,6 +187,35 @@ function Home() {
           </div>
         ))}
       </section>
+
+      {/* Patreon support */}
+      {SITE.patreonUrl && (
+        <section className="rounded-2xl border border-brand/20 bg-gradient-to-br from-brand/10 via-transparent to-transparent p-6 sm:p-10">
+          <div className="grid gap-8 sm:grid-cols-[1fr_auto] sm:items-center">
+            <div className="space-y-3">
+              <div className="eyebrow inline-flex items-center gap-2 text-brand">
+                <Heart className="h-3.5 w-3.5 fill-current" /> Support the work
+              </div>
+              <h2 className="display text-2xl sm:text-3xl">
+                Help me do this more full-time
+              </h2>
+              <p className="max-w-2xl text-[15px] leading-relaxed text-muted-foreground">
+                My asset packs are built solo, from prototype to documentation.
+                If you want to help me spend more time creating tools and keeping
+                them supported, becoming a patron is the best way to make that happen.
+              </p>
+            </div>
+            <a
+              href={SITE.patreonUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="btn btn-grad px-6 py-3 text-sm"
+            >
+              Support on Patreon <ArrowUpRight className="h-4 w-4" />
+            </a>
+          </div>
+        </section>
+      )}
     </div>
   );
 }

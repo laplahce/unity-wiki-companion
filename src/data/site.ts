@@ -10,6 +10,7 @@ export type SiteConfig = {
   logoImageDark?: string;
   favicon?: string;
   email: string;
+  patreonUrl?: string;
   github?: string;
   assetStoreUrl: string;
   copyright: string;
@@ -32,6 +33,7 @@ export const SITE: SiteConfig = {
   logoImageDark: str(f.logoImageDark) || undefined,
   favicon: str(f.favicon) || undefined,
   email: str(f.email, "hello@laplahce.dev"),
+  patreonUrl: str(f.patreonUrl) || undefined,
   github: str(f.github) || undefined,
   assetStoreUrl: str(f.assetStoreUrl, "https://assetstore.unity.com"),
   copyright: str(f.copyright, "© {year} laplahce").replace("{year}", "2026"),

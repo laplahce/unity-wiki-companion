@@ -1,6 +1,6 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useState } from "react";
-import { Menu, X, ChevronDown, Package, Mail, Download } from "lucide-react";
+import { Menu, X, ChevronDown, Package, Mail, Download, Heart, ArrowUpRight } from "lucide-react";
 import { PACKAGES } from "@/data/docs";
 import { SITE } from "@/data/site";
 import { SiteLogo } from "@/components/site-logo";
@@ -410,6 +410,30 @@ export function SiteFooter() {
             <FooterLink external to={SITE.assetStoreUrl}>My Asset Store page</FooterLink>
           </FooterColumn>
         </div>
+
+        {/* Patreon support flap */}
+        {SITE.patreonUrl && (
+          <div className="mt-10 rounded-2xl border border-brand/20 bg-gradient-to-r from-brand/5 to-transparent p-6 sm:p-8 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+            <div className="space-y-2">
+              <div className="inline-flex items-center gap-2 text-sm font-semibold text-brand">
+                <Heart className="h-4 w-4 fill-current" /> Support my work
+              </div>
+              <p className="max-w-xl text-sm text-muted-foreground leading-relaxed">
+                Enjoying my assets? Patrons help me spend more time building packages,
+                writing documentation, and keeping everything up to date — basically
+                the fuel that lets me do this more full-time.
+              </p>
+            </div>
+            <a
+              href={SITE.patreonUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="btn btn-grad shrink-0 !rounded-lg px-5 py-2.5 text-sm"
+            >
+              Become a patron <ArrowUpRight className="h-4 w-4" />
+            </a>
+          </div>
+        )}
       </div>
 
       {/* Bottom bar */}
