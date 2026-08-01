@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Menu, X, ChevronDown, Package, Mail, Download } from "lucide-react";
 import { PACKAGES } from "@/data/docs";
 import { SITE } from "@/data/site";
+import { SiteLogo } from "@/components/site-logo";
 import { SiteSearch } from "@/components/site-search";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { StatusDot } from "@/components/status-badge";
@@ -224,11 +225,7 @@ export function SiteHeader({ onMenuClick }: { onMenuClick: () => void }) {
         </button>
         <Link to="/" className="flex items-center gap-3">
           <div className="flex aspect-square h-9 w-9 shrink-0 items-center justify-center">
-            {SITE.logoImage ? (
-              <img src={SITE.logoImage} alt={SITE.name} className="h-full w-full object-cover" />
-            ) : (
-              <span className="text-lg font-extrabold text-white">{SITE.logoText}</span>
-            )}
+            <SiteLogo />
           </div>
           <div className="leading-tight">
             <div className="text-base font-bold tracking-tight">{SITE.name}</div>
@@ -299,11 +296,7 @@ export function MobileSidebar({
         <div className="flex items-center justify-between border-b border-border px-4 py-3">
           <div className="flex items-center gap-2">
             <div className="flex aspect-square h-8 w-8 shrink-0 items-center justify-center">
-              {SITE.logoImage ? (
-                <img src={SITE.logoImage} alt={SITE.name} className="h-full w-full object-cover" />
-              ) : (
-                <span className="text-base font-extrabold text-white">{SITE.logoText}</span>
-              )}
+              <SiteLogo />
             </div>
             <span className="font-bold">{SITE.name}</span>
           </div>
@@ -374,11 +367,7 @@ export function SiteFooter() {
           <div className="lg:col-span-2">
             <Link to="/" className="flex items-center gap-3">
               <div className="flex h-9 w-9 items-center justify-center">
-                {SITE.logoImage ? (
-                  <img src={SITE.logoImage} alt={SITE.name} className="h-full w-full object-cover" />
-                ) : (
-                  <span className="text-lg font-extrabold text-white">{SITE.logoText}</span>
-                )}
+                <SiteLogo />
               </div>
               <div className="leading-tight">
                 <div className="text-base font-bold tracking-tight">{SITE.name}</div>
