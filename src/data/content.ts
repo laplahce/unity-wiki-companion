@@ -39,6 +39,7 @@ type PackageFront = {
   demoExternalUrl?: string,
   trailerUrl?: string;
   media?: Record<string, unknown>;
+  icon?: string;
   infobox?: { label: string; value: string }[];
   highlights?: string[];
   references?: { id: string; text: string; url?: string }[];
@@ -441,6 +442,7 @@ function buildPackages(): DocPackage[] {
         front.assetStoreUrl ?? front.reviewUrl?.replace(/#reviews\s*$/, ""),
       trailerUrl: front.trailerUrl,
       media: parseMedia(front.media),
+      icon: front.icon,
       status: front.status,
       compatibility,
     });

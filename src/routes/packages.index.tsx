@@ -1,8 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Package as PackageIcon } from "lucide-react";
+import { ArrowRight, Package as PackageGlyph } from "lucide-react";
 import { PACKAGES } from "@/data/docs";
 import { StatusBadge } from "@/components/status-badge";
-import { PackageBanner } from "@/components/package-media";
+import { PackageIcon } from "@/components/package-media";
 
 export const Route = createFileRoute("/packages/")({
   head: () => ({
@@ -74,11 +74,7 @@ function PackagesIndex() {
                     params={{ package: p.slug }}
                     className="group flex items-center gap-4 px-5 py-4 transition hover:bg-surface-alt"
                   >
-                    <PackageBanner pkg={p} className="h-12 w-12 shrink-0 rounded-xl">
-                      <span className="text-sm font-extrabold text-white drop-shadow">
-                        {p.label.charAt(0)}
-                      </span>
-                    </PackageBanner>
+                    <PackageIcon pkg={p} className="h-12 w-12 shrink-0 rounded-xl" />
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center gap-2">
                         <div className="truncate text-base font-bold text-foreground">
@@ -93,7 +89,7 @@ function PackagesIndex() {
                         {p.tagline}
                       </p>
                     </div>
-                    <PackageIcon className="hidden h-4 w-4 shrink-0 text-muted-foreground sm:block" />
+                    <PackageGlyph className="hidden h-4 w-4 shrink-0 text-muted-foreground sm:block" />
                     <ArrowRight className="h-4 w-4 shrink-0 text-muted-foreground transition group-hover:text-brand" />
                   </Link>
                 </li>

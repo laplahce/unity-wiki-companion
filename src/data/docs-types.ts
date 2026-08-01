@@ -65,6 +65,8 @@ export type DocPackage = {
   assetStoreUrl?: string;
   trailerUrl?: string;
   media?: PackageMedia;
+  // Small square icon, used on the "All packages" list. Set via `icon:` in `_package.md`.
+  icon?: string;
   status?: PublishStatus;
   compatibility?: Compatibility;
 };
