@@ -89,7 +89,7 @@ function PackageShowcase() {
           <div className="eyebrow">What you get</div>
           <h2 className="display mt-2 text-2xl sm:text-3xl">Highlights</h2>
           <div className="mt-6 grid gap-4 sm:grid-cols-3">
-            {highlights.map((h) => (
+            {highlights.map((h: string) => (
               <div
                 key={h}
                 className="flex items-start gap-3 rounded-xl border border-border bg-card p-4"

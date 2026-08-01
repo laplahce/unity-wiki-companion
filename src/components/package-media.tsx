@@ -2,6 +2,13 @@ import type { DocPackage } from "@/data/docs";
 import { youtubeId } from "@/data/content";
 import { useEffect, useRef } from "react";
 
+declare global {
+  interface Window {
+    YT?: any;
+    onYouTubeIframeAPIReady?: () => void;
+  }
+}
+
 const isVideoFile = (url?: string) => !!url && /\.(mp4|webm|ogv)(\?|$)/i.test(url);
 
 /**
@@ -64,7 +71,7 @@ export function PackageHeroBackdrop({ pkg }: { pkg: DocPackage }) {
 
     function initializePlayer() {
       if (!playerRef.current) {
-        playerRef.current = new window.YT.Player("youtube-player", {
+        playerRef.current = new window.YT!.Player("youtube-player", {
           videoId: trailerId,
           playerVars: {
             autoplay: 1,
@@ -85,13 +92,13 @@ export function PackageHeroBackdrop({ pkg }: { pkg: DocPackage }) {
             },
             onStateChange: (event: any) => {
               // Reveal the player only once actually playing
-              if (event.data === window.YT.PlayerState.PLAYING) {
+              if (event.data === window.YT!.PlayerState.PLAYING) {
                 if (containerRef.current) {
                   containerRef.current.style.opacity = "1";
                 }
               }
               // Loop video when it ends
-              if (event.data === window.YT.PlayerState.ENDED) {
+              if (event.data === window.YT!.PlayerState.ENDED) {
                 event.target.playVideo();
               }
             },
@@ -111,7 +118,7 @@ export function PackageHeroBackdrop({ pkg }: { pkg: DocPackage }) {
         apiLoadedRef.current = true;
         initializePlayer();
       };
-    } else if (window.YT.Player) {
+    } else if (window.YT!.Player) {
       initializePlayer();
     } else {
       // API script already added but not ready yet — wait for the callback
