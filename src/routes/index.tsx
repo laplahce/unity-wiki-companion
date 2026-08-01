@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PACKAGES } from "@/data/docs";
-import { ArrowRight, Github, Mail, Package as PackageIcon, Wrench } from "lucide-react";
+import { ArrowRight, Github, Mail, Package as PackageIcon, Wrench, Heart, ArrowUpRight } from "lucide-react";
 import { StatusBadge } from "@/components/status-badge";
 import { PackageBanner } from "@/components/package-media";
 import { SITE } from "@/data/site";
