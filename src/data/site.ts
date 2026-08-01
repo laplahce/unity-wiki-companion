@@ -10,6 +10,7 @@ export type SiteConfig = {
   logoImageDark?: string;
   favicon?: string;
   email: string;
+  patreonUrl?: string;
   github?: string;
   assetStoreUrl: string;
   copyright: string;
