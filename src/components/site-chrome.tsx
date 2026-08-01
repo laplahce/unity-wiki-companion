@@ -420,8 +420,7 @@ export function SiteFooter() {
               </div>
               <p className="max-w-xl text-sm text-muted-foreground leading-relaxed">
                 Enjoying my assets? Patrons help me spend more time building packages,
-                writing documentation, and keeping everything up to date — basically
-                the fuel that lets me do this more full-time.
+                writing documentation, and keeping everything up to date.
               </p>
             </div>
             <a
