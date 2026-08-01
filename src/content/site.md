@@ -6,7 +6,7 @@ logoImage: "/content/Logo-dark.png"
 logoImageDark: "/content/Logo-light.png"
 favicon: "/content/Icon.png"
 email: laplahce@gmail.com
-patreonUrl: 
+patreonUrl: https://patreon.com/laplahce
 github: 
 assetStoreUrl: https://assetstore.unity.com/publishers/62747
 copyright: "© {year} laplahce - Unity Asset Store developer. Not affiliated with Unity Technologies."
