@@ -44,6 +44,7 @@ export type Compatibility = {
 export type PackageMedia = {
   banner?: string;
   bannerVideo?: string;
+  icon?: string;
   screenshots?: string[];
   extra?: Record<string, string[]>;
 };
