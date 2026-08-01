@@ -12,6 +12,8 @@ demoUrl: https://play.unity.com/api/v1/games/game/2cc69f89-2921-48b3-ba6f-ebf602
 demoExternalUrl: https://play.unity.com/en/games/2cc69f89-2921-48b3-ba6f-ebf6020603f9/cartoon-fx-pack-v2-demo
 media:
   banner: "/content/packages/cartoon-fx-pack-v2/Media/Banner.png"
+# Square icon shown only in the "All packages" list (replaces the letter tile).
+# icon: "/content/packages/cartoon-fx-pack-v2/Media/Icon.png"
   bannerVideo: "/content/packages/cartoon-fx-pack-v2/Media/Trailer.mp4"
   screenshots:
     - "/content/packages/cartoon-fx-pack-v2/Media/Media-001.png"
