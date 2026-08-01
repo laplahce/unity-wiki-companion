@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Loader2 } from "lucide-react";
 import type { DocPackage } from "@/data/docs";
 
@@ -13,6 +13,17 @@ import type { DocPackage } from "@/data/docs";
 export function WebGLDemo({ pkg }: { pkg: DocPackage }) {
   const [started, setStarted] = useState(false);
   const [loaded, setLoaded] = useState(false);
+  // Unity WebGL builds keep painting black for a while after the iframe's
+  // load event, so hold the loading overlay for a short grace period.
+  const [graceDone, setGraceDone] = useState(false);
+
+  useEffect(() => {
+    if (!started) return;
+    const t = window.setTimeout(() => setGraceDone(true), 4000);
+    return () => window.clearTimeout(t);
+  }, [started]);
+
+  const showOverlay = !loaded || !graceDone;
 
   if (!pkg.demoUrl) {
     return (
@@ -39,8 +50,11 @@ export function WebGLDemo({ pkg }: { pkg: DocPackage }) {
               allow="autoplay; fullscreen; gamepad; xr-spatial-tracking"
               allowFullScreen
             />
-            {!loaded && (
-              <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center gap-3 bg-gradient-to-br from-black/85 to-black/70 text-white">
+            <div
+              className={`pointer-events-none absolute inset-0 flex flex-col items-center justify-center gap-3 bg-gradient-to-br from-black/85 to-black/70 text-white transition-opacity duration-500 ${
+                showOverlay ? "opacity-100" : "opacity-0"
+              }`}
+            >
                 <Loader2 className="h-8 w-8 animate-spin text-white/80" />
                 <span className="text-sm font-semibold">Loading the demo…</span>
                 <span className="text-xs text-white/60">
@@ -49,8 +63,7 @@ export function WebGLDemo({ pkg }: { pkg: DocPackage }) {
                 <span className="mt-1 h-1 w-40 overflow-hidden rounded-full bg-white/20">
                   <span className="block h-full w-1/3 animate-[loadbar_1.4s_ease-in-out_infinite] rounded-full bg-white/70" />
                 </span>
-              </div>
-            )}
+            </div>
           </>
         ) : (
           <button

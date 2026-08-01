@@ -3,12 +3,28 @@
 
 export type TocItem = { id: string; title: string; level: number };
 
+// Decode the handful of entities the markdown renderer emits so TOC labels
+// read as plain text (e.g. "Don&#39;t" -> "Don't").
+export function decodeEntities(text: string): string {
+  return text
+    .replace(/&#(\d+);/g, (_m, d: string) => String.fromCharCode(Number(d)))
+    .replace(/&#x([0-9a-f]+);/gi, (_m, h: string) => String.fromCharCode(parseInt(h, 16)))
+    .replace(/&quot;/g, '"')
+    .replace(/&apos;|&rsquo;|&lsquo;/g, "'")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">");
+}
+
 function slugify(text: string): string {
   return (
-    text
+    decodeEntities(text)
       .replace(/<[^>]+>/g, "")
       .toLowerCase()
       .trim()
+      // drop apostrophes/quotes entirely instead of turning them into dashes
+      .replace(/['\u2018\u2019\u201c\u201d"]/g, "")
       .replace(/[^a-z0-9]+/g, "-")
       .replace(/(^-|-$)/g, "") || "section"
   );
@@ -21,7 +37,7 @@ export function extractToc(html: string): { html: string; toc: TocItem[] } {
   const out = html.replace(
     /<(h2|h3)([^>]*)>([\s\S]*?)<\/\1>/gi,
     (_match, tag: string, attrs: string, inner: string) => {
-      const title = inner.replace(/<[^>]+>/g, "").trim();
+      const title = decodeEntities(inner.replace(/<[^>]+>/g, "")).trim();
       if (!title) return _match;
 
       const base = slugify(title);
