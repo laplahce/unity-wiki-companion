@@ -74,7 +74,7 @@ function PackagesIndex() {
                     params={{ package: p.slug }}
                     className="group flex items-center gap-4 px-5 py-4 transition hover:bg-surface-alt"
                   >
-                    <PackageIcon pkg={p} className="h-12 w-12 shrink-0 rounded-xl" />
+                    <PackageIcon pkg={p} className="h-12 w-12 shrink-0 rounded-lg" />
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center gap-2">
                         <div className="truncate text-base font-bold text-foreground">
