@@ -174,6 +174,7 @@ function parseMedia(raw: Record<string, unknown> | undefined): PackageMedia | un
     const list = Array.isArray(value) ? value.map(String) : [String(value)];
     if (!list.length || !list[0]) continue;
     if (key === "banner") media.banner = list[0];
+    else if (key === "icon") media.icon = list[0];
     else if (key === "bannerVideo" || key === "banner_video") media.bannerVideo = list[0];
     else if (key === "screenshots" || key === "gallery") media.screenshots = list;
     else media.extra![key] = list;
