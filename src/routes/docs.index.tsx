@@ -4,6 +4,7 @@ import { OnThisPage } from "@/components/on-this-page";
 import type { TocItem } from "@/lib/toc";
 import { StatusBadge } from "@/components/status-badge";
 import { ArrowRight } from "lucide-react";
+import { PackageBanner } from "@/components/package-media";
 
 const HOME_TOC: TocItem[] = [
   { id: "welcome", title: "Welcome", level: 2 },
@@ -87,11 +88,7 @@ function Index() {
               params={{ package: p.slug }}
               className="group overflow-hidden rounded-2xl border border-border bg-card card-shadow"
             >
-              <div className="card-grad flex h-40 items-center justify-center">
-                <span className="text-2xl font-extrabold tracking-tight text-white drop-shadow">
-                  {p.label}
-                </span>
-              </div>
+              <PackageBanner pkg={p} className="h-40" />
               <div className="p-4">
                 <div className="mb-1 h-0.5 w-6 bg-brand/60" />
                 <div className="text-base font-bold text-foreground">{p.name}</div>
