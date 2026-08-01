@@ -197,12 +197,11 @@ function Home() {
                 <Heart className="h-3.5 w-3.5 fill-current" /> Support the work
               </div>
               <h2 className="display text-2xl sm:text-3xl">
-                Help me do this more full-time
+                Help support my work
               </h2>
               <p className="max-w-2xl text-[15px] leading-relaxed text-muted-foreground">
-                My asset packs are built solo, from prototype to documentation.
-                If you want to help me spend more time creating tools and keeping
-                them supported, becoming a patron is the best way to make that happen.
+                My assets takes a long time to create, from prototype to marketing to documentation.
+                If you want to help me with my dream, becoming a patron is the best way to make that happen.
               </p>
             </div>
             <a
