@@ -194,7 +194,7 @@ function Home() {
           <div className="grid gap-8 sm:grid-cols-[1fr_auto] sm:items-center">
             <div className="space-y-3">
               <div className="eyebrow inline-flex items-center gap-2 text-brand">
-                <Heart className="h-3.5 w-3.5 fill-current" /> Support the work
+                <Heart className="h-3.5 w-3.5 fill-current" /> Support me
               </div>
               <h2 className="display text-2xl sm:text-3xl">
                 Help support my work
