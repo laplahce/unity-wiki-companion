@@ -248,7 +248,10 @@ export function PackagePageView({
       : null;
 
   const { html, toc } = extractToc(page.html);
-  const fullToc: TocItem[] = [...toc];
+  const fullToc: TocItem[] = [
+    { id: "page-top", title: page.title, level: 2 },
+    ...toc,
+  ];
   if (isOverview && pkg.references.length > 0) {
     fullToc.push({ id: "references", title: "References", level: 2 });
   }
@@ -262,7 +265,7 @@ export function PackagePageView({
         </Link>{" "}
         / {page.title}
       </div>
-      <h1>{page.title}</h1>
+      <h1 id="page-top">{page.title}</h1>
       {(pkg.status || page.status) && (
         <div className="not-prose mb-4 flex flex-wrap items-center gap-2">
           {pkg.status && (

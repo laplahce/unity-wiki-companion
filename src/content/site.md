@@ -3,6 +3,7 @@ name: laplahce
 tagline: Unity Asset Store developer
 logoText: 
 logoImage: "/content/Logo.png"
+logoImageDark: "/content/Logo.png"
 favicon: "/content/Icon.png"
 email: laplahce@gmail.com
 github: 

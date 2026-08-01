@@ -7,6 +7,7 @@ export type SiteConfig = {
   tagline: string;
   logoText: string;
   logoImage?: string;
+  logoImageDark?: string;
   favicon?: string;
   email: string;
   github?: string;
@@ -28,14 +29,12 @@ export const SITE: SiteConfig = {
   tagline: str(f.tagline, "Unity Asset Store developer"),
   logoText: str(f.logoText, "L"),
   logoImage: str(f.logoImage) || undefined,
+  logoImageDark: str(f.logoImageDark) || undefined,
   favicon: str(f.favicon) || undefined,
   email: str(f.email, "hello@laplahce.dev"),
   github: str(f.github) || undefined,
   assetStoreUrl: str(f.assetStoreUrl, "https://assetstore.unity.com"),
-  copyright: str(f.copyright, "© {year} laplahce").replace(
-    "{year}",
-    String(new Date().getFullYear()),
-  ),
+  copyright: str(f.copyright, "© {year} laplahce").replace("{year}", "2026"),
   footerNote: str(f.footerNote) || undefined,
   blurbHtml: renderMarkdown(parsed.content),
   blurb: parsed.content.trim().replace(/\s+/g, " "),
