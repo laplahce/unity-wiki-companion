@@ -9,34 +9,24 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
-import { Route as DocsRouteImport } from './routes/docs'
-import { Route as ContactRouteImport } from './routes/contact'
-import { Route as SplatRouteImport } from './routes/$'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as PackagesIndexRouteImport } from './routes/packages.index'
+import { Route as SplatRouteImport } from './routes/$'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as DocsRouteImport } from './routes/docs'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as DocsIndexRouteImport } from './routes/docs.index'
-import { Route as WikiSlugRouteImport } from './routes/wiki.$slug'
-import { Route as PackagesPackageRouteImport } from './routes/packages.$package'
 import { Route as DocsPackageRouteImport } from './routes/docs.$package'
-import { Route as PackagesPackageIndexRouteImport } from './routes/packages.$package.index'
+import { Route as PackagesIndexRouteImport } from './routes/packages.index'
+import { Route as PackagesPackageRouteImport } from './routes/packages.$package'
+import { Route as WikiSlugRouteImport } from './routes/wiki.$slug'
 import { Route as DocsPackageIndexRouteImport } from './routes/docs.$package.index'
-import { Route as PackagesPackageDemoRouteImport } from './routes/packages.$package.demo'
 import { Route as DocsPackagePageRouteImport } from './routes/docs.$package.$page'
+import { Route as PackagesPackageIndexRouteImport } from './routes/packages.$package.index'
+import { Route as PackagesPackageDemoRouteImport } from './routes/packages.$package.demo'
 
-const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
-  id: '/sitemap.xml',
-  path: '/sitemap.xml',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DocsRoute = DocsRouteImport.update({
-  id: '/docs',
-  path: '/docs',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ContactRoute = ContactRouteImport.update({
-  id: '/contact',
-  path: '/contact',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SplatRoute = SplatRouteImport.update({
@@ -44,14 +34,19 @@ const SplatRoute = SplatRouteImport.update({
   path: '/$',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PackagesIndexRoute = PackagesIndexRouteImport.update({
-  id: '/packages/',
-  path: '/packages/',
+const DocsRoute = DocsRouteImport.update({
+  id: '/docs',
+  path: '/docs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DocsIndexRoute = DocsIndexRouteImport.update({
@@ -59,9 +54,14 @@ const DocsIndexRoute = DocsIndexRouteImport.update({
   path: '/',
   getParentRoute: () => DocsRoute,
 } as any)
-const WikiSlugRoute = WikiSlugRouteImport.update({
-  id: '/wiki/$slug',
-  path: '/wiki/$slug',
+const DocsPackageRoute = DocsPackageRouteImport.update({
+  id: '/$package',
+  path: '/$package',
+  getParentRoute: () => DocsRoute,
+} as any)
+const PackagesIndexRoute = PackagesIndexRouteImport.update({
+  id: '/packages/',
+  path: '/packages/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PackagesPackageRoute = PackagesPackageRouteImport.update({
@@ -69,30 +69,30 @@ const PackagesPackageRoute = PackagesPackageRouteImport.update({
   path: '/packages/$package',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DocsPackageRoute = DocsPackageRouteImport.update({
-  id: '/$package',
-  path: '/$package',
-  getParentRoute: () => DocsRoute,
-} as any)
-const PackagesPackageIndexRoute = PackagesPackageIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => PackagesPackageRoute,
+const WikiSlugRoute = WikiSlugRouteImport.update({
+  id: '/wiki/$slug',
+  path: '/wiki/$slug',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const DocsPackageIndexRoute = DocsPackageIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => DocsPackageRoute,
 } as any)
-const PackagesPackageDemoRoute = PackagesPackageDemoRouteImport.update({
-  id: '/demo',
-  path: '/demo',
-  getParentRoute: () => PackagesPackageRoute,
-} as any)
 const DocsPackagePageRoute = DocsPackagePageRouteImport.update({
   id: '/$page',
   path: '/$page',
   getParentRoute: () => DocsPackageRoute,
+} as any)
+const PackagesPackageIndexRoute = PackagesPackageIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => PackagesPackageRoute,
+} as any)
+const PackagesPackageDemoRoute = PackagesPackageDemoRouteImport.update({
+  id: '/demo',
+  path: '/demo',
+  getParentRoute: () => PackagesPackageRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -202,25 +202,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/sitemap.xml': {
-      id: '/sitemap.xml'
-      path: '/sitemap.xml'
-      fullPath: '/sitemap.xml'
-      preLoaderRoute: typeof SitemapDotxmlRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/docs': {
-      id: '/docs'
-      path: '/docs'
-      fullPath: '/docs'
-      preLoaderRoute: typeof DocsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/contact': {
-      id: '/contact'
-      path: '/contact'
-      fullPath: '/contact'
-      preLoaderRoute: typeof ContactRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/$': {
@@ -230,18 +216,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SplatRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/packages/': {
-      id: '/packages/'
-      path: '/packages'
-      fullPath: '/packages/'
-      preLoaderRoute: typeof PackagesIndexRouteImport
+    '/docs': {
+      id: '/docs'
+      path: '/docs'
+      fullPath: '/docs'
+      preLoaderRoute: typeof DocsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/docs/': {
@@ -251,11 +244,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DocsIndexRouteImport
       parentRoute: typeof DocsRoute
     }
-    '/wiki/$slug': {
-      id: '/wiki/$slug'
-      path: '/wiki/$slug'
-      fullPath: '/wiki/$slug'
-      preLoaderRoute: typeof WikiSlugRouteImport
+    '/docs/$package': {
+      id: '/docs/$package'
+      path: '/$package'
+      fullPath: '/docs/$package'
+      preLoaderRoute: typeof DocsPackageRouteImport
+      parentRoute: typeof DocsRoute
+    }
+    '/packages/': {
+      id: '/packages/'
+      path: '/packages'
+      fullPath: '/packages/'
+      preLoaderRoute: typeof PackagesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/packages/$package': {
@@ -265,19 +265,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PackagesPackageRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/docs/$package': {
-      id: '/docs/$package'
-      path: '/$package'
-      fullPath: '/docs/$package'
-      preLoaderRoute: typeof DocsPackageRouteImport
-      parentRoute: typeof DocsRoute
-    }
-    '/packages/$package/': {
-      id: '/packages/$package/'
-      path: '/'
-      fullPath: '/packages/$package/'
-      preLoaderRoute: typeof PackagesPackageIndexRouteImport
-      parentRoute: typeof PackagesPackageRoute
+    '/wiki/$slug': {
+      id: '/wiki/$slug'
+      path: '/wiki/$slug'
+      fullPath: '/wiki/$slug'
+      preLoaderRoute: typeof WikiSlugRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/docs/$package/': {
       id: '/docs/$package/'
@@ -286,19 +279,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DocsPackageIndexRouteImport
       parentRoute: typeof DocsPackageRoute
     }
-    '/packages/$package/demo': {
-      id: '/packages/$package/demo'
-      path: '/demo'
-      fullPath: '/packages/$package/demo'
-      preLoaderRoute: typeof PackagesPackageDemoRouteImport
-      parentRoute: typeof PackagesPackageRoute
-    }
     '/docs/$package/$page': {
       id: '/docs/$package/$page'
       path: '/$page'
       fullPath: '/docs/$package/$page'
       preLoaderRoute: typeof DocsPackagePageRouteImport
       parentRoute: typeof DocsPackageRoute
+    }
+    '/packages/$package/': {
+      id: '/packages/$package/'
+      path: '/'
+      fullPath: '/packages/$package/'
+      preLoaderRoute: typeof PackagesPackageIndexRouteImport
+      parentRoute: typeof PackagesPackageRoute
+    }
+    '/packages/$package/demo': {
+      id: '/packages/$package/demo'
+      path: '/demo'
+      fullPath: '/packages/$package/demo'
+      preLoaderRoute: typeof PackagesPackageDemoRouteImport
+      parentRoute: typeof PackagesPackageRoute
     }
   }
 }
@@ -356,3 +356,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
