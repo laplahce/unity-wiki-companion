@@ -52,6 +52,38 @@ export function PackageBanner({
 }
 
 /**
+ * Square icon for a package, used on the "All packages" list. Uses `icon:`
+ * from `_package.md`; falls back to the banner/gradient + first letter.
+ */
+export function PackageIcon({
+  pkg,
+  className = "",
+}: {
+  pkg: DocPackage;
+  className?: string;
+}) {
+  if (pkg.icon) {
+    return (
+      <div className={`relative overflow-hidden bg-surface-alt ${className}`}>
+        <img
+          src={pkg.icon}
+          alt={`${pkg.name} icon`}
+          loading="lazy"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+      </div>
+    );
+  }
+  return (
+    <PackageBanner pkg={pkg} className={className}>
+      <span className="text-sm font-extrabold text-white drop-shadow">
+        {pkg.label.charAt(0)}
+      </span>
+    </PackageBanner>
+  );
+}
+
+/**
  * Hero backdrop for a package page. Prefers, in order:
  *   1. `media.bannerVideo` (mp4/webm) — autoplaying muted loop
  *   2. `trailerUrl` — the YouTube trailer, autoplaying muted on loop
