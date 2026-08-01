@@ -62,11 +62,12 @@ export function PackageIcon({
   pkg: DocPackage;
   className?: string;
 }) {
-  if (pkg.icon) {
+  const icon = pkg.media?.icon;
+  if (icon) {
     return (
       <div className={`relative overflow-hidden bg-surface-alt ${className}`}>
         <img
-          src={pkg.icon}
+          src={icon}
           alt={`${pkg.name} icon`}
           loading="lazy"
           className="absolute inset-0 h-full w-full object-cover"
