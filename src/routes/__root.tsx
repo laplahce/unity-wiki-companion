@@ -103,8 +103,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content:
           "Unity Asset Store packages built solo by laplahce - effect packs and editor tools with playable demos, clear docs and changelogs.",
       },
-      { property: "og:image", content: "/content/og-image.png" },
-      { name: "twitter:image", content: "/content/og-image.png" },
+      { property: "og:image", content: "https://laplahce.com/content/og-image.png" },
+      { name: "twitter:image", content: "https://laplahce.com/content/og-image.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
