@@ -15,16 +15,17 @@ const HOME_TOC: TocItem[] = [
 export const Route = createFileRoute("/docs/")({
   head: () => ({
     meta: [
-      { title: "Docs" },
+      { title: "Documentation - laplahce Unity packages" },
       {
         name: "description",
         content:
-          "Documentation.",
+          "Setup guides, compatibility matrices, changelogs and FAQs for every laplahce Unity Asset Store package, all in one place.",
       },
-      { property: "og:title", content: "Docs" },
+      { property: "og:title", content: "Documentation - laplahce Unity packages" },
       {
         property: "og:description",
-        content: "Documentation.",
+        content:
+          "Setup guides, compatibility matrices, changelogs and FAQs for every laplahce Unity Asset Store package.",
       },
     ],
   }),
