@@ -1,6 +1,16 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PACKAGES } from "@/data/docs";
-import { ArrowRight, Github, Mail, Package as PackageIcon, Wrench, Heart, ArrowUpRight } from "lucide-react";
+import {
+  ArrowRight,
+  Github,
+  Mail,
+  Package as PackageIcon,
+  Wrench,
+  Heart,
+  ArrowUpRight,
+  FileText,
+  CalendarClock,
+} from "lucide-react";
 import { StatusBadge } from "@/components/status-badge";
 import { PackageBanner } from "@/components/package-media";
 import { SITE } from "@/data/site";
@@ -8,17 +18,17 @@ import { SITE } from "@/data/site";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Home" },
+      { title: "laplahce - Unity Asset Store packages & tools" },
       {
         name: "description",
         content:
-          "Independent Unity Asset Store developer.",
+          "Independent Unity Asset Store developer. Browse my effect packs and editor tools, try the playable demos, and read the full documentation for every package.",
       },
-      { property: "og:title", content: "Home" },
+      { property: "og:title", content: "laplahce - Unity Asset Store packages & tools" },
       {
         property: "og:description",
         content:
-          "Independent Unity Asset Store developer.",
+          "Effect packs and editor tools for Unity, built solo. Playable demos, clear docs and changelogs for every package.",
       },
     ],
   }),
