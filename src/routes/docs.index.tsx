@@ -40,7 +40,7 @@ function Index() {
       <section id="welcome" className="pt-6">
         <div className="eyebrow">Documentation</div>
         <h1 className="display mt-3 text-4xl sm:text-5xl lg:text-6xl">
-          Docs for the all my Packages.
+          Docs for all my Packages.
         </h1>
         <p className="mt-5 max-w-2xl text-base text-muted-foreground sm:text-lg">
           A list of all my packages&apos; documentations.
