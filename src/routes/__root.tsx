@@ -87,13 +87,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "Independent Unity Asset Store developer. Tools, playable demos and proper documentation for every package.",
+          "laplahce is an independent Unity Asset Store developer making effect packs and editor tools, each shipped with playable demos, full documentation and changelogs.",
       },
       { property: "og:title", content: "laplahce - Unity Asset Store developer" },
       {
         property: "og:description",
         content:
-          "Independent Unity Asset Store developer. Tools, playable demos and proper documentation.",
+          "Unity Asset Store packages built solo by laplahce - effect packs and editor tools with playable demos, clear docs and changelogs.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
