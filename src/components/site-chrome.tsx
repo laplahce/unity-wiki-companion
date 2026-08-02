@@ -419,7 +419,7 @@ export function SiteFooter() {
                 <Heart className="h-4 w-4 fill-current" /> Support my work
               </div>
               <p className="max-w-xl text-sm text-muted-foreground leading-relaxed">
-                Enjoying my assets? Patrons help me spend more time building packages,
+                Enjoying my assets? Patreons help me spend more time building packages,
                 writing documentation, and keeping everything up to date.
               </p>
             </div>
