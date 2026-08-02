@@ -148,8 +148,8 @@ function Home() {
             <p className="max-w-2xl text-[15px] leading-relaxed text-muted-foreground">
               I&apos;m a solo developer creating Unity Asset Store packs. I try to
               focus on ease-of-use &amp; love to make the user experience as good as
-              possible. If a pack of mine helped you, a review goes a long way - and
-              if something is broken, unclear, or you want to request a feature, just
+              possible. If a pack of mine helped you, a review goes a long way. If
+              something is broken, unclear, or you want to request a feature, just
               reach out.
             </p>
           </div>
