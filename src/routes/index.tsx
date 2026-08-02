@@ -139,40 +139,34 @@ function Home() {
 
       {/* About */}
       <section className="rounded-2xl border border-border bg-card p-6 sm:p-10">
-        <div className="grid gap-8 sm:grid-cols-[1fr_2fr]">
-          <div>
-            <div className="eyebrow">About</div>
-            <h2 className="display mt-2 text-2xl">A bit about me</h2>
-          </div>
-          <div className="space-y-4 text-[15px] leading-relaxed text-muted-foreground">
-            <p>
-              I&apos;m a solo developer creating Unity Asset Store packs. I
-              try to focus on ease-of-use & love to make the user experience as
-              good as possible.
-            </p>
-            <p>
-              If a pack of mine helped you, a review goes a long way. If
-              something is broken, unclear, or even if you want to request a feature,
-              please contact me.
-            </p>
-            <div className="flex flex-wrap gap-3 pt-2">
-              <Link
-                to="/contact"
-                className="btn btn-solid !rounded-lg px-3 py-2 text-sm"
-              >
-                <Mail className="h-4 w-4 text-brand" /> Get in touch
-              </Link>
-              {SITE.github && (
-                <a
-                  href={SITE.github}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="btn btn-solid !rounded-lg px-3 py-2 text-sm"
-                >
-                  <Github className="h-4 w-4" /> GitHub
-                </a>
-              )}
+        <div className="grid gap-8 sm:grid-cols-[1fr_auto] sm:items-center">
+          <div className="space-y-3">
+            <div className="eyebrow inline-flex items-center gap-2">
+              <Wrench className="h-3.5 w-3.5" /> About
             </div>
+            <h2 className="display text-2xl sm:text-3xl">A bit about me</h2>
+            <p className="max-w-2xl text-[15px] leading-relaxed text-muted-foreground">
+              I&apos;m a solo developer creating Unity Asset Store packs. I try to
+              focus on ease-of-use &amp; love to make the user experience as good as
+              possible. If a pack of mine helped you, a review goes a long way - and
+              if something is broken, unclear, or you want to request a feature, just
+              reach out.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-3 sm:justify-end">
+            <Link to="/contact" className="btn btn-solid px-5 py-3 text-sm">
+              <Mail className="h-4 w-4 text-brand" /> Get in touch
+            </Link>
+            {SITE.github && (
+              <a
+                href={SITE.github}
+                target="_blank"
+                rel="noreferrer"
+                className="btn btn-solid px-5 py-3 text-sm"
+              >
+                <Github className="h-4 w-4" /> GitHub
+              </a>
+            )}
           </div>
         </div>
       </section>
@@ -180,16 +174,20 @@ function Home() {
       {/* Stats strip */}
       <section className="grid gap-4 sm:grid-cols-3">
         {[
-          { label: "Published packages", value: PACKAGES.length },
-          { label: "Documentation pages", value: PACKAGES.reduce((n, p) => n + p.pages.length, 0) },
-          { label: "Years on the store", value: "3+" },
+          { label: "Published packages", value: PACKAGES.length, Icon: PackageIcon },
+          {
+            label: "Documentation pages",
+            value: PACKAGES.reduce((n, p) => n + p.pages.length, 0),
+            Icon: FileText,
+          },
+          { label: "Years on the store", value: "3+", Icon: CalendarClock },
         ].map((s) => (
           <div
             key={s.label}
             className="rounded-2xl border border-border bg-card px-5 py-6"
           >
             <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-              <PackageIcon className="h-3.5 w-3.5 text-brand" /> {s.label}
+              <s.Icon className="h-3.5 w-3.5 text-brand" /> {s.label}
             </div>
             <div className="mt-2 text-3xl font-extrabold tracking-tight">
               {s.value}
