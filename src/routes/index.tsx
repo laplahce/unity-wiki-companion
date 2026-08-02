@@ -77,7 +77,7 @@ function Home() {
               Packages I&apos;ve created
             </h2>
             <p className="mt-2 text-sm text-muted-foreground">
-              A handful of my favorites - see the full catalog for everything.
+              A handful of my favorites. See the full catalog for everything.
             </p>
           </div>
           <Link to="/packages" className="text-sm font-semibold text-brand hover:underline">
