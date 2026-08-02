@@ -103,8 +103,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content:
           "Unity Asset Store packages built solo by laplahce - effect packs and editor tools with playable demos, clear docs and changelogs.",
       },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/8a11eb6a-9682-4229-83d4-06b71ed104db/id-preview-b4e8fe18--b7241294-9d5a-46e8-aa24-d45fcb08f01f.lovable.app-1780322228801.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/8a11eb6a-9682-4229-83d4-06b71ed104db/id-preview-b4e8fe18--b7241294-9d5a-46e8-aa24-d45fcb08f01f.lovable.app-1780322228801.png" },
+      { property: "og:image", content: "/content/og-image.png" },
+      { name: "twitter:image", content: "/content/og-image.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
