@@ -208,7 +208,7 @@ function Home() {
                 Help support my work
               </h2>
               <p className="max-w-2xl text-[15px] leading-relaxed text-muted-foreground">
-                My assets takes a long time to create, from prototype to marketing to documentation.
+                My assets take a long time to create, from prototype to marketing to documentation.
                 If you want to help me with my dream, becoming a patron is the best way to make that happen.
               </p>
             </div>
