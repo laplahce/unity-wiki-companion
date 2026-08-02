@@ -18,7 +18,6 @@ import { Route as DocsIndexRouteImport } from './routes/docs.index'
 import { Route as DocsPackageRouteImport } from './routes/docs.$package'
 import { Route as PackagesIndexRouteImport } from './routes/packages.index'
 import { Route as PackagesPackageRouteImport } from './routes/packages.$package'
-import { Route as WikiSlugRouteImport } from './routes/wiki.$slug'
 import { Route as DocsPackageIndexRouteImport } from './routes/docs.$package.index'
 import { Route as DocsPackagePageRouteImport } from './routes/docs.$package.$page'
 import { Route as PackagesPackageIndexRouteImport } from './routes/packages.$package.index'
@@ -69,11 +68,6 @@ const PackagesPackageRoute = PackagesPackageRouteImport.update({
   path: '/packages/$package',
   getParentRoute: () => rootRouteImport,
 } as any)
-const WikiSlugRoute = WikiSlugRouteImport.update({
-  id: '/wiki/$slug',
-  path: '/wiki/$slug',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const DocsPackageIndexRoute = DocsPackageIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -103,7 +97,6 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/docs/$package': typeof DocsPackageRouteWithChildren
   '/packages/$package': typeof PackagesPackageRouteWithChildren
-  '/wiki/$slug': typeof WikiSlugRoute
   '/docs/': typeof DocsIndexRoute
   '/packages/': typeof PackagesIndexRoute
   '/docs/$package/$page': typeof DocsPackagePageRoute
@@ -116,7 +109,6 @@ export interface FileRoutesByTo {
   '/$': typeof SplatRoute
   '/contact': typeof ContactRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/wiki/$slug': typeof WikiSlugRoute
   '/docs': typeof DocsIndexRoute
   '/packages': typeof PackagesIndexRoute
   '/docs/$package/$page': typeof DocsPackagePageRoute
@@ -133,7 +125,6 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/docs/$package': typeof DocsPackageRouteWithChildren
   '/packages/$package': typeof PackagesPackageRouteWithChildren
-  '/wiki/$slug': typeof WikiSlugRoute
   '/docs/': typeof DocsIndexRoute
   '/packages/': typeof PackagesIndexRoute
   '/docs/$package/$page': typeof DocsPackagePageRoute
@@ -151,7 +142,6 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/docs/$package'
     | '/packages/$package'
-    | '/wiki/$slug'
     | '/docs/'
     | '/packages/'
     | '/docs/$package/$page'
@@ -164,7 +154,6 @@ export interface FileRouteTypes {
     | '/$'
     | '/contact'
     | '/sitemap.xml'
-    | '/wiki/$slug'
     | '/docs'
     | '/packages'
     | '/docs/$package/$page'
@@ -180,7 +169,6 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/docs/$package'
     | '/packages/$package'
-    | '/wiki/$slug'
     | '/docs/'
     | '/packages/'
     | '/docs/$package/$page'
@@ -196,7 +184,6 @@ export interface RootRouteChildren {
   DocsRoute: typeof DocsRouteWithChildren
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   PackagesPackageRoute: typeof PackagesPackageRouteWithChildren
-  WikiSlugRoute: typeof WikiSlugRoute
   PackagesIndexRoute: typeof PackagesIndexRoute
 }
 
@@ -263,13 +250,6 @@ declare module '@tanstack/react-router' {
       path: '/packages/$package'
       fullPath: '/packages/$package'
       preLoaderRoute: typeof PackagesPackageRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/wiki/$slug': {
-      id: '/wiki/$slug'
-      path: '/wiki/$slug'
-      fullPath: '/wiki/$slug'
-      preLoaderRoute: typeof WikiSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/docs/$package/': {
@@ -350,7 +330,6 @@ const rootRouteChildren: RootRouteChildren = {
   DocsRoute: DocsRouteWithChildren,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   PackagesPackageRoute: PackagesPackageRouteWithChildren,
-  WikiSlugRoute: WikiSlugRoute,
   PackagesIndexRoute: PackagesIndexRoute,
 }
 export const routeTree = rootRouteImport
