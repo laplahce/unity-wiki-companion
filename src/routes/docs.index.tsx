@@ -44,8 +44,7 @@ function Index() {
         </h1>
         <p className="mt-5 max-w-2xl text-base text-muted-foreground sm:text-lg">
           A list of all my packages&apos; documentations.
-          Each package has its own multi-page docs with clean writing,
-          easy-to-follow & concise.
+          Each package has its own multi-page docs with clean & concise writing and easy-to-follow guides.
         </p>
         <div className="mt-7 flex flex-wrap gap-3">
           <Link
