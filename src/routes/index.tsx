@@ -209,7 +209,7 @@ function Home() {
               </h2>
               <p className="max-w-2xl text-[15px] leading-relaxed text-muted-foreground">
                 My assets take a long time to create, from prototype to marketing to documentation.
-                If you want to help me with my dream, becoming a patreon is the best way to make that happen.
+                Supporting me on Patreon means I can spend more time developing better quality assets.
               </p>
             </div>
             <a
