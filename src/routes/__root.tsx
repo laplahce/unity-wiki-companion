@@ -87,13 +87,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "laplahce is an independent Unity Asset Store developer making effect packs and editor tools, each shipped with playable demos, full documentation and changelogs.",
+          "I'm a solo developer creating Unity Asset Store packs. I try to focus on ease-of-use & love to make the user experience as good as possible.",
       },
       { property: "og:title", content: "laplahce - Unity Asset Store developer" },
       {
         property: "og:description",
         content:
-          "Unity Asset Store packages built solo by laplahce - effect packs and editor tools with playable demos, clear docs and changelogs.",
+          "I'm a solo developer creating Unity Asset Store packs. I try to focus on ease-of-use & love to make the user experience as good as possible.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
@@ -101,7 +101,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "twitter:description",
         content:
-          "Unity Asset Store packages built solo by laplahce - effect packs and editor tools with playable demos, clear docs and changelogs.",
+          "I'm a solo developer creating Unity Asset Store packs. I try to focus on ease-of-use & love to make the user experience as good as possible.",
       },
       { property: "og:image", content: "https://laplahce.com/content/og-image.png" },
       { name: "twitter:image", content: "https://laplahce.com/content/og-image.png" },
