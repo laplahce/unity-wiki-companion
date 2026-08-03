@@ -15,7 +15,7 @@ const HOME_TOC: TocItem[] = [
 export const Route = createFileRoute("/docs/")({
   head: () => ({
     meta: [
-      { title: "Documentation - laplahce Unity packages" },
+      { title: "Documentation" },
       {
         name: "description",
         content:
