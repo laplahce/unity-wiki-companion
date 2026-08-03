@@ -1,4 +1,4 @@
-// Global site settings. Edit `src/content/site.md` — no TS changes required.
+// Global site settings. Edit `src/content/site.md` - no TS changes required.
 import raw from "@/content/site.md?raw";
 import { parseFrontmatter, renderMarkdown } from "./content";
 
@@ -15,7 +15,7 @@ export type SiteConfig = {
   assetStoreUrl: string;
   copyright: string;
   footerNote?: string;
-  /** Body of site.md, rendered to HTML — used as the short blurb. */
+  /** Body of site.md, rendered to HTML - used as the short blurb. */
   blurbHtml: string;
   blurb: string;
 };

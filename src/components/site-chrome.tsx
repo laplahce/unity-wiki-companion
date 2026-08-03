@@ -254,9 +254,10 @@ export function SiteHeader({ onMenuClick }: { onMenuClick: () => void }) {
             href={storeUrl}
             target="_blank"
             rel="noreferrer"
-            className="btn btn-grad !rounded-lg px-4 py-2 text-sm"
+            className="btn btn-grad !rounded-lg px-4 py-2 text-sm inline-flex items-center gap-1.5"
           >
             Asset Store
+            <ArrowUpRight className="h-4 w-4 shrink-0" aria-hidden="true" />
           </a>
         </nav>
       </div>
@@ -266,7 +267,7 @@ export function SiteHeader({ onMenuClick }: { onMenuClick: () => void }) {
 
 export function SiteSidebar() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
-  // Only show the doc sidebar on docs routes — the marketing/showcase pages
+  // Only show the doc sidebar on docs routes - the marketing/showcase pages
   // are full-width.
   if (!pathname.startsWith("/docs")) return null;
   return (

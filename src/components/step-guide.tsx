@@ -59,7 +59,7 @@ export function StepGuide({ steps }: { steps: GuideStep[] }) {
     };
     // Bring the whole guide card into view first, then keep re-measuring while
     // the smooth scroll animates so the spotlight lands on the button.
-    // Scroll the Next button (the spotlight target) into view — the guide card
+    // Scroll the Next button (the spotlight target) into view - the guide card
     // itself can be taller than the viewport, so centering the card is not
     // enough to guarantee the highlighted control is on screen.
     const el = nextRef.current ?? rootRef.current;
@@ -238,7 +238,7 @@ function Coachmark({
         <div className="absolute inset-0 bg-[rgba(2,6,23,0.72)]" />
       )}
 
-      {/* Tooltip — anchored to the button's center, offset clear of it */}
+      {/* Tooltip - anchored to the button's center, offset clear of it */}
       {spotlight && (
         <div
           className="absolute max-h-[80vh] overflow-auto rounded-xl border border-border bg-card p-4 text-center card-shadow animate-scale-in"

@@ -57,7 +57,7 @@ type PageFront = {
   updated?: string;
 };
 
-// Minimal frontmatter parser — supports the YAML-ish subset we actually use:
+// Minimal frontmatter parser - supports the YAML-ish subset we actually use:
 //   scalars, quoted strings, booleans, numbers, flow lists/maps, block lists
 //   of scalars or flow maps. Avoids gray-matter so we don't pull Node's Buffer
 //   into the browser bundle.
@@ -241,7 +241,7 @@ function render(md: string): string {
 //
 // Write releases as level-2 headings, then one bullet per change:
 //
-//   ## 2.4.0 — 2026-07-20 (latest)
+//   ## 2.4.0 - 2026-07-20 (latest)
 //   - added: New comic impact effects
 //   - fixed: Editor preview flicker
 //
@@ -263,12 +263,12 @@ function inline(md: string): string {
 }
 
 function renderRelease(heading: string, body: string): string {
-  // "2.4.0 — 2026-07-20 (latest)"
+  // "2.4.0 - 2026-07-20 (latest)"
   const latest = /\(latest\)/i.test(heading);
   const head = heading.replace(/\(latest\)/i, "").trim();
-  const parts = head.split(/\s+[—–-]\s+/);
+  const parts = head.split(/\s+[---]\s+/);
   const version = parts[0]?.trim() ?? head;
-  const date = parts.slice(1).join(" — ").trim();
+  const date = parts.slice(1).join(" - ").trim();
 
   const rows = body
     .split(/\r?\n/)
@@ -399,7 +399,7 @@ function buildPackages(): DocPackage[] {
     // The overview page always leads the sidebar.
     const overviewIdx = pages.findIndex((p) => p.kind === "overview" || p.slug === "overview");
 
-    // Only one page can ever be the "start here" read — the installation page
+    // Only one page can ever be the "start here" read - the installation page
     // wins, otherwise the first one that declared it.
     const startHere =
       pages.find((p) => p.kind === "installation" && p.highlight === "start-here") ??

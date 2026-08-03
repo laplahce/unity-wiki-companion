@@ -86,9 +86,9 @@ export function PackageIcon({
 
 /**
  * Hero backdrop for a package page. Prefers, in order:
- *   1. `media.bannerVideo` (mp4/webm) — autoplaying muted loop
- *   2. `trailerUrl` — the YouTube trailer, autoplaying muted on loop
- *   3. `media.banner` — a still image
+ *   1. `media.bannerVideo` (mp4/webm) - autoplaying muted loop
+ *   2. `trailerUrl` - the YouTube trailer, autoplaying muted on loop
+ *   3. `media.banner` - a still image
  *   4. gradient placeholder
  */
 export function PackageHeroBackdrop({ pkg }: { pkg: DocPackage }) {
@@ -154,7 +154,7 @@ export function PackageHeroBackdrop({ pkg }: { pkg: DocPackage }) {
     } else if (window.YT!.Player) {
       initializePlayer();
     } else {
-      // API script already added but not ready yet — wait for the callback
+      // API script already added but not ready yet - wait for the callback
       window.onYouTubeIframeAPIReady = () => {
         apiLoadedRef.current = true;
         initializePlayer();
@@ -195,7 +195,7 @@ export function PackageHeroBackdrop({ pkg }: { pkg: DocPackage }) {
             id="youtube-player"
             className="absolute left-1/2 top-1/2 h-[110vh] min-h-full w-[195vh] min-w-full -translate-x-1/2 -translate-y-1/2 pointer-events-none"
           />
-          {/* Transparent shield — blocks YouTube's play button overlay from rendering */}
+          {/* Transparent shield - blocks YouTube's play button overlay from rendering */}
           <div className="absolute inset-0 z-10 pointer-events-none" />
         </div>
       ) : image ? (

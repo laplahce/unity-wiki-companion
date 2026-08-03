@@ -23,7 +23,7 @@ function PackageShowcase() {
 
   return (
     <div>
-      {/* Hero banner — looping trailer video, banner media, or placeholder */}
+      {/* Hero banner - looping trailer video, banner media, or placeholder */}
       <section className="relative -mt-6 left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] h-[520px] w-screen overflow-hidden sm:h-[640px]">
         <PackageHeroBackdrop pkg={pkg} />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.18),transparent_55%)]" />

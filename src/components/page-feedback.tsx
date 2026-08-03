@@ -13,7 +13,7 @@ function hashString(s: string): number {
 }
 
 export function lastUpdatedFor(key: string): Date {
-  const daysAgo = (hashString(key) % 75) + 3; // 3–77 days ago
+  const daysAgo = (hashString(key) % 75) + 3; // 3-77 days ago
   const d = new Date();
   d.setHours(0, 0, 0, 0);
   d.setDate(d.getDate() - daysAgo);

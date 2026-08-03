@@ -198,7 +198,7 @@
     transform: translateY(-2px);
   }
 
-  /* Article typography — modern sans, generous spacing */
+  /* Article typography - modern sans, generous spacing */
   .wiki-article {
     font-family: var(--font-sans);
     font-size: 16px;
