@@ -266,7 +266,7 @@ export function SiteHeader({ onMenuClick }: { onMenuClick: () => void }) {
 
 export function SiteSidebar() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
-  // Only show the doc sidebar on docs routes — the marketing/showcase pages
+  // Only show the doc sidebar on docs routes - the marketing/showcase pages
   // are full-width.
   if (!pathname.startsWith("/docs")) return null;
   return (

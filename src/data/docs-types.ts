@@ -39,7 +39,7 @@ export type Compatibility = {
   notes?: string[];
 };
 
-// Declared in `_package.md` under `media:` — key/value pairs of image or video
+// Declared in `_package.md` under `media:` - key/value pairs of image or video
 // URLs used across the cards, hero and gallery.
 export type PackageMedia = {
   banner?: string;
