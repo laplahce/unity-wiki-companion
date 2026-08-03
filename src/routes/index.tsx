@@ -49,7 +49,7 @@ function Home() {
         </h1>
         <p className="mt-6 max-w-2xl text-base text-muted-foreground sm:text-lg">
           I&apos;ve been creating asset packs on the Unity Asset Store for a while
-          now. Here you&apos;ll find all my packages, their documentation, media & more.
+          now. Here you&apos;ll find all my packages, their documentation, demos & more.
         </p>
         <div className="mt-7 flex flex-wrap gap-3">
           <Link
