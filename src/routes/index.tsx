@@ -18,7 +18,7 @@ import { SITE } from "@/data/site";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "laplahce - Unity Asset Store packages & tools" },
+      { title: "laplahce" },
       {
         name: "description",
         content:
