@@ -60,7 +60,7 @@ export function SocialLinks({ socials }: { socials: SocialLink[] }) {
       {socials.map((social) => {
         const key = normalizeName(social.name);
         const Icon = ICONS[key];
-        if (!Icon) return null;
+        if (!Icon && !social.icon) return null;
         return (
           <a
             key={social.name}
@@ -70,7 +70,17 @@ export function SocialLinks({ socials }: { socials: SocialLink[] }) {
             aria-label={social.name}
             className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-background text-muted-foreground transition hover:border-foreground/20 hover:text-foreground hover:bg-surface"
           >
-            <Icon className="h-[18px] w-[18px]" />
+            {social.icon ? (
+              <img
+                src={social.icon}
+                alt=""
+                aria-hidden="true"
+                loading="lazy"
+                className="h-[18px] w-[18px] object-contain"
+              />
+            ) : (
+              <Icon className="h-[18px] w-[18px]" />
+            )}
           </a>
         );
       })}
