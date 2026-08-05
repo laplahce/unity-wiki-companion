@@ -133,11 +133,27 @@ function parseBlock(
       if (nextLine && /^\s*-\s/.test(nextLine) && indentOf(nextLine) > indent) {
         const items: unknown[] = [];
         while (i < lines.length && /^\s*-\s/.test(lines[i]) && indentOf(lines[i]) > indent) {
+          const dashIndent = indentOf(lines[i]);
           const item = lines[i].trim().replace(/^-\s*/, "");
-          items.push(
-            item.startsWith("{") || item.startsWith("[") ? parseFlow(item) : parseScalar(item),
-          );
           i++;
+          if (item.startsWith("{") || item.startsWith("[")) {
+            items.push(parseFlow(item));
+          } else if (/^[A-Za-z_][\w-]*\s*:/.test(item)) {
+            // Block list of maps: `- key: value` followed by sibling `key: value`
+            // lines indented past the dash.
+            const mapLines = [`  ${item}`];
+            while (
+              i < lines.length &&
+              (!lines[i].trim() ||
+                (indentOf(lines[i]) > dashIndent && !/^\s*-\s/.test(lines[i])))
+            ) {
+              if (lines[i].trim()) mapLines.push(`  ${lines[i].trim()}`);
+              i++;
+            }
+            items.push(parseBlock(mapLines, 0, 2).data);
+          } else {
+            items.push(parseScalar(item));
+          }
         }
         data[key] = items;
       } else if (nextLine && indentOf(nextLine) > indent) {
