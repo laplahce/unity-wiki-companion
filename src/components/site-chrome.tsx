@@ -379,7 +379,7 @@ export function SiteFooter() {
             <p className="mt-4 max-w-sm text-sm text-muted-foreground leading-relaxed">
               {SITE.blurb}
             </p>
-            <div className="mt-5 flex items-center gap-3">
+            <div className="mt-5 flex flex-wrap items-center gap-3">
               <a
                 href={`mailto:${SITE.email}`}
                 className="btn btn-solid !rounded-lg px-3 py-2 text-sm"
@@ -387,6 +387,7 @@ export function SiteFooter() {
                 <Mail className="h-4 w-4 text-muted-foreground" />
                 {SITE.email}
               </a>
+              <SocialLinks socials={SITE.socials} />
             </div>
           </div>
 
