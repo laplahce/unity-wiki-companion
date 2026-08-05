@@ -41,7 +41,7 @@ function TikTokIcon({ className }: { className?: string }) {
   );
 }
 
-const ICONS: Record<string, (props: { className?: string }) => JSX.Element> = {
+const ICONS: Record<string, ComponentType<{ className?: string }>> = {
   itch: ItchIcon,
   youtube: YouTubeIcon,
   instagram: InstagramIcon,
