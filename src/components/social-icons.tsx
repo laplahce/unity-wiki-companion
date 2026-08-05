@@ -1,4 +1,5 @@
 import type { SocialLink } from "@/data/site";
+import type { ComponentType } from "react";
 
 function ItchIcon({ className }: { className?: string }) {
   return (
