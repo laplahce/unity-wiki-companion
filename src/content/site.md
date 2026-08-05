@@ -14,14 +14,19 @@ footerNote: Made with care.
 socials:
   - name: Itch
     url: https://itch.io
+    icon:
   - name: YouTube
     url: https://youtube.com
+    icon:
   - name: Instagram
     url: https://instagram.com
+    icon:
   - name: Twitter
     url: https://twitter.com
+    icon:
   - name: TikTok
     url: https://tiktok.com
+    icon:
 ---
 
 I'm an independent Unity Asset Store developer. Each package is made with care with focus on user-experience to make it as easy as possible to use.

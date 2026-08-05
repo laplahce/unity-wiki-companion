@@ -5,6 +5,8 @@ import { parseFrontmatter, renderMarkdown } from "./content";
 export type SocialLink = {
   name: string;
   url: string;
+  /** Optional image path (e.g. "/content/socials/itch.svg"). Falls back to a built-in icon. */
+  icon?: string;
 };
 
 export type SiteConfig = {
@@ -38,6 +40,7 @@ function parseSocials(raw: unknown): SocialLink[] {
     .map((item) => ({
       name: str((item as Record<string, unknown>).name),
       url: str((item as Record<string, unknown>).url),
+      icon: str((item as Record<string, unknown>).icon) || undefined,
     }))
     .filter((s) => s.name && s.url);
 }
