@@ -14,7 +14,7 @@ footerNote: Made with care.
 socials:
   - name: Itch
     url: https://itch.io
-    icon: /content/itchio-logo.svg
+    icon: 
   - name: YouTube
     url: https://youtube.com
     icon:
