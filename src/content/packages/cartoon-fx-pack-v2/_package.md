@@ -10,6 +10,7 @@ assetStoreUrl: https://assetstore.unity.com/packages/slug/393578
 reviewUrl: https://assetstore.unity.com/packages/slug/393578#reviews
 demoUrl: https://play.unity.com/api/v1/games/game/2cc69f89-2921-48b3-ba6f-ebf6020603f9/build/latest/frame
 demoExternalUrl: https://play.unity.com/en/games/2cc69f89-2921-48b3-ba6f-ebf6020603f9/cartoon-fx-pack-v2-demo
+demoNote: "Keep in mind, the creator shown in the demo is simply a recreation. The full creator is more flexible & has more features, but is impossible to show in a WebGL demo due to it being an editor tool. Use this to get a feel for the creator or see all the effects in the showcase before buying."
 media:
   banner: "/content/packages/cartoon-fx-pack-v2/Media/Banner.png"
   icon: "/content/packages/cartoon-fx-pack-v2/Media/Icon.png"
