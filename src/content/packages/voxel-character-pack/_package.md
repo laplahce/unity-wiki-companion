@@ -10,7 +10,7 @@ assetStoreUrl: https://assetstore.unity.com/packages/slug/261068
 reviewUrl: https://assetstore.unity.com/packages/slug/261068#reviews
 demoUrl: https://play.unity.com/api/v1/games/game/ae975339-3bed-4d99-ba49-adf26e3a5a95/build/latest/frame
 demoExternalUrl: https://play.unity.com/en/games/ae975339-3bed-4d99-ba49-adf26e3a5a95/voxel-character-pack-demo
-demoNote: "Placeholder demo note. Walk around the scene to see all 5 voxel characters and their included animations in action before buying."
+demoNote: "Navigate the voxel characters and see their included animations in action."
 media:
   banner: "/content/packages/voxel-character-pack/Media/Banner.png"
   icon: "/content/packages/voxel-character-pack/Media/Icon.png"
