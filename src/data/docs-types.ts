@@ -62,6 +62,8 @@ export type DocPackage = {
   demoUrl?: string;
   highlights?: string[];
   demoExternalUrl?: string;
+  // Short intro text shown on the package's demo page. Set via `demoNote:` in `_package.md`.
+  demoNote?: string;
   reviewUrl?: string;
   assetStoreUrl?: string;
   trailerUrl?: string;
