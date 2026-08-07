@@ -2,12 +2,13 @@ import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
 import { PACKAGES } from "@/data/docs";
 
-const BASE_URL = "https://laplahce.com";
-
 export const Route = createFileRoute("/sitemap.xml")({
   server: {
     handlers: {
-      GET: async () => {
+      GET: async ({ request }) => {
+        // Derive the host from the incoming request so the sitemap is correct
+        // on any domain (preview, lovable.app, or a custom domain).
+        const BASE_URL = new URL(request.url).origin;
         const entries = [
           { path: "/", changefreq: "weekly", priority: "1.0" },
           { path: "/docs", changefreq: "weekly", priority: "0.9" },
