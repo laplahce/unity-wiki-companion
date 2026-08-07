@@ -37,6 +37,7 @@ type PackageFront = {
   assetStoreUrl?: string;
   demoUrl?: string;
   demoExternalUrl?: string,
+  demoNote?: string;
   trailerUrl?: string;
   media?: Record<string, unknown>;
   icon?: string;
@@ -453,6 +454,7 @@ function buildPackages(): DocPackage[] {
       references: front.references ?? [],
       demoUrl: front.demoUrl,
       demoExternalUrl: front.demoExternalUrl,
+      demoNote: front.demoNote,
       reviewUrl: front.reviewUrl,
       highlights: front.highlights,
       assetStoreUrl:
