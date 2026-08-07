@@ -13,19 +13,19 @@ copyright: "© {year} laplahce - Unity Asset Store developer. Not affiliated wit
 footerNote: Made with care.
 socials:
   - name: Itch
-    url: https://itch.io
+    url: https://itch.io/profile/laplahce
     icon: 
   - name: YouTube
-    url: https://youtube.com
+    url: https://www.youtube.com/@laplahce
     icon:
   - name: Instagram
-    url: https://instagram.com
+    url: https://www.instagram.com/laplahce/
     icon:
   - name: Twitter
-    url: https://twitter.com
+    url: https://x.com/laplahce
     icon:
   - name: TikTok
-    url: https://tiktok.com
+    url: https://www.tiktok.com/@laplahce
     icon:
 ---
 
