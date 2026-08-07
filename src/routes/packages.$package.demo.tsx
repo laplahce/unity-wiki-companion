@@ -40,11 +40,9 @@ function DemoPage() {
         <h1 className="display mt-2 text-3xl sm:text-4xl">
           Try {pkg.name} in your browser
         </h1>
-        <p className="mt-3 max-w-2xl text-muted-foreground">
-          Keep in mind, the creator shown in the demo is simply a recreation. The full creator is more flexible & 
-          has more features, but is impossible to show in a WebGL demo due to it being a editor tool. Use
-          this to get a feel for the creator or see all the effects in the showcase before buying.
-        </p>
+        {pkg.demoNote && (
+          <p className="mt-3 max-w-2xl text-muted-foreground">{pkg.demoNote}</p>
+        )}
       </div>
 
       <WebGLDemo pkg={pkg} />
