@@ -6,7 +6,7 @@ category: VFX
 color: "#a5ff5c"
 label: Realistic FX Pack
 trailerUrl: TODO
-assetStoreUrl: https://assetstore.unity.com/packages/slug/261068
+assetStoreUrl: https://assetstore.unity.com/packages/slug/294657
 reviewUrl: https://assetstore.unity.com/packages/slug/294657#reviews
 demoUrl: TODO
 demoExternalUrl: TODO
