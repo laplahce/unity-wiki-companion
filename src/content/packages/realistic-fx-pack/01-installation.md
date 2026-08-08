@@ -11,6 +11,11 @@ guide:
 
 *This guide covers installation & render pipeline & version upgrades.*
 
+## Dependencies
+
+1. Open **Window → Package Manager**.
+2. Make sure both **Visual Effect Graph** and **Shader Graph** are installed.
+
 ## Install via Package Manager
 
 1. Open **Window → Package Manager**.
