@@ -2,7 +2,6 @@
 updated: 2026-08-08
 title: Creating a path
 guide:
-<!-- TODO{ title: "Find Cartoon FX component", caption: "In the inspector of your effect, locate the Cartoon FX component.", gif: "/content/packages/cartoon-fx-pack-v2/GIFS/editing-an-effect-001.gif" }-->
 ---
 
 *Learn how to create & edit a path the effects should move around in.*
