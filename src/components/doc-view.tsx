@@ -299,7 +299,7 @@ export function PackagePageView({
         <StepGuide steps={page.guide} />
       )}
 
-      {page.kind === "demo" && <DemoRedirectCard pkg={pkg} />}
+      {page.kind === "demo" && pkg.demoUrl && <DemoRedirectCard pkg={pkg} />}
 
       {page.kind === "compatibility" && <CompatibilityTable pkg={pkg} />}
 

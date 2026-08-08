@@ -7,6 +7,8 @@ export const Route = createFileRoute("/packages/$package/demo")({
   loader: ({ params }) => {
     const pkg = getPackage(params.package);
     if (!pkg) throw notFound();
+    // No demo build for this package -> the route doesn't exist for it.
+    if (!pkg.demoUrl) throw notFound();
     return { pkg };
   },
   head: ({ loaderData }) => {
