@@ -15,4 +15,6 @@ compatibility:
 
 ## What's inside
 
-- **T**ODO
+- **20+** effects.
+- **Path editor** to shape how effects flow through your environment.
+- Performant **obstacle avoidance**.
