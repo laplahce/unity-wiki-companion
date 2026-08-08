@@ -8,9 +8,6 @@ label: Realistic FX Pack
 trailerUrl: TODO
 assetStoreUrl: https://assetstore.unity.com/packages/slug/294657
 reviewUrl: https://assetstore.unity.com/packages/slug/294657#reviews
-demoUrl: TODO
-demoExternalUrl: TODO
-demoNote: "TODO"
 media:
   banner: "/content/packages/realistic-fx-pack/Media/Banner.png"
   icon: "/content/packages/realistic-fx-pack/Media/Icon.png"
@@ -26,5 +23,7 @@ infobox:
   - { label: Engine, value: "2022, 2023, 6.0 and later" }
   - { label: Type, value: "VFX" }
 highlights:
-  - TODO
+  - 20+ effects.
+  - Path editor.
+  - Obstacle avoidance.
 ---
