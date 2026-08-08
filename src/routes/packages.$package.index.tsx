@@ -59,13 +59,15 @@ function PackageShowcase() {
             >
               <ExternalLink className="h-4 w-4" /> View on Asset Store
             </a>
-            <Link
-              to="/packages/$package/demo"
-              params={{ package: pkg.slug }}
-              className="btn btn-glass px-5 py-3 text-sm"
-            >
-              <Play className="h-4 w-4" /> Try the demo
-            </Link>
+            {pkg.demoUrl && (
+              <Link
+                to="/packages/$package/demo"
+                params={{ package: pkg.slug }}
+                className="btn btn-glass px-5 py-3 text-sm"
+              >
+                <Play className="h-4 w-4" /> Try the demo
+              </Link>
+            )}
           </div>
         </div>
 

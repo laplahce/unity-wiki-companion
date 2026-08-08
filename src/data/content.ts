@@ -437,6 +437,19 @@ function buildPackages(): DocPackage[] {
       });
     }
 
+    // A package only "has" a demo when a real build URL is provided. Without
+    // one, every mention of the demo is dropped for that package.
+    const rawDemoUrl =
+      typeof front.demoUrl === "string" && front.demoUrl.trim() &&
+      !/^todo$/i.test(front.demoUrl.trim())
+        ? front.demoUrl.trim()
+        : undefined;
+    if (!rawDemoUrl) {
+      for (let i = pages.length - 1; i >= 0; i--) {
+        if (pages[i].kind === "demo") pages.splice(i, 1);
+      }
+    }
+
     const infoboxFields = [
       { label: "Category", value: front.category },
       ...(front.infobox ?? []),
@@ -452,9 +465,9 @@ function buildPackages(): DocPackage[] {
       infoboxFields,
       pages,
       references: front.references ?? [],
-      demoUrl: front.demoUrl,
-      demoExternalUrl: front.demoExternalUrl,
-      demoNote: front.demoNote,
+      demoUrl: rawDemoUrl,
+      demoExternalUrl: rawDemoUrl ? front.demoExternalUrl : undefined,
+      demoNote: rawDemoUrl ? front.demoNote : undefined,
       reviewUrl: front.reviewUrl,
       highlights: front.highlights,
       assetStoreUrl:
