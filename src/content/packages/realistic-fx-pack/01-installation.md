@@ -17,7 +17,7 @@ guide:
 2. Find the *Realistic FX Pack* package.
 3. Import it.
 
-## Upgrade to your Render Pipeline
+## Upgrade to your Render Pipeline & Version
 
 1. Open **Tools → RFX → Welcome Screen**.
-2. In the **Setup** tab, click the **Upgrade** button for your Render Pipeline & version & import it.
+2. In the **Setup** tab, click the **Upgrade** button for your Render Pipeline & Version & import it.
