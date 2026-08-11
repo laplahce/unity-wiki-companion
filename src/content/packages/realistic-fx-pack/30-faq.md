@@ -30,6 +30,6 @@ Yes. The pack includes a custom curve editor letting you curve the effects to mo
 
 No. The pack was designed for 3D.
 
-## Can I use the characters in my 3D game?
+## Can I use the effects in my 3D game?
 
 Yes.
