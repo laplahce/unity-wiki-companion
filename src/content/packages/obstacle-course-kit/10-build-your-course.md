@@ -16,7 +16,7 @@ guide:
 
 ### Add a platform
 
-1. Go to **Obstacle Course Kit → <RP> → Prefabs → Platforms → Platforms/\***.
+1. Go to **Obstacle Course Kit → \<RP\> → Prefabs → Platforms → Platforms/\***.
 2. Use the search bar in the project window to find the platform you are looking for, e.g. search for "floor" & select to search under the current folder.
 3. Select a floor and drag it into your scene.
 
