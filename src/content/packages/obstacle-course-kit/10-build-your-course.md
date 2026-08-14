@@ -23,7 +23,7 @@ guide:
 #### A tip:
 
 It is important to learn the naming convention the pack uses to effectively create your courses.
-The pattern is: `<type of floor (floor, corner, skew)>_<ramp type (none, ramp, ramp steep)>_<# of walls)>x<wall location>_<direction (none, L, R) **or** type of ramp>`.
+The pattern is: `<type of floor (floor, corner, skew)>_<ramp type (none, ramp, ramp steep)>_<# of walls)>x<wall location>_<direction (none, L, R) *or* type of ramp>`.
 For example, `Skew_Ramp_1x3_2_L` is a skew ramp that has 1 wall in the third location, second ramp type & facing left.
 
 ### Add an obstacle
