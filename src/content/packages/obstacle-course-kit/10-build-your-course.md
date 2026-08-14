@@ -28,6 +28,6 @@ For example, `Skew_Ramp_1x3_2_L` is a skew ramp that has 1 wall in the third loc
 
 ### Add an obstacle
 
-1. Go to **Obstacle Course Kit → <RP> → Prefabs → Obstacles/\***.
+1. Go to **Obstacle Course Kit → \<RP\> → Prefabs → Obstacles/\***.
 2. Look through the category and find an obstacle you like.
 3. Select it and drag it into your scene.
