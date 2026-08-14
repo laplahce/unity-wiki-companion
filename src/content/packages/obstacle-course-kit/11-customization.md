@@ -17,11 +17,11 @@ guide:
 
 1. Select your platform that you want to add a decal to.
 2. Find the **Mesh Renderer** component and add a decal material to the **Materials** list.
-3. You can find the pre-made decals under **Obstacle Course Kit → <RP> → Materials → Platforms → Decals/\***.
+3. You can find the pre-made decals under **Obstacle Course Kit → \<RP\> → Materials → Platforms → Decals/\***.
 
 ## Creating your own decal
 
-1. Locate the pre-made decals under **Obstacle Course Kit → <RP> → Materials → Platforms → Decals/\***.
+1. Locate the pre-made decals under **Obstacle Course Kit → \<RP\> → Materials → Platforms → Decals/\***.
 2. Duplicate any of the decal materials.
 3. Change the Albedo texture to your own decal. Decals are of ratio `1:1`.
 4. You can rotate the decal using the **Rotate** property.
