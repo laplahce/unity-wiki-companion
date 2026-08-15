@@ -23,18 +23,18 @@ Every interactive obstacle is built from three types of components that you atta
 
 ### Attributes
 
-An Attribute is the main component. Add one to a GameObject and it will manage a **forward → back sequence** that loops or plays on demand.
+An *Attribute* is the main component. Add one to a GameObject and it will manage a **forward → back sequence** that loops or plays on demand.
 
 **Inspector fields**
 
 | Property | Tooltip |
 |---|---|
-| `Start On` | whether the attribute begins active |
-| `Initial Delay` | seconds to wait before the attributes does anything at all |
-| `Off Action` | what happens when the attributes is turned off mid-sequence (`Stop` freezes immediately, `Continue` finished the current sequence first, then stops) |
-| Startup` | controls when a sequence begins (`Auto` starts immediately, `Delay` waits a set number of seconds, `Trigger` waits for a *Trigger* components **with the matching target** `Begin` or `Return`) |
-| `Extra Callbacks` | references *Callback* components that live on *other* GameObjects |
-| `Extra Triggers` | references *Trigger* components that live on *other* GameObjects |
+| `Start On` | Whether the attribute begins active |
+| `Initial Delay` | Seconds to wait before the attributes does anything at all |
+| `Off Action` | What happens when the attributes is turned off mid-sequence (`Stop` freezes immediately, `Continue` finished the current sequence first, then stops) |
+| `Startup` | Controls when a sequence begins (`Auto` starts immediately, `Delay` waits a set number of seconds, `Trigger` waits for a *Trigger* components **with the matching target** (`Begin` or `Return`)) |
+| `Extra Callbacks` | References *Callback* components that live on *other* GameObjects |
+| `Extra Triggers` | References *Trigger* components that live on *other* GameObjects |
 
 > By default the Attribute automatically finds all `ICallback` and `ATrigger` components on the **same GameObject**. The extra fields are only needed for cross-object communication.
 
@@ -42,29 +42,28 @@ An Attribute is the main component. Add one to a GameObject and it will manage a
 
 ### Triggers
 
-A Trigger watches for something and fires the Attribute when it happens. Add one alongside an Attribute.
+A *Trigger* watches for something and fires the Attribute when it happens. Add one alongside an *Attribute*.
 
 **Inspector fields**
 
 | Property | Tooltip |
 |---|---|
-| `Targets` | which action(a) on the Attributes this trigger controls (`On/Off` turn the attribute on or off, `Begin` start a forward sequence, `Return` start a back sequence) |
+| `Targets` | Which action(s) on the Attributes this trigger controls (`On/Off` turn the attribute on or off, `Begin` start a forward sequence, `Return` start a back sequence) |
 
 ---
 
 ### Callbacks
 
-A Callback listens to the Attribute's events and does something in response. Add one alongside an Attribute.
+A *Callback* listens to the Attribute's events and does something in response. Add one alongside an Attribute.
 
 ---
 
 ### Typical setup
 
-1. Add an **Attribute** component to your GameObject (e.g. `ShaderPropertyAnimatable`).
-2. Add a **Trigger** if you want something external to start the sequence (e.g. `CollisionTrigger`). Set its `Targets` to `Begin`.
-3. Add a **Callback** if you want a side-effect (e.g. `AddForceCallback`). Configure when it activates.
-4. Adjust `Startup` on the Attribute to `Trigger` so it waits for the collision before starting.
-5. Hit Play and test.
+1. Add an **Attribute** component to your GameObject (e.g. `Dummable` which is useful for behaviours where you need to have full control of its state, such as a launch pad). Set `Start On` to false & keep everything else the same.
+2. Add a **Trigger** if you want something external to start the sequence (e.g. `CollisionTrigger` & add a collider and make it a trigger). Set its `Targets` to `On` and `Off`.
+3. Add a **Callback** if you want a side-effect (e.g. `AddForceCallback`). Set it to toggle `On` and set `Start On` to false.
+5. Now it will launch an object whenever it touches the hitbox.
 
 ---
 
@@ -88,7 +87,7 @@ public class MyAttribute : AAttribute
 {
     // Return a normalized value (0–1) representing current progress.
     // This is passed to callbacks every frame.
-    protected override float GetT() => 0f;
+    protected override float GetT() => 1f;
 
     // Called every frame when the attribute is On and Running.
     // Put your per-frame logic here.
@@ -116,6 +115,8 @@ protected override void Awake()
 }
 ```
 
+Override `CanMoveWhenOff` to control whether the `Off Action` (`Stop` / `Continue`) setting is available. Return `false` to always hard-stop when turned off, `true` to let the user choose. Defaults to `true`.
+
 ---
 
 ### Creating a Timer-Based Attribute
@@ -142,20 +143,20 @@ public class MyTimedAttribute : AIntervalAttribute
 }
 ```
 
-**Timer helpers:**
+**Timer helpers**
 
 | Method | Description |
 |---|---|
 | `SetTime(float)` | Set the duration and reset the timer |
 | `ResetTime()` | Reset timer to 0 without changing duration |
 | `GetTime()` | Current elapsed seconds |
-| `GetTimeNormalized()` | Current progress as 0–1 |
+| `GetTimeNormalized()` | Current progress as 0-1 |
 
 ---
 
 ### State Management
 
-You never set states directly — use the request methods:
+You never set states directly, instead use the request methods:
 
 ```csharp
 RequestStateChange(EState.Running);   // start the sequence
@@ -164,7 +165,7 @@ RequestOnOffStateChange(EOnOffState.On);
 RequestOnOffStateChange(EOnOffState.Off);
 ```
 
-The `direction` field (`EDirection.Forward` / `EDirection.Back`) flips automatically each time a sequence finishes — you don't set it manually.
+The `direction` field (`EDirection.Forward` / `EDirection.Back`) flips automatically each time a sequence finishes meaning you don't set it manually.
 
 ---
 
@@ -216,15 +217,3 @@ public class MyCallback : MonoBehaviour, ICallback
 ```
 
 Place it on the same GameObject as the Attribute and it will be picked up automatically.
-
----
-
-### CanMoveWhenOff
-
-Override this property on your Attribute to control whether the `Off Action` (Stop/Continue) setting is exposed. If your attribute has no meaningful "mid-sequence" state, return `false`:
-
-```csharp
-protected override bool CanMoveWhenOff => false;
-```
-
-This also forces `Off` to always use `Stop` behaviour, regardless of the Inspector setting.
