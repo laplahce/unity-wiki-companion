@@ -5,7 +5,7 @@ tagline: A pack of realistic environment effects.
 category: VFX
 color: "#a5ff5c"
 label: Realistic FX Pack
-trailerUrl: TODO
+trailerUrl: https://youtu.be/NVJ2pYmyEK0
 assetStoreUrl: https://assetstore.unity.com/packages/slug/294657
 reviewUrl: https://assetstore.unity.com/packages/slug/294657#reviews
 media:
