@@ -5,7 +5,7 @@ tagline: Platformer kit for obstacle courses & party games.
 category: 3D
 color: "#955cff"
 label: Obstacle Course Kit
-trailerUrl: TODO
+trailerUrl: https://youtu.be/jhxrt_xg2WI
 assetStoreUrl: https://assetstore.unity.com/packages/slug/293703
 reviewUrl: https://assetstore.unity.com/packages/slug/293703#reviews
 media:
