@@ -26,3 +26,8 @@ guide:
 
 1. Open **Tools → RFX → Welcome Screen**.
 2. In the **Setup** tab, click the **Upgrade** button for your Render Pipeline & Version & import it.
+
+## Setup Universal Render Pipeline (URP) settings
+
+1. Go to **Project Settings → Graphics** & find the assigned *Universal Render Pipeline Asset*.
+2. Make sure **Depth Texture** is **ON**.
