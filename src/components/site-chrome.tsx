@@ -1,7 +1,7 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useState } from "react";
-import { Menu, X, ChevronDown, Package, Mail, Download, Heart, ArrowUpRight } from "lucide-react";
-import { PACKAGES } from "@/data/docs";
+import { Menu, X, ChevronDown, ChevronRight, Package, Mail, Download, Heart, ArrowUpRight } from "lucide-react";
+import { PACKAGES, type DocPackage, type DocPage } from "@/data/docs";
 import { SITE } from "@/data/site";
 import { SiteLogo } from "@/components/site-logo";
 import { SiteSearch } from "@/components/site-search";
@@ -97,46 +97,159 @@ function SidebarNav({
   onNavigate?: () => void;
   includeGlobal?: boolean;
 }) {
+  return <SidebarNavInner onNavigate={onNavigate} includeGlobal={includeGlobal} />;
+}
+
+// Pages declare `parent: <slug>` in their frontmatter to nest one level deep
+// under another page in the docs sidebar.
+type PageNode = { page: DocPage; children: DocPage[] };
+
+function buildPageTree(pkg: DocPackage): PageNode[] {
+  const bySlug = new Map(pkg.pages.map((p) => [p.slug, p]));
+  const nodes: PageNode[] = [];
+  const index = new Map<string, PageNode>();
+  for (const page of pkg.pages) {
+    if (page.parent && bySlug.has(page.parent) && page.parent !== page.slug) continue;
+    const node: PageNode = { page, children: [] };
+    nodes.push(node);
+    index.set(page.slug, node);
+  }
+  for (const page of pkg.pages) {
+    if (!page.parent) continue;
+    const parent = index.get(page.parent);
+    if (parent) parent.children.push(page);
+  }
+  return nodes;
+}
+
+function SidebarPageLink({
+  pkg,
+  page,
+  isActive,
+  onNavigate,
+  nested = false,
+}: {
+  pkg: DocPackage;
+  page: DocPage;
+  isActive: boolean;
+  onNavigate?: () => void;
+  nested?: boolean;
+}) {
+  const isOverview = page.slug === "overview";
+  return (
+    <Link
+      to={isOverview ? "/docs/$package" : "/docs/$package/$page"}
+      params={
+        isOverview ? { package: pkg.slug } : { package: pkg.slug, page: page.slug }
+      }
+      activeOptions={{ exact: true }}
+      onClick={onNavigate}
+      className={`side-link${isActive ? " active" : ""}${
+        page.emphasized ? " emphasized" : ""
+      }${nested ? " text-[13px]" : ""}`}
+    >
+      {page.highlight === "start-here" ? (
+        <Download className="inline-block h-3.5 w-3.5 shrink-0" />
+      ) : page.highlight ? (
+        <HighlightDot highlight={page.highlight} />
+      ) : null}
+      <span className="inline-flex items-center gap-1.5">
+        {page.title}
+        {page.status && <StatusDot status={page.status} />}
+      </span>
+    </Link>
+  );
+}
+
+function SidebarPageItem({
+  pkg,
+  node,
+  currentPageSlug,
+  onNavigate,
+}: {
+  pkg: DocPackage;
+  node: PageNode;
+  currentPageSlug: string;
+  onNavigate?: () => void;
+}) {
+  const { page, children } = node;
+  const childActive = children.some((c) => c.slug === currentPageSlug);
+  const isActive = currentPageSlug === page.slug;
+  const [open, setOpen] = useState(isActive || childActive);
+  const expanded = open || childActive;
+
+  return (
+    <li>
+      <div className="flex items-center">
+        <div className="min-w-0 flex-1">
+          <SidebarPageLink
+            pkg={pkg}
+            page={page}
+            isActive={isActive}
+            onNavigate={onNavigate}
+          />
+        </div>
+        {children.length > 0 && (
+          <button
+            type="button"
+            aria-label={expanded ? `Collapse ${page.title}` : `Expand ${page.title}`}
+            aria-expanded={expanded}
+            onClick={() => setOpen(!expanded)}
+            className="mr-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-md text-muted-foreground transition hover:text-brand"
+          >
+            {expanded ? (
+              <ChevronDown className="h-3.5 w-3.5" />
+            ) : (
+              <ChevronRight className="h-3.5 w-3.5" />
+            )}
+          </button>
+        )}
+      </div>
+      {children.length > 0 && expanded && (
+        <ul className="ml-4 border-l border-border pl-1">
+          {children.map((child) => (
+            <li key={child.slug}>
+              <SidebarPageLink
+                pkg={pkg}
+                page={child}
+                isActive={currentPageSlug === child.slug}
+                onNavigate={onNavigate}
+                nested
+              />
+            </li>
+          ))}
+        </ul>
+      )}
+    </li>
+  );
+}
+
+function SidebarNavInner({
+  onNavigate,
+  includeGlobal = false,
+}: {
+  onNavigate?: () => void;
+  includeGlobal?: boolean;
+}) {
   const ctx = useCurrentDocContext();
 
   if (ctx.kind === "package" && ctx.pkg) {
     const { pkg, currentPageSlug } = ctx;
+    const tree = buildPageTree(pkg);
     return (
       <nav className="space-y-8">
         <div>
           <div className="eyebrow-sidebar mb-4 pl-4">{pkg.name}</div>
           <ul className="space-y-0">
-            {pkg.pages.map((page) => {
-              const isOverview = page.slug === "overview";
-              const isActive = currentPageSlug === page.slug;
-              return (
-                <li key={page.slug}>
-                  <Link
-                    to={isOverview ? "/docs/$package" : "/docs/$package/$page"}
-                    params={
-                      isOverview
-                        ? { package: pkg.slug }
-                        : { package: pkg.slug, page: page.slug }
-                    }
-                    activeOptions={{ exact: true }}
-                    onClick={onNavigate}
-                    className={`side-link${isActive ? " active" : ""}${
-                      page.emphasized ? " emphasized" : ""
-                    }`}
-                  >
-                    {page.highlight === "start-here" ? (
-                      <Download className="inline-block h-3.5 w-3.5 shrink-0" />
-                    ) : page.highlight ? (
-                      <HighlightDot highlight={page.highlight} />
-                    ) : null}
-                    <span className="inline-flex items-center gap-1.5">
-                      {page.title}
-                      {page.status && <StatusDot status={page.status} />}
-                    </span>
-                  </Link>
-                </li>
-              );
-            })}
+            {tree.map((node) => (
+              <SidebarPageItem
+                key={node.page.slug}
+                pkg={pkg}
+                node={node}
+                currentPageSlug={currentPageSlug}
+                onNavigate={onNavigate}
+              />
+            ))}
           </ul>
         </div>
         {includeGlobal && (

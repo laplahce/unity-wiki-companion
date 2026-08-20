@@ -56,6 +56,7 @@ type PageFront = {
   guide?: GuideStep[];
   compatibility?: Compatibility;
   updated?: string;
+  parent?: string;
 };
 
 // Minimal frontmatter parser - supports the YAML-ish subset we actually use:
@@ -336,12 +337,17 @@ function renderChangelog(md: string): string {
 function slugFromFilename(file: string): string {
   // e.g. "01-installation.md" -> "installation"
   const base = file.replace(/\.md$/, "");
-  return base.replace(/^\d+[-_]/, "");
+  return base.replace(/^[\d.]+[-_]/, "");
 }
 
+// Supports plain (`11-systems.md`) and nested (`11.02-systems-level.md`)
+// prefixes. Nested prefixes sort right after their parent.
 function orderFromFilename(file: string): number {
-  const m = file.match(/^(\d+)[-_]/);
-  return m ? parseInt(m[1], 10) : 999;
+  const m = file.match(/^(\d+)(?:\.(\d+))?[-_]/);
+  if (!m) return 9999;
+  const major = parseInt(m[1], 10);
+  const minor = m[2] ? parseInt(m[2].padEnd(3, "0"), 10) / 1000 : 0;
+  return major + minor;
 }
 
 // ---------------- Build the package list ----------------
@@ -410,6 +416,7 @@ function buildPackages(): DocPackage[] {
         status: fm.status,
         guide: fm.guide,
         updated: fm.updated ? String(fm.updated) : undefined,
+        parent: fm.parent ? String(fm.parent) : undefined,
       };
     });
 

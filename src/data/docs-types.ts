@@ -28,6 +28,9 @@ export type DocPage = {
   status?: PublishStatus;
   // ISO date string from the page's `updated:` frontmatter field.
   updated?: string;
+  // Slug of the parent page. Set via `parent:` in the page's frontmatter to
+  // nest this page under another one in the docs sidebar.
+  parent?: string;
 };
 
 // Declared in the overview page's frontmatter under `compatibility:`.
