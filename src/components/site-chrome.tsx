@@ -1,7 +1,7 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useState } from "react";
-import { Menu, X, ChevronDown, Package, Mail, Download, Heart, ArrowUpRight } from "lucide-react";
-import { PACKAGES } from "@/data/docs";
+import { Menu, X, ChevronDown, ChevronRight, Package, Mail, Download, Heart, ArrowUpRight } from "lucide-react";
+import { PACKAGES, type DocPackage, type DocPage } from "@/data/docs";
 import { SITE } from "@/data/site";
 import { SiteLogo } from "@/components/site-logo";
 import { SiteSearch } from "@/components/site-search";
@@ -101,42 +101,21 @@ function SidebarNav({
 
   if (ctx.kind === "package" && ctx.pkg) {
     const { pkg, currentPageSlug } = ctx;
+    const tree = buildPageTree(pkg);
     return (
       <nav className="space-y-8">
         <div>
           <div className="eyebrow-sidebar mb-4 pl-4">{pkg.name}</div>
           <ul className="space-y-0">
-            {pkg.pages.map((page) => {
-              const isOverview = page.slug === "overview";
-              const isActive = currentPageSlug === page.slug;
-              return (
-                <li key={page.slug}>
-                  <Link
-                    to={isOverview ? "/docs/$package" : "/docs/$package/$page"}
-                    params={
-                      isOverview
-                        ? { package: pkg.slug }
-                        : { package: pkg.slug, page: page.slug }
-                    }
-                    activeOptions={{ exact: true }}
-                    onClick={onNavigate}
-                    className={`side-link${isActive ? " active" : ""}${
-                      page.emphasized ? " emphasized" : ""
-                    }`}
-                  >
-                    {page.highlight === "start-here" ? (
-                      <Download className="inline-block h-3.5 w-3.5 shrink-0" />
-                    ) : page.highlight ? (
-                      <HighlightDot highlight={page.highlight} />
-                    ) : null}
-                    <span className="inline-flex items-center gap-1.5">
-                      {page.title}
-                      {page.status && <StatusDot status={page.status} />}
-                    </span>
-                  </Link>
-                </li>
-              );
-            })}
+            {tree.map((node) => (
+              <SidebarPageItem
+                key={node.page.slug}
+                pkg={pkg}
+                node={node}
+                currentPageSlug={currentPageSlug}
+                onNavigate={onNavigate}
+              />
+            ))}
           </ul>
         </div>
         {includeGlobal && (
