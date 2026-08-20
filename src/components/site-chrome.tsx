@@ -385,8 +385,8 @@ export function SiteSidebar() {
   // are full-width.
   if (!pathname.startsWith("/docs")) return null;
   return (
-    <aside className="hidden w-64 shrink-0 border-r border-border bg-surface px-4 py-10 text-sm lg:block">
-      <div className="sticky top-24">
+    <aside className="hidden w-64 shrink-0 border-r border-border bg-surface px-4 py-10 text-sm lg:block sticky top-16 h-[calc(100vh-4rem)] overflow-y-auto scrollbar-brand">
+      <div>
         <SidebarNav />
       </div>
     </aside>
@@ -407,7 +407,7 @@ export function MobileSidebar({
         className="absolute inset-0 bg-foreground/40 backdrop-blur-sm"
         onClick={onClose}
       />
-      <div className="absolute inset-y-0 left-0 w-72 max-w-[85%] bg-background shadow-xl overflow-y-auto">
+      <div className="absolute inset-y-0 left-0 w-72 max-w-[85%] bg-background shadow-xl overflow-y-auto scrollbar-brand">
         <div className="flex items-center justify-between border-b border-border px-4 py-3">
           <div className="flex items-center gap-2">
             <div className="flex aspect-square h-8 w-8 shrink-0 items-center justify-center">
