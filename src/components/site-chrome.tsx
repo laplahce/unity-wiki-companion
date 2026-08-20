@@ -385,8 +385,8 @@ export function SiteSidebar() {
   // are full-width.
   if (!pathname.startsWith("/docs")) return null;
   return (
-    <aside className="hidden w-64 shrink-0 border-r border-border bg-surface px-4 py-10 text-sm lg:block">
-      <div className="sticky top-24">
+    <aside className="hidden w-64 shrink-0 border-r border-border bg-surface px-4 py-10 text-sm lg:block sticky top-16 h-[calc(100vh-4rem)] overflow-y-auto scrollbar-brand">
+      <div>
         <SidebarNav />
       </div>
     </aside>
