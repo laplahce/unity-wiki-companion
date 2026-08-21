@@ -10,10 +10,13 @@ import {
   ArrowUpRight,
   FileText,
   CalendarClock,
+  Film,
 } from "lucide-react";
 import { StatusBadge } from "@/components/status-badge";
 import { PackageBanner } from "@/components/package-media";
 import { SITE } from "@/data/site";
+import { youtubeId } from "@/data/content";
+import { useRef, useEffect } from "react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -35,6 +38,94 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
+function YouTubePlayer({ trailerUrl }: { trailerUrl: string }) {
+  const playerRef = useRef<any>(null);
+  const apiLoadedRef = useRef(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const trailerId = youtubeId(trailerUrl);
+
+  useEffect(() => {
+    if (!trailerId) return;
+
+    function initializePlayer() {
+      if (!playerRef.current) {
+        playerRef.current = new window.YT!.Player("youtube-hero-player", {
+          videoId: trailerId,
+          playerVars: {
+            autoplay: 1,
+            controls: 0,
+            mute: 1,
+            rel: 0,
+            fs: 0,
+            modestbranding: 1,
+            playsinline: 1,
+            iv_load_policy: 3,
+            disablekb: 1,
+            showinfo: 0,
+          },
+          events: {
+            onReady: (event: any) => {
+              event.target.mute();
+              event.target.playVideo();
+            },
+            onStateChange: (event: any) => {
+              if (event.data === window.YT!.PlayerState.PLAYING) {
+                if (containerRef.current) {
+                  containerRef.current.style.opacity = "1";
+                }
+              }
+              if (event.data === window.YT!.PlayerState.ENDED) {
+                event.target.playVideo();
+              }
+            },
+          },
+        });
+      }
+    }
+
+    if (!window.YT) {
+      const tag = document.createElement("script");
+      tag.src = "https://www.youtube.com/iframe_api";
+      const firstScriptTag = document.getElementsByTagName("script")[0];
+      firstScriptTag?.parentNode?.insertBefore(tag, firstScriptTag);
+
+      window.onYouTubeIframeAPIReady = () => {
+        apiLoadedRef.current = true;
+        initializePlayer();
+      };
+    } else if (window.YT!.Player) {
+      initializePlayer();
+    } else {
+      window.onYouTubeIframeAPIReady = () => {
+        apiLoadedRef.current = true;
+        initializePlayer();
+      };
+    }
+
+    return () => {
+      if (playerRef.current?.destroy) {
+        try {
+          playerRef.current.destroy();
+          playerRef.current = null;
+        } catch (e) {
+          // Player might already be destroyed
+        }
+      }
+    };
+  }, [trailerId]);
+
+  return (
+    <div
+      ref={containerRef}
+      className="relative overflow-hidden rounded-2xl transition-opacity duration-500"
+      style={{ opacity: 0 }}
+    >
+      <div id="youtube-hero-player" className="w-full" />
+    </div>
+  );
+}
+
 function Home() {
   return (
     <div className="mx-auto max-w-5xl space-y-20 pb-10">
@@ -43,10 +134,26 @@ function Home() {
         <div className="eyebrow inline-flex items-center gap-2">
           <Wrench className="h-3.5 w-3.5" /> Unity Asset Developer
         </div>
-        <h1 className="display mt-4 text-4xl sm:text-5xl lg:text-6xl">
-          Hi, I&apos;m <span className="text-brand">laplahce</span>.
-          <br />I build Assets for your games.
-        </h1>
+        
+        {SITE.trailerUrl ? (
+          <div className="mt-4 space-y-4">
+            <YouTubePlayer trailerUrl={SITE.trailerUrl} />
+            <a
+              href={SITE.trailerUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-brand hover:underline"
+            >
+              <Film className="h-4 w-4" /> Watch the full trailer
+            </a>
+          </div>
+        ) : (
+          <h1 className="display mt-4 text-4xl sm:text-5xl lg:text-6xl">
+            Hi, I&apos;m <span className="text-brand">laplahce</span>.
+            <br />I build Assets for your games.
+          </h1>
+        )}
+        
         <p className="mt-6 max-w-2xl text-base text-muted-foreground sm:text-lg">
           I&apos;ve been creating asset packs on the Unity Asset Store for a while
           now. Here you&apos;ll find all my packages, their documentation, demos & more.
