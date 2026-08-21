@@ -20,10 +20,10 @@ title: Getting started
 1. Import a system.
 2. Navigate to **Essential Systems → Systems → Standalone** folder.
 3. Find the system and study its demo scene.
-4. Read more about the specific system in [its documentation](./essential-systems/systems).
+4. Read more about the specific system in [its documentation](./systems).
 
 ### Understanding the utilities
 
 1. Navigate to **Essential Systems → Systems → Utility** folder.
 2. Study the utility systems you find interesting.
-3. Read more about the specific utility system in [its documentation](./essential-systems/utilities).
+3. Read more about the specific utility system in [its documentation](./utilities).
