@@ -25,7 +25,7 @@ kind: changelog
 - improved: Selector.
 - improved: UI Manager.
 
-# 1.1.0 - 2025-06-16
+## 1.1.0 - 2025-06-16
 
 - added: Spawner systems.
 - added: Particle Manager.

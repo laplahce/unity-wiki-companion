@@ -1,44 +1,27 @@
 ---
-updated: 2026-08-19
-title: Settings & configuration
-guide:
-  - { title: "Open the config folder", caption: "Open the Candy Merge/_Config folder.", gif: "/content/packages/candy-merge/GIFS/settings-001.gif" }
-  - { title: "Pick a system", caption: "Open the folder for the system you want to change, for example Camera.", gif: "/content/packages/candy-merge/GIFS/settings-002.gif" }
-  - { title: "Select the settings object", caption: "Select the ScriptableObject holding the settings.", gif: "/content/packages/candy-merge/GIFS/settings-003.gif" }
-  - { title: "Change a value", caption: "Change values in the inspector and hover a property to read its tooltip.", gif: "/content/packages/candy-merge/GIFS/settings-004.gif" }
+updated: 2026-08-21
+title: Settings
 ---
 
-*Almost everything in the template is driven by settings objects. This page explains where they are and what each one does.*
+*This pack contains a collection of essential systems that aims to speed up your workflow.*
 
-## Finding the settings
+To import the systems, please refer to the [getting started guide](./essential-systems/getting-started).
 
-All configuration lives under **Candy Merge → _Config**, split into one folder per system.
+## List of systems
 
-1. Open **Candy Merge → _Config**.
-2. Open the folder for the system you want to change (e.g. *Camera*).
-3. Select the ScriptableObject inside. Some live in a `Resources` subfolder.
-4. Change values in the **Inspector**. Every property has a tooltip explaining what it does.
-
-> Settings objects stored inside a `Resources` folder **must stay** in that folder, otherwise they cannot be loaded at runtime.
-
-## Universal settings
-
-The shared settings sit under **Candy Merge → _Config → Settings → Resources**.
-
-- **Runtime Settings** - the main settings object. Box size, drop cooldown, colors, merge behaviour and most system values are read from here, both in the editor and at runtime.
-- **Editor Settings** - editor-only conveniences. Never read in a build.
-- **Game Settings** - holds data that changes while playing, such as score or player name. Empty by default and meant to be expanded.
-
-## Per system settings
-
-- **Camera** - framing, follow behaviour and zoom for the play area.
-- **Candy** - the candy chain, sizes, spawn weights and merge results.
-- **Player** - input, drop position limits and drop timing.
-- **Game** - round rules, scoring and game over thresholds.
-
-## Objects and pooling
-
-Two ScriptableObjects under **Candy Merge → Resources** manage prefabs at runtime.
-
-- **Objects** - prefabs that any script can request at any time.
-- **Pool** - prefabs that are pooled during initialization instead of being instantiated on demand.
+| System | What it does | Documentation |
+|---|---|---|
+| **Object Spawner** | Multiple ways to spawn objects | [DOCS](./essential-systems/object-spawner) |
+| **Audio Manager** | Easy audio playback & controller | [DOCS](./essential-systems/audio-manager) |
+| **Camera Shake** | Activate camera shake from anywhere | [DOCS](./essential-systems/camera-shake) |
+| **Console** | Allowing any method to be a command | [DOCS](./essential-systems/console) |
+| **Dialogues** | Dialogue manager with branching options | [DOCS](./essential-systems/dialogues) |
+| **Editor Utility** | Useful editor utility systems | [DOCS](./essential-systems/editor-utility) |
+| **Interface** | Persistent pause menu & interface across scenes | [DOCS](./essential-systems/interface) |
+| **Input System Manager** | Handle all input related stuff from one place | [DOCS](./essential-systems/input-system-manager) |
+| **Object Manager** | Store & access objects across scenes | [DOCS](./essential-systems/object-manager) |
+| **Particle Manager** | Control playback & disposing of particles | [DOCS](./essential-systems/particle-manager) |
+| **Object Pooling** | Efficiently spawn a lot of objects | [DOCS](./essential-systems/object-pooling) |
+| **Proximities** | Trigger interactions based on nearby objects | [DOCS](./essential-systems/proximities) |
+| **Scene Manager** | Handle scene switching easily | [DOCS](./essential-systems/scene-manager) |
+| **UI Components** | Pause menu, type writer, fade in, +more | [DOCS](./essential-systems/ui-components) |
