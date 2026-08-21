@@ -24,7 +24,7 @@ infobox:
   - { label: Tools included, value: "4" }
   - { label: Render pipelines, value: "Built-in, URP, HDRP" }
   - { label: Engine, value: "All versions" }
-  - { label: Type, value: "Tools" }
+  - { label: Type, value: "Character pack" }
 highlights:
   - Prefab Brush
   - Object Spawner
