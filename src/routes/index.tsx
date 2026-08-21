@@ -118,13 +118,10 @@ function YouTubePlayer({ trailerUrl }: { trailerUrl: string }) {
   return (
     <div
       ref={containerRef}
-      className="pointer-events-none absolute inset-0 overflow-hidden transition-opacity duration-500"
+      className="relative overflow-hidden rounded-2xl transition-opacity duration-500"
       style={{ opacity: 0 }}
     >
-      <div
-        id="youtube-hero-player"
-        className="pointer-events-none absolute left-1/2 top-1/2 h-[110vh] min-h-full w-[195vh] min-w-full -translate-x-1/2 -translate-y-1/2"
-      />
+      <div id="youtube-hero-player" className="w-full" />
     </div>
   );
 }
@@ -139,14 +136,13 @@ function Home() {
         </div>
         
         {SITE.trailerUrl ? (
-          <div className="relative left-1/2 right-1/2 mt-4 h-[520px] w-screen -translate-x-1/2 overflow-hidden sm:h-[640px]">
+          <div className="mt-4 space-y-4">
             <YouTubePlayer trailerUrl={SITE.trailerUrl} />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-black/35 to-black/75" />
             <a
               href={SITE.trailerUrl}
               target="_blank"
               rel="noreferrer"
-              className="btn btn-glass absolute bottom-6 right-6 !rounded-full px-4 py-2 text-sm"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-brand hover:underline"
             >
               <Film className="h-4 w-4" /> Watch the full trailer
             </a>
