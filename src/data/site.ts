@@ -19,6 +19,7 @@ export type SiteConfig = {
   email: string;
   patreonUrl?: string;
   github?: string;
+  trailerUrl?: string;
   assetStoreUrl: string;
   copyright: string;
   footerNote?: string;
@@ -55,6 +56,7 @@ export const SITE: SiteConfig = {
   email: str(f.email, "hello@laplahce.dev"),
   patreonUrl: str(f.patreonUrl) || undefined,
   github: str(f.github) || undefined,
+  trailerUrl: str(f.trailerUrl) || undefined,
   assetStoreUrl: str(f.assetStoreUrl, "https://assetstore.unity.com"),
   copyright: str(f.copyright, "© {year} laplahce").replace("{year}", "2026"),
   footerNote: str(f.footerNote) || undefined,
