@@ -11,6 +11,7 @@ github:
 assetStoreUrl: https://assetstore.unity.com/publishers/62747
 copyright: "© {year} laplahce - Unity Asset Store developer. Not affiliated with Unity Technologies."
 footerNote: Made with care.
+trailerUrl: 
 socials:
   - name: Itch
     url: https://itch.io/profile/laplahce
