@@ -147,7 +147,12 @@ function Home() {
               <Film className="h-4 w-4" /> Watch the full trailer
             </a>
           </div>
-        ) : null}
+        ) : (
+          <h1 className="display mt-4 text-4xl sm:text-5xl lg:text-6xl">
+            Hi, I&apos;m <span className="text-brand">laplahce</span>.
+            <br />I build Assets for your games.
+          </h1>
+        )}
         
         <p className="mt-6 max-w-2xl text-base text-muted-foreground sm:text-lg">
           I&apos;ve been creating asset packs on the Unity Asset Store for a while
