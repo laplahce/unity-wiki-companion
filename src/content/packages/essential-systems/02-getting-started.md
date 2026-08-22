@@ -22,6 +22,8 @@ title: Getting started
 3. Find the system and study its demo scene.
 4. Read more about the specific system in [its documentation](./systems).
 
+> If you see *pink* materials, you may need to upgrade/change the materials to fit your render pipeline. This is not required, the system will still work, but the demo scene will be harder to decipher.
+
 ### Understanding the utilities
 
 1. Navigate to **Essential Systems → Systems → Utility** folder.
