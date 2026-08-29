@@ -4,9 +4,8 @@ title: Installation
 kind: installation
 guide:
   - { title: "Open the Welcome Screen", caption: "Open Tools → ES → Welcome Screen.", gif: "/content/packages/essential-systems/GIFS/installation-001.gif" }
-  - { title: "Open the Setup tab", caption: "Navigate to the Setup tab.", gif: "/content/packages/essential-systems/GIFS/installation-002.gif" }
-  - { title: "Upgrade to your Render Pipeline", caption: "Click the Upgrade button for your Render Pipeline.", gif: "/content/packages/essential-systems/GIFS/installation-003.gif" }
-  - { title: "Import the Render Pipeline", caption: "Import it.", gif: "/content/packages/essential-systems/GIFS/installation-004.gif" }
+  - { title: "Open the Systems tab", caption: "Navigate to the Systems tab.", gif: "/content/packages/essential-systems/GIFS/installation-002.gif" }
+  - { title: "Import the system", caption: "Click the Import button for the system you want.", gif: "/content/packages/essential-systems/GIFS/installation-003.gif" }
 ---
 
 *This guide covers installation.*

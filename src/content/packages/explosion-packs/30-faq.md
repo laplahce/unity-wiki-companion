@@ -24,7 +24,7 @@ Yes. The licence covers commercial projects, per the standard Unity Asset Store 
 
 ## Can I use the effects in my 2D game?
 
-Yes. Although, the pack was made using 3D and therefor 3D is preferred.
+Yes. Although, the pack was made using 3D and therefore 3D is preferred.
 
 ## Can I use the effects in my 3D game?
 

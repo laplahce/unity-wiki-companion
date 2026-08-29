@@ -17,7 +17,7 @@ kind: changelog
 
 ## 1.0.1 - 2025-01-02
 
-- fixed: Build bugs
+- fixed: Build bugs.
 
 ## 1.0.0 - 2024-07-10
 

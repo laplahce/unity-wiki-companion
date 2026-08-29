@@ -21,7 +21,7 @@ title: Getting started
 ## Key settings
 
 | Setting | What it does |
-|---|---|---|
+|---|---|
 | **Shape** | Regenerate the shape randomly or with a fixed size |
 | **Count** | maximum number of leaf particles to generate. Pair with **Min Distance** to fill the foliage without gaps |
 | **Scale** | size of each individual leaf billboard |

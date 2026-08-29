@@ -14,6 +14,6 @@ compatibility:
 
 ## What's inside
 
-- **40+*' FX (+variants).
+- **40+** FX (+variants).
 - Custom **text editor** that allows you to write anything, select a transition, change its color, add overlay (e.g. halftone), +more.
 - 60+ textures.

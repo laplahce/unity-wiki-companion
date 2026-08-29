@@ -8,8 +8,7 @@ kind: changelog
 
 ## 2.0.0 - 2026-08-18 (latest)
 
-- added: FXs.
-- improved: FXs.
+- improved: Effects.
 - added: Version & pipeline support.
 - changed: Converted to Shuriken Particle System.
 

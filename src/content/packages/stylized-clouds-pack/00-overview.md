@@ -12,7 +12,7 @@ compatibility:
     - Windows
 ---
 
-**Stylized Clouds Pack** is a pack of stylized clouds.
+**Stylized Clouds Pack** is a pack of **50** stylized clouds.
 
 ## What's inside
 

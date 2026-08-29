@@ -2,57 +2,46 @@
 updated: 2026-08-19
 title: Installation
 kind: installation
-guide:
-  - { title: "Import the package", caption: "Import Candy Merge through the Package Manager into a fresh project.", gif: "/content/packages/candy-merge/GIFS/installation-001.gif" }
-  - { title: "Install the dependencies", caption: "Install TextMeshPro, the new Input System and Shader Graph via the Package Manager.", gif: "/content/packages/candy-merge/GIFS/installation-002.gif" }
-  - { title: "Switch the input handling", caption: "Open Edit → Project Settings → Player and set Active Input Handling to Input System Package (New).", gif: "/content/packages/candy-merge/GIFS/installation-003.gif" }
-  - { title: "Add the scenes", caption: "Open File → Build Settings and add the four scenes from Candy Merge/Scenes in order.", gif: "/content/packages/candy-merge/GIFS/installation-004.gif" }
-  - { title: "Select the render pipeline", caption: "For URP, assign the included UniversalRP asset in Project Settings → Graphics and Quality.", gif: "/content/packages/candy-merge/GIFS/installation-005.gif" }
 ---
 
 *This guide covers installation, required dependencies, project settings and render pipeline setup.*
 
 ## Install via Package Manager
 
-1. Create a **new** project (recommended, but importing into an existing project works if care is taken).
-2. Open **Window → Package Manager**.
-3. Find the *Candy Merge* package and import it.
+1. Open **Window → Package Manager**.
+2. Find the *Candy Merge Template* package.
+3. Import it.
+4. This will prompt you to either Switch Project or Import it directly.
 
-## Required packages
+> Unity explains the difference but as a rule of thumb - if you are working with a freshly created project, you can simply Import it.
 
-Install and update these through the **Package Manager** before running the game:
+## Dependencies
 
-1. `TextMeshPro`
-2. `Input System` (new)
-3. `Shader Graph`
+1. Open **Window → Package Manager**.
+2. Make sure **TextMeshPro**, **New Input System** and **Shader Graph** packages are installed.
 
-## Project settings
+## Setup
 
-1. Open **Edit → Project Settings → Player** and set **Active Input Handling** to *Input System Package (New)*.
-2. Open **File → Build Settings** and add the four scenes from **Candy Merge → Scenes** in this exact order:
-   1. `MENU`
-   2. `LEVEL`
-   3. `INTERFACE`
-   4. `LOADING`
+> Most of the settings should already be correct but make sure to double check the following:
+	
+1. Go to **Edit → Project Settings → Player** and change *Active Input Handling\** to *Input System Package (New)*. If you cannot find the setting, try searching for it in the search bar or locate it under the *Other Settings* dropdown.
+2. Go to **File → Build Settings** and add the four scenes found in **Candy Merge → Scenes** in the following order (MUST BE IN THIS ORDER):
 
-## Render pipeline
+| Order | Scene |
+|---|---|
+| `0` | `MENU` |
+| `1` | `LEVEL` |
+| `2` | `INTERFACE` |
+| `3` | `LOADING` |
 
-### Built-In
+> If you are not using Unity 6 or the physics feels off - make sure to go to **Candy Merge → Systems → Candies → Prefabs** and select *Candy* prefab. Make sure that its *Rigidbody2D* has its *Angular Damping* or *Angular Drag* (depending on Unity version) to `15` (or your own preference).
 
-Works out of the box once the steps above are done.
+### Settings for Universal Render Pipeline (URP)
 
-### URP
+1. Go to **Edit → Project Settings → Graphics** and select your preferred *Default Render Pipeline*. You can use the included *UniversalRP* under **Candy Merge → Settings**.
+2. Do the same for **Edit → Project Settings → Quality**.
 
-1. Open **Edit → Project Settings → Graphics** and set the **Default Render Pipeline** to the included **UniversalRP** asset under **Candy Merge → Settings**.
-2. Open **Edit → Project Settings → Quality** and set the **Render Pipeline Asset** to the same asset.
+## Understanding the pack
 
-## Mobile projects
-
-1. Open **Edit → Project Settings → Player → Android** *(or your platform)* **→ Resolution and Presentation**.
-2. Set **Auto Rotation Behaviour** to *Sensor*.
-3. Under **Allowed Orientations for Auto Rotation**, disable *Portrait* and *Portrait Upside Down*.
-4. For the game over screenshot, follow the comment inside `TakeScreenshot()` in **Candy Merge → Systems → Game Over → Scripts → GameOver**.
-
-## If the physics feels off
-
-On Unity versions before 6, select the `Candy` prefab under **Candy Merge → Systems → Candies → Prefabs** and set its `Rigidbody2D` **Angular Damping** (or *Angular Drag*) to `15`.
+1. Open **Tools → CMT → Welcome Screen**.
+2. Navigate the tabs and get an understanding of the pack.

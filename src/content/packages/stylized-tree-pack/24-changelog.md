@@ -13,12 +13,12 @@ kind: changelog
 
 ## 2.0.0 - 2026-04-10
 
-- improved: Shader 
+- improved: Shader.
 - improved: Trees & bushes.
 
 ## 1.1.0 - 2026-02-25
 
--changed: It is now FREE!
+- changed: It is now FREE!
 
 ## 1.0.0 - 2025-12-30
 

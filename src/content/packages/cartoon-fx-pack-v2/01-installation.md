@@ -22,6 +22,11 @@ guide:
 1. Open **Tools → CTFX2 → Welcome Screen**.
 2. In the **Setup** tab, click the **Upgrade** button for your Render Pipeline & import it.
 
+## Settings for Universal Render Pipeline (URP)
+
+1. Open your URP Asset via **Edit → Project Settings → Graphics → Default Render Pipeline**.
+2. Make sure both **Depth Texture** and **Opaque Texture** are **ON**.
+
 ## Changing Texture Quality
 
 1. Open **Tools → CTFX2 → Welcome Screen**.

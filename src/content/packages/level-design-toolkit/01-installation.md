@@ -4,9 +4,7 @@ title: Installation
 kind: installation
 guide:
   - { title: "Open the Welcome Screen", caption: "Open Tools → LDT → Welcome Screen.", gif: "/content/packages/level-design-toolkit/GIFS/installation-001.gif" }
-  - { title: "Open the Setup tab", caption: "Navigate to the Setup tab.", gif: "/content/packages/level-design-toolkit/GIFS/installation-002.gif" }
-  - { title: "Upgrade to your Render Pipeline", caption: "Click the Upgrade button for your Render Pipeline.", gif: "/content/packages/level-design-toolkit/GIFS/installation-003.gif" }
-  - { title: "Import the Render Pipeline", caption: "Import it.", gif: "/content/packages/level-design-toolkit/GIFS/installation-004.gif" }
+  - { title: "Navigate the tabs", caption: "Navigate the different tabs to get an understanding of the pack.", gif: "/content/packages/level-design-toolkit/GIFS/installation-002.gif" }
 ---
 
 *This guide covers installation.*
@@ -16,3 +14,8 @@ guide:
 1. Open **Window → Package Manager**.
 2. Find the *Level Design Toolkit* package.
 3. Import it.
+
+## Understanding the pack
+
+1. Open **Tools → LDT → Welcome Screen**.
+2. Navigate the tabs and get an understanding of the pack.

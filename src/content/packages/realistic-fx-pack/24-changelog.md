@@ -14,7 +14,7 @@ kind: changelog
 
 ## 2.2.0 - 2025-01-09
 
-- added: Now available for Unity 6.
+- added: Unity 6 compatability.
 
 ## 2.1.0 - 2024-09-15
 
@@ -22,14 +22,14 @@ kind: changelog
 
 ## 2.0.0 - 2024-08-06
 
-- added: Rain (both in place & curve)
-- added: Snow (both in place & curve)
-- added: Hail (both in place & curve)
+- added: Rain (both in place & curve).
+- added: Snow (both in place & curve).
+- added: Hail (both in place & curve).
 - fixed: Bugs related to collision + naming.
 
 ## 1.1.0 - 2024-05-12
 
-- improved: README
+- improved: README.
 
 ## 1.0.0 - 2024-02-10
 

@@ -16,7 +16,7 @@ URP and HDRP. Follow the [Installation guide](./installation) to learn how to us
 
 ## Which platforms are supported?
 
-Platforms that support VFX Graph are supported (e.g. mobile & WebGL isn't supported). [For more compatibility information, refer to the Compatibility page](./compatibility).
+Platforms that support VFX Graph are supported (e.g. mobile & WebGL aren't supported). [For more compatibility information, refer to the Compatibility page](./compatibility).
 
 ## Can I use the assets in a commercial game?
 

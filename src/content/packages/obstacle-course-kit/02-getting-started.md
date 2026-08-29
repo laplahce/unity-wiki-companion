@@ -9,4 +9,11 @@ title: Getting started
 
 ## Your first steps
 
-TODO
+1. Open any of the demo scenes **Obstacle Course Kit → \<RP\> → Demo** scene.
+2. Take a look around at the levels.
+
+## Understanding the package
+
+1. Build your own courses using the [build course guide](./build-your-course).
+2. Customize it using the [customization guide](./customization).
+3. Learn about attributes using the [attributes guide](./attributes).

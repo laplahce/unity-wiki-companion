@@ -18,13 +18,13 @@ All versions. [For more compatibility information, refer to the Compatibility pa
 
 All platforms are supported. [For more compatibility information, refer to the Compatibility page](./compatibility).
 
-## Can I use the effects in a commercial game?
+## Can I use the characters in a commercial game?
 
 Yes. The licence covers commercial projects, per the standard Unity Asset Store EULA.
 
 ## Can I create custom animations for the characters?
 
-Yes. All the characters have their body parts separated, meaning you can easily create animations, fast.
+Yes. All the characters have their body parts separated, meaning you can easily create animations.
 
 ## Can I use the characters in my 2D game?
 

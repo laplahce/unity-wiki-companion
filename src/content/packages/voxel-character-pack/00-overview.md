@@ -12,7 +12,7 @@ compatibility:
     - All
 ---
 
-**Voxel Character Pack** is, like the name suggests, a pack with 5 characters for Unity. It also includes ready-made animations & lets you easily create new animations due to each body part being separated.
+**Voxel Character Pack** is a pack with 5 characters for Unity. It also includes ready-made animations & lets you easily create new animations by each body part being separated into different models.
 
 ## What's inside
 
