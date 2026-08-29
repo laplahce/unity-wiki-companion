@@ -22,3 +22,10 @@ compatibility:
 
 ## What's inside
 
+- **Complete game loop**.
+- **Publish-ready**.
+- **Configurable settings** without understanding the code.
+- Save, menu, game-over, pause +more systems included.
+- **40+** scripts (**+130** Essentials).
+- **80+** textures.
+- **6+** shaders, **8+** effects.

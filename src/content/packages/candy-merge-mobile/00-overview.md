@@ -8,8 +8,7 @@ compatibility:
     - Built-In
     - URP
   platforms (tested on):
-    - Windows
-    - WebGL
+    - Mobile (tested on Android)
   notes:
     - "Unity 6 is recommended but not required."
     - "HDRP is not supported."
@@ -22,3 +21,10 @@ compatibility:
 
 ## What's inside
 
+- **Complete game loop**.
+- **Publish-ready**.
+- **Configurable settings** without understanding the code.
+- Save, menu, game-over, pause +more systems included.
+- **40+** scripts (**+130** Essentials).
+- **80+** textures.
+- **6+** shaders, **8+** effects.
