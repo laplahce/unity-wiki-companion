@@ -5,7 +5,7 @@ tagline: A pack of 30 explosions with a custom explosion creator.
 category: VFX
 color: "#ff8045"
 label: Explosion Packs
-trailerUrl: 
+trailerUrl: https://youtu.be/ghkknzi15Kk
 assetStoreUrl: https://assetstore.unity.com/packages/slug/334984
 reviewUrl: https://assetstore.unity.com/packages/slug/334984#reviews
 demoUrl: 

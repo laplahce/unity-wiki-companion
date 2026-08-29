@@ -8,4 +8,4 @@ kind: compatibility
 
 ## Notes
 
-- The pack works with all platforms & versions & platforms.
+- The pack works with all versions & platforms.

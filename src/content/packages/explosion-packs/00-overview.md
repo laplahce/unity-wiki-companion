@@ -14,8 +14,6 @@ compatibility:
 
 **Explosion Packs** is a pack of 30 explosions with a custom explosion creator.
 
-::youtube{id=TODO caption="Video tutorial for the pack. A great choice for those who prefer learning by video."}
-
 ## What's inside
 
 - **30+** game ready explosions
