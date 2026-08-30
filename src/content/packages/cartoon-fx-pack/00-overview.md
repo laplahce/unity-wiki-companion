@@ -12,6 +12,8 @@ compatibility:
 
 **Cartoon FX Pack** is a pack of customizable comic-book style effects. 
 
+::youtube{id=VfTzd_lGDxE caption="Video tutorial for the pack. A great choice for those who prefer learning by video."}
+
 ## What's inside
 
 - **40+** FX (+variants).

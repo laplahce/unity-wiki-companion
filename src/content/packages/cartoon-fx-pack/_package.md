@@ -5,7 +5,7 @@ tagline: A pack of customizable comic-book style effects.
 category: VFX
 color: "#347afc"
 label: Cartoon FX Pack
-trailerUrl: 
+trailerUrl: https://youtu.be/oG1riGp_LvU
 assetStoreUrl: https://assetstore.unity.com/packages/slug/307044
 reviewUrl: https://assetstore.unity.com/packages/slug/307044#reviews
 demoUrl: 
