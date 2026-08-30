@@ -40,7 +40,6 @@ export const Route = createFileRoute("/")({
 
 function YouTubePlayer({ trailerUrl }: { trailerUrl: string }) {
   const playerRef = useRef<any>(null);
-  const apiLoadedRef = useRef(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const trailerId = youtubeId(trailerUrl);
@@ -49,79 +48,73 @@ function YouTubePlayer({ trailerUrl }: { trailerUrl: string }) {
     if (!trailerId) return;
 
     function initializePlayer() {
-      if (!playerRef.current) {
-        playerRef.current = new window.YT!.Player("youtube-hero-player", {
-          videoId: trailerId,
-          playerVars: {
-            autoplay: 1,
-            controls: 0,
-            mute: 1,
-            rel: 0,
-            fs: 0,
-            modestbranding: 1,
-            playsinline: 1,
-            iv_load_policy: 3,
-            disablekb: 1,
-            showinfo: 0,
+      if (playerRef.current) return;
+      playerRef.current = new window.YT!.Player("youtube-hero-player", {
+        videoId: trailerId,
+        playerVars: {
+          autoplay: 1,
+          controls: 0,
+          mute: 1,
+          rel: 0,
+          fs: 0,
+          modestbranding: 1,
+          playsinline: 1,
+          iv_load_policy: 3,
+          disablekb: 1,
+          showinfo: 0,
+        },
+        events: {
+          onReady: (event: any) => {
+            event.target.mute();
+            event.target.playVideo();
           },
-          events: {
-            onReady: (event: any) => {
-              event.target.mute();
+          onStateChange: (event: any) => {
+            if (event.data === window.YT!.PlayerState.PLAYING) {
+              if (containerRef.current) containerRef.current.style.opacity = "1";
+            }
+            if (event.data === window.YT!.PlayerState.ENDED) {
               event.target.playVideo();
-            },
-            onStateChange: (event: any) => {
-              if (event.data === window.YT!.PlayerState.PLAYING) {
-                if (containerRef.current) {
-                  containerRef.current.style.opacity = "1";
-                }
-              }
-              if (event.data === window.YT!.PlayerState.ENDED) {
-                event.target.playVideo();
-              }
-            },
+            }
           },
-        });
-      }
+        },
+      });
     }
 
     if (!window.YT) {
       const tag = document.createElement("script");
       tag.src = "https://www.youtube.com/iframe_api";
-      const firstScriptTag = document.getElementsByTagName("script")[0];
-      firstScriptTag?.parentNode?.insertBefore(tag, firstScriptTag);
-
-      window.onYouTubeIframeAPIReady = () => {
-        apiLoadedRef.current = true;
-        initializePlayer();
-      };
-    } else if (window.YT!.Player) {
+      document.getElementsByTagName("script")[0]?.parentNode?.insertBefore(
+        tag,
+        document.getElementsByTagName("script")[0]
+      );
+      window.onYouTubeIframeAPIReady = () => initializePlayer();
+    } else if (window.YT?.Player) {
       initializePlayer();
     } else {
-      window.onYouTubeIframeAPIReady = () => {
-        apiLoadedRef.current = true;
-        initializePlayer();
-      };
+      window.onYouTubeIframeAPIReady = () => initializePlayer();
     }
 
     return () => {
-      if (playerRef.current?.destroy) {
-        try {
-          playerRef.current.destroy();
-          playerRef.current = null;
-        } catch (e) {
-          // Player might already be destroyed
-        }
-      }
+      try { playerRef.current?.destroy(); } catch {}
+      playerRef.current = null;
     };
   }, [trailerId]);
 
   return (
-    <div
-      ref={containerRef}
-      className="relative overflow-hidden rounded-2xl transition-opacity duration-500"
-      style={{ opacity: 0 }}
-    >
-      <div id="youtube-hero-player" className="w-full" />
+    <div className="relative w-full overflow-hidden rounded-2xl" style={{ aspectRatio: "16/9" }}>
+      {/* Oversized + centered iframe to crop out YouTube UI chrome */}
+      <div
+        ref={containerRef}
+        className="pointer-events-none absolute inset-0 transition-opacity duration-500"
+        style={{ opacity: 0 }}
+      >
+        <div
+          id="youtube-hero-player"
+          className="absolute left-1/2 top-1/2 h-[110vh] min-h-full w-[195vh] min-w-full -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+        />
+        {/* Transparent overlay blocks the YouTube click-to-play UI */}
+        <div className="absolute inset-0 z-10 pointer-events-none" />
+      </div>
     </div>
   );
 }
