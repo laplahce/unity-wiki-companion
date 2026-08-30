@@ -41,7 +41,6 @@ export const Route = createFileRoute("/")({
 function YouTubePlayer({ trailerUrl }: { trailerUrl: string }) {
   const playerRef = useRef<any>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-
   const trailerId = youtubeId(trailerUrl);
 
   useEffect(() => {
@@ -64,17 +63,12 @@ function YouTubePlayer({ trailerUrl }: { trailerUrl: string }) {
           showinfo: 0,
         },
         events: {
-          onReady: (event: any) => {
-            event.target.mute();
-            event.target.playVideo();
-          },
-          onStateChange: (event: any) => {
-            if (event.data === window.YT!.PlayerState.PLAYING) {
-              if (containerRef.current) containerRef.current.style.opacity = "1";
-            }
-            if (event.data === window.YT!.PlayerState.ENDED) {
-              event.target.playVideo();
-            }
+          onReady: (e: any) => { e.target.mute(); e.target.playVideo(); },
+          onStateChange: (e: any) => {
+            if (e.data === window.YT!.PlayerState.PLAYING && containerRef.current)
+              containerRef.current.style.opacity = "1";
+            if (e.data === window.YT!.PlayerState.ENDED)
+              e.target.playVideo();
           },
         },
       });
@@ -84,8 +78,7 @@ function YouTubePlayer({ trailerUrl }: { trailerUrl: string }) {
       const tag = document.createElement("script");
       tag.src = "https://www.youtube.com/iframe_api";
       document.getElementsByTagName("script")[0]?.parentNode?.insertBefore(
-        tag,
-        document.getElementsByTagName("script")[0]
+        tag, document.getElementsByTagName("script")[0]
       );
       window.onYouTubeIframeAPIReady = () => initializePlayer();
     } else if (window.YT?.Player) {
@@ -101,18 +94,19 @@ function YouTubePlayer({ trailerUrl }: { trailerUrl: string }) {
   }, [trailerId]);
 
   return (
-    <div className="relative w-full overflow-hidden rounded-2xl" style={{ aspectRatio: "16/9" }}>
-      {/* Oversized + centered iframe to crop out YouTube UI chrome */}
+    {/* Break out of max-w-5xl with 100vw + negative margin trick */}
+    <div className="relative w-screen left-1/2 -translate-x-1/2" style={{ aspectRatio: "16/9" }}>
       <div
         ref={containerRef}
-        className="pointer-events-none absolute inset-0 transition-opacity duration-500"
+        className="pointer-events-none absolute inset-0 overflow-hidden transition-opacity duration-500"
         style={{ opacity: 0 }}
       >
+        {/* Oversized + centered to crop YouTube title bar, logo, end cards */}
         <div
           id="youtube-hero-player"
           className="absolute left-1/2 top-1/2 h-[110vh] min-h-full w-[195vh] min-w-full -translate-x-1/2 -translate-y-1/2 pointer-events-none"
         />
-        {/* Transparent overlay blocks the YouTube click-to-play UI */}
+        {/* Sits above the iframe in z-order, blocks ALL YouTube overlays including the play button */}
         <div className="absolute inset-0 z-10 pointer-events-none" />
       </div>
     </div>
