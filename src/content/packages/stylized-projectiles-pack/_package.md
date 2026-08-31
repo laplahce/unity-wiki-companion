@@ -1,5 +1,4 @@
 ---
-status: awaiting-review
 name: Stylized Projectiles Pack
 tagline: A pack of stylized projectiles.
 category: VFX

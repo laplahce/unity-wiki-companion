@@ -1,5 +1,4 @@
 ---
-status: awaiting-review
 name: Stylized Clouds Pack
 tagline: A pack of stylized clouds.
 category: 3D

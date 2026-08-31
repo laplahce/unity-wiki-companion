@@ -1,5 +1,4 @@
 ---
-status: awaiting-review
 name: Stylized FX Pack
 tagline: A pack of stylized effects for your environments.
 category: VFX

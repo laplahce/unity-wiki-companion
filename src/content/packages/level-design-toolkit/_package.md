@@ -1,5 +1,4 @@
 ---
-status: awaiting-review
 name: Level Design Toolkit
 tagline: A collection of 4 level design tools that helps you create levels, design worlds or even prototyping.
 category: Tools

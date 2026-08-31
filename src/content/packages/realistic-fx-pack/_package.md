@@ -1,5 +1,4 @@
 ---
-status: awaiting-review
 name: Realistic FX Pack
 tagline: A pack of realistic environment effects.
 category: VFX

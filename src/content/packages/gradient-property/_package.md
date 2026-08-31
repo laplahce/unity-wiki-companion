@@ -1,5 +1,4 @@
 ---
-status: awaiting-review
 name: Gradient Property for Shader
 tagline: Lets you use gradients as properties in Shaders, Shader Graphs and Amplify Shader Editor.
 category: Tools

@@ -1,5 +1,4 @@
 ---
-status: awaiting-review
 name: Cartoon FX Pack
 tagline: A pack of customizable comic-book style effects.
 category: VFX

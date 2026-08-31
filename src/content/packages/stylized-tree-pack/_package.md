@@ -1,5 +1,4 @@
 ---
-status: awaiting-review
 name: Stylized Tree Pack
 tagline: A pack of stylized trees & bushes.
 category: 3D

@@ -1,5 +1,4 @@
 ---
-status: awaiting-review
 name: Essential Systems
 tagline: A pack of must-have systems for your games and projects.
 category: Tools

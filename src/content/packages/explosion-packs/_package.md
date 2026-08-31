@@ -1,5 +1,4 @@
 ---
-status: awaiting-review
 name: Explosion Packs
 tagline: A pack of 30 explosions with a custom explosion creator.
 category: VFX

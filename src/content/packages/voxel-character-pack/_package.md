@@ -1,5 +1,4 @@
 ---
-status: awaiting-review
 name: Voxel Character Pack
 tagline: A pack of 5 unique voxel characters with included animations.
 category: Characters

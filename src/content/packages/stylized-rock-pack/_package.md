@@ -1,5 +1,4 @@
 ---
-status: awaiting-review
 name: Stylized Rock Pack
 tagline: A pack of stylized, hand-sculpted rocks.
 category: 3D

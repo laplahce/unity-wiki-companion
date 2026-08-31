@@ -1,5 +1,4 @@
 ---
-status: awaiting-review
 name: Audio Manager
 tagline: Manage all your audio from one place.
 category: Tools

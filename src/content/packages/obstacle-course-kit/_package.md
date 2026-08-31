@@ -1,5 +1,4 @@
 ---
-status: awaiting-review
 name: Obstacle Course Kit
 tagline: Platformer kit for obstacle courses & party games.
 category: 3D

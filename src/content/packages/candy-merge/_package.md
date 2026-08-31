@@ -1,5 +1,4 @@
 ---
-status: awaiting-review
 name: Candy Merge
 tagline: A complete merge game template, ready to publish & easy to expand.
 category: Templates

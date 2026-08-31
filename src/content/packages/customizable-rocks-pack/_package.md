@@ -1,5 +1,4 @@
 ---
-status: awaiting-review
 name: Customizable Rocks Pack
 tagline: A pack of 100 customizable rocks with a robust shader to control everything.
 category: 3D

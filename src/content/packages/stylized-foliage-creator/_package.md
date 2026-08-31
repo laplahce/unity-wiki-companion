@@ -1,5 +1,4 @@
 ---
-status: awaiting-review
 name: Stylized Foliage Creator
 tagline: A tool to create stylized bushes, foliage & clouds. Includes trees, bushes & clouds ready out-of-the-box.
 category: Tools
