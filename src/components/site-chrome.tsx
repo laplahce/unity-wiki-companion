@@ -404,7 +404,7 @@ export function MobileSidebar({
   return (
     <div className="fixed inset-0 z-40 lg:hidden">
       <div
-        className="absolute inset-0 bg-foreground/40 backdrop-blur-sm"
+        className="absolute inset-0 bg-background/40 backdrop-blur-sm"
         onClick={onClose}
       />
       <div className="absolute inset-y-0 left-0 w-72 max-w-[85%] bg-background shadow-xl overflow-y-auto scrollbar-brand">

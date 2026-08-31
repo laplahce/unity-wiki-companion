@@ -29,32 +29,56 @@ export function HtmlContent({ html }: { html: string }) {
         const cls = Array.from(codeEl.classList).find((c) =>
           c.startsWith("language-"),
         );
+        const source = codeEl.textContent ?? "";
+
+        const wrapLines = (highlighted: string) => {
+          const lines = highlighted.split("\n");
+          return lines
+            .map((line, index) => {
+              const isLastEmpty = index === lines.length - 1 && line === "";
+              const content = isLastEmpty ? "&nbsp;" : line || " ";
+              return `<span class="code-line" style="display:block; min-height:1.5em; white-space:pre; padding:0 0.75rem 0 0.25rem;${index === 0 ? " margin-top:0;" : ""}">${content}</span>`;
+            })
+            .join("");
+        };
+
         if (cls) {
           language = cls.replace("language-", "");
           try {
-            const result = hljs.highlight(codeEl.textContent ?? "", {
+            const result = hljs.highlight(source, {
               language,
               ignoreIllegals: true,
             });
-            codeEl.innerHTML = result.value;
+            codeEl.innerHTML = wrapLines(result.value);
           } catch {
-            const result = hljs.highlightAuto(codeEl.textContent ?? "");
-            codeEl.innerHTML = result.value;
+            const result = hljs.highlightAuto(source);
+            codeEl.innerHTML = wrapLines(result.value);
             language = result.language ?? "";
           }
         } else {
-          const result = hljs.highlightAuto(codeEl.textContent ?? "");
-          codeEl.innerHTML = result.value;
+          const result = hljs.highlightAuto(source);
+          codeEl.innerHTML = wrapLines(result.value);
           language = result.language ?? "";
         }
+
         codeEl.classList.add("hljs");
+        codeEl.style.display = "block";
+        codeEl.style.whiteSpace = "pre";
+        codeEl.style.lineHeight = "1.6";
+        codeEl.style.padding = "1.1rem 1rem 0";
+        codeEl.style.marginBottom = "-1rem";
+        codeEl.style.tabSize = "4";
+        codeEl.style.textAlign = "left";
+        codeEl.style.background = "#292D3E";
       }
+
+      pre.className = `${pre.className} relative overflow-x-auto rounded-xl border border-border/70 bg-[#30364C] text-sm leading-6 text-[#c9d1d9] shadow-[0_8px_24px_rgba(15,23,42,0.18)]`;
 
       // Language label badge (top-left).
       if (language) {
         const label = document.createElement("span");
         label.className =
-          "absolute left-3 top-2 select-none text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/70";
+          "absolute left-20 top-2 select-none text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/70";
         label.textContent = language;
         pre.appendChild(label);
         cleanups.push(() => label.remove());
@@ -64,8 +88,7 @@ export function HtmlContent({ html }: { html: string }) {
       btn.type = "button";
       btn.setAttribute("aria-label", "Copy code");
       btn.title = "Copy code";
-      btn.className =
-        "copy-btn absolute right-2 top-2 inline-flex h-7 w-7 items-center justify-center rounded-md border border-border bg-background/80 text-muted-foreground backdrop-blur transition hover:border-brand hover:text-brand";
+      btn.className = "copy-btn absolute right-3 top-2 inline-flex h-6 w-6 items-center justify-center rounded border border-[#454B63] bg-[#363B52] text-[#A7AEC4] shadow-sm backdrop-blur-sm transition-all duration-200 hover:border-[#59617D] hover:bg-[#40465F] hover:text-[#D0D5E5] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#59617D]";
       btn.innerHTML = COPY_SVG;
 
       const onClick = async () => {
