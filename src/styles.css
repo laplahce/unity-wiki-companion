@@ -133,7 +133,7 @@
   --brand-2: oklch(0.72 0.17 305);
 
   --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.5), 0 8px 24px -12px rgba(0, 0, 0, 0.7);
-  --shadow-card-hover: 0 1px 2px rgba(0, 0, 0, 0.55), 0 18px 40px -12px rgba(124, 58, 237, 0.45);
+  --shadow-card-hover: 0 1px 2px rgba(0, 0, 0, 0.55), 0 14px 30px -14px rgba(124, 58, 237, 0.2);
 }
 
 @layer base {
@@ -299,6 +299,7 @@
   .changelog-type-added     { color: oklch(0.5 0.16 145) !important; }
   .changelog-type-changed    { color: oklch(0.5 0.16 250) !important; }
   .changelog-type-fixed      { color: oklch(0.5 0.14 195) !important; }
+  .changelog-type-improved      { color: oklch(0.52 0.15 300) !important; }
   .changelog-type-deprecated { color: oklch(0.6 0.12 75) !important; }
   .changelog-type-breaking  { color: oklch(0.55 0.18 25) !important; }
   .changelog-type-removed    { color: oklch(0.55 0.02 260) !important; }
@@ -307,6 +308,7 @@
   .wiki-article tbody tr:has(.changelog-type-added)     { border-left: 3px solid oklch(0.5 0.16 145); }
   .wiki-article tbody tr:has(.changelog-type-changed)    { border-left: 3px solid oklch(0.5 0.16 250); }
   .wiki-article tbody tr:has(.changelog-type-fixed)      { border-left: 3px solid oklch(0.5 0.14 195); }
+  .wiki-article tbody tr:has(.changelog-type-improved)    { border-left: 3px solid oklch(0.52 0.15 300); }
   .wiki-article tbody tr:has(.changelog-type-deprecated) { border-left: 3px solid oklch(0.6 0.12 75); }
   .wiki-article tbody tr:has(.changelog-type-breaking)  { border-left: 3px solid oklch(0.55 0.18 25); }
   .wiki-article tbody tr:has(.changelog-type-removed)   { border-left: 3px solid oklch(0.55 0.02 260); }
@@ -318,6 +320,7 @@
   .dark .changelog-type-added      { color: oklch(0.75 0.16 145) !important; }
   .dark .changelog-type-changed    { color: oklch(0.75 0.14 250) !important; }
   .dark .changelog-type-fixed      { color: oklch(0.78 0.12 195) !important; }
+  .dark .changelog-type-improved   { color: oklch(0.52 0.15 300) !important; }
   .dark .changelog-type-deprecated { color: oklch(0.8 0.13 75) !important; }
   .dark .changelog-type-breaking   { color: oklch(0.72 0.17 25) !important; }
   .dark .changelog-type-removed    { color: oklch(0.72 0.02 260) !important; }
@@ -515,115 +518,238 @@
   }
 
   /* ---------- Shared button styles ---------- */
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    font-weight: 600;
-    border-radius: 0.75rem;
-    white-space: nowrap;
-    transition:
-      background-color 160ms ease,
-      border-color 160ms ease,
-      box-shadow 160ms ease,
-      transform 160ms ease,
-      filter 160ms ease;
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  font-weight: 650;
+  border-radius: 0.65rem;
+  white-space: nowrap;
+  cursor: pointer;
+
+  transition:
+    transform 120ms ease,
+    background-color 120ms ease,
+    border-color 120ms ease,
+    color 120ms ease,
+    box-shadow 120ms ease;
+}
+
+/* Primary */
+.btn-grad {
+  background: color-mix(in srgb, var(--color-brand) 88%, white);
+  color: white;
+  border: 1px solid
+    color-mix(in srgb, var(--color-brand) 72%, black);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.32),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.08),
+    0 2px 0 color-mix(in srgb, var(--color-brand) 62%, black);
+}
+
+.btn-grad:hover {
+  background: color-mix(in srgb, var(--color-brand) 82%, white);
+  transform: translateY(-1px);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.38),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.08),
+    0 3px 0 color-mix(in srgb, var(--color-brand) 62%, black);
+}
+
+.btn-grad:active {
+  transform: translateY(2px);
+
+  box-shadow:
+    inset 0 1px 0 rgba(0, 0, 0, 0.08),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.08);
+}
+
+.btn-grad:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 3px;
+}
+
+
+/* Secondary */
+.btn-solid {
+  background: var(--color-card);
+  color: var(--color-foreground);
+
+  border: 1px solid var(--color-border);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    0 2px 0 color-mix(in srgb, var(--color-border) 80%, black);
+}
+
+.btn-solid:hover {
+  color: var(--color-brand);
+
+  background: color-mix(in srgb, var(--color-card) 96%, var(--color-brand));
+
+  border-color: color-mix(in srgb, var(--color-brand) 45%, var(--color-border));
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.75),
+    0 3px 0 color-mix(in srgb, var(--color-border) 75%, black);
+}
+
+.btn-solid:active {
+  transform: translateY(2px);
+  box-shadow: none;
+}
+
+.btn-solid:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 3px;
+}
+
+
+/* Button on dark background */
+.btn-on-dark {
+  background: white;
+  color: #161616;
+
+  border: 1px solid rgba(255, 255, 255, 0.8);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 2px 0 rgba(0, 0, 0, 0.35);
+}
+
+.btn-on-dark:hover {
+  background: rgba(255, 255, 255, 0.92);
+  transform: translateY(-1px);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 3px 0 rgba(0, 0, 0, 0.4);
+}
+
+.btn-on-dark:active {
+  transform: translateY(2px);
+  box-shadow: none;
+}
+
+.btn-on-dark:focus-visible {
+  outline: 2px solid white;
+  outline-offset: 3px;
+}
+
+
+/* Glass button */
+.btn-glass {
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+
+  border: 1px solid rgba(255, 255, 255, 0.22);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.12);
+
+  backdrop-filter: blur(12px);
+}
+
+.btn-glass:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.38);
+  transform: translateY(-1px);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.16),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.12),
+    0 3px 0 rgba(0, 0, 0, 0.2);
+}
+
+.btn-glass:active {
+  transform: translateY(2px);
+  box-shadow: none;
+}
+
+.btn-glass:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.8);
+  outline-offset: 3px;
+}
+
+
+/* Dark mode */
+.dark .btn-grad {
+  background: var(--color-brand);
+  color: white;
+
+  border-color: color-mix(in srgb, var(--color-brand) 75%, black);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.2),
+    0 2px 0 color-mix(in srgb, var(--color-brand) 80%, transparent);
+}
+
+.dark .btn-grad:hover {
+  background: color-mix(in srgb, var(--color-brand) 88%, white);
+  transform: translateY(-1px);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.24),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.2),
+    0 3px 0 color-mix(in srgb, var(--color-brand) 80%, transparent);
+}
+
+.dark .btn-grad:active {
+  transform: translateY(2px);
+
+  box-shadow:
+    inset 0 1px 0 rgba(0, 0, 0, 0.08),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.08);
+}
+
+
+/* Dark secondary */
+.dark .btn-solid {
+  background: var(--color-surface-alt);
+  color: var(--color-foreground);
+
+  border-color: var(--color-border-strong, var(--color-border));
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 2px 0 color-mix(in srgb, var(--color-border-strong) 60%, black);
+}
+
+.dark .btn-solid:hover {
+  background: color-mix(in srgb, var(--color-surface-alt) 94%, var(--color-brand));
+  color: var(--color-brand);
+  border-color: color-mix(in srgb, var(--color-brand) 45%, var(--color-border));
+  transform: translateY(-1px);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 3px 0 color-mix(in srgb, var(--color-brand) 45%, black);
+}
+
+.dark .btn-solid:active {
+  transform: translateY(2px);
+  box-shadow: none;
+}
+
+
+/* Loading bar */
+@keyframes loadbar {
+  0% {
+    transform: translateX(-120%);
   }
 
-  /* Gradient / primary button */
-  .btn-grad {
-    position: relative;
-    background-image: var(--gradient-brand);
-    color: #fff;
-    border: 1px solid color-mix(in oklab, var(--color-brand) 60%, black 12%);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.22),
-      0 1px 2px rgba(15, 23, 42, 0.16),
-      0 6px 16px -8px color-mix(in oklab, var(--color-brand) 70%, transparent);
+  100% {
+    transform: translateX(320%);
   }
-  .btn-grad:hover {
-    filter: saturate(1.08) brightness(1.06);
-    transform: translateY(-1px);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.28),
-      0 2px 4px rgba(15, 23, 42, 0.18),
-      0 14px 28px -12px color-mix(in oklab, var(--color-brand) 85%, transparent);
-  }
-  .btn-grad:active {
-    filter: brightness(0.97);
-    transform: translateY(1px) scale(0.99);
-    box-shadow:
-      inset 0 2px 4px rgba(15, 23, 42, 0.22),
-      0 1px 2px rgba(15, 23, 42, 0.12);
-  }
-  .btn-grad:focus-visible {
-    outline: 2px solid color-mix(in oklab, var(--color-brand) 70%, transparent);
-    outline-offset: 2px;
-  }
-
-  /* Neutral / secondary button (light surface) */
-  .btn-solid {
-    background-color: var(--color-card);
-    color: var(--color-foreground);
-    border: 1px solid var(--color-border-strong, var(--color-border));
-    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
-  }
-  .btn-solid:hover {
-    background-color: var(--color-surface-alt);
-    border-color: var(--color-brand);
-    color: var(--color-brand);
-    transform: translateY(-1px);
-    box-shadow: 0 10px 22px -14px color-mix(in oklab, var(--color-brand) 80%, transparent);
-  }
-  .btn-solid:active {
-    transform: translateY(1px) scale(0.99);
-    box-shadow: inset 0 2px 4px rgba(15, 23, 42, 0.08);
-  }
-  .btn-solid:focus-visible {
-    outline: 2px solid color-mix(in oklab, var(--color-brand) 60%, transparent);
-    outline-offset: 2px;
-  }
-
-  /* White button sitting on top of a dark hero image */
-  .btn-on-dark {
-    background-color: #fff;
-    color: #101828;
-    border: 1px solid rgba(255, 255, 255, 0.7);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-  }
-  .btn-on-dark:hover {
-    background-color: #fff;
-    color: var(--color-brand);
-    transform: translateY(-1px);
-    box-shadow: 0 14px 30px -12px rgba(0, 0, 0, 0.55);
-  }
-  .btn-on-dark:active {
-    transform: translateY(1px) scale(0.99);
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.18);
-  }
-
-  @keyframes loadbar {
-    0% { transform: translateX(-120%); }
-    100% { transform: translateX(320%); }
-  }
-
-  /* Translucent button on a dark hero image */
-  .btn-glass {
-    background-color: rgba(255, 255, 255, 0.12);
-    color: #fff;
-    border: 1px solid rgba(255, 255, 255, 0.32);
-    backdrop-filter: blur(8px);
-  }
-  .btn-glass:hover {
-    background-color: rgba(255, 255, 255, 0.24);
-    border-color: rgba(255, 255, 255, 0.6);
-    transform: translateY(-1px);
-    box-shadow: 0 14px 30px -14px rgba(0, 0, 0, 0.6);
-  }
-  .btn-glass:active {
-    transform: translateY(1px) scale(0.99);
-  }
+}
 
   .side-link {
     display: block;

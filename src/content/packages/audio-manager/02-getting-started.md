@@ -5,6 +5,8 @@ title: Getting started
 
 *This guide will help you get up and running with the pack.*
 
+::youtube{id=PqZILZSxfgo caption="Video tutorial for the pack. A great choice for those who prefer learning by video."}
+
 ## Your first steps
 
 ### Adding audio

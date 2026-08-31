@@ -5,8 +5,6 @@ title: Getting started
 
 *This guide will help you get the systems up and running.*
 
-::youtube{caption="Video tutorial for the pack. A great choice for those who prefer learning by video."}
-
 ## Your first steps
 
 ### Import a system

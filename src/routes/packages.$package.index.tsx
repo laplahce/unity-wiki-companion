@@ -17,7 +17,20 @@ export const Route = createFileRoute("/packages/$package/")({
 function PackageShowcase() {
   const { pkg } = Route.useLoaderData();
   const storeUrl = pkg.assetStoreUrl ?? SITE.assetStoreUrl;
-  const related = PACKAGES.filter((p) => p.slug !== pkg.slug).slice(0, 3);
+  const related = (() => {
+    const others = PACKAGES.filter((p) => p.slug !== pkg.slug);
+    const sameCategory = others.filter((p) => p.category === pkg.category);
+    const different = others.filter((p) => p.category !== pkg.category);
+
+    const shuffle = <T,>(arr: T[]) => [...arr].sort(() => Math.random() - 0.5);
+
+    const picks = [
+      ...shuffle(sameCategory),
+      ...shuffle(different),
+    ];
+
+    return picks.slice(0, 3);
+  })();
   const shots = pkg.media?.screenshots ?? [];
   const highlights = pkg.highlights ?? [];
 

@@ -15,8 +15,6 @@ compatibility:
 
 **Essential Systems** is a a pack of must-have systems for your games and projects. It includes essential independent systems like camera shake, object pooling, audio management, command console, dialogue manager, and more.
 
-::youtube{caption="Video tutorial for the pack. A great choice for those who prefer learning by video."}
-
 ## What's inside
 
 - **14+** systems +variants & demos to fit all projects.

@@ -33,6 +33,8 @@ export const Route = createFileRoute("/docs/")({
 });
 
 function Index() {
+  const featured = [...PACKAGES].sort(() => Math.random() - 0.5).slice(0, 3);
+  const randomPkg = featured[0];
   return (
     <div className="flex gap-10">
       <div className="min-w-0 flex-1 space-y-16">
@@ -44,15 +46,15 @@ function Index() {
         </h1>
         <p className="mt-5 max-w-2xl text-base text-muted-foreground sm:text-lg">
           A list of all my packages&apos; documentations.
-          Each package has its own multi-page docs with clean & concise writing and easy-to-follow guides.
+          Each package has its own docs with easy-to-follow guides.
         </p>
         <div className="mt-7 flex flex-wrap gap-3">
           <Link
             to="/docs/$package"
-            params={{ package: PACKAGES[0].slug }}
+            params={{ package: randomPkg.slug }}
             className="btn btn-grad px-5 py-3 text-sm"
           >
-            Open {PACKAGES[0].name} docs →
+            Open {randomPkg.name} docs →
           </Link>
           <a
             href="#contents"
@@ -81,7 +83,7 @@ function Index() {
           </a>
         </div>
         <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
-          {PACKAGES.slice(0, 3).map((p) => (
+          {featured.map((p) => (
             <Link
               key={p.slug}
               to="/docs/$package"

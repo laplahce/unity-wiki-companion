@@ -13,6 +13,8 @@ compatibility:
 
 **Realistic FX Pack** is a pack of realistic environment effects for Unity. It also includes a custom curve editor letting you fit the effects to any environment.
 
+::youtube{id=YcLf6jPteWk caption="Video tutorial for the pack. A great choice for those who prefer learning by video."}
+
 ## What's inside
 
 - **20+** effects.

@@ -5,8 +5,6 @@ title: Getting started
 
 *This guide will help you get the template running and make it yours.*
 
-::youtube{id=TODO caption="Video tutorial for the template. A great choice for those who prefer learning by video."}
-
 ## Your first steps
 
 ### Play the game

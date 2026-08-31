@@ -11,7 +11,7 @@ github:
 assetStoreUrl: https://assetstore.unity.com/publishers/62747
 copyright: "© {year} laplahce - Unity Asset Store developer. Not affiliated with Unity Technologies."
 footerNote: Made with care.
-trailerUrl: https://www.youtube.com/watch?v=Aq5WXmQQooo
+trailerUrl: "/content/Trailer.mp4"
 socials:
   - name: Itch
     url: https://itch.io/profile/laplahce
@@ -30,4 +30,4 @@ socials:
     icon:
 ---
 
-I'm an independent Unity Asset Store developer. Each package is made with care with focus on user-experience to make it as easy as possible to use.
+I'm a solo Unity Asset Store developer. Each package is made with care with focus on user-experience to make it as easy as possible to use.

@@ -16,7 +16,7 @@ import { StatusBadge } from "@/components/status-badge";
 import { PackageBanner } from "@/components/package-media";
 import { SITE } from "@/data/site";
 import { youtubeId } from "@/data/content";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -25,7 +25,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Independent Unity Asset Store developer. Browse my effect packs and editor tools, try the playable demos, and read the full documentation for every package.",
+          "Solo Unity Asset Store developer. Browse my effect packs and editor tools, try the playable demos, and read the full documentation for every package.",
       },
       { property: "og:title", content: "laplahce - Unity Asset Store packages & tools" },
       {
@@ -38,78 +38,100 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
-function YouTubePlayer({ trailerUrl }: { trailerUrl: string }) {
-  const playerRef = useRef<any>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const trailerId = youtubeId(trailerUrl);
+const PHRASES = [
+  "take a look around",
+  "This is what I do",
+  "built for Unity developers",
+  "crafted with care",
+];
+
+const FOCUS_PHRASES = [
+  "great quality",
+  "ease-of-use",
+  "fast workflow",
+  "and clean design"
+];
+
+function CyclingText() {
+  const [index, setIndex] = useState(0);
+  const [animating, setAnimating] = useState(false);
+  const [focusIndex, setFocusIndex] = useState(0);
+  const [focusAnimating, setFocusAnimating] = useState(false);
+  const [visible, setVisible] = useState(true);
+  const isLastRef = useRef(false);
+  const doneRef = useRef(false);
+
+  const isLast = index === PHRASES.length - 1;
+  isLastRef.current = isLast;
 
   useEffect(() => {
-    if (!trailerId) return;
+    const interval = setInterval(() => {
+      if (isLastRef.current) return;
+      setAnimating(true);
+      setTimeout(() => {
+        setIndex((i) => (i + 1) % PHRASES.length);
+        setAnimating(false);
+      }, 300);
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
-    function initializePlayer() {
-      if (playerRef.current) return;
-      playerRef.current = new window.YT!.Player("youtube-hero-player", {
-        videoId: trailerId,
-        playerVars: {
-          autoplay: 1,
-          controls: 0,
-          mute: 1,
-          rel: 0,
-          fs: 0,
-          modestbranding: 1,
-          playsinline: 1,
-          iv_load_policy: 3,
-          disablekb: 1,
-          showinfo: 0,
-        },
-        events: {
-          onReady: (e: any) => { e.target.mute(); e.target.playVideo(); },
-          onStateChange: (e: any) => {
-            if (e.data === window.YT!.PlayerState.PLAYING && containerRef.current)
-              containerRef.current.style.opacity = "1";
-            if (e.data === window.YT!.PlayerState.ENDED)
-              e.target.playVideo();
-          },
-        },
-      });
-    }
+  useEffect(() => {
+    let count = 0;
+    const interval = setInterval(() => {
+      if (!isLastRef.current) return;
+      if (doneRef.current) return;
 
-    if (!window.YT) {
-      const tag = document.createElement("script");
-      tag.src = "https://www.youtube.com/iframe_api";
-      document.getElementsByTagName("script")[0]?.parentNode?.insertBefore(
-        tag, document.getElementsByTagName("script")[0]
-      );
-      window.onYouTubeIframeAPIReady = () => initializePlayer();
-    } else if (window.YT?.Player) {
-      initializePlayer();
-    } else {
-      window.onYouTubeIframeAPIReady = () => initializePlayer();
-    }
+      if (count >= FOCUS_PHRASES.length - 1) {
+        doneRef.current = true;
+        // hide text
+        setTimeout(() => setVisible(false), 800);
+        // reset everything and loop
+        setTimeout(() => {
+          setIndex(0);
+          setFocusIndex(0);
+          doneRef.current = false;
+          count = 0;
+          setVisible(true);
+        }, 2000);
+        return;
+      }
 
-    return () => {
-      try { playerRef.current?.destroy(); } catch {}
-      playerRef.current = null;
-    };
-  }, [trailerId]);
+      setFocusAnimating(true);
+      setTimeout(() => {
+        setFocusIndex((i) => (i + 1) % FOCUS_PHRASES.length);
+        setFocusAnimating(false);
+        count++;
+      }, 300);
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
-    {/* Break out of max-w-5xl with 100vw + negative margin trick */}
-    <div className="relative w-screen left-1/2 -translate-x-1/2" style={{ aspectRatio: "16/9" }}>
-      <div
-        ref={containerRef}
-        className="pointer-events-none absolute inset-0 overflow-hidden transition-opacity duration-500"
-        style={{ opacity: 0 }}
-      >
-        {/* Oversized + centered to crop YouTube title bar, logo, end cards */}
-        <div
-          id="youtube-hero-player"
-          className="absolute left-1/2 top-1/2 h-[110vh] min-h-full w-[195vh] min-w-full -translate-x-1/2 -translate-y-1/2 pointer-events-none"
-        />
-        {/* Sits above the iframe in z-order, blocks ALL YouTube overlays including the play button */}
-        <div className="absolute inset-0 z-10 pointer-events-none" />
-      </div>
-    </div>
+    <p
+      className="text-xs font-semibold uppercase tracking-widest text-white/70 transition-all duration-500"
+      style={{
+        opacity: visible ? (animating ? 0 : 1) : 0,
+        transform: animating ? "translateY(-8px)" : "translateY(0px)",
+      }}
+    >
+      {isLast ? (
+        <>
+          with focus on{" "}
+          <span
+            className="text-white transition-all duration-300 inline-block"
+            style={{
+              transform: focusAnimating ? "translateY(-6px)" : "translateY(0px)",
+              opacity: focusAnimating ? 0 : 1,
+            }}
+          >
+            {FOCUS_PHRASES[focusIndex]}
+          </span>
+        </>
+      ) : (
+        PHRASES[index]
+      )}
+    </p>
   );
 }
 
@@ -117,22 +139,32 @@ function Home() {
   return (
     <div className="mx-auto max-w-5xl space-y-20 pb-10">
       {/* Hero */}
-      <section className="pt-10 sm:pt-16">
-        <div className="eyebrow inline-flex items-center gap-2">
-          <Wrench className="h-3.5 w-3.5" /> Unity Asset Developer
-        </div>
-        
+      <section className="-mt-10 sm:-mt-16">
         {SITE.trailerUrl ? (
-          <div className="mt-4 space-y-4">
-            <YouTubePlayer trailerUrl={SITE.trailerUrl} />
-            <a
-              href={SITE.trailerUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-brand hover:underline"
-            >
-              <Film className="h-4 w-4" /> Watch the full trailer
-            </a>
+          <div className="mt-8 space-y-4">
+            {SITE.trailerUrl ? (
+              <div className="relative w-screen left-1/2 -translate-x-1/2" style={{ aspectRatio: "16/9", maxHeight: "60vh" }}>
+                <video
+                  className="absolute inset-0 h-full w-full object-cover"
+                  src={SITE.trailerUrl}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                />
+                <div className="absolute inset-0 bg-black/40" />
+                <div className="absolute inset-0 flex flex-col items-start justify-center">
+                  <div className="mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8">
+                    <CyclingText />
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <h1 className="display mt-4 text-4xl sm:text-5xl lg:text-6xl">
+                Hi, I&apos;m <span className="text-brand">laplahce</span>.
+                <br />I build Assets for your games.
+              </h1>
+            )}
           </div>
         ) : (
           <h1 className="display mt-4 text-4xl sm:text-5xl lg:text-6xl">
@@ -140,26 +172,6 @@ function Home() {
             <br />I build Assets for your games.
           </h1>
         )}
-        
-        <p className="mt-6 max-w-2xl text-base text-muted-foreground sm:text-lg">
-          I&apos;ve been creating asset packs on the Unity Asset Store for a while
-          now. Here you&apos;ll find all my packages, their documentation, demos & more.
-        </p>
-        <div className="mt-7 flex flex-wrap gap-3">
-          <Link
-            to="/packages/$package"
-            params={{ package: PACKAGES[0].slug }}
-            className="btn btn-grad px-5 py-3 text-sm"
-          >
-            See my packages <ArrowRight className="h-4 w-4" />
-          </Link>
-          <Link
-            to="/docs"
-            className="btn btn-solid px-5 py-3 text-sm"
-          >
-            Browse the docs
-          </Link>
-        </div>
       </section>
 
       {/* Packages grid */}
@@ -179,7 +191,10 @@ function Home() {
           </Link>
         </div>
         <div className="grid gap-5 sm:grid-cols-2">
-          {PACKAGES.slice(0, 4).map((p) => (
+          {["cartoon-fx-pack-v2", "obstacle-course-kit", "candy-merge", "level-design-toolkit"]
+            .map((slug) => PACKAGES.find((p) => p.slug === slug))
+            .filter(Boolean)
+            .map((p) => (
             <Link
               key={p.slug}
               to="/packages/$package"
@@ -241,7 +256,7 @@ function Home() {
             <h2 className="display text-2xl sm:text-3xl">A bit about me</h2>
             <p className="max-w-2xl text-[15px] leading-relaxed text-muted-foreground">
               I&apos;m a solo developer creating Unity Asset Store packs. I try to
-              focus on ease-of-use &amp; love to make the user experience as good as
+              focus on ease-of-use &amp; making the user experience as good as
               possible. If a pack of mine helped you, a review goes a long way. If
               something is broken, unclear, or you want to request a feature, just
               reach out.
@@ -292,7 +307,7 @@ function Home() {
 
       {/* Patreon support */}
       {SITE.patreonUrl && (
-        <section className="rounded-2xl border border-brand/20 bg-gradient-to-br from-brand/10 via-transparent to-transparent p-6 sm:p-10">
+        <section className="rounded-2xl border border-brand/20 bg-gradient-to-br from-brand/5 via-transparent to-transparent dark:from-brand/10 p-6 sm:p-10">
           <div className="grid gap-8 sm:grid-cols-[1fr_auto] sm:items-center">
             <div className="space-y-3">
               <div className="eyebrow inline-flex items-center gap-2 text-brand">
@@ -302,8 +317,9 @@ function Home() {
                 Help support my work
               </h2>
               <p className="max-w-2xl text-[15px] leading-relaxed text-muted-foreground">
-                My assets take a long time to create, from prototype to marketing to documentation.
-                Supporting me on Patreon means I can spend more time developing better quality assets.
+                My assets take a long time to create, from prototype to developing to documentation.
+                Using my assets is the best way to show your support, but if you&apos;d like to go further,
+                supporting me on Patreon allows me to spend more time developing quality assets for everyone.
               </p>
             </div>
             <a

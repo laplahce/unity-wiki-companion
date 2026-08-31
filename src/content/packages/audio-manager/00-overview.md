@@ -14,6 +14,8 @@ compatibility:
 
 **Audio Manager** lets you manage all your audio from one place.
 
+::youtube{id=PqZILZSxfgo caption="Video tutorial for the pack. A great choice for those who prefer learning by video."}
+
 ## What's inside
 
 - All sounds in **one place**.

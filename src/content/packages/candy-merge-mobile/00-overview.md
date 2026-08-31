@@ -17,8 +17,6 @@ compatibility:
 
 **Candy Merge** is a complete merge game template for Unity. Drop candies, merge them into bigger ones and chase a high score.
 
-::youtube{id=TODO caption="Video tutorial for the template. A great choice for those who prefer learning by video."}
-
 ## What's inside
 
 - **Complete game loop**.

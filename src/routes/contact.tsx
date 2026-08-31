@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SITE } from "@/data/site";
 import { PACKAGES } from "@/data/docs";
 import { Mail, MessageCircle, HelpCircle, BookOpen } from "lucide-react";
+import { PackageBanner, PackageIcon } from "@/components/package-media";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -27,11 +28,11 @@ function ContactPage() {
   return (
     <div className="mx-auto max-w-3xl">
       <div className="pt-6">
-        <div className="eyebrow">Say hi</div>
+        <div className="eyebrow">Contact</div>
         <h1 className="display mt-3 text-3xl sm:text-4xl">Get in touch</h1>
         <p className="mt-4 max-w-xl text-muted-foreground">
-          Got a question about one of my packages, found a bug, or just want
-          to say hi? Here&apos;s the easiest way to reach me. I usually reply
+          Got a question about one of my packages, found a bug, or need to contact me?
+          Here&apos;s the easiest way to reach me. I usually reply
           within a day.
         </p>
       </div>
@@ -166,9 +167,7 @@ function ContactPage() {
               params={{ package: p.slug }}
               className="flex items-center gap-3 rounded-xl border border-border bg-card p-4 transition hover:bg-surface-alt"
             >
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg card-grad text-sm font-extrabold text-white">
-                {p.label.charAt(0)}
-              </div>
+              <PackageIcon pkg={p} className="h-10 w-10 shrink-0 rounded-lg" />
               <div>
                 <div className="text-sm font-semibold">{p.name}</div>
                 <div className="text-xs text-muted-foreground">{p.category}</div>
