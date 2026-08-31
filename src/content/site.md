@@ -25,8 +25,8 @@ socials:
   - name: Twitter
     url: https://x.com/laplahce
     icon:
-  - name: TikTok
-    url: https://www.tiktok.com/@laplahce
+  - name: Gumroad
+    url: https://laplahce.gumroad.com/
     icon:
 ---
 
