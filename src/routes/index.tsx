@@ -41,7 +41,7 @@ export const Route = createFileRoute("/")({
 const PHRASES = [
   "take a look around",
   "This is what I do",
-  "built for Unity developers",
+  "made for your next project",
   "crafted with care",
 ];
 
