@@ -8,15 +8,14 @@ function applyTheme(dark: boolean) {
 }
 
 export function ThemeToggle({ className = "" }: { className?: string }) {
-  const [dark, setDark] = useState(false);
+  const [dark, setDark] = useState(true);
 
   useEffect(() => {
-    // Default to light mode; only go dark if the user explicitly chose it.
     const stored = window.localStorage.getItem(STORAGE_KEY);
-    const isDark = stored === "dark";
+    const isDark = stored === "light" ? false : true; // Default to true (dark mode)
     setDark(isDark);
     applyTheme(isDark);
-  }, []);
+}, []);
 
   const toggle = () => {
     const next = !dark;

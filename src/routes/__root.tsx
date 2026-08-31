@@ -126,7 +126,7 @@ function RootShell({ children }: { children: ReactNode }) {
         <HeadContent />
         <script
           dangerouslySetInnerHTML={{
-            __html: `try{if(localStorage.getItem('laplahce-theme')==='dark'){document.documentElement.classList.add('dark')}}catch(e){}`,
+            __html: `try{if(localStorage.getItem('laplahce-theme')!=='light'){document.documentElement.classList.add('dark')}}catch(e){}`,
           }}
         />
       </head>
