@@ -1,5 +1,4 @@
 ---
-status: awaiting-review
 name: Cartoon FX Pack v2
 tagline: Over 100 cartoon/comic effects with a fully custom editor to edit & create new effects.
 category: VFX
