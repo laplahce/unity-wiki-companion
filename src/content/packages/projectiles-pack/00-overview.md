@@ -1,5 +1,4 @@
 ---
-status: awaiting-review
 updated: 2026-10-27
 title: Overview
 kind: overview
