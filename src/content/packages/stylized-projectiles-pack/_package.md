@@ -1,4 +1,5 @@
 ---
+status: deprecated
 name: Stylized Projectiles Pack
 tagline: A pack of stylized projectiles.
 category: VFX

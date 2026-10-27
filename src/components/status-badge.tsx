@@ -1,10 +1,11 @@
-import { CircleDashed, Clock } from "lucide-react";
+import { Ban, CircleDashed, Clock } from "lucide-react";
 
-export type PublishStatus = "in-development" | "awaiting-review";
+export type PublishStatus = "in-development" | "awaiting-review" | "deprecated";
 
 export const STATUS_LABEL: Record<PublishStatus, string> = {
   "in-development": "In Development",
   "awaiting-review": "Awaiting Asset Store Review",
+  "deprecated": "Deprecated",
 };
 
 // Compact slugs used in tight spots like list rows and small cards where the
@@ -12,6 +13,7 @@ export const STATUS_LABEL: Record<PublishStatus, string> = {
 export const STATUS_SHORT_LABEL: Record<PublishStatus, string> = {
   "in-development": "IN DEV",
   "awaiting-review": "IN QUEUE",
+  "deprecated": "DEP",
 };
 
 export const STATUS_DESCRIPTION: Record<PublishStatus, string> = {
@@ -19,6 +21,8 @@ export const STATUS_DESCRIPTION: Record<PublishStatus, string> = {
     "Still actively being built. The page or package isn't published yet.",
   "awaiting-review":
     "Submitted to the Unity Asset Store and waiting for their review team to approve the release.",
+  "deprecated":
+    "Asset was deprecated for a remastered version or any other reason.",
 };
 
 const STATUS_STYLE: Record<PublishStatus, string> = {
@@ -26,11 +30,14 @@ const STATUS_STYLE: Record<PublishStatus, string> = {
     "border-amber-400/40 bg-amber-400/10 text-amber-700 dark:text-amber-300",
   "awaiting-review":
     "border-sky-400/40 bg-sky-400/10 text-sky-700 dark:text-sky-300",
+  "deprecated":
+    "border-zinc-400/40 bg-zinc-400/10 text-zinc-700 dark:text-zinc-300",
 };
 
 const STATUS_ICON: Record<PublishStatus, React.ComponentType<{ className?: string }>> = {
   "in-development": CircleDashed,
   "awaiting-review": Clock,
+  "deprecated": Ban,
 };
 
 export function StatusBadge({
