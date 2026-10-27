@@ -12,8 +12,6 @@ compatibility:
     - Windows
     - Android
     - WebGL
-  notes:
-    - "Android 2022, 2023 Built-In Render Pipeline doesn't work."
 ---
 
 **Projectiles Pack** is a collection of packs, each with 60 projectiles, 60 muzzles, 60 hit FXs for Unity. It also includes a powerful custom FX editor that lets you edit and create any projectile you like by simply adjusting a few sliders & choosing between over 250 custom textures.
