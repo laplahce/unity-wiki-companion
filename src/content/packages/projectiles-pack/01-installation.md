@@ -20,7 +20,7 @@ kind: installation
 ## Setup projectile collision layer
 
 By default the projectiles are set as *Ignore Raycast* layer. If you want to change this, follow this guide:
-1. Go to **Projectiles Pack → Assets → Prefabs → Projectiles**.the 
+1. Go to **Projectiles Pack → Assets → Prefabs → Projectiles**. 
 2. Select all the projectile prefabs.
 3. Change the **Layer** to the layer you want the projectiles to be on.
 4. Keep the projectiles selected and find their colliders. 
