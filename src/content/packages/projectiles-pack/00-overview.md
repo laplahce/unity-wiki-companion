@@ -15,7 +15,7 @@ compatibility:
 
 **Projectiles Pack** is a collection of packs, each with 60 projectiles, 60 muzzles, 60 hit FXs for Unity. It also includes a powerful custom FX editor that lets you edit and create any projectile you like by simply adjusting a few sliders & choosing between over 250 custom textures.
 
-::youtube{id=TODO caption="Video tutorial for the pack. A great choice for those who prefer learning by video."}
+::youtube{id=pS_wWu01LZQ caption="Video tutorial for the pack. A great choice for those who prefer learning by video."}
 
 ## What's inside
 
