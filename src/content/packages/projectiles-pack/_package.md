@@ -1,5 +1,4 @@
 ---
-status: awaiting-review
 name: Projectiles Pack
 tagline: Joint-documentation for all the Projectiles Packs with a custom editor to edit & create new projectiles.
 category: VFX
